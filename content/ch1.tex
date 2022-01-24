@@ -4,3 +4,23 @@
 \section{Introduction}
 
 \par Applied mathematics is concerned with the design and analysis of algorithms or programs. The systematic treatment of complex algorithms requires a suitable programming language for their description, and such a programming language should be concise, precise, consistent over a wide area of application, mnemonic, and economical of symbols; it should exhibit clearly the constraints on the sequence in which operations are performed; and it should permit the description of a process to be independent of the particular representation chosen for the data.
+
+\par Existing languages prove unsuitable for a variety of reasons. Computer coding specifies sequence constraints adequately and is also comprehensive, since the logical functions provided by the branch instructions can, in principle, be employed to synthesize any finite algorithm. However, the set of basic operations provided is not, in general, directly suited to the execution of commonly needed processes, and the numeric symbols used for variables have little mnemonic value. Moreover, the description provided by computer coding depends directly on the particular representation chosen for the data, and it therefore cannot serve as a description of the algorithm per se.
+
+\par Ordinary English lacks both precision and conciseness. The widely used Goldstine-von Neumann (1947) flowcharting provides the conciseness necessary to an over-all view of the processes, only at the cost of suppressing essential detail. The so-called pseudo-English used as a basis for certain automatic programming systems suffers from the same defect. Moreover, the potential mnemonic advantage in substituting familiar English words and phrases for less familiar but more compact mathematical symbols fails to materialize because of the obvious but unwonted precision required in their use.
+
+\par Most of the concepts and operations needed in a programming language have already been defined and developed in one or another branch of mathematics. Therefore, much use can and will be made of existing notations. However, since most notations are specialized to a narrow field of discourse, a consistent unification must be provided. For example, separate and conflicting notations have been developed for the treatment of sets, logical variables, vectors, matrices, and trees, all of which may, in the broad universe of discourse of data processing, occur in a single algorithm. 
+
+\section{Programs}
+
+\par A \textit{program statement} is the specification of some quantity or quantities in terms of some finite operation upon specified operands. Specification is symbolized by an arrow directed toward the specified quantity. thus "y is specified by sin x" is a statement denoted by
+
+\begin{verbatim}
+      y ← sin x.
+\end{verbatim}
+
+\par A set of statements together with a specified order of execution constitutes a \textit{program}. The program is finite if the number of executions is \textit{finite}. The \textit{results} of the program are some subset of the quantities specified by the program. The \textit{sequence} or order of execution will be defined by the order of listing and otherwise by arrows connecting any statement to its successor. A cyclic sequence of statements is called a \textit{loop}.
+
+\par (TODO: FIGURES 1.1 AND 1.2)
+
+\par Thus Program 1.1 is a program of two statements defining the result $v$ as the (approximate) area of a circle of radius $x$, whereas Program 1.2 is an infinite program in which the quantity $z$ is specified as $(2y)^n$ on the $n$-th execution of the two statement loop. Statements will be numbered on the left for reference.
