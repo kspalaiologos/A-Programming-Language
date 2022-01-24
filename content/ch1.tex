@@ -24,3 +24,34 @@
 \par (TODO: FIGURES 1.1 AND 1.2)
 
 \par Thus Program 1.1 is a program of two statements defining the result $v$ as the (approximate) area of a circle of radius $x$, whereas Program 1.2 is an infinite program in which the quantity $z$ is specified as $(2y)^n$ on the $n$-th execution of the two statement loop. Statements will be numbered on the left for reference.
+
+\par A number of similar programs may be subsumed under a single more general program as follows. At certain \textit{branch points} in the program a finite number of alternative statements are specified as possible successors. One of these successors is chosen according to criteria determined in the statement or statements preceding the branch point. These criteria are usually stated as a \textit{comparison} or test of a specified relation between a specified pair of quantities. A branch is denoted by a set of arrows leading to each of the alternative successors, with each arrow labeled by the comparison condition under which the corresponding successor is chosen. The quantities compared are separated by a colon in the statement at the branch point, and a labeled branch is followed if and only if the relation indicated by the label holds when substituted for the colon. The conditions on the branches of a properly defined program must be disjoint and exhaustive.
+
+\par Program 1.3 illustrates the use of a branch point. Statement \verb|α|$5$ is a comparison which determines the branch to statements \verb|β|$1$, \verb|δ|$1$, or \verb|γ|$1$, according as $z > n$, $z = n$, or $z < n$. The program represents a crude by effective process for determining $x = n^\frac{2}{3}$ for any positive cube n.
+
+\par (TODO: FIGURE 1.3)
+
+\par Program 1.4 shows the preceding program reorganized into a compact linear array and introduces two further conventions on the labeling of branch points. The listed successor of a branch statement is selected if none of the labeled conditions is met. Thus statement 6 follows statement 5 if neither of the arrows (to exit or to statement 8) are followed, i.e. if $z < n$. Moreover, any unlabeled arrow is always followed; e.g., statement 7 is invariably followed by statement 3, never by statement 8.
+
+\par A program begins at a point indicated by an \textit{entry arrow} (step 1) and ends at a point indicated by an \textit{exit arrow} (step 5). There are two useful consequences of confining a program to the form of a linear array: the statements may be referred to by a unique serial index (statement number), and unnecessarily complex organization of the program manifests itself in crossing branch lines. The importance of the latter characteristic in developing clear and comprehensible programs is not sufficiently appreciated.
+
+\par (TODO: FIGURES 1.4 AND 1.5)
+
+\par A process which is repeated a number of times is said to be iterated, and a process (such as in Program 1.4) which includes one or more iterated subprocesses is said to be iterative. Program 1.5 shows an iterative process for the matrix multiplication
+
+\begin{verbatim}
+      C ← AB
+\end{verbatim}
+
+\noindent defined in the usual way as
+
+\begin{equation*}
+  \begin{split}
+    C^i_j = \sum^{v(\textbf{A})}_{k=1} A^k_i \times B^k_j
+  \end{split}
+\quad\quad
+  \begin{split}
+    i &= 1,2, ..., \mu(\textbf{A}),\\
+    j &= 1,2, ..., v(\textbf{B}),
+  \end{split}
+\end{equation*}
