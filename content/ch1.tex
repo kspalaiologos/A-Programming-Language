@@ -79,3 +79,19 @@ x\ :\ y,\ r\ →\ s.
 $$
 
 \par This denotes a branch to statement number $s_i$ of the program if the relation $xr_i y$ holds. The parameters $r$ and $s$ may themselves be defined and redefined in other parts of the program. The null element $\circ$ will be used to denote the relation which complements the remaining relations $r_i$; in particular, $(\circ)\ →\ (s)$, or simply $→\ s$, will denote an unconditional branch to statement $s$. Program 1.7 shows the use of these conventions in a reformulation of Program 1.6. More generally, two or more otherwise independent programs may interact through a statement in one program specifying a branch in a second. The statement number occurring in the branch must then be augmented by the name of the program in which the branch is effected. Thus the statement $(\circ)\ →$ Program 2.24 executed in Program 1 causes a branch to step 24 to occur in Program 2.
+
+\par (TODO: FIGURE 1.7)
+
+\par One statement in a program can be modified by another statement which changes certain of its parameters, usually indices. More general changes in statements can be effected by considering the program itself as a vector $p$ whose components are the individual, serially numbered statements. All the operations to be defined on general vectors can then be applied to the statements themselves. For example, the $j$-th statement can be respecified by the $i$-th through the occurrence of the statement $p_j\ ←\ p_i$.
+
+\par The interchange of two quantities $y$ and $x$ (that is, $x$ specifies $y$ and the original value of $y$ specifies $x$) will be denoted by the statement $y\ \leftrightarrow\ x$.
+
+\section{Structure of the language}
+
+\subsection*{Conventions}
+
+\par The Summary of Notation at the end of the book summarizes the notation developed in this chapter. Although intended primarily for reference, it supplements the text in several ways. It frequently provides a more concise alternative definition of an operation discussed in the text, and it also contains important but easily grasped extensions not treated explicitly in the text. By grouping the operations into related classes it displays their family relationships.
+
+\par A concise programming language must incorporate families of operations whose members are related in a systematic manner. Each family will be denoted by a specific operation symbol, and the particular member of the family will be designated by an associated \textit{controlling parameter} (scalar, vector, matrix, or tree) which immediately precedes the main operation symbol. The operand is placed immediately after the main operation symbol. For example, the operation $k\ ↑\ x$ (left rotation of $x$ by $k$ places) may be viewed as the $k$-th member of the set of rotation operators denoted by the symbol $↑$.
+
+\par Operations involving a single operand and no controlling parameter (such as $\lfloor x \rfloor$, or $\lceil x \rceil$) will be denoted by a pair of operation symbols which enclose the operand. Operations involving two operands and a controlling parameter (such as the mask operation $/a,\ u,\ b/$) will be denoted by a pair of operation symbols enclosing the entire set of variables, and the controlling parameter will appear between the two operands. In these cases the operation symbols themselves serve as grouping symbols.
