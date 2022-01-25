@@ -1,0 +1,85 @@
+
+\chapter{Summary of Notation}
+
+\section{Conventions}
+
+\subsection{Basic conventions}
+\begin{itemize}
+	\item 1-origin indexing assumed in this summary.
+	\item Controlling variables appear to the left, e.g., \( \mathbfit{u}/\mathbfit{x} \), \( \mathbfit{b}⊥\mathbfit{y} \), \( k↑\mathbfit{x} \), and \( \mathbfit{u}⌈\mathbfit{x} \). 
+	\item Dimension \( n \) may be elided (if determined by compatibility) from \( \mathbf{ε}(n) \), \( \mathbf{ε}^k(n) \), \( \mathbf{α}^k(n) \), \( \mathbf{ω}^k(n) \), and \( \mathbf{ι}^j(n) \).
+	\item The parameter \( j \) may be elided from operators \( |_j \), \( θ_j \), \( ∫_j \), and \( ι_j \), and from the vector \( \mathbf{ι}^j \) if \( j \) is the index origin in use.
+	\item The parameter \( k \) may be elided from \( k↑\mathbfit{x} \) if \( k=1 \).
+\end{itemize}
+
+% TODO: Need to find a typeface that has itelic & bold "roman" greek
+% NOTE: The "member of" function probably needs to be a "lunate epsilon" instead of ε.
+
+\subsection{Branching conventions}
+\begin{itemize}
+	\item \[ \left| x : y \right| \overset{\mathcal{R}}{\rightarrow} \]
+	The statement to which the arrow leads is executed next if \( \left( x \mathcal{R} y \right) = 1 \); otherwise the listed successor is executed next. An unlabeled arrow is always followed.
+	\item \[ x:y, \mathbfit{r} → \mathbfit{s} \]
+	The statement numbered \( \mathbfit{s}_i \) is executed next if \( \left( x \mathbfit{r}_i y \right) = 1 \). The null symbol \( ∘ \) occurring as a component of \( \mathbfit{r} \) denotes the relation which complements the disjunction of the remaining relations in \( \mathbfit{r} \).
+	\item \[ → \mathup{Program}\ a,b \]
+	Program \( a \) branches to its statement \( b \). The symbol \( a \) may be elided if the statement occurs in Program \( a \) itself.
+\end{itemize}
+
+\subsection{Operand conventions used in summary}
+\begin{tabularx}{\textwidth}{ l l l l l }
+	           & Scalar        & Vector                   & Matrix                   & Tree                   \\
+	Logical    & \( u,v,w \)   & \( \mathbfit{u,v,w} \)   & \( \mathbfit{U,V,W} \)   & \( \mathbf{U,V,W} \)   \\
+	Intergral  & \( h,i,j,k \) & \( \mathbfit{h,i,j,k} \) & \( \mathbfit{H,I,J,K} \) & \( \mathbf{H,I,J,K} \) \\
+	Numerical  & \( x,y,z \)   & \( \mathbfit{x,y,z} \)   & \( \mathbfit{X,Y,Z} \)   & \( \mathbf{X,Y,Z} \)   \\
+	Aribitrary & \( a,b,c \)   & \( \mathbfit{a,b,c} \)   & \( \mathbfit{A,B,C} \)   & \( \mathbf{A,B,C} \)   \\
+\end{tabularx}
+
+\section{Structural Parameters, Null}
+\begin{tabularx}{\textwidth}{ l l X }
+	Dimension                         & \( ν(\mathbfit{a}) \)             & Number of components in vector \( \mathbfit{a} \)                                                                                                                                                    \\
+	Row dimension                     & \( ν(\mathbfit{A}) \)             & Number of components in each row vector \( \mathbfit{A}^i \)                                                                                                                                         \\
+	Column dimension                  & \( μ(\mathbfit{A}) \)             & Number of components in each column vector \( \mathbfit{A}_j \)                                                                                                                                      \\
+	Height                            & \( ν(\mathbf{A}) \)               & Length of longest path in \( \mathbf{A} \)                                                                                                                                                           \\ 
+	Moment                            & \( μ(\mathbf{A}) \)               & Number of nodes in \( \mathbf{A} \)                                                                                                                                                                  \\
+	Dispersion vector                 & \( \mathbf{ν}(\mathbf{A}) \)      & \( \mathbf{ν}_1(\mathbf{A}) = \) number of roots of \( \mathbf{A} \); \( \mathbf{ν}_j(\mathbf{A}) = \) maximum degree of nodes on level \( j − 1 \); \( ν(\mathbf{ν}(\mathbf{A})) = ν(\mathbf{A}) \) \\ 
+	Moment vector                     & \( \mathbf{μ}(\mathbf{A}) \)      & \( \mathbf{μ}_j(\mathbf{A}) = \) number of nodes on level \( j \) of \( \mathbf{A} \); \( ν(\mathbf{μ}(\mathbf{A})) = ν(\mathbf{A}) \)                                                               \\
+	Degree of node \( \mathbfit{i} \) & \( δ(\mathbfit{i}, \mathbf{A}) \) & Degree of node \( \mathbfit{i} \) of tree \( \mathbf{A} \)                                                                                                                                           \\
+	Degree                            & \( δ(\mathbf{A}) \)               & \( δ(\mathbf{A}) = \underset{\mathbfit{i}}{\max}\ δ(\mathbfit{i},\mathbf{A}) \)                                                                                                                      \\
+	Leaf count                        & \( λ(\mathbf{A}) \)               & \( λ(\mathbf{A}) \) is the number of leaves in \( \mathbf{A} \)                                                                                                                                      \\
+	Row dimension of file             & \( ν(\mathbf{Φ}) \)               & Number of files in each row of a file array                                                                                                                                                          \\
+	Column dimension of file          & \( μ(\mathbf{Φ}) \)               & Number of files in each column of a file array                                                                                                                                                       \\
+	Null character                    & \( ∘ \)                           & Null character of set (e.g., space in the alphabet) or null reduction operator                                                                                                                       \\
+\end{tabularx}
+
+\section{Relations}
+
+
+\section{Elementary Operations}
+
+
+\section{Vector Operations}
+
+
+\section{Row Generalizations of Vector Operations}
+
+
+\section{Column Generalizations of Vector Operations}
+
+
+\section{Special Matrices}
+
+
+\section{Transposition}
+
+
+\section{Set Operations}
+
+
+\section{Generalized Matrix Product}
+
+
+\section{Files}
+
+
+\section{Trees}
+
