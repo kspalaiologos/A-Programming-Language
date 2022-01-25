@@ -15,9 +15,9 @@
 
 \par A \textit{program statement} is the specification of some quantity or quantities in terms of some finite operation upon specified operands. Specification is symbolized by an arrow directed toward the specified quantity. thus "y is specified by sin x" is a statement denoted by
 
-\begin{verbatim}
-      y ← sin x.
-\end{verbatim}
+$$
+      y\ ←\ \sin \ x.
+$$
 
 \par A set of statements together with a specified order of execution constitutes a \textit{program}. The program is finite if the number of executions is \textit{finite}. The \textit{results} of the program are some subset of the quantities specified by the program. The \textit{sequence} or order of execution will be defined by the order of listing and otherwise by arrows connecting any statement to its successor. A cyclic sequence of statements is called a \textit{loop}.
 
@@ -39,9 +39,9 @@
 
 \par A process which is repeated a number of times is said to be iterated, and a process (such as in Program 1.4) which includes one or more iterated subprocesses is said to be iterative. Program 1.5 shows an iterative process for the matrix multiplication
 
-\begin{verbatim}
-      C ← AB
-\end{verbatim}
+$$
+      C\ ←\ AB
+$$
 
 \noindent defined in the usual way as
 
@@ -67,3 +67,15 @@
 \par Since the sequence of execution of statements is indicated by connecting arrows as well as by the order of listing, the latter can be chosen arbitrarily. This is illustrated by the functionally identical Programs 1.3 and 1.4. Certain principles of ordering may yield advantages such as clarity or simplicity of the pattern of connections. Even though the advantages of a particular organizing principle are not particularly marked, the uniformity resulting from its consistent application will itself be a boon. The scheme here adopted is called the \textit{method of leading decisions}: the decision on each parameter is placed as early in the program as practicable, normally just before the operations indexed by the parameter. This arrangement groups at the head of each iterative segment the initialization, modification, and the termination test of the controlling parameter. Moreover, it tends to avoid program flaws occasioned by unusual values of the argument.
 
 \par (TODO: FIGURE 1.6)
+
+\par For example, Program 1.6 (which is a reorganization of Program 1.5) behaves properly for matrices of dimension zero, whereas Program 1.5 treats every matrix as if it were of dimension one or greater.
+
+\par Although the labeled arrow representation of program branches provides a complete and graphic description, it is deficient in the following respects: (1) a routine translation to another language (such as computer code) would require the tracing of arrows, and (2) it does not permit programmed modification of the branches.
+
+\par The following alternative form of a branch statement will therefore be used as well:
+
+$$
+x\ :\ y,\ r\ →\ s.
+$$
+
+\par This denotes a branch to statement number $s_i$ of the program if the relation $xr_i y$ holds. The parameters $r$ and $s$ may themselves be defined and redefined in other parts of the program. The null element $\circ$ will be used to denote the relation which complements the remaining relations $r_i$; in particular, $(\circ)\ →\ (s)$, or simply $→\ s$, will denote an unconditional branch to statement $s$. Program 1.7 shows the use of these conventions in a reformulation of Program 1.6. More generally, two or more otherwise independent programs may interact through a statement in one program specifying a branch in a second. The statement number occurring in the branch must then be augmented by the name of the program in which the branch is effected. Thus the statement $(\circ)\ →$ Program 2.24 executed in Program 1 causes a branch to step 24 to occur in Program 2.
