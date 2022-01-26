@@ -1,29 +1,26 @@
 
 \documentclass{book}
 
-\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[a4paper]{geometry}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{longtable}
-\usepackage{amsmath, amssymb}
+\usepackage{tabularx}
+\usepackage{amsmath}
+\usepackage{unicode-math}
 \usepackage{pmboxdraw}
 \usepackage{graphicx}
 \usepackage{indentfirst}
-\usepackage{bigfoot}
-\usepackage{minted}
 \usepackage[bottom]{footmisc}
 \graphicspath{ {.} }
 \usepackage{alltt,xcolor}
 \usepackage{hyperref}
 \usepackage{float}
 \usepackage{fancyvrb}
-
 \usepackage{fontspec}
 \setmonofont{[Apl385.ttf]}[Scale=MatchLowercase]
+\usepackage{enumitem}
 
-\makeatletter
-\AtBeginEnvironment{minted}{\dontdofcolorbox}
-\def\dontdofcolorbox{\renewcommand\fcolorbox[4][]{##4}}
-\makeatother
+\include{notation}
 
 \interfootnotelinepenalty=10000
 
@@ -44,12 +41,14 @@
 \end{center}
 \clearpage
 
-\newgeometry{left=20mm,right=20mm,top=20mm,bottom=20mm}
+\newgeometry{left=35mm,right=35mm,top=20mm,bottom=20mm}
 
 \include{content/preface}
 
 \tableofcontents
 
 \include{content/ch1}
+
+\include{content/summary_of_notation}
 
 \end{document}
