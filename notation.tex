@@ -1,13 +1,45 @@
 
-\newcommand{\sca}[1]{\mathit{#1}}
-\newcommand{\vect}[1]{\symbfit{#1}}
-\newcommand{\mat}[1]{\symbfit{#1}}
-\newcommand{\tree}[1]{\symbfup{#1}}
+% type styles
+\newcommand*{\sca}[1]{ \mathit{#1} }
+\newcommand*{\vect}[1]{ \symbfit{#1} }
+\newcommand*{\mat}[1]{ \symbfit{#1} }
+\newcommand*{\tree}[1]{ \symbfup{#1} }
+\newcommand*{\file}[1]{ \symup{#1} }
 
 % bold upright greek letters
-\newcommand{\bfnu}{\symbfup{\nu}}
-\newcommand{\bfmu}{\symbfup{\mu}}
-\newcommand{\bfepsilon}{\symbfup{\epsilon}}
-\newcommand{\bfalpha}{\symbfup{\alpha}}
-\newcommand{\bfomega}{\symbfup{\omega}}
-\newcommand{\bfiota}{\symbfup{\iota}}
+\newcommand*{\bfnu}{\symbfup{\nu}}
+\newcommand*{\bfmu}{\symbfup{\mu}}
+\newcommand*{\bfepsilon}{\symbfup{\epsilon}}
+\newcommand*{\bfalpha}{\symbfup{\alpha}}
+\newcommand*{\bfomega}{\symbfup{\omega}}
+\newcommand*{\bfiota}{\symbfup{\iota}}
+
+% primitives
+\newcommand*{\dimvect}{ \nu }
+\newcommand*{\rowdim}{ \nu }
+\newcommand*{\coldim}{ \mu }
+\newcommand*{\height}{ \nu }
+\newcommand*{\moment}{ \mu }
+\newcommand*{\dispvect}{ \bfnu }
+\newcommand*{\momentvect}{ \bfmu }
+\newcommand*{\degnode}{ \delta }
+\newcommand*{\degtree}{ \delta }
+\newcommand*{\leafcnt}{ \lambda }
+\newcommand*{\rowdimfile}{ \mu }
+\newcommand*{\coldimfile}{ \nu }
+\newcommand*{\nullchar}{ \circ }
+
+\newcommand*{\relsym}{\symscr{R}}
+\newcommand*{\complrel}[1]{ \mathrel{\stackinset{c}{}{c}{}{|}{#1}} }
+\newcommand*{\complrelvar}[1]{ \mathrel{\stackinset{c}{}{c}{}{/}{#1}} }
+\newcommand*{\member}{ \mathrel{\epsilon} }
+\newcommand*{\notmember}{ \complrelvar{\member} }
+\newcommand*{\includes}{ \supseteq }
+\newcommand*{\notincludes}{ \complrel{\includes} }
+\newcommand*{\sincludes}{ \supset }
+\newcommand*{\notsincludes}{ \complrel{\sincludes} }
+\newcommand*{\nicludes}{ \subseteq }
+\newcommand*{\notnicludes}{ \complrel{\nicludes} }
+\newcommand*{\snicludes}{ \subset }
+\newcommand*{\notsnicludes}{ \complrel{\snicludes} }
+

@@ -63,64 +63,155 @@
 \section{Structural Parameters, Null}
 \begin{tabularx}{\textwidth}{ l c X }
 	Dimension
-		& \( \nu(\vect{a}) \)
+		& \( \dimvect(\vect{a}) \)
 		& Number of components in vector \( \vect{a} \)
 		\\
 	Row dimension
-		& \( \nu(\mat{A}) \)
+		& \( \rowdim(\mat{A}) \)
 		& Number of components in each row vector \( \mat{A}^i \)
 		\\
 	Column dimension
-		& \( \mu(\mat{A}) \)
+		& \( \coldim(\mat{A}) \)
 		& Number of components in each column vector \( \mat{A}_j \)
 		\\
 	Height
-		& \( \nu(\tree{A}) \)
+		& \( \height(\tree{A}) \)
 		& Length of longest path in \( \tree{A} \)
 		\\
 	Moment
-		& \( \mu(\tree{A}) \)
+		& \( \moment(\tree{A}) \)
 		& Number of nodes in \( \tree{A} \)
 		\\
 	Dispersion vector
-		& \( \bfnu(\tree{A}) \)
-		& \( \bfnu_1(\tree{A}) = \) number of roots of \( \tree{A} \); \( \bfnu_j(\tree{A}) = \) maximum degree of nodes on level \( j − 1 \); \( \nu(\bfnu(\tree{A})) = \nu(\tree{A}) \)
+		& \( \dispvect(\tree{A}) \)
+		& \( \dispvect_1(\tree{A}) = \) number of roots of \( \tree{A} \); \( \dispvect_j(\tree{A}) = \) maximum degree of nodes on level \( j − 1 \); \( \dimvect(\dispvect(\tree{A})) = \height(\tree{A}) \)
 		\\
 	Moment vector
-		& \( \bfmu(\tree{A}) \)
-		& \( \bfmu_j(\tree{A}) = \) number of nodes on level \( j \) of \( \tree{A} \); \( \nu(\bfmu(\tree{A})) = \nu(\tree{A}) \)
+		& \( \momentvect(\tree{A}) \)
+		& \( \momentvect_j(\tree{A}) = \) number of nodes on level \( j \) of \( \tree{A} \); \( \dimvect(\momentvect(\tree{A})) = \moment(\tree{A}) \)
 		\\
 	Degree of node \( \vect{i} \)
-		& \( \delta(\vect{i}, \tree{A}) \)
+		& \( \degnode(\vect{i}, \tree{A}) \)
 		& Degree of node \( \vect{i} \) of tree \( \tree{A} \)
 		\\
 	Degree
-		& \( \delta(\tree{A}) \)
-		& \( \delta(\tree{A}) = \underset{\vect{i}}{\max}\ \delta(\vect{i},\tree{A}) \)
+		& \( \degtree(\tree{A}) \)
+		& \( \degtree(\tree{A}) = \underset{\vect{i}}{\max}\ \degnode(\vect{i},\tree{A}) \)
 		\\
 	Leaf count
-		& \( \lambda(\tree{A}) \)
-		& \( \lambda(\tree{A}) \) is the number of leaves in \( \tree{A} \)
+		& \( \leafcnt(\tree{A}) \)
+		& \( \leafcnt(\tree{A}) \) is the number of leaves in \( \tree{A} \)
 		\\
 	Row dimension of file
-		& \( \nu(\mathbf{Φ}) \)
+		& \( \rowdimfile(\file{Φ}) \)
 		& Number of files in each row of a file array
 		\\
 	Column dimension of file
-		& \( \mu(\mathbf{Φ}) \)
+		& \( \coldimfile(\mathbf{Φ}) \)
 		& Number of files in each column of a file array
 		\\
 	Null character
-		& \( ∘ \)
-		& Null character of set (e.g., space in the alphabet) or null reduction operator
+		& \( \nullchar \)
+		& Null character of a set (e.g., space in the alphabet) or null reduction operator
 		\\
 \end{tabularx}
 
 \section{Relations}
-
+\begin{tabularx}{\textwidth}{ l c X }
+	Equality
+		& \( a = b \)
+		& \( a \) and \( b \) are identical
+		\\
+	Membership
+		& \( a \member \vect{b} \)
+		& \( a = \vect{b}_i \) for some \( i \)
+		\\
+	Inclusion
+		& \( \vect{b} \includes \vect{a} \)
+		& \( \vect{a}_j \member \vect{b} \) for all \( j \)
+		\\
+	% empty
+		& \( \vect{a} \nicludes \vect{b} \)
+		& % empty
+		\\
+	Strict inclusion
+		& \( \vect{b} \sincludes \vect{a} \) 
+		& \( \vect{b} \includes \vect{a} \) and \( \vect{a} \complrel{\includes} \vect{b} \)
+		\\
+	% empty
+		& \( \vect{a} \snicludes \vect{b} \)
+		& % empty
+		\\
+	Similarity
+		& \( \vect{b} \equiv \vect{a} \)
+		& \( \vect{b} \includes \vect{a} \) and \( \vect{a} \includes \vect{b} \)
+		\\
+	Complementary relation
+		& \( \complrel{\symscr{R}} \)
+		& The relation which holds if and only if \( \symscr{R} \) does not. Examples of complementary pairs: \( \member, \notmember; \sincludes, \notsincludes; >, \complrel{>} \).
+		\\
+	Combined (\emph{or}ed) relations
+		& % empty
+		& A list of relations between two cariables is construed as the \emph{or} of the relations. Thus \( \vect{x} \snicludes \sincludes \vect{y} \) is equivalent to \( \vect{x} \complrel{\equiv} \vect{y} \). When equality occurs as one of the \emph{or}ed relations, it is indicated by a single inferior line, e.g., \( \leq \) and \( \nicludes \).
+		\\
+\end{tabularx}
 
 \section{Elementary Operations}
-
+% TODO: needs to be improved!
+\begin{tabularx}{\textwidth}{ l >{\hsize=0.5\hsize\linewidth=\hsize\raggedright\arraybackslash}X X }
+	Negation
+		& \( w \gets \bar{u} \)
+		& \( w = 1 \iff u = 0 \)
+		\\
+	And
+		& \( w \gets u \land v \)
+		& \( w = 1 \iff u = 1 \) and \( v = 1 \)
+		\\
+	Or
+		& \( w \gets u \lor v \)
+		& \( w= 1 \iff u = 1 \) or \( v = 1 \)
+		\\
+	Relational statement
+		& \( w \gets (a \relsym b) \)
+		& \( w = 1 \iff \) the relation \( a \relsym b \) holds
+		\\
+	Sum
+		& \( z \gets x + y \)
+		& \( z \) is the algebraic sum of \( x \) and \( y \)
+		\\
+	Difference
+		& \( z \gets x − y \)
+		& \( z \) is the algebraic difference of \(x\) and \(y\)
+		\\
+	Product
+		& \( z \gets x \times y \) \newline \( z \gets xy \)
+		& \(z\) is the algebraic product of numbers \(x\) and \(y\), and
+		\\
+	% also Product
+		& \( c \gets a \times u \) \newline \( c \gets au \)
+		& \(c\) is the arbitrary character \(a\) or zero according to whether the logical variable \(u\) is one or zero.
+		\\
+	Quotient
+		& \( z \gets x \div y \)
+		& \(z\) is the quotient of \(x\) and \(y\)
+		\\
+	Absolute value
+		& \( z \gets \lvert x \rvert \)
+		& \( z = x \times [(x > 0) − (x < 0)] \)
+		\\
+	Floor
+		& \( k \gets \lfloor x \rfloor \)
+		& \( k \leq x < k + 1 \)
+		\\
+	Ceiling
+		& \( k \gets \lceil x \rceil \)
+		& \( k \geq x > k − 1 \)
+		\\
+	\( j \)-Residue mod \( h \)
+		& \( k \gets h \mid_j i \)
+		& \( i = hq + k; j \leq k < j + h;\) and \(q\) is intergral.
+		\\
+\end{tabularx}
 
 \section{Vector Operations}
 
