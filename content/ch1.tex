@@ -9,7 +9,7 @@
 
 \par Ordinary English lacks both precision and conciseness. The widely used Goldstine-von Neumann (1947) flowcharting provides the conciseness necessary to an over-all view of the processes, only at the cost of suppressing essential detail. The so-called pseudo-English used as a basis for certain automatic programming systems suffers from the same defect. Moreover, the potential mnemonic advantage in substituting familiar English words and phrases for less familiar but more compact mathematical symbols fails to materialize because of the obvious but unwonted precision required in their use.
 
-\par Most of the concepts and operations needed in a programming language have already been defined and developed in one or another branch of mathematics. Therefore, much use can and will be made of existing notations. However, since most notations are specialized to a narrow field of discourse, a consistent unification must be provided. For example, separate and conflicting notations have been developed for the treatment of sets, logical variables, vectors, matrices, and trees, all of which may, in the broad universe of discourse of data processing, occur in a single algorithm. 
+\par Most of the concepts and operations needed in a programming language have already been defined and developed in one or another branch of mathematics. Therefore, much use can and will be made of existing notations. However, since most notations are specialized to a narrow field of discourse, a consistent unification must be provided. For example, separate and conflicting notations have been developed for the treatment of sets, logical variables, vectors, matrices, and trees, all of which may, in the broad universe of discourse of data processing, occur in a single algorithm.
 
 \section{Programs}
 
@@ -19,7 +19,7 @@ $$
       y\ ←\ \sin \ x.
 $$
 
-\par A set of statements together with a specified order of execution constitutes a \textit{program}. The program is finite if the number of executions is \textit{finite}. The \textit{results} of the program are some subset of the quantities specified by the program. The \textit{sequence} or order of execution will be defined by the order of listing and otherwise by arrows connecting any statement to its successor. A cyclic sequence of statements is called a \textit{loop}.
+\par A set of statements together with a specified order of execution constitutes a \textit{program}. The program is \textit{finite} if the number of executions is finite. The \textit{results} of the program are some subset of the quantities specified by the program. The \textit{sequence} or order of execution will be defined by the order of listing and otherwise by arrows connecting any statement to its successor. A cyclic sequence of statements is called a \textit{loop}.
 
 \par (TODO: FIGURES 1.1 AND 1.2)
 
@@ -37,7 +37,7 @@ $$
 
 \par (TODO: FIGURES 1.4 AND 1.5)
 
-\par A process which is repeated a number of times is said to be iterated, and a process (such as in Program 1.4) which includes one or more iterated subprocesses is said to be iterative. Program 1.5 shows an iterative process for the matrix multiplication
+\par A process which is repeated a number of times is said to be \textit{iterated}, and a process (such as in Program 1.4) which includes one or more iterated subprocesses is said to be \textit{iterative}. Program 1.5 shows an iterative process for the matrix multiplication
 
 $$
       C\ ←\ AB
@@ -84,7 +84,7 @@ $$
 
 \par One statement in a program can be modified by another statement which changes certain of its parameters, usually indices. More general changes in statements can be effected by considering the program itself as a vector $p$ whose components are the individual, serially numbered statements. All the operations to be defined on general vectors can then be applied to the statements themselves. For example, the $j$-th statement can be respecified by the $i$-th through the occurrence of the statement $p_j\ ←\ p_i$.
 
-\par The interchange of two quantities $y$ and $x$ (that is, $x$ specifies $y$ and the original value of $y$ specifies $x$) will be denoted by the statement $y\ \leftrightarrow\ x$.
+\par The interchange of two quantities $y$ and $x$ (that is, $x$ specifies $y$ and the \textit{original} value of $y$ specifies $x$) will be denoted by the statement $y\ \leftrightarrow\ x$.
 
 \section{Structure of the language}
 
