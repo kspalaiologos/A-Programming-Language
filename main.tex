@@ -6,6 +6,7 @@
 \usepackage{longtable}
 \usepackage{tabularx}
 \usepackage{amsmath}
+\usepackage{fontspec}
 \usepackage{unicode-math}
 \usepackage{pmboxdraw}
 \usepackage{graphicx}
@@ -16,13 +17,14 @@
 \usepackage{hyperref}
 \usepackage{float}
 \usepackage{fancyvrb}
-\usepackage{fontspec}
-\setmonofont{[Apl385.ttf]}[Scale=MatchLowercase]
 \usepackage{enumitem}
 %\usepackage{tikz}
 %\usetikzlibrary{calc}
 \usepackage{stackengine}
-\stackMath
+\stackMath{}
+\setmonofont{[Apl385.ttf]}[Scale=MatchLowercase]
+\setmainfont{STIX Two Text}
+\setmathfont{STIX Two Math}
 
 \include{notation}
 
