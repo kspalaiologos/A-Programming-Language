@@ -5,125 +5,371 @@
 
 \subsection{Basic conventions}
 \begin{enumerate}[label= (\alph*)]
-	\item 1-origin indexing assumed in this summary.
-
-	\item Controlling variables appear to the left, e.g., \( \vect{u} / \vect{x} \), \( \vect{b} ⊥ \vect{y} \), \( k ↑ \vect{x} \), and \( \vect{u} ⌈ \vect{x} \).
-
-	\item Dimension \( n \) may be elided (if determined by compatibility) from \( \bfepsilon(n) \), \( \bfepsilon^k(n) \), \( \bfalpha^k(n) \), \( \bfomega^k(n) \), and \( \bfiota^j(n) \).
-
-	\item The parameter \( j \) may be elided from operators \( |_j \), \( θ_j \), \( ∫_j \), and \( ι_j \), and from the vector \( \bfiota^j \) if \( j \) is the index origin in use.
-
-	\item The parameter \( k \) may be elided from \( k↑\vect{x} \) if \( k=1 \).
+\item 1-origin indexing assumed in this summary.
+\item Controlling variables appear to the left, e.g., \( \vect{u} / \vect{x} \), \( \vect{b} ⊥ \vect{y} \), \( k ↑ \vect{x} \), and \( \vect{u} ⌈ \vect{x} \).
+\item Dimension \( n \) may be elided (if determined by compatibility) from \( \bfepsilon(n) \), \( \bfepsilon^k(n) \), \( \bfalpha^k(n) \), \( \bfomega^k(n) \), and \( \bfiota^j(n) \).
+\item The parameter \( j \) may be elided from operators \( |_j \), \( θ_j \), \( ∫_j \), and \( ι_j \), and from the vector \( \bfiota^j \) if \( j \) is the index origin in use.
+\item The parameter \( k \) may be elided from \( k↑\vect{x} \) if \( k=1 \).
 \end{enumerate}
 
 \subsection{Branching conventions}
 \begin{enumerate}[label= (\alph*)]
-	\item \( \left| x : y \right| \overset{\symscr{R}}{\rightarrow} \)\newline
-	The statement to which the arrow leads is executed next if \( \left( x \symscr{R} y \right) = 1 \); otherwise the listed successor is executed next. An unlabeled arrow is always followed.
-	\item \( x:y, \vect{r} → \vect{s} \)\newline
-	The statement numbered \( \vect{s}_i \) is executed next if \( \left( x \vect{r}_i y \right) = 1 \). The null symbol \( ∘ \) occurring as a component of \( \vect{r} \) denotes the relation which complements the disjunction of the remaining relations in \( \vect{r} \).
-	\item \( → \symup{Program}\ a,b \)\newline
-	Program \( a \) branches to its statement \( b \). The symbol \( a \) may be elided if the statement occurs in Program \( a \) itself.
+\item \( \left| x : y \right| \overset{\symscr{R}}{\rightarrow} \)\newline
+The statement to which the arrow leads is executed next if \( \left( x \symscr{R} y \right) = 1 \); otherwise the listed successor is executed next. An unlabeled arrow is always followed.
+\item \( x:y, \vect{r} → \vect{s} \)\newline
+The statement numbered \( \vect{s}_i \) is executed next if \( \left( x \vect{r}_i y \right) = 1 \). The null symbol \( ∘ \) occurring as a component of \( \vect{r} \) denotes the relation which complements the disjunction of the remaining relations in \( \vect{r} \).
+\item \( → \symup{Program}\ a,b \)\newline
+Program \( a \) branches to its statement \( b \). The symbol \( a \) may be elided if the statement occurs in Program \( a \) itself.
 \end{enumerate}
 
 \subsection{Operand conventions used in summary}
 \begin{tabularx}{\textwidth}{ l l l l l }
-	% empty cell
-		& Scalar
-		& Vector
-		& Matrix
-		& Tree
-		\\
-	Logical
-		& \( u,v,w \)
-		& \( \vect{u,v,w} \)
-		& \( \mat{U,V,W} \)
-		& \( \tree{U,V,W} \)
-		\\
-	Intergral
-		& \( h,i,j,k \)
-		& \( \vect{h,i,j,k} \)
-		& \( \mat{H,I,J,K} \)
-		& \( \tree{H,I,J,K} \)
-		\\
-	Numerical
-		& \( x,y,z \)
-		& \( \vect{x,y,z} \)
-		& \( \mat{X,Y,Z} \)
-		& \( \tree{X,Y,Z} \)
-		\\
-	Aribitrary
-		& \( a,b,c \)
-		& \( \vect{a,b,c} \)
-		& \( \mat{A,B,C} \)
-		& \( \tree{A,B,C} \)
-		\\
+% empty cell
+	& Scalar
+	& Vector
+	& Matrix
+	& Tree
+	\\
+Logical
+	& \( u,v,w \)
+	& \( \vect{u,v,w} \)
+	& \( \mat{U,V,W} \)
+	& \( \tree{U,V,W} \)
+	\\
+Intergral
+	& \( h,i,j,k \)
+	& \( \vect{h,i,j,k} \)
+	& \( \mat{H,I,J,K} \)
+	& \( \tree{H,I,J,K} \)
+	\\
+Numerical
+	& \( x,y,z \)
+	& \( \vect{x,y,z} \)
+	& \( \mat{X,Y,Z} \)
+	& \( \tree{X,Y,Z} \)
+	\\
+Aribitrary
+	& \( a,b,c \)
+	& \( \vect{a,b,c} \)
+	& \( \mat{A,B,C} \)
+	& \( \tree{A,B,C} \)
+	\\
 \end{tabularx}
 
 \section{Structural Parameters, Null}
 \begin{tabularx}{\textwidth}{ l c X }
-	Dimension
-		& \( \nu(\vect{a}) \)
-		& Number of components in vector \( \vect{a} \)
-		\\
-	Row dimension
-		& \( \nu(\mat{A}) \)
-		& Number of components in each row vector \( \mat{A}^i \)
-		\\
-	Column dimension
-		& \( \mu(\mat{A}) \)
-		& Number of components in each column vector \( \mat{A}_j \)
-		\\
-	Height
-		& \( \nu(\tree{A}) \)
-		& Length of longest path in \( \tree{A} \)
-		\\
-	Moment
-		& \( \mu(\tree{A}) \)
-		& Number of nodes in \( \tree{A} \)
-		\\
-	Dispersion vector
-		& \( \bfnu(\tree{A}) \)
-		& \( \bfnu_1(\tree{A}) = \) number of roots of \( \tree{A} \); \( \bfnu_j(\tree{A}) = \) maximum degree of nodes on level \( j − 1 \); \( \nu(\bfnu(\tree{A})) = \nu(\tree{A}) \)
-		\\
-	Moment vector
-		& \( \bfmu(\tree{A}) \)
-		& \( \bfmu_j(\tree{A}) = \) number of nodes on level \( j \) of \( \tree{A} \); \( \nu(\bfmu(\tree{A})) = \nu(\tree{A}) \)
-		\\
-	Degree of node \( \vect{i} \)
-		& \( \delta(\vect{i}, \tree{A}) \)
-		& Degree of node \( \vect{i} \) of tree \( \tree{A} \)
-		\\
-	Degree
-		& \( \delta(\tree{A}) \)
-		& \( \delta(\tree{A}) = \underset{\vect{i}}{\max}\ \delta(\vect{i},\tree{A}) \)
-		\\
-	Leaf count
-		& \( \lambda(\tree{A}) \)
-		& \( \lambda(\tree{A}) \) is the number of leaves in \( \tree{A} \)
-		\\
-	Row dimension of file
-		& \( \nu(\mathbf{Φ}) \)
-		& Number of files in each row of a file array
-		\\
-	Column dimension of file
-		& \( \mu(\mathbf{Φ}) \)
-		& Number of files in each column of a file array
-		\\
-	Null character
-		& \( ∘ \)
-		& Null character of set (e.g., space in the alphabet) or null reduction operator
-		\\
+Dimension
+	& \( \dimvect(\vect{a}) \)
+	& Number of components in vector \( \vect{a} \)
+	\\
+Row dimension
+	& \( \rowdim(\mat{A}) \)
+	& Number of components in each row vector \( \mat{A}^i \)
+	\\
+Column dimension
+	& \( \coldim(\mat{A}) \)
+	& Number of components in each column vector \( \mat{A}_j \)
+	\\
+Height
+	& \( \height(\tree{A}) \)
+	& Length of longest path in \( \tree{A} \)
+	\\
+Moment
+	& \( \moment(\tree{A}) \)
+	& Number of nodes in \( \tree{A} \)
+	\\
+Dispersion vector
+	& \( \dispvect(\tree{A}) \)
+	& \( \dispvect_1(\tree{A}) = \) number of roots of \( \tree{A} \); \( \dispvect_j(\tree{A}) = \) maximum degree of nodes on level \( j − 1 \); \( \dimvect(\dispvect(\tree{A})) = \height(\tree{A}) \)
+	\\
+Moment vector
+	& \( \momentvect(\tree{A}) \)
+	& \( \momentvect_j(\tree{A}) = \) number of nodes on level \( j \) of \( \tree{A} \); \( \dimvect(\momentvect(\tree{A})) = \moment(\tree{A}) \)
+	\\
+Degree of node \( \vect{i} \)
+	& \( \degnode(\vect{i}, \tree{A}) \)
+	& Degree of node \( \vect{i} \) of tree \( \tree{A} \)
+	\\
+Degree
+	& \( \degtree(\tree{A}) \)
+	& \( \degtree(\tree{A}) = \underset{\vect{i}}{\max}\ \degnode(\vect{i},\tree{A}) \)
+	\\
+Leaf count
+	& \( \leafcnt(\tree{A}) \)
+	& \( \leafcnt(\tree{A}) \) is the number of leaves in \( \tree{A} \)
+	\\
+Row dimension of file
+	& \( \rowdimfile(\file{Φ}) \)
+	& Number of files in each row of a file array
+	\\
+Column dimension of file
+	& \( \coldimfile(\mathbf{Φ}) \)
+	& Number of files in each column of a file array
+	\\
+Null character
+	& \( \nullchar \)
+	& Null character of a set (e.g., space in the alphabet) or null reduction operator
+	\\
 \end{tabularx}
 
 \section{Relations}
-
+\begin{tabularx}{\textwidth}{ l c X }
+Equality
+	& \( a = b \)
+	& \( a \) and \( b \) are identical
+	\\
+Membership
+	& \( a \member \vect{b} \)
+	& \( a = \vect{b}_i \) for some \( i \)
+	\\
+Inclusion
+	& \( \vect{b} \includes \vect{a} \)
+	& \( \vect{a}_j \member \vect{b} \) for all \( j \)
+	\\
+% empty
+	& \( \vect{a} \nicludes \vect{b} \)
+	& % empty
+	\\
+Strict inclusion
+	& \( \vect{b} \sincludes \vect{a} \) 
+	& \( \vect{b} \includes \vect{a} \) and \( \vect{a} \complrel{\includes} \vect{b} \)
+	\\
+% empty
+	& \( \vect{a} \snicludes \vect{b} \)
+	& % empty
+	\\
+Similarity
+	& \( \vect{b} \equiv \vect{a} \)
+	& \( \vect{b} \includes \vect{a} \) and \( \vect{a} \includes \vect{b} \)
+	\\
+Complementary relation
+	& \( \complrel{\symscr{R}} \)
+	& The relation which holds if and only if \( \symscr{R} \) does not. Examples of complementary pairs: \( \member, \notmember; \sincludes, \notsincludes; >, \complrel{>} \).
+	\\
+Combined (\emph{or}ed) relations
+	& % empty
+	& A list of relations between two cariables is construed as the \emph{or} of the relations. Thus \( \vect{x} \snicludes \sincludes \vect{y} \) is equivalent to \( \vect{x} \complrel{\equiv} \vect{y} \). When equality occurs as one of the \emph{or}ed relations, it is indicated by a single inferior line, e.g., \( \leq \) and \( \nicludes \).
+	\\
+\end{tabularx}
 
 \section{Elementary Operations}
-
+% TODO: needs to be improved!
+\begin{tabularx}{\textwidth}{
+	l
+	>{\hsize=0.5\hsize\linewidth=\hsize\raggedright\arraybackslash}X
+	X }
+Negation
+	& \( w \gets \overline{u} \)
+	& \( w = 1 \iff u = 0 \)
+	\\
+And
+	& \( w \gets u \land v \)
+	& \( w = 1 \iff u = 1 \) and \( v = 1 \)
+	\\
+Or
+	& \( w \gets u \lor v \)
+	& \( w= 1 \iff u = 1 \) or \( v = 1 \)
+	\\
+Relational statement
+	& \( w \gets (a \relsym b) \)
+	& \( w = 1 \iff \) the relation \( a \relsym b \) holds
+	\\
+Sum
+	& \( z \gets x + y \)
+	& \( z \) is the algebraic sum of \( x \) and \( y \)
+	\\
+Difference
+	& \( z \gets x − y \)
+	& \( z \) is the algebraic difference of \(x\) and \(y\)
+	\\
+Product
+	& \( z \gets x \times y \) \newline \( z \gets xy \)
+	& \(z\) is the algebraic product of numbers \(x\) and \(y\), and
+	\\
+% also Product
+	& \( c \gets a \times u \) \newline \( c \gets au \)
+	& \(c\) is the arbitrary character \(a\) or zero according to whether the logical variable \(u\) is one or zero.
+	\\
+Quotient
+	& \( z \gets x \div y \)
+	& \(z\) is the quotient of \(x\) and \(y\)
+	\\
+Absolute value
+	& \( z \gets \lvert x \rvert \)
+	& \( z = x \times [(x > 0) − (x < 0)] \)
+	\\
+Floor
+	& \( k \gets \lfloor x \rfloor \)
+	& \( k \leq x < k + 1 \)
+	\\
+Ceiling
+	& \( k \gets \lceil x \rceil \)
+	& \( k \geq x > k − 1 \)
+	\\
+\( j \)-Residue mod \( h \)
+	& \( k \gets h \mid_j i \)
+	& \( i = hq + k; j \leq k < j + h \); and \( q \) is intergral.
+	\\
+\end{tabularx}
 
 \section{Vector Operations}
-
+\begin{tabularx}{\textwidth}{
+	>{\hsize=0.5\hsize}>{\linewidth=\hsize}>{\raggedright\arraybackslash}
+	X
+	>{\hsize=0.3\hsize}>{\linewidth=\hsize}
+	X
+	X }
+Component-by-component extension of basic operations
+	& \( \vect{c} \gets \vect{a} \bigcirc \vect{b} \)
+	& \( \vect{c}_i = \vect{a}_i \bigcirc \vect{b}_i \). Examples: \( \vect{x} \times \vect{y} \), \( (\vect{a} \mathbin{/} \vect{b}) \), \( \vect{h} \mid_j \vect{i} \), \( \vect{u} \wedge \vect{v} \), \( \lceil \vect{x} \rceil \).
+	\\
+Scalar multiple
+	& \( \vect{z} \gets x \times \vect{y} \) \newline \( \vect{z} \gets x\vect{y} \) \newline \( \vect{c} \gets a \times \vect{u} \) \newline \( \vect{c} \gets a\vect{u} \)
+	& \( \vect{z}_i = x \times \vect{y}_i \), and \( \vect{c}_i = a \times \vect{u}_i \)
+	\\
+reduction
+	& \( {} \gets \mathop{\bigcirc /} \vect{a} \)
+	& \( c = (\cdots ((\vect{a}_1 \bigcirc \vect{a}_2) \bigcirc \vect{a}_3)  \cdots) \bigcirc \vect{a}_r \), where \( \bigcirc \) is a binary operation or relation with a suitable domain. Examples: \( \mathop{+/}\vect{x} \), \( \mathop{\times/}\vect{x} \), \( \mathop{\not\equiv}/\vect{u} \). reduction of the null vector \( \mathop{+/}\vect{\epsilon}(0) = 0 \); \( \mathop{\times/}\vect{\epsilon}(1) = 1 \); \( \mathop{\vee/}\vect{\epsilon}(0) = 0\); \( \mathop{\wedge/}\vect{\epsilon}(0) = 1 \).
+	\\
+Ranking  
+	& 
+	&
+	\\
+\ \( j \)-origin \( \vect{b} \)-index of \( a \)
+	& \( c \gets \vect{b} \mathbin{\iota_j} a \)
+	& \( c = \nullchar \) if \( a \notmember \vect{b} \); otherwise \( c \) is the \( j \)-origin index of the first occurrence of \( a \) in \( \vect{b} \).
+	\\
+\ \( j \)-origin \( \vect{b} \)-index of \( \vect{a} \)
+	& \( \vect{c} \gets \vect{b} \mathbin{\iota_j} \vect{a} \)
+	& \( \vect{c}_i = \vect{b} \mathbin{\iota_j} \vect{a}_i \)
+	\\
+Left rotation 
+	& \( \vect{c} \gets k \uparrow \vect{a} \)
+	& \( \vect{c}_i = \vect{a}_j \), where \( j = \dimvect(\vect{a}) \mid_1 (i + k)\)
+	\\
+Right rotation
+	& \( \vect{c} \gets k \downarrow \vect{a} \)
+	& \( \vect{c}_i = \vect{a}_j \), where \( j = \dimvect(\vect{a}) \mid_1 (i - k) \)
+	\\
+Base \( \vect{y} \) value of \( \vect{x} \)
+	& \( z \gets \vect{y} \mathbin{\bot} \vect{x} \)
+	& \( z = +/(\vect{p} \times \vect{x}) \), where \( \vect{p}_r = 1 \), and \( \vect{p}_{i \cdots 1} = \vect{p}_i \times \vect{y}_i \)
+	\\
+Compression
+	& \( \vect{c} \gets \vect{u} \mathbin{/} \vect{b} \)
+	& \( \vect{c} \) is obtained from \( \vect{a} \) by suppressing each \( \vect{b}_i \) for which \( \vect{u}_i = 0 \)
+	\\
+Extension
+	& \( \vect{c} \gets \vect{u} \mathbin{\backslash} \vect{b} \)
+	& \( \overline{\vect{u}} / \vect{c} = 0 \), \( \vect{u} / \vect{c} = \vect{b} \)
+	\\
+Mask
+	& \( \vect{c} \gets /{}\vect{a} , \vect{u} , \vect{b}{}/ \)
+	& \( \overline{\vect{u}} / \vect{c} = \overline{\vect{u}} / \vect{a} \), \( \vect{u} / \vect{c} = \vect{u} / \vect{b} \)
+	\\
+Mesh
+	& \( \vect{c} \gets \backslash \vect{a} , \vect{u} , \vect{b} \backslash \)
+	& \( \overline{\vect{u}} / \vect{c} = \vect{a} \), \( \vect{u} / \vect{c} = \vect{b} \)
+	\\
+Catenation
+	& \( \vect{c} \gets \vect{a} \odot \vect{b} \)
+	& \( \vect{c} = (\vect{a}_1, \vect{a}_2, \ldots, \vect{a}_{\dimvect(\vect{a})}, \vect{b}_1, \ldots, \vect{b}_{\dimvect(\vect{b})}) = \backslash \vect{a} , \symbfup{\omega}^{\dimvect(\vect{b})} , \vect{b} \backslash \)
+	\\
+Characteristic of \( \vect{x} \) on \( \vect{y} \)
+	& \( \vect{w} \gets \symbfup{\epsilon}_{\vect{y}}{}^{\vect{x}} \)
+	& \( \vect{w}_i = (\vect{y}_i \member \vect{x}) \); \( \dimvect(\vect{w}) = \dimvect(\vect{y}) \)
+	\\
+% presentation:
+\( j \)th unit vector
+	& \( \vect{w} \gets \symbfup{\epsilon}^{j}(h) \)
+	& \multirow{8}={\begin{tabularx}{\linewidth}{@{}XX@{}}
+		\( \vect{w}_{i} = (i = j) \) 
+		& \rdelim\}{8}{4mm}\multirow{8}={\( \dimvect(\vect{w}) = h \)}
+		\\ \( \vect{w}_{i} = 1 \)
+		\\ \( \vect{w}_{i} = 0 \)
+		\\
+		\\ First \( k \) of \( \vect{w}_{i} \) are unity where \( k = \min (j, h) \).
+		\\ Last \( k \) of \( \vect{w}_{j} \) are unity where \( k = \min(j, k) \).
+	\end{tabularx}}
+	\\
+Full vector
+	& \( \vect{w} \gets \symbfup{\epsilon}(h) \)
+	& \\
+Zero vector
+	& \( \vect{w} \gets \overline{\symbfup{\epsilon}}(h) \) \newline \( \vect{w} \gets 0 \)
+	& \\
+Prefix of weight \( j \)
+	& \( \vect{w} \gets \symbfup{\alpha}^{j}(h) \)
+	& \\
+& & \\
+Suffix of weight \( j \)
+	& \( \vect{w} \gets \symbfup{\omega}^{j}(h) \)
+	& \\
+& & \\
+% content:
+% \( j \)th unit vector
+% 	& \( \vect{w} \gets \symbfup{\epsilon}^{j}(h) \)
+% 	& \( \vect{w}_{i} = (i = j) \)
+% 	\\
+% Full vector
+% 	& \( \vect{w} \gets \symbfup{\epsilon}(h) \)
+% 	& \( \vect{w}_{i} = 1 \)
+% 	\\
+% Zero vector
+% 	& \( \vect{w} \gets \overline{\symbfup{\epsilon}}(h) \) \newline \( \vect{w} \gets 0 \)
+% 	& \( \vect{w}_{i} = 0 \) 
+% 	\\
+% Prefix of weight \( j \)
+% 	& \( \vect{w} \gets \symbfup{\alpha}^{j}(h) \)
+% 	& First \( k \) of \( \vect{w}_{i} \) are unity where \( k = \min (j, h) \).
+% 	\\
+% Suffix of weight \( j \)
+% 	& \( \vect{w} \gets \symbfup{\omega}^{j}(h) \)
+% 	& Last \( k \) of \( \vect{w}_{j} \) are unity where \( k = \min(j, k) \).
+% 	\\
+Maximum Prefix 
+	& \( \vect{w} \gets \mathop{\alpha /} \vect{u} \)
+	& \( \vect{w} \) is the max length prefix of \( \vect{u} \). Example: \( \alpha / (1,1,0,1,0,1)=(1,1,0,0,0,0) \).
+	\\
+Maximum Suffix 
+	& \( \vect{w} \gets \mathop{\omega /} \vect{u} \)
+	& \( \vect{w} \) is the max length suffix in \( \vect{u} \). Example: \( \omega / (1,1,0,1,0,1) = (0,0,0,0,0,1) \).
+	\\
+Forward set selector 
+	& \( \vect{w} \gets \mathop{\sigma /} \vect{a} \)
+	& \( \vect{w}_{i} = 1 \) if \( \vect{a}_j \neq \vect{a}_i \) for all \( j < i \)
+	\\
+Backward set selector
+	& \( \vect{w} \gets \mathop{\tau /} \vect{a} \)
+	& \( \vect{w}_i = 1 \) if \( \vect{a}_j \neq \vect{a}_i \) for all \( j > i \)
+	\\
+Maxima selector 
+	& \( \vect{w} \gets \vect{u} \mathbin{\lceil} \vect{x} \)
+	& \( \vect{w}_i = \vect{u}_i \wedge (\vect{x}_i = m) \) where \( m = \max\limits_j {(\vect{u} / \vect{x})}_{j} \)
+	\\
+Minima Selector
+	& \( \vect{w} \gets \vect{u} \mathbin{\lfloor} \vect{x} \)
+	& \( \vect{x}_i = \vect{u}_i \wedge (\vect{x}_i = m) \) where \( m = \min\limits_j {(\vect{x} / \vect{x})}_j \)
+	\\
+Interval or \( j \)-origin identity permutation vector
+	& \( \vect{k} \gets \symbfup{\iota}^j(h) \)
+	& \( \vect{k} = (j, j + 1, \ldots, j + h - 1) \)
+	\\
+\( j \)-origin permutation vector 
+	& \( \vect{k} \)
+	& \( \vect{k} \equiv \symbfup{\iota}^j(\dimvect(\vect{k})) \)
+	\\
+% TODO: make \int upright
+\( j \)-origin mapping 
+	& \( \vect{c} \gets \vect{a}_{\vect{b}} \) \newline \( \vect{c} \gets \vect{b} \mathbin{\int_j} \vect{a} \)
+	& \( \vect{c}_i = \nullchar \) if \( \vect{b}_i \notmember \symbfup{\iota}^j(\dimvect(\vect{a})) \); otherwise \( \vect{c}_i = \vect{a}_{\vect{b}_i} \) in a \( j \)-origin system for \( \vect{a} \). In the first form (that is, \( \vect{c} \gets \vect{a}_{\vect{b}} \)), the origin cannot be spcified directly.
+	\\
+% TODO: make \int upright
+\( j \)-origin ordering
+	& \( \vect{k} \gets \mathop{\theta_j /} \vect{x} \)
+	& \( \vect{y} = \vect{k} \mathbin{\int_j} \vect{x} \) is in ascending order and original relative ordering is maintained among equal components, that is, either \( \vect{y} < \vect{y}_{i + 1} \) or \( \vect{y}_i = \vect{y}_{i + 1 } \) and \( \vect{k}_i < \vect{k}_{i + 1} \).
+	\\
+\end{tabularx}
 
 \section{Row Generalizations of Vector Operations}
 
