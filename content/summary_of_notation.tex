@@ -159,7 +159,7 @@ Combined (\emph{or}ed) relations
 	>{\hsize=0.5\hsize\linewidth=\hsize\raggedright\arraybackslash}X
 	X }
 Negation
-	& \( w \gets \bar{u} \)
+	& \( w \gets \overline{u} \)
 	& \( w = 1 \iff u = 0 \)
 	\\
 And
@@ -228,8 +228,8 @@ Scalar multiple
 	& \( \vect{z}_i = x \times \vect{y}_i \), and \( \vect{c}_i = a \times \vect{u}_i \)
 	\\
 reduction
-	& \( {} \gets \bigcirc / \vect{a} \)
-	& \( c = (\cdots ((\vect{a}_1 \bigcirc \vect{a}_2) \bigcirc \vect{a}_3)  \cdots) \bigcirc \vect{a}_r \), where \( \bigcirc \) is a binary operation or relation with a suitable domain. Examples: \( +/\vect{x} \), \( \times/\vect{x} \), \( \not\equiv/\vect{u} \). reduction of the null vector \( +/\vect{\epsilon}(0) = 0 \); \( \times/\vect{\epsilon}(1) = 1 \); \( \vee/\vect{\epsilon}(0) = 0\); \( \wedge/\vect{\epsilon}(0) = 1 \).
+	& \( {} \gets \mathop{\bigcirc /} \vect{a} \)
+	& \( c = (\cdots ((\vect{a}_1 \bigcirc \vect{a}_2) \bigcirc \vect{a}_3)  \cdots) \bigcirc \vect{a}_r \), where \( \bigcirc \) is a binary operation or relation with a suitable domain. Examples: \( \mathop{+/}\vect{x} \), \( \mathop{\times/}\vect{x} \), \( \mathop{\not\equiv}/\vect{u} \). reduction of the null vector \( \mathop{+/}\vect{\epsilon}(0) = 0 \); \( \mathop{\times/}\vect{\epsilon}(1) = 1 \); \( \mathop{\vee/}\vect{\epsilon}(0) = 0\); \( \mathop{\wedge/}\vect{\epsilon}(0) = 1 \).
 	\\
 Ranking  
 	& 
@@ -256,11 +256,11 @@ Base \( \vect{y} \) value of \( \vect{x} \)
 	& \( z = +/(\vect{p} \times \vect{x}) \), where \( \vect{p}_r = 1 \), and \( \vect{p}_{i \cdots 1} = \vect{p}_i \times \vect{y}_i \)
 	\\
 Compression
-	& \( \vect{c} \gets \vect{u}/\vect{b} \)
+	& \( \vect{c} \gets \vect{u} \mathbin{/} \vect{b} \)
 	& \( \vect{c} \) is obtained from \( \vect{a} \) by suppressing each \( \vect{b}_i \) for which \( \vect{u}_i = 0 \)
 	\\
 Extension
-	& \( \vect{c} \gets \vect{u}\backslash\vect{b} \)
+	& \( \vect{c} \gets \vect{u} \mathbin{\backslash} \vect{b} \)
 	& \( \overline{\vect{u}} / \vect{c} = 0 \), \( \vect{u} / \vect{c} = \vect{b} \)
 	\\
 Mask
@@ -281,26 +281,54 @@ Characteristic of \( \vect{x} \) on \( \vect{y} \)
 	\\
 % TODO: find a nice way to add the \left.\right\} \dimvect(\vect{w}) = h
 % behind the following 5 rows
+% presentation:
 \( j \)th unit vector
 	& \( \vect{w} \gets \symbfup{\epsilon}^{j}(h) \)
-	& \( \vect{w}_{i} = (i = j) \)
+	& \multirow{8}={\begin{tabularx}{\linewidth}{@{}XX@{}}
+		\( \vect{w}_{i} = (i = j) \) 
+		& \rdelim\}{8}{4mm}\multirow{8}={\( \dimvect(\vect{w}) = h \)}
+		\\ \( \vect{w}_{i} = 1 \)
+		\\ \( \vect{w}_{i} = 0 \)
+		\\
+		\\ First \( k \) of \( \vect{w}_{i} \) are unity where \( k = \min (j, h) \).
+		\\ Last \( k \) of \( \vect{w}_{j} \) are unity where \( k = \min(j, k) \).
+	\end{tabularx}}
 	\\
 Full vector
 	& \( \vect{w} \gets \symbfup{\epsilon}(h) \)
-	& \( \vect{w}_{i} = 1 \)
-	\\
+	& \\
 Zero vector
 	& \( \vect{w} \gets \overline{\symbfup{\epsilon}}(h) \) \newline \( \vect{w} \gets 0 \)
-	& \( \vect{w}_{i} = 0 \) 
-	\\
+	& \\
 Prefix of weight \( j \)
 	& \( \vect{w} \gets \symbfup{\alpha}^{j}(h) \)
-	& First \( k \) of \( \vect{w}_{i} \) are unity where \( k = \min (j, h) \).
-	\\
+	& \\
+& & \\
 Suffix of weight \( j \)
 	& \( \vect{w} \gets \symbfup{\omega}^{j}(h) \)
-	& Last \( k \) of \( \vect{w}_{j} \) are unity where \( k = \min(j, k) \).
-	\\
+	& \\
+& & \\
+% content:
+% \( j \)th unit vector
+% 	& \( \vect{w} \gets \symbfup{\epsilon}^{j}(h) \)
+% 	& \( \vect{w}_{i} = (i = j) \)
+% 	\\
+% Full vector
+% 	& \( \vect{w} \gets \symbfup{\epsilon}(h) \)
+% 	& \( \vect{w}_{i} = 1 \)
+% 	\\
+% Zero vector
+% 	& \( \vect{w} \gets \overline{\symbfup{\epsilon}}(h) \) \newline \( \vect{w} \gets 0 \)
+% 	& \( \vect{w}_{i} = 0 \) 
+% 	\\
+% Prefix of weight \( j \)
+% 	& \( \vect{w} \gets \symbfup{\alpha}^{j}(h) \)
+% 	& First \( k \) of \( \vect{w}_{i} \) are unity where \( k = \min (j, h) \).
+% 	\\
+% Suffix of weight \( j \)
+% 	& \( \vect{w} \gets \symbfup{\omega}^{j}(h) \)
+% 	& Last \( k \) of \( \vect{w}_{j} \) are unity where \( k = \min(j, k) \).
+% 	\\
 Maximum Prefix 
 	& \( \vect{w} \gets \mathop{\alpha /} \vect{u} \)
 	& \( \vect{w} \) is the max length prefix of \( \vect{u} \). Example: \( \alpha / (1,1,0,1,0,1)=(1,1,0,0,0,0) \).
@@ -335,13 +363,13 @@ Interval or \( j \)-origin identity permutation vector
 	\\
 % TODO: make \int upright
 \( j \)-origin mapping 
-	& \( \vect{c} \gets \vect{a}_{\vect{b}} \) \newline \( \vect{c} \gets \vect{b} \int_j \vect{a} \)
+	& \( \vect{c} \gets \vect{a}_{\vect{b}} \) \newline \( \vect{c} \gets \vect{b} \mathbin{\int_j} \vect{a} \)
 	& \( \vect{c}_i = \nullchar \) if \( \vect{b}_i \notmember \symbfup{\iota}^j(\dimvect(\vect{a})) \); otherwise \( \vect{c}_i = \vect{a}_{\vect{b}_i} \) in a \( j \)-origin system for \( \vect{a} \). In the first form (that is, \( \vect{c} \gets \vect{a}_{\vect{b}} \)), the origin cannot be spcified directly.
 	\\
 % TODO: make \int upright
 \( j \)-origin ordering
-	& \( \vect{k} \gets \theta_j / \vect{x} \)
-	& \( \vect{y} = \vect{k} \int_j \vect{x} \) is in ascending order and original relative ordering is maintained among equal components, that is, either \( \vect{y} < \vect{y}_{i + 1} \) or \( \vect{y}_i = \vect{y}_{i + 1 } \) and \( \vect{k}_i < \vect{k}_{i + 1} \).
+	& \( \vect{k} \gets \mathop{\theta_j /} \vect{x} \)
+	& \( \vect{y} = \vect{k} \mathbin{\int_j} \vect{x} \) is in ascending order and original relative ordering is maintained among equal components, that is, either \( \vect{y} < \vect{y}_{i + 1} \) or \( \vect{y}_i = \vect{y}_{i + 1 } \) and \( \vect{k}_i < \vect{k}_{i + 1} \).
 	\\
 \end{tabularx}
 
