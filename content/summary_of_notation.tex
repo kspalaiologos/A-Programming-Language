@@ -213,6 +213,7 @@ Ceiling
 \end{tabularx}
 
 \section{Vector Operations}
+\setlength{\fboxsep}{0mm}
 \begin{tabularx}{\textwidth}{
 	>{\hsize=0.5\hsize}>{\linewidth=\hsize}>{\raggedright\arraybackslash}
 	X
@@ -282,15 +283,20 @@ Characteristic of \( \vect{x} \) on \( \vect{y} \)
 % presentation:
 \( j \)th unit vector
 	& \( \vect{w} \gets \symbfup{\epsilon}^{j}(h) \)
-	& \multirow{8}={\begin{tabularx}{\linewidth}{@{}XX@{}}
-		\( \vect{w}_{i} = (i = j) \) 
-		& \rdelim\}{8}{4mm}\multirow{8}={\( \dimvect(\vect{w}) = h \)}
-		\\ \( \vect{w}_{i} = 1 \)
-		\\ \( \vect{w}_{i} = 0 \)
-		\\
-		\\ First \( k \) of \( \vect{w}_{i} \) are unity where \( k = \min (j, h) \).
-		\\ Last \( k \) of \( \vect{w}_{j} \) are unity where \( k = \min(j, k) \).
-	\end{tabularx}}
+	& \multirow{8}={\begin{tabularx}{\linewidth}{@{}X@{\,}X@{}}
+			\( \vect{w}_{i} = (i \mathbin{=} j) \)
+				& \rdelim\}{8}{=}[\,\( \dimvect(\vect{w}) = h \)]
+				\\
+			\( \vect{w}_{i} = 1 \) 
+				& \\
+			\( \vect{w}_{i} = 0 \) \newline {\strut}
+				& \\
+			First \( k \) of \( \vect{w}_{i} \) are unity where \( k = \min (j, h) \).
+				& \\
+			Last \( k \) of \( \vect{w}_{j} \) are unity where \( k = \min(j, k) \).
+				& \\
+			\end{tabularx}
+		}
 	\\
 Full vector
 	& \( \vect{w} \gets \symbfup{\epsilon}(h) \)
