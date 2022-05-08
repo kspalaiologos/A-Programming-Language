@@ -64,6 +64,132 @@ $$
 
 \par \textbf{Program 3.3}. A linear representation is assumed for $\tree{\Gamma}(\vect{x})$, with element $\tree{\Gamma}_j^i(\vect{x})$ represented by the infix $((p + qi + rj) ↓ \mathbf{⍺}^g)/\vect{\pi}$. Moreover, each element of $\tree{\Gamma}(\vect{x})$ is assumed to be represented in a base $\vect{b}$ number system. Step 1 determines the leading address of the representation of $\tree{\Gamma}_1^k(\vect{x})$. Step 2 specifies $f$ as the base $\vect{b}$ value of this representation, i.e., as the leading address of $\vect{⍴}(\vect{x}_k)$. Steps 3 and 4 specify $d$ as the dimension of $\vect{x}_k$ in $\vect{\pi}$, and step 5 therefore specifies $\vect{z}$ as the representation of $\vect{x}_k$.
 
+\par (END PROGRAM 3.3 DESCRIPTION)
+
 \par Steps 7--9 perform the decoding of $\vect{z} = \vect{⍴}(\vect{x}_k)$ to obtain $\vect{z}$ as the actual value of $\vect{x}_k$. Since this process is normally performed by human or mechanical means (e.g., a printer) outside the purview of the programmer, it is here expressed directly in terms of the encoding matrix $\mat{C}$ rather than in terms of its representation. The left-pointing exit on step 7 is followed only if $\vect{z}$ does not occur as an entry in the encoding matrix.
 
 \par The form chosen for the grid matrix is one of several possible. The two columns could, for example, represent the leading and final addresses of the corresponding representations or the dimensions and final addresses. The present choice of leading address $f$ and dimension $d$ is, however, the most convenient for use in conjunction with the notation adopted for infixes; the logical vector ($f ↓ \mathbf{⍺}^d$) selects the appropriate infix.
+
+\subsection*{Chained representations}%^{<a href="#note3a">[a]</a>}
+
+\par If a linear representation is used for a vector, then the deletion of a component (as in a compress operation) necessitates the moving (i.e., respecification) of the representations of each of the subsequent components. Similarly, mesh operations (insertion) and permutations necessitate extensive respecification. The use of a grid matrix $\tree{\Gamma}(\vect{x})$ obviates such respecification in $\vect{x}$, since appropriate changes can instead be made in $\tree{\Gamma}(\vect{x})$, where they may be much simpler to effect. If, for example, $\vect{x}$ is the vector represented as in Fig. 3.1\textit{a}, and $z$ is a quantity of dimension six in $\vect{\pi}$, then the mesh operation
+
+$$
+  \vect{x} ← \backslash\vect{x}, \symbfup{\epsilon}^3, \textit{z}\backslash
+$$
+
+\par may be effected by specifying the physical infix $(70 ↓ \mathbf{⍺}^6)/\vect{\pi}$ by $\vect{⍴}(\textit{z})$ and by respecifying $\tree{\Gamma}(\vect{x})$ as follows:
+
+$$
+  \tree{\Gamma}(\vect{x}) = \begin{pmatrix}
+    17 & 2 \\
+    19 & 4 \\
+    70 & 6 \\
+    27 & 5 \\
+    23 & 1 \\
+    32 & 3
+  \end{pmatrix}.
+$$
+
+\par However, if the representation of $\tree{\Gamma}(\vect{x})$ is itself linear, then insertions, deletions, and permutations in $\vect{x}$ will occasion changes in all components of $\tree{\Gamma}(\vect{x})$ whose indices are affected. The need for a linear representation of the grid matrix (and hence for all linear representations) can be obviated by the use of a \textit{chained representation} defined as follows.
+
+\par Consider a vector $\vect{y}$, each of whose components $\vect{y}_k$ has a solid representation $\vect{⍴}(\vect{y}_k)$ whose infixes $(g ↓ \mathbf{⍺}^g)/\vect{⍴}(\vect{y}_k)$ and $\mathbf{⍺}^g/\vect{⍴}(\vect{y}_k)$ are, respectively, the dimension of $\vect{⍴}(\vect{y}_k)$ in $\vect{\pi}$ and the leading address of the representation of the (cyclically) succeeding component of $\vect{y}$ (both in a base $\vect{b}$ system), and whose suffix $\overline{\vect{\alpha}}^{2g}/\vect{⍴}(\vect{y}_k)$ is the representation of the $k$th component of some vector $\vect{x}$. Then (the representation of) $\vect{y}$ is called a \textit{chained representation of} $\vect{x}$. In other words, the representation of $\vect{y}$ incorporates its own grid matrix (with the address column $\tree{\Gamma}_1(\vect{y})$ rotated upward by one place) as well as the representation of the vector $\vect{x}$.
+
+\par For example, if $g = 2$, $\vect{b} = 10\symbfup{\epsilon}$, and $\vect{x} = (365, 7, 24)$, then
+
+\begin{align*}
+    & \vect{⍴}(\vect{y}_1) = (\vect{\pi}_{17}, \vect{\pi}_{18}, \vect{\pi}_{19}, \vect{\pi}_{20}, \vect{\pi}_{21}, \vect{\pi}_{22}, \vect{\pi}_{23}) = (6, 8, 0, 7, 3, 6, 5), \\
+    & \vect{⍴}(\vect{y}_2) = (\vect{\pi}_{68}, \vect{\pi}_{69}, \vect{\pi}_{70}, \vect{\pi}_{71}, \vect{\pi}_{72}) = (2, 6, 0, 5, 7), \\
+\text{and} & \\
+    & \vect{⍴}(\vect{y}_3) = (\vect{\pi}_{26}, \vect{\pi}_{27}, \vect{\pi}_{28}, \vect{\pi}_{29}, \vect{\pi}_{30}, \vect{\pi}_{31}) = (1, 7, 0, 6, 2, 4), \\
+\end{align*}
+
+\par is a suitable chained representation of $\vect{x}$.
+
+\par The parameters required in executing an algorithm on a chained representation $\vect{y}$ are $g$, the common dimension in $\vect{\pi}$ of the elements of the grid matrix $\tree{\Gamma}_1(\vect{y})$; $\vect{b}$, the base of the number system employed in their representation; and $f$ and $h$, the leading address and index, respectively, of the representation of some one component of $\vect{y}$. The parameters $g$ and $\vect{b}$ are usually common to the entire set of chained representations in use. Program 3.4 illustrates the type of algorithm required to determine $\vect{⍴}(\vect{x}_k)$ from a given chained representation of $\vect{x}$.
+
+\par (TODO: PROGRAM 3.4 (see html))
+
+\par \textbf{Program 3.4} Determination of $\vect{⍴}(\vect{x}_k)$ from a chained representation of $\vect{x}$
+
+\par \textbf{Program 3.4.} The loop (1-3) is executed $\nu(\vect{x})|_0(k - h)$ times, with the result that at step 4 the parameter $f$ is the leading address of $\vect{⍴}(\vect{y}_k)$. Step 4 therefore specifies $d$ as the dimension of $\vect{⍴}(\vect{x}_k)$, that is, as the base $\vect{b}$ value of $\tree{\Gamma}_2^k(\vect{y})$. Step 5 then specifies $\vect{z}$ as $\vect{⍴}(\vect{y}_k)$. Step 6 deletes those components of $\vect{z}$ which represent the elements of the grid matrix, leaving $\vect{⍴}(\vect{x}_k)$.
+
+\par The parameters $f$ and $h$ are themselves respecified in the execution of the algorithm so that $h$ becomes $k$ and $f$ becomes, appropriately, the leading address of $\vect{⍴}(\vect{y}_k)$. A subsequent execution then begins from this new initial condition.
+
+\par (END PROGRAM 3.4 DESCRIPTION)
+
+\par The chained representation used thus far is cyclic and contains no internal identification of the first or the last components. Such an identification can be incorporated by adding a null component between the last and first components of $\vect{x}$. Alternatively the identification may be achieved without augmenting the dimension but by sacrificing the end-around chaining, i.e., by replacing the last component of $↑\tree{\Gamma}_1(\vect{y})$ by a null element. Moreover, a chained representation may be entered (i.e., the scan may be begun) at anyone of several points, provided only that the index $h$ and corresponding leading address $f$ are known for each of the points.
+
+\par The number of components of a chained representation scanned (steps 1-3 of Program 3.4) in selecting the $k$th component of $\vect{x}$ is given by $\nu(\vect{x})|_0(k$ - $h)$, where $h$ is the index of the component last selected. The selection operation is therefore most efficient when the components are selected in ascending order on the index. The chaining is effective in the forward direction only, and the component $(h - 1)$ would be obtained only by a complete cyclic forward scan of $\nu(\vect{x}) - 1$ components. The representation is therefore called a \textit{forward chain}. A \textit{backward chain} can be formed by incorporating the vector $↓\tree{\Gamma}_1(\vect{y})$ instead of $↑\tree{\Gamma}_1(\vect{y})$, and a double chain results from incorporating both.
+
+\par A vector $\vect{x}$ which is respecified only by either deleting the final component or by adding a new final component (i.e., by operations of the form $\vect{x} ← \overline{\vect{\omega}}^1/\vect{x}$, or $\vect{x} ← \vect{x} \oplus (z)$) behaves as a stack (cf. Exercise 2.6). A backward-chained representation is clearly convenient for such a stack.
+
+\par A simple example of the use of a chained stack occurs in representing the available (i.e., unused) segments of the physical vector $\vect{\pi}$. This will be illustrated by a program for the vector compression
+
+$$
+  \vect{x} ← \vect{v}/\vect{x}
+$$
+
+\par executed on a forward-chained representation of $\vect{x}$. The unused segments representing the components of $\overline{\vect{v}}/\vect{x}$ are returned to a backward-chained stack or \textit{pool} of available components. A linear representation can usually be used for logical control vectors such as $\vect{v}$; in any case the problems involved in their representation are relatively trivial and will be subordinated by expressing each operation directly in terms of the logical vectors and not in terms of the physical components representing them.
+
+\par (TODO: PROGRAM 3.5 (see html))
+
+\par \textbf{Program 3.5} Program for $\vect{x} ← \vect{v}/\vect{x}$ on a forward chained representation of $\vect{x}$ and a backward chained stack of available segments
+
+\par \textbf{Program 3.5}. In the major loop (6-23), $k$ determines the index of the current component $\vect{v}_k$, and $i$ and $j$ determine the leading addresses of $\vect{⍴}(\vect{x}_k)$ and $\vect{⍴}(\vect{x}_{k+1})$, respectively. These three parameters are cycled through successive values by steps 7, 8, and 12 and are initialized by steps 2,5, and 12. If $\vect{v}_k = 0$, the infix $\vect{⍴}(\vect{x}_k)$ is returned to the pool by steps 21, 22, 23, and 6 so as to construct a backward chain.
+
+\par The parameter $x$ specifies the leading address of $\vect{⍴}(\vect{x}_1)$ unless $\nu(\vect{x}) = 0$, in which case $x$ is null. Step 1 terminates the process if $\nu(\vect{x}) = 0$, and otherwise step 4 respecifies $x$ as the null element. If $\vect{v} = 0$, this null value of $x$ remains; if not, the first nonzero component of $\vect{v}$ causes a branch to step 14. Since $x = ∘$, step 15 is executed to respecify $x$ as the leading address of $\vect{⍴}((\vect{v}/\vect{x})_1)$. Step 16 then specifies $h$, the leading address of the last completed component of $\vect{v}/\vect{x}$. Step 15 is never again executed.
+
+\par Components of $\vect{v}/\vect{x}$ other than the first must each be chained (in a forward chain) to the preceding one. Hence the leading address $i$ of a newly added component must be inserted in the last preceding component (whose leading address is $h$). This is normally done by steps 18, 19, and 6; step 20 respecifies $h$. If, however, the component $\vect{x}_{k-1}$ were also included, it would appear as the last completed component of $\vect{v}/\vect{x}$ and would already be chained to the new component $\vect{x}_k$. This situation is recognized by step 17 and occasions a branch to step 16. Step 16 then respecifies $h$ and repeats the loop without executing steps 18, 19, and 6.
+
+\par The process terminates when the cycle through the chained representation of $\vect{x}$ is completed, that is, when $i$ returns to the original value of $x$, preserved as $t$ by step 3. Step 10 is then executed, terminating the process directly if $\nu(\vect{v}/\vect{x}) = 0$. Otherwise, step 11 is executed to close the chain of $\vect{v}/\vect{x}$, that is, to insert $x$, the leading address of $\vect{⍴}((\vect{v}/\vect{x})_1)$, in the representation of the last component of $\vect{v}/\vect{x}$.
+
+\par (END PROGRAM 3.5 DESCRIPTION)
+
+\par A chained representation can be generalized to allow the direct representation of more complex constructs, such as trees, by incorporating the address of each of the successor components associated with a given component. This notion is formalized in the chain list matrix of Sec. 3.4. The same scheme can also be employed to produce an efficient combined representation of two or more vectors which share certain common components. If, for example, $\vect{x}_j = \vect{x}_k$, and chained representations are used for both $\vect{x}$ and $\vect{z}$, then $\vect{x}$ may be represented in standard form except that component $\vect{x}_j$ incorporates a secondary address, which is the leading address of $\vect{z}_{k+1}$. Moreover $\vect{z}$ has a standard representation except that $\vect{z}_{k-1}$ is chained to $\vect{x}_j$ with an indicator to show that the secondary address of the succeeding component is to be used. Deletion of any vector component in such a shared system must occasion only the corresponding change in the address chain of the vector, the actual representation of the component being deleted only when no associated address remains.
+
+\subsection*{Partitions}
+
+\par If the set $\vect{a}$ is the range of the components of the physical vector $\vect{\pi}$, and if some element, say $\vect{a}_1$ is reserved as a \textit{partition symbol} and is excluded from use in the normal representation of quantities, it can be inserted to demark the end (or beginning) of an infix of $\vect{\pi}$. If the vector $\vect{y}$ is represented by a single infix of $\vect{\pi}$ such that the beginning of component $\vect{y}_{j+1}$ follows immediately after the terminal partition of $\vect{y}_j$, then the structure of $\vect{y}$ is completely represented by the partitions, and $\vect{y}$ is called a \textit{partitioned representation}. A partitioned representation can be used for more complex operands, such as matrices, if a set of two or more distinct partition symbols are provided, one for each level of structure. The distinct partition symbols can, of course, be represented by multiple occurrences of a single symbol $\vect{a}_1$ rather than by distinct members of $\vect{a}$.
+
+\par A partitioned representation is similar to a double-chained representation without end-around chaining in the following particular: beginning from component $\vect{y}_i$, the component $\vect{y}_j$ can be reached only by scanning all intervening components between $i$ and $j$ in increasing or decreasing order according as $i < j$ or $i > j$. The file notation introduced in Sec. 1.22 clearly provides the operations appropriate to a partitioned representation of a vector, with conventions which suppress all inessential references to the partitions themselves.
+
+\par The use of a partition to demark the end of an infix is particularly convenient when the infix must be processed component by component for other reasons, as in the use of magnetic tape or other serial storage. The partition also appears to be more economical than the grid matrix, which it replaces. This apparent economy is, however, somewhat illusory, since the reservation of a special partition symbol reduces the information content of each nonpartition component by the factor $\log_2(\nu(\vect{a}) - 1) ÷ \log_2 \nu(\vect{a})$, where $\vect{a}$ is the range of the components of $\vect{\pi}$.
+
+\par Partitions can be employed in chained representations. For example, the dimension in $\vect{\pi}$ of each component of a chained representation $\vect{y}$ can be specified implicitly by terminal partitions instead of explicitly by the vector $\tree{\Gamma}_2(\vect{y})$ of the grid matrix. Thus if the elements of $\tree{\Gamma}_1(\vect{y})$ are of dimension $g$ in $\vect{\pi}$, then $\vect{⍵}^1/\vect{⍴}(\vect{y}_j) = \vect{a}_1$, and ($\overline{\vect{\alpha}}^{ g} \wedge \overline{\vect{\omega}}^1)/\vect{⍴}(\vect{y}_j) = \vect{⍴}(\vect{x}_j)$, where $\vect{x}$ is the vector represented by $\vect{y}$. Program 3.6 shows the determination of $\vect{⍴}(\vect{x}_k)$ from a chained representation $\vect{y}$ with terminal partitions $\vect{a}_1$.
+
+\par (TODO: PROGRAM 3.6 (see html))
+
+\par \textbf{Program 3.6} Determination of $\vect{⍴}(\vect{x}_{\textit{k}})$ from a chained representation of $\vect{x}$ with terminal partitions $\vect{a}_1$
+
+\par \textbf{Program 3.6}. The program is similar to Program 3.4 and the step numbering indicates the correspondences. The dimension $d$ is so determined (steps 4a-d) as to exclude the terminal partition itself from the quantity $\vect{z}$ specified by step 5. Since only the first column of the grid matrix is incorporated in the partitioned representation, step 6 excises a prefix of dimension $g$ rather than $2g$ as in Program 3.4.
+
+\par (END PROGRAM 3.6 DESCRIPTION)
+
+\subsection*{Pools}
+
+\par Components of the physical vector $\vect{\pi}$ in use for the representation of one quantity must not be allocated to the representation of some other quantity. The \textit{construction} of a chained representation therefore poses one problem not encountered in its \textit{use}, namely, the specification and observation of restrictions on the availability of components of $\vect{\pi}$. The restrictions can conveniently be specified as a \textit{pool}, consisting of the available components of $\vect{\pi}$. Each allocation made must then be reflected in a corresponding change in the pool. Moreover, as each piece of data is deleted, the components allocated to it are returned to the pool.
+
+\par If, as in Program 3.5, a pool is treated as a stack, then the component next taken from the pool is the component last added to it. The queue of components in the pool thus obeys a so-called \textit{last in first out}, or LIFO discipline. The dimension in $\vect{\pi}$ of the last component of a pool will not, in general, agree with the dimension required for the next quantity it is called on to represent. If it exceeds the requirements, the extra segment may be left in the pool, and the pool therefore tends to accrue more and more components of smaller and smaller dimension. Hence it may be wise, or even essential, to revise the pool occasionally so as to coalesce the segments into the smallest possible number of infixes. This process can even be extended to allow substitutions in other vectors in order to return to the pool short segments which may unite existing segments of the pool. This, however, will require a systematic scan of the chained vectors.
+
+\par If the dimension of the last component (or perhaps of all components) of the pool falls short of the requirements for representing a new quantity, segments of the pool can be chained together. This requires the use of a special partition symbol or other indication to distinguish two types of links, one which marks the end of a given representation and one which does not. More generally, it may be convenient to use multilevel partition symbols to distinguish several levels of links, as was suggested for the representation of a matrix.
+
+\par Queue disciplines other than LIFO may be used. Three other types of primary interest in allocation queues are the FIFO (first in first out), the \textit{dimension-ordered}, and the \textit{address-ordered} disciplines. FIFO uses a forward chain and may be preferred over LIFO because it uses the entire original pool before using any returned (and usually shorter) segments.
+
+\par The components of a dimension-ordered pool are maintained in ascending (or descending) order on their dimensions in $\vect{\pi}$. This arrangement is convenient in selecting a pool element according to the dimension required. The components of an address-ordered pool are arranged in ascending order on their leading addresses. This arrangement facilitates the fusion of components which together form an infix of $\vect{\pi}$.
+
+\par If each of the available components of $\vect{\pi}$ is set to a special value which is used for no other purpose, then the available components can be determined by a scan of $\vect{\pi}$. Such a pool has no structure imposed by chaining and will be called a \textit{marked pool}.
+
+\par A marked pool requires little maintenance, since components returned to it are simply marked, but selection from it requires a scan of $\vect{\pi}$ and is therefore relatively slow. The use of marked and chained pools may also be combined---all returned components go to a marked pool which is left undisturbed until the chained pool is exhausted, at which time the entire marked pool is organized into a chained pool.
+
+\subsection*{Summary}
+
+\par Since any structured operand can first be reduced to an equivalent vector, the problems of representation can be discussed in terms of vectors alone. The characteristics of the linear, chained, and partitioned representations of a vector may be summarized as follows. A linear representation permits the address of any component to be computed directly as a linear function of its indices and hence requires no scanning of the vector. However, the strict limitations which it imposes on allocation may engender: (1) conflicts with allocations for other operands, (2) waste of storage due to the imposition of a common dimension in $\vect{\pi}$ for all components, or (3) uneconomical execution due to the extensive reallocations occasioned by the insertion or deletion of other than terminal components.
+
+\par The concept of the grid matrix is helpful even when the corresponding allocation is implicit in the program. The explicit use of a grid matrix which is itself in a linear representation removes the restrictions on the allocation of the vector itself while retaining the advantage of direct address computation. The address computation differs from the linear case only in the addition of a single reference to the grid matrix and hence requires no scanning. The difficulties enumerated for the direct linear representation are not eliminated but merely shifted to the linearly represented grid matrix itself, where they may, however, prove much less serious.
+
+\par A chained representation allows virtually arbitrary allocation, relatively simple operations for the insertion and deletion of components, the direct representation of more complex structures such as trees, and economical joint representations of vectors which have one or more components in common. However, a chained representation requires extra storage for the grid matrix which it incorporates and occasions additional operations for scanning when the components are selected in other than serial order. The required scanning can be reduced by the retention of auxiliary information which allows the chained representation to be entered at several points.
+
+\par A partitioned representation requires the allocation of a single infix of $\vect{\pi}$, and selection requires a fine scan, i.e., a component-by-component scan of $\vect{\pi}$ to detect partition symbols. Partitioning removes the need to incorporate the grid matrix explicitly and does not impose a common dimension in $\vect{\pi}$ for all components.
+
+\par Mixed systems employing combinations of linear, chained, and partitioned representations are frequently advantageous. Block chaining, for example, involves the chaining of blocks, each consisting of an infix of $\vect{\pi}$ and each serving as a linear representation of some infix of the represented vector. Alternatively, each chained block may be a partitioned representation of some infix.
