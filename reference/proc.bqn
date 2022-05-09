@@ -2,9 +2,8 @@ h ← •file.Chars "APL1.htm" # https://www.jsoftware.com/papers/APL1.htm
 h /˜↩ ¬ (@+13)=h
 h +↩ (' '-@+10) × ((»∨«)⊸<(@+10)=h) ∧ «'<'≠h
 
-
 # Adapted from bqn-libs
-Find ← ∧⟜»˝=⌜  # ≠∘⊢↑⍷ is slow currently
+Find ← ∧⟜«˝=⌜  # ≠∘⊢↑⍷ is slow currently
 ReplaceAll ← { ⟨old,new⟩ 𝕊 str:
   ! (≠new) ≡ l ← ≠old
   match ← 1-˜ (l+1)|⌊´ (↕⊸-l) × old Find¨ <str
@@ -74,4 +73,4 @@ repl ← chars ∾ ⟨
   "<td>"  ‿"",         "</td>"   ‿" & "
 ⟩
 
-"APL1.cvt" •file.Chars (»⊸∨' '⊸≠)⊸/ (<˘⍉>repl) ReplaceAll h
+"APL1.tex" •file.Chars (»⊸∨' '⊸≠)⊸/ (<˘⍉>repl) ReplaceAll h
