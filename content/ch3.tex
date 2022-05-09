@@ -75,10 +75,10 @@ $$
 \par If a linear representation is used for a vector, then the deletion of a component (as in a compress operation) necessitates the moving (i.e., respecification) of the representations of each of the subsequent components. Similarly, mesh operations (insertion) and permutations necessitate extensive respecification. The use of a grid matrix $\tree{\Gamma}(\vect{x})$ obviates such respecification in $\vect{x}$, since appropriate changes can instead be made in $\tree{\Gamma}(\vect{x})$, where they may be much simpler to effect. If, for example, $\vect{x}$ is the vector represented as in Fig. 3.1\textit{a}, and $z$ is a quantity of dimension six in $\vect{\pi}$, then the mesh operation
 
 $$
-  \vect{x} ← \backslash\vect{x}, \symbfup{\epsilon}^3, \textit{z}\backslash
+  \vect{x} ← \backslash\vect{x}, \symbfup{\epsilon}^3, z\backslash
 $$
 
-\par may be effected by specifying the physical infix $(70 ↓ \mathbf{⍺}^6)/\vect{\pi}$ by $\vect{⍴}(\textit{z})$ and by respecifying $\tree{\Gamma}(\vect{x})$ as follows:
+\noindent may be effected by specifying the physical infix $(70 ↓ \mathbf{⍺}^6)/\vect{\pi}$ by $\vect{⍴}(z)$ and by respecifying $\tree{\Gamma}(\vect{x})$ as follows:
 
 $$
   \tree{\Gamma}(\vect{x}) = \begin{pmatrix}
@@ -104,7 +104,7 @@ $$
     & \vect{⍴}(\vect{y}_3) = (\vect{\pi}_{26}, \vect{\pi}_{27}, \vect{\pi}_{28}, \vect{\pi}_{29}, \vect{\pi}_{30}, \vect{\pi}_{31}) = (1, 7, 0, 6, 2, 4), \\
 \end{align*}
 
-\par is a suitable chained representation of $\vect{x}$.
+\noindent is a suitable chained representation of $\vect{x}$.
 
 \par The parameters required in executing an algorithm on a chained representation $\vect{y}$ are $g$, the common dimension in $\vect{\pi}$ of the elements of the grid matrix $\tree{\Gamma}_1(\vect{y})$; $\vect{b}$, the base of the number system employed in their representation; and $f$ and $h$, the leading address and index, respectively, of the representation of some one component of $\vect{y}$. The parameters $g$ and $\vect{b}$ are usually common to the entire set of chained representations in use. Program 3.4 illustrates the type of algorithm required to determine $\vect{⍴}(\vect{x}_k)$ from a given chained representation of $\vect{x}$.
 
@@ -130,7 +130,7 @@ $$
   \vect{x} ← \vect{v}/\vect{x}
 $$
 
-\par executed on a forward-chained representation of $\vect{x}$. The unused segments representing the components of $\overline{\vect{v}}/\vect{x}$ are returned to a backward-chained stack or \textit{pool} of available components. A linear representation can usually be used for logical control vectors such as $\vect{v}$; in any case the problems involved in their representation are relatively trivial and will be subordinated by expressing each operation directly in terms of the logical vectors and not in terms of the physical components representing them.
+\noindent executed on a forward-chained representation of $\vect{x}$. The unused segments representing the components of $\overline{\vect{v}}/\vect{x}$ are returned to a backward-chained stack or \textit{pool} of available components. A linear representation can usually be used for logical control vectors such as $\vect{v}$; in any case the problems involved in their representation are relatively trivial and will be subordinated by expressing each operation directly in terms of the logical vectors and not in terms of the physical components representing them.
 
 \par (TODO: PROGRAM 3.5 (see html))
 
@@ -160,7 +160,7 @@ $$
 
 \par (TODO: PROGRAM 3.6 (see html))
 
-\par \textbf{Program 3.6} Determination of $\vect{⍴}(\vect{x}_{\textit{k}})$ from a chained representation of $\vect{x}$ with terminal partitions $\vect{a}_1$
+\par \textbf{Program 3.6} Determination of $\vect{⍴}(\vect{x}_k)$ from a chained representation of $\vect{x}$ with terminal partitions $\vect{a}_1$
 
 \par \textbf{Program 3.6}. The program is similar to Program 3.4 and the step numbering indicates the correspondences. The dimension $d$ is so determined (steps 4a-d) as to exclude the terminal partition itself from the quantity $\vect{z}$ specified by step 5. Since only the first column of the grid matrix is incorporated in the partitioned representation, step 6 excises a prefix of dimension $g$ rather than $2g$ as in Program 3.4.
 
@@ -193,3 +193,384 @@ $$
 \par A partitioned representation requires the allocation of a single infix of $\vect{\pi}$, and selection requires a fine scan, i.e., a component-by-component scan of $\vect{\pi}$ to detect partition symbols. Partitioning removes the need to incorporate the grid matrix explicitly and does not impose a common dimension in $\vect{\pi}$ for all components.
 
 \par Mixed systems employing combinations of linear, chained, and partitioned representations are frequently advantageous. Block chaining, for example, involves the chaining of blocks, each consisting of an infix of $\vect{\pi}$ and each serving as a linear representation of some infix of the represented vector. Alternatively, each chained block may be a partitioned representation of some infix.
+
+\section{Representation of matrices}
+
+\par Structured operands other than vectors may be represented by first reducing them to equivalent vectors which can, by employing the techniques of the preceding section, be represented, in turn, in the physical vector $\vect{\pi}$. In the case of a matrix $\mat{A}$, two alternative reductions are of interest, the row list $\vect{r} = \mat{E}/\mat{A} = \mat{A}^1 \oplus \mat{A}^2 \oplus ... \oplus \mat{A}^{\mu}$ and the column list $\vect{c} = \mat{E}//\mat{A}$. If $\vect{r}_h$, $\mat{A}_j^i$, and $\vect{c}_k$ are corresponding elements of the three alternative representations, then in a 0-origin system:
+
+\begin{align*}
+  h &= vi + j \\
+  k &= i + \mu j.
+\end{align*}
+
+Consequently,
+
+\begin{align*}
+             & i &= ⌊h ÷ \nu\rfloor = \mu |_0 k, \\
+  \text{and} & j &= \nu |_0 h = ⌊k ÷ \mu\rfloor.
+\end{align*}
+
+\par The dependence of $h$ on $k$ can be obtained directly by substituting the foregoing expressions in the identity
+
+\begin{align*}
+                    & h &= \nu \times ⌊h ÷ \nu\rfloor + \nu |_0 h \\
+  \text{to yield}   & h &= \nu \times (\mu |_0 k) + ⌊k ÷ \mu\rfloor. \\
+  \text{Similarly,} & k &= \mu \times (\nu |_0 h) + ⌊h ÷ \nu\rfloor.
+\end{align*}
+
+\par The permutation $\vect{h}$ which carries the row list $\vect{r}$ into the column list $\vect{c}$ (that is, $\vect{c} = \vect{h}\int_0\vect{r}$) can be obtained directly from the foregoing expression for $\vect{h}$ as follows:
+
+$$
+  \vect{h} = \nu \times (\mu\symbfup{\epsilon} |_0 \vect{⍳}^0) + ⌊\vect{⍳}^0 ÷ \mu\symbfup{\epsilon}\rfloor.
+$$
+
+\par The expression for the $k$th component of $\vect{h}$ is identical with the expression for $\vect{h}$ above. Hence, if $\vect{c} = \vect{h}\int_0\vect{r}$, then $\vect{c}_k = \vect{r}_{\vect{h}_k} = \vect{r}_h$ as required.
+
+\par If the row list (or column list) is itself represented linearly, then the address of any component $\mat{A}_j^i$ is obtained as a linear function of the indices $i$ and $j$. If either a file or a chained representation is to be used for the list vector, then the components are processed most efficiently in serial order, and the use of column list or row list is dictated by the particular processes to be effected.
+
+\par If a large proportion of the elements of a matrix are null elements, it is called a \textit{sparse} matrix. Sparse matrices occur frequently in numerical work (where zero serves as the null element), particularly in the treatment of partial difference equations. A sparse matrix $\mat{A}$ can be represented compactly by the row list $\vect{r} = \mat{U}/\mat{A}$, and the logical matrix $\mat{U}$, where $\mat{U} = (\mat{A} \neq 0)$. The matrix $\mat{A}$ may then be obtained by expansion: $\mat{A} = \mat{U}\backslash\vect{r}$.
+
+\par Alternatively, the column list $\vect{c} = (\mat{A} \neq 0)/\!/\mat{A}$ may be used. The transformation between the column list $\vect{c}$ and row list $\vect{r}$ must, in general, be performed as a sequential operation on the elements of $\mat{U}$. Since it is frequently necessary to scan a given matrix in both row and column order (e.g., as either pre- or post-multiplier in a matrix multiplication), neither the row list nor the column list alone is satisfactory. A chaining system can, however, be devised to provide both row and column scanning.
+
+\par Let $\mat{L}$ be a matrix such that $\mat{L}_1$ is a list of the nonzero elements of a matrix $\mat{A}$ in arbitrary order, $\mat{L}_2^i$ is the column index in $\mat{A}$ of element $\mat{L}_1^i$, and $\mat{L}_3^i$ is the row index in $\mat{L}$ of the next nonzero element following $\mat{L}_1^i$ in its row of $\mat{A}$. If $\mat{L}_1^i$ is the last nonzero element in its row, $\mat{L}_3^i = ∘$. Let $\vect{f}_j$ be the row index in $\mat{L}$ of the first nonzero element of row $\mat{A}^j$, and let $\vect{f}_j = ∘$ if $\mat{A}^j = 0$. The following example shows corresponding values of $\vect{f}$, $\mat{L}$, and $\vect{f}$:
+
+$$
+  \mat{A} = \begin{pmatrix}
+    6 & 0 & 0 & 9 \\
+    0 & 3 & 0 & 0 \\
+    0 & 0 & 0 & 0 \\
+    7 & 8 & 0 & 4 \\
+    0 & 0 & 5 & 0
+  \end{pmatrix}\quad
+  \mat{L} = \begin{pmatrix}
+    8 & 2 & 7 \\
+    5 & 3 & ∘ \\
+    6 & 1 & 5 \\
+    3 & 2 & ∘ \\
+    9 & 4 & ∘ \\
+  7 & 1 & 1 \\
+  4 & 4 & ∘
+  \end{pmatrix}\quad
+  \vect{f} = \begin{pmatrix}
+    3 \\
+    4 \\
+    ∘ \\
+    6 \\
+    2 \\
+  \end{pmatrix}
+$$
+
+\par The matrix $\mat{L}$ will be called a \textit{row-chained} representation of $\mat{A}$ and may be used, together with the vector $\vect{f}$, for the efficient scanning of any row $\mat{A}^i$ as illustrated by Program 3.7. The vector $\mat{L}_3$ can be modified so as to give the address in $\vect{\pi}$ directly rather than the row index in $\mat{L}$ of the next element in the row, and Program 3.7 can then be easily re-expressed in terms of the physical vector $\vect{\pi}$.
+
+\par (TODO: PROGRAM 3.7 (see html))
+
+\par \textbf{Program 3.7} Determination of the row vector $\mat{A}^i$ from a row-chained representation of $\mat{A}$
+
+\par \textbf{Program 3.7}. Step 2 yields the index in $\mat{L}$ of the first element of the $i$th row of $\mat{A}$. Step 4 determines its column index $j$, and step 6 determines the index of the succeeding component. The process terminates at step 3 when the scan of the row is completed.
+
+\par (END PROGRAM 3.7 DESCRIPTION)
+
+\par If $\mat{L}_1$ is chosen as a row list, the vector $\mat{L}_3$ reduces to the form $\mat{L}_3^k = k + 1$ or $\mat{L}_3^k = ∘$. Its function can then be served instead by incrementation of the index $k$ and by the use of the logical vector $\vect{u} = (\mat{L}_3^{k} = ∘\symbfup{\epsilon})$ for determining the end of each row.
+
+\par The construction of a column-chained representation is analogous to that of a row-chained representation, and the two representations can be combined in a single matrix $\mat{L}$ which gives both row and column chaining employing but a single representation (that is, $\mat{L}_1)$ of the nonzero elements of $\mat{A}$.
+
+\section{Representation of trees}%^{<a href="#note3b">[b]</a>}
+
+\par A tree $\tree{T}$ may be represented by a matrix and hence, in turn, by a vector in a number of useful ways as follows:
+
+\begin{enumerate}
+  \item by a full right list matrix $]\tree{T}$ or by any column permutation thereof (Sec. 1.23),
+  \item by a full left list matrix $[\tree{T}$ or by any column permutation thereof,
+  \item by a right list matrix $\mathbf{⍺}^2/]\tree{T}$,
+  \item by a left list matrix $\mathbf{⍺}^2/[\tree{T}$,
+  \item by various chain list matrices.
+\end{enumerate}
+
+\par The full left and right lists seldom prove more convenient than the more concise left and right lists. Except for the special case of a homogeneous tree, both the right list and the left list are awkward to use for path tracing. This function is better served by the chain list matrix, to be defined as a formalization of the chaining scheme suggested in Sec. 3.2.
+
+\subsection*{Simplified list matrices}
+
+\par In certain important special cases, the various list representations of trees may be simplified. If the degree of each node is a known function $\delta$ of the value of the node, then for any list matrix $\mat{M}$, $\mat{M}_1^i = \delta(\mat{M}_2^i)$, and the degree vector $\mat{M}_1$ may be eliminated without loss. The node vector alone then represents the tree and may be referred to as a \textit{right} or \textit{left list vector} as the case may be.
+
+\par (TODO: FIGURE 3.8)
+
+\par \textbf{Figure 3.8} The compound logical statement
+$\overline{x} ∧ (y \vee z)$
+
+\par For example, in the tree of Fig. 3.8 (which represents the compound logical statement $\overline{x} ∧ (y \vee z)$), a fixed degree is associated with each of the logical operators
+\textit{and}, \textit{or}, and \textit{not} (namely, 2, 2, and 1), and the degree zero is associated with each of the variables. The statement can therefore be represented unambiguously by the left list vector
+
+$$
+  \vect{v} = (\wedge, ¯, x, \vee, y, z).
+$$
+
+\par This is the so-called \textit{Lukasiewicz}, \textit{Polish}, or \textit{parenthesis-free} form of the compound statement [<acronym title="Lukasiewicz, Jan, (1951), Aristotle’s Syllogistic from the Standpoint of Modern Formal Logic, Clarendon Press, Oxford, England, p. 78.">Lukasiewicz (1951)</acronym> and <acronym title="Burks, A.W., D.W. Warren, and J.B. Wright, (1954), “An Analysis of a Logical Machine Using Parenthesis-free Notation”, Mathematical Tables and Other Aids to Computation, vol. VIII, pp. 53-57. ">Burks et al. (1954)</acronym>]. Frequently, the only significant nodes of a tree $\tree{T}$ are its leaves (e.g., in Example 3.2 and in a certain key transformation of Fig. 4.7) and all other nodes may be considered as nulls. Hence if $\mat{M}$ is any list matrix, the significant portions of $\mat{M}_1$ and $\mat{M}_2$ are $(\mat{M}_1 \neq 0)/\mat{M}_1$ and $(\mat{M}_1 = 0)/\mat{M}_2$, respectively. These significant portions may then be coalesced to form the single vector
+
+$$
+  \vect{v} = /\mat{M}_1, (\mat{M}_1 = 0), \mat{M}_2/,
+$$
+
+\noindent which, together with the logical vector ($\mat{M}_1 = 0$), forms a \textit{leaf list matrix} that describes the tree. Moreover, if the values of the leaves are distinguishable from the components of the degree vector, the logical vector ($\mat{M}_1 = 0$) may also be dropped.
+
+\subsection*{The use of left lists}
+
+\par The use of the right list matrix is illustrated by the repeated selection sort treated in Sec. 6.4. The use of left lists will be illustrated here by two examples, each of interest in its own right: the partitioning of the left list of an $n$-tuply rooted tree to yield the left lists of the component singular subtrees and the construction of a Huffman minimum-redundancy prefix code.
+
+\par (TODO: PROGRAM 3.9 (see html))
+
+\par \textbf{Program 3.9} Partitioning of the left list of an $n$-tuply rooted tree
+
+\par \textbf{Example 3.1. Partitioning of an $n$-tuply rooted tree.} Program 3.9 shows a scheme for partitioning a left list $\mat{Z}$ of a tree $\tree{T}$ into component subtrees, i.e., for determining the vector $\vect{p}$ such that $\vect{p}_j$ is the moment of the singular subtree $\tree{T}_j$. Thus $\nu(\vect{p}) = \vect{\mu}_1(\tree{T})$, $\vect{p}_j = \mu(\tree{T}_j)$, and the infix $((\vect{p} {+ \atop \times} \vect{a}^{j-1}) ↓ \vect{a}^{\mathbf{ p}_j})/\!/\mat{Z}$ is the left list of $\tree{T}_j$.
+
+\par The loop 6-10 scans successive components of the degree vector $\mat{Z}_1$ (in ascending order) and computes $\vect{r}$, the indicated number of roots. The value of $\vect{r}$ increases by, at most, one per iteration, and when $\vect{r}$ becomes unity, the end of a singly rooted tree has been reached. Its moment $m$ is then appended (step 11) as a new final component of the partition vector $\vect{p}$, the parameters $m$ and $r$ are reset, and the scan of the next rooted tree is begun. Normal termination occurs at step 3; termination at step 6 indicates ill formation of $\mat{Z}$.
+
+\par (END EXAMPLE 3.1)
+
+\par (TODO: FIGURE 3.10)
+
+\par \textbf{Figure 3.10} Construction of a Huffman prefix code
+
+\par \textbf{Example 3.2. Huffman minimum redundancy prefix code.} If $\vect{b}$ is any set such that $\nu(\vect{b})$ > 1, then any other finite set $\vect{a}$ can be encoded in $\vect{b}$, that is, represented by $\vect{b}$. (The sets $\vect{a}$ and $\vect{b}$ may be called the ``alphabet'' and ``basic alphabet'', respectively.) If $\nu(\vect{a}) ≤ \nu(\vect{b})$, the encoding may be described by a mapping vector $\vect{k}$ such that $\vect{⍴}(\vect{a}_i) = \vect{b}_{\vect{k}_i}$. If $\nu(\vect{a}) > \nu(\vect{b})$, then each $\vect{a}_i$ must be represented by a vector $\vect{x}^i ⊆ \vect{b}$. For example, if $\vect{a} = \vect{⍳}^0(10)$ and $\vect{b} = \vect{⍳}^0(2)$, then the decimal digits $\vect{a}$ may be encoded in the so-called 8421 system:
+
+$$
+  (2 \symbfup{\epsilon}(4)) ⊥ \vect{x}^i = \vect{a}_i
+$$
+
+\par In so-called fixed length coding the vectors $\vect{x}^i$ have a common dimension $d$, and the decoding of a message $m$ (consisting of the catenation of vectors $\vect{x}^i)$ involves the selection of successive infixes of dimension $d$. If the probability distribution of the characters $\vect{a}_1$ occurring in messages is not uniform, more compact encoding may be achieved by using variable length codes and assigning the shorter codes to the more frequent characters. Decoding of a message in variable length coding can be performed only if the boundaries between the successive $\vect{x}^i$ are indicated in some way.
+
+\par The boundaries between characters in a message in variable length code may be demarked by special partition symbols (which is inefficient) or by using a \textit{prefix} code in which no legitimate \textit{code point} $\vect{x}^i$ is the prefix of any other legitimate code point, including itself. The index vectors of the leaves of any tree possess this property; conversely, any set of prefix codes can be arrayed as the leaves of some tree. Hence if each character of the set to be encoded is assigned as the leaf of a common tree, and if each character is encoded by the associated index vector, a so-called prefix code is attained. Figure 3.10 furnishes an example of a binary code (i.e., the branching ratios do not exceed two) constructed in this manner. 0-origin indexing is used. The discussion will be limited to binary trees.
+
+\par If $\vect{f}_i$ is the frequency of the $i$th character and $\vect{l}_i$ is the length of the assigned code (i.e., the length of path to the root), then the most efficient code is attained by minimizing the scalar product $\vect{f} {+ \atop \times} \vect{l}$. This may be achieved by the following construction, shown to be optimal by <acronym title="Huffman, D.A., (1952), “A Method for the Construction of Minimum Redundancy Codes”, Proc. IRE, vol. 40, pp. 1098-1101.">Huffman (1952)</acronym>. First, the characters to be encoded are all considered as roots, and the two roots of lowest frequency are rooted to an auxiliary node (shown as a null element in Fig. 3.10), which is then assigned their combined frequency. The process is repeated until only two roots remain. The tree of Fig. 3.10 is optimal with respect to the frequencies shown to the left of the leaves. The appropriate combined frequencies are shown to the left of each of the nonleaves.
+
+\par Programs 3.11 and 3.12 show the construction of the tree $\tree{T}$ representing a Huffman code for a set of characters $\vect{c}_i$ with frequencies $\vect{f}_i$ the former in terms of the tree itself and the latter in terms of its left list.
+
+\par (END EXAMPLE 3.2)
+
+\par (TODO: PROGRAM 3.11 (see html))
+
+\par \textbf{Program 3.11} Construction of the binary Huffman code $\tree{T}$ for characters $\vect{c}$ with frequency $\vect{f}$
+
+\par \textbf{Program 3.11}. The frequency vector $\vect{f}$ is permuted (step 5) to bring it to ascending order, and the tree is subjected (step 3) to the same permutation. Step 4 replaces the first two rooted subtrees of $\tree{T}$ by the single subtree obtained by rooting them in a null, and step 6 makes the corresponding alterations in the frequency vector. The tree is initialized (step 1) as a one-level tree whose roots are the given characters, and the process terminates when the number of roots of $\tree{T}$ has been reduced to two.
+
+\par (END PROGRAM 3.11 DESCRIPTION)
+
+\par (TODO: PROGRAM 3.12 (see html))
+
+\par \textbf{Program 3.12} Construction of the left list $\vect{z}$ of the binary Huffman code for characters $\vect{c}$ with frequency $\vect{f}$
+
+\par \textbf{Program 3.12}. The tree $\tree{T}$ of Program 3.11 is represented by the left list node vector $\vect{z}$, in conjunction with the implicit degree vector $\vect{d} = 2 \times (\vect{z} = ∘\symbfup{\epsilon})$. The algorithm differs from Program 3.11 primarily in the reordering of the subtrees (steps 6-9). Step 7 appends to $\vect{x}$ the left list of the ith subtree (of the reordered tree) selected by the partition vector $\vect{p}$ according to the conventions of Program 3.9. Step 1a prefixes $\vect{x}$ by the new null root, and steps 11-12 redefine $\vect{p}$ appropriately.
+
+\par Program 1.21 can be applied to the left list produced by Program 3.12 to determine the associated index matrix (in a 0-origin system), and hence the actual codes assigned.
+
+\par It is not essential that the characters be assigned to leaves in precisely the order specified by Programs 3.11 and 3.12, and it is sufficient that the dimension of the leaf index increase monotonically with decreasing frequency of the character. It is therefore unnecessary to carry the characters themselves through the process; it suffices to determine the structure of the tree, sort the corresponding index matrix to right list order (which is ordered on dimension of the index vectors), and assign the characters (in decreasing order by frequency) to successive leaves. Since the structure of such a tree (whose nodes have a common irrelevant value and whose nonleaves all have a common branching ratio equal to the number of roots) is sufficiently determined by the moment vector $\vect{\mu}(\tree{T})$, the process of Program 3.12 can be simplified.
+
+\par (END PROGRAM 3.12 DESCRIPTION)
+
+\subsection*{Chain list matrices}
+
+\par The full chain list matrix of a tree $\tree{T}$ is a matrix $\mat{P}$ of dimension $\mu(\tree{T}) \times (\delta(\tree{T}) + 2)$ defined as follows: $\mat{P}_2$ is some node vector of $\tree{T}$, $\mat{P}_1$ is the associated degree vector, $\mat{P}_{j+2}^i$ is null if $j$ exceeds the associated degree $\mat{P}_1^i$ and is otherwise the row index in $\mat{P}$ of the $j$th node emanating from node $\mat{P}_2^i$. Table 3.13 shows a full chain list matrix for the tree of Fig. 1.16. A full chain list matrix is called a full \textit{right} (\textit{left}) chain list matrix if the nodes occur in right (left) list order.
+
+\par (TODO: TABLE 3.13 (see html))
+
+\par \textbf{Table 3.13} Chain lists of the tree of Fig. 1.16
+
+\par The full chain list matrix is a formalization of the scheme suggested in the discussion of chained representations (Sec. 3.2). Its convenience in forward path tracing is obvious. Since it does not identify the roots of the tree, an auxiliary vector must be provided for this purpose. However, if the ordering chosen for the nodes is that of a right list, the roots occur first in the list, their number $r = \nu(\mat{P}_1) - (+/\mat{P}_1)$ is specified by the degree vector $\mat{P}_1$, and the need for the auxiliary vector vanishes. Moreover, since a right list groups all nodes emanating from a given node, each row of $\overline{\vect{\alpha}}^2/\mat{P}$ is simply a sequence of integers followed by null elements, and the information necessary to path tracing is provided by the column $\mat{P}_3$ alone.
+
+\par The \textit{right chain list matrix} of a tree $\tree{T}$ is therefore defined as $\overline{\vect{\alpha}}^3/\mat{P}$, where $\mat{P}$ is the full right chain list matrix of $\tree{T}$. It is illustrated by Table 3.13b. Program 3.14 shows its use in path tracing. Although the degree vector $\mat{P}_1$ is redundant (that is, $\mat{P}_1$ and $\mat{P}_3$ can be determined one from the other), it provides a direct check (step 6) on the legitimacy of the index vector $\vect{r}$ which would be difficult to obtain from $\mat{P}_3$ alone.
+
+\par For a search of the type described by Program 3.14, it is necessary to scan down a level until agreement is reached and then across to the next level. For this type of scan, the \textit{filial-heir chain list} is compact and convenient.
+
+\par (TODO: PROGRAM 3.14 (see html))
+
+\par \textbf{Program 3.14} Determination of the path $\vect{p} = \tree{T}^{\vect{r}}$ from the right chain list matrix $\mat{P}$
+
+\par The set of $(j + 1)$th level nodes of the subtree $\tree{T}_{\vect{i}}$ are collectively called the \textit{jth filial vector} of node $\vect{i}$, and the first member of the first filial vector of node $\vect{i}$ is called the \textit{heir} of node $\vect{i}$. (For brevity, the first filial vector of a node will also be called its filial vector.) If each node is chained only to its successor in the filial vector containing it and to its heir, the resulting representation is called a \textit{filial-heir chain list}. Formally, the filial-heir representation of a tree $\tree{T}$ is a matrix $\mat{F}$ of dimension $\mu(\tree{T}) \times 4$ such that $\mat{F}_2$ is a node vector of $\tree{T}$, $\mat{F}_1$ is the associated degree vector, $\mat{F}_3$ is a \textit{filial chain} such that $\mat{F}_3^i = j$ if node $\mat{F}_2^j$ is the successor of node $\mat{F}_2^i$ in the smallest filial set containing it and $\mat{F}_3^i = ∘$ if node $\mat{F}_2^i$ has no such successor, and $\mat{F}_4$ is an \textit{heir chain} such that $\mat{F}_4^i = h$ if node $\mat{F}_2^h$ is the heir of node $\mat{F}_2^i$ and $\mat{F}_4^i = ∘$ if $\mat{F}_2^i$ is a leaf. The filial-heir chain list is illustrated in Table 3.13\textit{c}.
+
+\section*{References}
+
+\par TODO
+
+\section*{Notes}
+
+\par TODO formatting, links
+
+\noindent a. Chained representations have received extensive treatment, frequently under the name ``lists''. See, for example,
+<acronym title="Shaw, J.C., A. Newell, H.A. Simon, and T.O. Ellis, (1958), “A Command Structure for Complex Information Processing”, Proc. Western Joint Computer Conference, pp. 119-128.">Shaw et al. (1958)</acronym> and
+<acronym title="Blaauw, G. A., (1959), “Indexing and Control-Word Techniques”, IBM Journal of Research and Development, vol. 3, pp. 288-301.">Blaauw (1959)</acronym>.
+
+\noindent b. <acronym title="Johnson, L.R., (1962), “On Operand Structure, Representation, Storage, and Search”, Research Report \# RC-603, IBM Corp.">Johnson (1962)</acronym> provides a comprehensive treatment of the representations of trees and discusses the suitability of each representation for a variety of search procedures.
+
+\section*{Exercises}
+
+\par The symbols $\vect{a}$ and $\vect{c}$ will be used exclusively to denote lower case and capital alphabets defined as follows:
+
+\begin{align*}
+  \vect{a} &= (0, a, b, c, ... , z, \mathbf{.}, \mathbf{,}, \#, *, +). \\
+  \vect{c} &= (0, A, B, C, ... , Z, \mathbf{.}, \mathbf{,}, \#, *, +).
+\end{align*}
+
+\par The expression $\vect{\pi} ⊆ \vect{x}$ will be used to specify the set $\vect{x}$ as the range of the components of $\vect{\pi}$.
+
+
+
+\par \textbf{3.1} For each of the following cases, specify a suitable encoding matrix and format vector and show the explicit value of the infix of $\vect{\pi}$ which (in a solid representation) represents the given example vector $\vect{x}$:
+
+\begin{enumerate}[label=(\alph*)]
+  \item the decimal digits $\vect{d} = \vect{⍳}^0(10)$ in a ranked fixed-length code for $\vect{\pi} ⊆ \vect{⍳}^0(2)$.\\ Example: $\vect{x} = (6, 8, 9)$.
+  \item the set $\vect{a}$ in a ranked fixed-length code for $\vect{\pi} ⊆ \vect{⍳}^0(2)$.\\ Example: $\vect{x} = (c, a, t)$. \\
+  \item the set $\vect{a} ∪ \vect{c} ∪ \vect{⍳}^0(10)$ in a fixed-length code for $\vect{\pi} ⊆ \vect{⍳}^0(10)$.\\ Example: $\vect{x} = (M, a, y, ∘, 3, \textbf{,}, 1,9,6,0, \textbf{.})$.
+  \item the set $\vect{a} ∪ \vect{c}$ in a two-case code (with single-character shift) for $\vect{\pi} ⊆ \vect{a}$. (See <acronym title="Brooks, F.P., Jr., and K.E. Iverson, (1962), (in press) Automatic Data Processing, Wiley, New York.">Brooks and Iverson, 1962.</acronym>)\\ Example: $x = (T, r, o, y, \textbf{,}, N, \textbf{.}, Y, \textbf{.})$.
+  \item the set $\vect{a}$ in a Huffman prefix code for $\vect{\pi} ⊆ \vect{⍳}^0(2)$. Assume the frequency distribution given in
+<acronym title="Dewey, Godfrey, (1923), Relative Frequency of English Speech Sounds, Cambridge University Press, p. 185.">Dewey (1923)</acronym>.\\ Example: $\vect{x} = (t, r, e, e)$.
+\end{enumerate}
+
+
+\par \textbf{3.2} For each of the cases of Exercise 3.1 write a program which decodes the infix $(i ↓ \mathbf{⍺}^j)/\vect{\pi}$, that is, which produces the vector $\vect{z}$ represented by the infix. The auxiliary physical vector $\vect{\pi}^1 ⊆ \vect{s}$ may be employed to represent the first column of the encoding matrix, where $\vect{s}$ is the set encoded. Perform a partial trace of each program for the example value used in Exercise 3.1.
+
+
+
+\par \textbf{3.3} The ordered set of months $\vect{m} = (\text{JANUARY}, \text{FEBRUARY}, ... , \text{DECEMBER})$ is to be represented by the physical vector $\vect{\pi} ⊆ \vect{c} ∪ \vect{⍳}^0(10)$. For each of the following types of representation, specify a particular representation and show the values of the relevant components of $\vect{\pi}$:
+
+\begin{enumerate}[label=(\alph*)]
+  \item a linear representation (employing null elements for filling to a common dimension in $\vect{\pi}$).
+  \item a solid representation for each element of $\vect{m}$ and an appropriate grid matrix itself represented linearly.
+  \item a chained representation.
+  \item a double chained representation.
+\end{enumerate}
+
+
+
+\par \textbf{3.4}
+\begin{enumerate}[label=(\alph*)]
+  \item For each of the cases of Exercise 3.3, write a program which selects month $\vect{m}_k$.
+  \item Trace each program for the case $k = 2$.
+  \item For case (d) of Exercise 3.3, write a program which selects $\vect{m}_k$ by forward chaining if $k ≤ \nu(\vect{m})÷2$, and by backward chaining if $k > \nu(\vect{m})÷2$.
+\end{enumerate}
+
+
+
+\par \textbf{3.5} For each of the cases of Exercise 3.3, write a program which ``prints out'' the set of months in a minimum number of $n$-character lines, inserting a single null between successive months except where (i) further nulls must be added to prevent the continuation of a single word from one line to the next, or (ii) no null is needed between two successive words, the first of which is coterminous with the line. In other words, produce a matrix $\mat{Z}$ of row dimension $n$ and of minimum column dimension such that $(\mat{Z} \neq ∘\mat{E})/\mat{Z} = \vect{⍴}(\vect{m}_1)$ \oplus $\vect{⍴}(\vect{m}_2)$ \oplus ... \oplus $\vect{⍴}(\vect{m}_{12})$, and such that each row $\mat{Z}^i$ may be partitioned into one or more vectors of the form $\vect{⍴}(\vect{m}_k)$ \oplus $∘\symbfup{\epsilon}$, all but the last of which must be of dimension $\nu[\vect{⍴}(\vect{m}_k)] + 1$.
+
+
+
+\par \textbf{3.6} Assuming a linear representation for each of the logical vectors involved, and a forward-chained representation for each of the remaining operands, write programs for the following operations. Assume in each case that the arguments $\vect{x}$ and $\vect{y}$ need not be retained, and assume the use of a backward-chained pool where necessary.
+\begin{enumerate}[label=(\alph*)]
+  \item $\vect{z} ← \backslash\vect{x}, \vect{u}, \vect{y}\backslash$
+  \item $\vect{z} ← /\vect{x}, \vect{u}, \vect{y}/$
+  \item $\vect{z} ← k ↑ \vect{x}$
+  \item $\vect{z} ← k ↓ \vect{x}$
+\end{enumerate}
+
+
+
+\par \textbf{3.7} Repeat Exercise 3.6(a), using separate grid matrices for $\vect{x}$, $\vect{y}$, and $\vect{z}$ instead of chained representations. Specify a suitable linear representation for each of the grid matrices.
+
+
+
+\par \textbf{3.8}
+\begin{enumerate}[label=(\alph*)]
+  \item If a chained representation is used for a vector $\vect{x}$, then the selection of a specified component can be made faster by providing a number of alternative starting points for the required scan. State precisely the quantities required in such a process and write a program showing its use.
+  \item If provision is made for starting the scan at any component of $\vect{x}$, the chained representation may itself be simplified. Show precisely what the simplified form is and identify the type of representation to which it is equivalent.
+\end{enumerate}
+
+
+
+\par \textbf{3.9} Frequently a vector $\vect{x}$ kept in a partitioned representation (for efficient use of storage) must be ``unpacked'' to a linear or other more accessible form for efficient processing. The converse operation of ``packing'' is also required. Let the partitioned representation be a file $\tree{\Phi}$ employing an intercomponent partition $\vect{\lambda}_1$, and a terminal partition $\vect{\lambda}_2$, and write both packing and unpacking programs for each of the following cases. Assume that the maximum dimension in $\vect{\pi}$ of any component is $n$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item A solid linear representation employing null fill.
+  \item An allocation prescribed by a grid matrix $\mat{G}$ with $\mat{G}_2 = n\symbfup{\epsilon}$.
+\end{enumerate}
+
+
+
+\par \textbf{3.10} Let $\vect{\pi} ⊆ \vect{⍳}^0(2)$, let the set a be encoded in a five-bit code such that $(2\symbfup{\epsilon}) ⊥ \vect{⍴}(\vect{a}_i) = i$, and let each component of the vector $\vect{x}$ be an (uncapitalized) English word. Using 0-origin indexing throughout, specify a suitable partitioned representation in $\vect{\pi}$ for the vector $\vect{x}$, and repeat Exercises 3.9(a) and 3.9(b), using it in lieu of the files.
+
+
+
+\par \textbf{3.11} For each of the following pool organizations, write a program to convert a given marked pool into a backward-chained pool:
+\begin{enumerate}[label=(\alph*)]
+  \item dimension-ordered.
+  \item address-ordered.
+\end{enumerate}
+
+
+
+\par \textbf{3.12} For each of the following queue disciplines, write programs which take from and return to the pool an infix of length $n$. Use secondary linking and relegate to a marked pool any infix which is too short for linking. In each case choose the type of chaining best suited to the particular queue discipline.
+\begin{enumerate}[label=(\alph*)]
+  \item LIFO (last-in-first-out).
+  \item FIFO (first-in-first-out).
+  \item Dimension ordered.
+  \item Address-ordered (utilize the possibility of fusing adjacent infixes).
+\end{enumerate}
+
+
+
+\par \textbf{3.13} Give a complete specification of a scheme for representing a tree $\tree{T}$ by a full chain list matrix which is not in right list order. Write a program (expressed in terms of the physical vector $\vect{\pi}$) which determines the path vector $\tree{T}^{\vect{i}}$ for a given index vector $\vect{i}$.
+
+
+
+\par \textbf{3.14} Give a complete specification of a scheme allowing joint representation of those components shared by two or more of a family of vectors $\vect{x}^1$, $\vect{x}^2$, ..., $\vect{x}^n$ as suggested in Sec. 3.2. Write programs to (i) select component $\vect{x}_j^i$, and (ii) delete component $\vect{x}_j^i$.
+
+
+
+\par \textbf{3.15} Let $\vect{\pi} ⊆ \vect{a} ∪ \vect{⍳}^0(10)$, and let $\vect{x}^1$, $\vect{x}^2$, ..., $\vect{x}^n$ be a family of vectors whose components belong to the set $\overline{\vect{\alpha}}^1/[\vect{a} ∪ \vect{⍳}^0(10)]$. Let the average and the maximum dimensions of the vectors $\vect{x}^i$ be $a$ and $m$, respectively. Assume that the chaining index is represented in decimal, with each digit represented by one component of $\vect{\pi}$. Determine (as a function of $m$ and $n$) the value of $a$ below which a chained representation provides more compact storage than a linear representation with null fill.
+
+
+
+\par \textbf{3.16} Write a program which uses the minimization operation $\vect{u} ← \vect{v} ⌊ \vect{x}$ to determine the ordering permutation vector $\vect{p} ← \theta_1/(\vect{a} ⍳_1 \vect{b})$.
+
+
+
+\par \textbf{3.17} Let $\mat{U} = (\mat{X} \neq 0)$ and $\vect{r} = \mat{U}/\mat{X}$ jointly represent the sparse matrix $\mat{X}$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Write a program which determines (as a function of $\mat{U}$ and $\vect{r}$) a suitable row-chained and column-chained representation of $\mat{X}$.
+  \item Write a program defined on the representation produced in part (a) to compute the product $\mat{Y} = \mat{X} {+ \atop \times} \mat{X}$, itself represented in the form $\mat{V} = (\mat{Y} \neq 0)$ and $\vect{p} = \mat{V}/\mat{Y}$.
+  \item Write a program to determine the trace (that is, $+/\mat{I}/\mat{X}$) of $\mat{X}$ from the representation produced in part (a).
+\end{enumerate}
+
+
+
+\par \textbf{3.18} The unique assignment of Huffman codes produced by Program 3.12 is, in general, only one of many equally efficient assignments, since the symbols to be coded need only be assigned, in decreasing order on frequency, to the leaves of the code tree in increasing order on their levels. Show that the structure of the tree produced can be sufficiently described by its moment vector alone, and write a program for the construction of a Huffman code based on this fact.
+
+
+
+\par \textbf{3.19} Following the notation and terminology used in Program 3.9 for the analogous case of a left list, write a program which determines from the right list $\mat{R}$ of a tree $\tree{T}$, the partition vector $\vect{p}$ which partitions it by levels.
+
+
+
+\par \textbf{3.20} Write a program which determines the right list $\mat{R} = \mathbf{⍺}^2/]\tree{T}$ as a function of the left list $\mat{L} = \mathbf{⍺}^2/[\tree{T}$. Incorporate tests of well formation.
+
+
+
+\par \textbf{3.21} Let $[\mat{X}{\odot_1 \atop \odot_2}]^p$ denote the $p$th power of the square matrix $\mat{X}$ with respect to the operators $\odot_1$ and $\odot_2$, that is, $[\mat{X}{\odot_1 \atop \odot_2}]^p = \mat{X} {\odot_1 \atop \odot_2} \mat{X} {\odot_1 \atop \odot_2} ... {\odot_1 \atop \odot_2} \mat{X}$ to $p$ factors.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Show that ($[\mat{C}{\vee \atop \wedge}]^p)_j^i = 1$ if and only if there is a path of length p from node i to node j in the graph $(\vect{n}, \mat{C})$.
+  \item Show that $[\mat{C}{\vee \atop \wedge}]^p = 0$ for some $p < \nu(\mat{C})$ if and only if $(\vect{n}, \mat{C})$ contains no circuits.
+  \item If $(\vect{n}, \mat{C})$ contains no circuits, the connection matrix $\mat{C}$ is said to be ``consistent''. The result of part (a) can be used to check consistency. Program the alternative method of
+<acronym title="Marimont, R.B., (1959), “A New Method of Checking the Consistency of Precedence Matrices”, J. ACM, vol. 6, pp. 164-171.">Marimont (1959)</acronym>.
+  \item If $\mat{H} = \mat{C} \vee \mat{I}$, then $([\mat{H}{\vee \atop \wedge}]^p)_j^i = 1$ if and only if $i = j$ or there exists a path from node $i$ to node $j$ of length $n ≤ p + 1$. Show that for any connection matrix $\mat{C}$, $[\mat{H}{\vee \atop \wedge}]^p$ converges to a limit.
+\end{enumerate}
+
+
+\par \textbf{3.22} Devise programs to determine
+
+\begin{enumerate}[label=(\alph*)]
+  \item whether a given connection matrix $\mat{C}$ represents a tree.
+  \item the left list of the tree ($\vect{n}$, $\mat{C}$).
+  \item the right list of the tree ($\vect{n}$, $\mat{C}$).
+  \item a node list $\vect{n}$ and connection matrix $\mat{C}$ as a function of
+  \begin{enumerate}[label=(\roman*)]
+    \item a left list $\mat{L}$
+    \item a right list $\mat{R}$.
+  \end{enumerate}
+\end{enumerate}
+
+
+
+\par \textbf{3.23} Show that $(\vect{n}, \mat{C})$ and $(\vect{n}_{\vect{p}}, \mat{C}_{\vect{p}}^{\vect{p}})$ represent the same graph for any permutation $\vect{p}$.
+
+
+\par \textbf{3.24} If $(\vect{n}, \mat{C})$ is a tree and if $\mat{K} = \mat{C} {\vee \atop \wedge} \mat{C}$, then $\mat{C}$ can be determined as a function of $\mat{K}$ (see <acronym title="Ross, I.C., and F. Harary, (1960), “The Square of a Tree”, Bell System Tech. J., vol. XXXIX, pp. 641-8.">Ross and Harary, 1960</acronym>). Write a program for determining $\mat{C}$ from $\mat{K}$.
