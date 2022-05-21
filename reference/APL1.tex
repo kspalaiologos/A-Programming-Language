@@ -265,7 +265,7 @@ and & 1 \times q = q \times 1 = q & \\
 \begin{tabularx}
  \textit{w} ← \textit{u} \wedge \textit{v} & \leftrightarrow & \textit{w} = 1 if and only if \textit{u} = 1 and & \textit{v} = 1, & \\
  \textit{w} ← \textit{u} \vee \textit{v} & \leftrightarrow & \textit{w} = 1 if and only if \textit{u} = 1 or & \textit{v} = 1, & \\
- \textit{w} ← <img src="APLimg/uoscore.bmp"> & \leftrightarrow & \textit{w} = 1 if and only if \textit{u} = 0. & \\
+ \textit{w} ← \overbar{u} & \leftrightarrow & \textit{w} = 1 if and only if \textit{u} = 0. & \\
 \end{tabularx}
 
 \par If $x$ and $y$ are numerical quantities, then the expression $x < y$ implies that the quantity $x$ stands in the relation ``less than'' to the quantity $y$.
@@ -288,7 +288,7 @@ and & 1 \times q = q \times 1 = q & \\
 
 \par The quantity $r$ is called the \textit{j-residue of n modulo b} and is denoted by $b |_j n$. For example, 3 |_0 9 $=$ 0, 3 |_1 9 $=$ 3, and 3 |_0 10 $=$ 1. Moreover, if $n \geq$ 0, then $b$ |_0 $n$ is the remainder obtained in dividing $n$ by $b$ and $q$ is the integral part of the quotient. A number $n$ is said to be of \textit{even parity} if its 0-residue modulo 2 is zero and of \textit{odd parity} if 2 |_0 $n =$ 1.
 
-\par If two numbers $n$ and $m$ have the same $j-residue$ modulo $b$, they differ by an integral multiple of $b$ and therefore have the same $k-residue$ module $b$ for any $k$. If $b |_j n = b |_j m$, then $m$ and $n$ are said to be \textit{congruent mod b}. Congruency is transitive and reflexive and is denoted by
+\par If two numbers $n$ and $m$ have the same $j$-residue modulo $b$, they differ by an integral multiple of $b$ and therefore have the same $k$-residue module $b$ for any $k$. If $b |_j n = b |_j m$, then $m$ and $n$ are said to be \textit{congruent mod b}. Congruency is transitive and reflexive and is denoted by
 
 \par $m \equiv n$ (mod $b)$.
 
@@ -319,7 +319,7 @@ and & 1 \times q = q \times 1 = q & \\
 
 \end{tabularx}
 
-\par Clearly $⌈x⌉ = -⌊-x⌋$ and $⌊x⌋ \leq x \leq ⌈x⌉$. Moreover, $n = b⌊n ÷ b⌋ + b$ |_0 $n$ for all integers $n$. Hence the integral quotient $⌊n ÷ b⌋$ is equivalent to the quantity $q$ occurring in the definition of the $j-residue$ for the case $j =$ 0.
+\par Clearly $⌈x⌉ = -⌊-x⌋$ and $⌊x⌋ \leq x \leq ⌈x⌉$. Moreover, $n = b⌊n ÷ b⌋ + b$ |_0 $n$ for all integers $n$. Hence the integral quotient $⌊n ÷ b⌋$ is equivalent to the quantity $q$ occurring in the definition of the $j$-residue for the case $j =$ 0.
 
 <a name="1.5"></a>
 \par \textbf{1.5 Structured operands}
@@ -396,11 +396,11 @@ and & 1 \times q = q \times 1 = q & \\
 \begin{tabularx}
  & \mat{A} ← \vect{j} ↑ \mat{B} & \leftrightarrow & \mat{A}^{\textit{i}} = \vect{j}_{\textit{i}} ↑ \mat{B}^{\textit{i}} & 
 
- & \mat{C} ← \vect{k} <img src="APLimg/uarr.bmp"> \mat{B} & \leftrightarrow & \mat{C}_{\textit{i}} = \vect{k}_{\textit{j}} ↑ \mat{B}_{\textit{j}} & 
+ & \mat{C} ← \vect{k} \Uparrow \mat{B} & \leftrightarrow & \mat{C}_{\textit{i}} = \vect{k}_{\textit{j}} ↑ \mat{B}_{\textit{j}} & 
 
 \end{tabularx}
 
-\par The first operation is an extension of the basic vector rotation to each row of the matrix and is therefore called \textit{row rotation}. The second operation is the corresponding column operation and is therefore denoted by the doubled operation symbol <img src="APLimg/uarr.bmp">. For example, if
+\par The first operation is an extension of the basic vector rotation to each row of the matrix and is therefore called \textit{row rotation}. The second operation is the corresponding column operation and is therefore denoted by the doubled operation symbol $\Uparrow$. For example, if
 
 \par $\vect{k} =$ (0, 1, 2),
 
@@ -426,7 +426,7 @@ then
 \end{tabularx}
  & and & 
 \begin{tabularx}
-\vect{k} <img src="APLimg/uarr.bmp"> \mat{B} = & \begin{tabularx}
+\vect{k} \Uparrow \mat{B} = & \begin{tabularx}
 <td rowspan=3><img src="APLimg/matrixl3.bmp"> & \textit{a}^{}_{} & \textit{e}^{}_{} & \textit{i}^{}_{} & <td rowspan=3><img src="APLimg/matrixr3.bmp"> & \\
  \textit{d}^{}_{} & \textit{h}^{}_{} & \textit{c}^{}_{} & \\
  \textit{g}^{}_{} & \textit{b}^{}_{} & \textit{f}^{}_{} & \\
@@ -443,7 +443,7 @@ then
 <a name="interval_vector"></a> The \textit{interval vector} $\textbf{ι}^j(n)$ is defined as the vector of integers beginning with $j$. Thus $\textbf{ι}^0(4)=(0$, 1, 2, 3), $\textbf{ι}^1(4)=(1$, 2, 3, 4), and $\textbf{ι}^{-7}(5)=$ (-7, -6, -5, -4, -3). Four types of logical vectors are defined as follows.
 <a name="unit_vector"></a> The $j$th \textit{unit vector} $\textbf{ϵ}^j(n)$ has a one in the $j$th position, that is, $(\textbf{ϵ}^j(n))_k = (k = j)$.
 <a name="full_vector"></a> The \textit{full vector} $\textbf{ϵ}}(n)$ consists of all ones.
-<a name="zero_vector"></a> The vector consisting of all zeros is denoted both by 0 and by <img $src="APLimg/epsboscore.bmp">(n)$.
+<a name="zero_vector"></a> The vector consisting of all zeros is denoted both by 0 and by $\overbar{\textbf{ϵ}}(n)$.
 <a name="prefix_vector"></a> The \textit{prefix vector of weight j} is denoted by $\mathbf{α}^j(n)$ and possesses ones in the first $k$ positions, where $k$ is the lesser of $j$ and $n$.
 <a name="suffix_vector"></a> The \textit{suffix vector} $\textbf{ω}^j(n)$ is defined analogously. Thus $\textbf{ϵ}^2(3) =$ (0, 1, 0), $\textbf{ϵ}(4) =$ (1, 1, 1, 1), $\mathbf{α}^3(5) =$ (1, 1, 1, 0, 0), $\textbf{ω}^3(5) =$ (0, 0, 1, 1, 1), and $\mathbf{α}^7(5) = \mathbf{α}^5(5) =$ (1, 1, 1, 1, 1). Moreover, $\textbf{ω}^j(n) = j ↑ \mathbf{α}^j(n)$, and $\mathbf{α}^j(n) = j ↓ \textbf{ω}^j(n)$.
 
@@ -459,7 +459,7 @@ then
 <a name="1.8"></a>
 \par \textbf{1.8 Reduction}
 
-\par An operation (such as summation) which is applied to all components of a vector to produce a result of a simpler structure is called a \textit{reduction}. The $\odot-reduction$ of a vector $\vect{x}$ is denoted by
+\par An operation (such as summation) which is applied to all components of a vector to produce a result of a simpler structure is called a \textit{reduction}. The $\odot$-reduction of a vector $\vect{x}$ is denoted by
 \odot/\vect{x} and defined as
 
 \par $\vect{z} ←$ 
@@ -626,7 +626,7 @@ and
 \par \textbf{Mesh, mask, and expansion}
 
 \par A logical vector $\vect{u}$ and the two vectors $\vect{a} =$ 
-<img src="APLimg/uboscore.bmp">/\vect{c} and \vect{b} = \vect{u}/\vect{c}, obtained by compressing a vector \vect{c}, collectively determine the vector \vect{c}. The operation which specifies \vect{c} as a function of \vect{a}, \vect{b}, and \vect{u} is called a \textit{mesh} and is defined as follows: If \vect{a} and \vect{b} are arbitrary vectors and if \vect{u} is a logical vector such that +/<img src="APLimg/uboscore.bmp"> = \textit{ν}(\vect{a}) and +/\vect{u} = \textit{ν}(\vect{b}), then the \textit{mesh of} \vect{a} \textit{and} \vect{b} \textit{on} \vect{u} is denoted by \\vect{a}, \vect{u}, \vect{b}\ and is defined as the vector \vect{c} such that <img src="APLimg/uboscore.bmp">/\vect{c} = \vect{a} and \vect{u}/\vect{c} = \vect{b}. The mesh operation is equivalent to choosing successive components of \vect{c} from \vect{a} or \vect{b} according as the successive components of \vect{u} are 0 or 1. If, for example, \vect{a} = (s, e, k), \vect{b} = (t, a), and \vect{u} = (0, 1, 0, 1, 0), then \\vect{a}, \vect{u}, \vect{b}\ = (s, t, e, a, k). As a further example, 
+\overbar{\vect{u}}/\vect{c} and \vect{b} = \vect{u}/\vect{c}, obtained by compressing a vector \vect{c}, collectively determine the vector \vect{c}. The operation which specifies \vect{c} as a function of \vect{a}, \vect{b}, and \vect{u} is called a \textit{mesh} and is defined as follows: If \vect{a} and \vect{b} are arbitrary vectors and if \vect{u} is a logical vector such that +/\overbar{\vect{u}} = \textit{ν}(\vect{a}) and +/\vect{u} = \textit{ν}(\vect{b}), then the \textit{mesh of} \vect{a} \textit{and} \vect{b} \textit{on} \vect{u} is denoted by \\vect{a}, \vect{u}, \vect{b}\ and is defined as the vector \vect{c} such that \overbar{\vect{u}}/\vect{c} = \vect{a} and \vect{u}/\vect{c} = \vect{b}. The mesh operation is equivalent to choosing successive components of \vect{c} from \vect{a} or \vect{b} according as the successive components of \vect{u} are 0 or 1. If, for example, \vect{a} = (s, e, k), \vect{b} = (t, a), and \vect{u} = (0, 1, 0, 1, 0), then \\vect{a}, \vect{u}, \vect{b}\ = (s, t, e, a, k). As a further example, 
 
 \begin{tabularx}
 <td align=center rowspan=2><img src="APLimg/prog1x10a.bmp">\\
@@ -664,14 +664,14 @@ and
 
 \begin{tabularx}
  \\vect{x}, \vect{u}, \vect{y}\ & = & \\vect{x}, \vect{u}, 0\ + \0, \vect{u}, \vect{y}\ & \\
- & = & \0, <img src="APLimg/uboscore.bmp">, \vect{x}\ + \0, \vect{u}, \vect{y}\. & \\
+ & = & \0, \overbar{\vect{u}}, \vect{x}\ + \0, \vect{u}, \vect{y}\. & \\
 \end{tabularx}
 
 <a name="expansion"></a>
-\par The operation $\0, \vect{u}, \vect{y}\$ proves very useful in numerical work and will be called \textit{expansion} of the vector $\vect{y}$, denoted by $\vect{u}\\vect{y}$. Compression of $\vect{u}\\vect{y}$ by $\vect{u}$ and by <img src="APLimg/uboscore.bmp"> clearly yields $\vect{y}$ and 0, respectively. Moreover, any numerical vector $\vect{x}$ can be \textit{decomposed} by a compatible vector $\vect{u}$ according to the relation
+\par The operation $\0, \vect{u}, \vect{y}\$ proves very useful in numerical work and will be called \textit{expansion} of the vector $\vect{y}$, denoted by $\vect{u}\\vect{y}$. Compression of $\vect{u}\\vect{y}$ by $\vect{u}$ and by $\overbar{\vect{u}}$ clearly yields $\vect{y}$ and 0, respectively. Moreover, any numerical vector $\vect{x}$ can be \textit{decomposed} by a compatible vector $\vect{u}$ according to the relation
 
 \par $\vect{x}$ =
-<img src="APLimg/uboscore.bmp">\<img src="APLimg/uboscore.bmp">/\vect{x} + \vect{u}\\vect{u}/\vect{x}.
+\overbar{\vect{u}}\\overbar{\vect{u}}/\vect{x} + \vect{u}\\vect{u}/\vect{x}.
 
 \par The two terms are vectors of the same dimension which have no nonzero components in common. Thus if $\vect{u} =$ (1, 0, 1, 0, 1), the decomposition of $\vect{x}$ appears as
 
@@ -682,24 +682,24 @@ and
 \par Row expansion and column expansion of matrices are defined and denoted analogously. The decomposition relations become
 
 \par $\mat{X} =$ 
-<img src="APLimg/uboscore.bmp">\<img src="APLimg/uboscore.bmp">/\mat{X} + \vect{u}\\vect{u}/\mat{X},\\
+\overbar{\vect{u}}\\overbar{\vect{u}}/\mat{X} + \vect{u}\\vect{u}/\mat{X},\\
  and\\
  \mat{X} = 
-<img src="APLimg/uboscore.bmp">\\<img src="APLimg/uboscore.bmp">/\!/\mat{X} + \vect{u}\\\vect{u}/\!/\mat{X}.
+\overbar{\vect{u}}\\\overbar{\vect{u}}/\!/\mat{X} + \vect{u}\\\vect{u}/\!/\mat{X}.
 
 <a name="mask"></a>
 \par The \textit{mask} operation is defined formally as follows:
 
 \par $\vect{c} ← /\vect{a}, \vect{u}, \vect{b}/ \leftrightarrow$ 
-<img src="APLimg/uboscore.bmp">/\vect{c} = 
-<img src="APLimg/uboscore.bmp">/\vect{a}, and \vect{u}/\vect{c} = \vect{u}/\vect{b}.
+\overbar{\vect{u}}/\vect{c} = 
+\overbar{\vect{u}}/\vect{a}, and \vect{u}/\vect{c} = \vect{u}/\vect{b}.
 
 \par The vectors $\vect{c}, \vect{a}, \vect{u}$, and $\vect{b}$ are clearly of a common dimension and $\vect{c}_i = \vect{a}_i$ or $\vect{b}_i$ according as $\vect{u}_i =$ 0 or $\vect{u}_i =$ 1. Moreover, the compress, expand, mask, and mesh operations on vectors are related as follows:
 
 \begin{tabularx}
- /\vect{a}, \vect{u}, \vect{b}/ & = & \<img src="APLimg/uboscore.bmp">/\vect{a}, \vect{u}, \vect{u}/\vect{b}\, & \\
+ /\vect{a}, \vect{u}, \vect{b}/ & = & \\overbar{\vect{u}}/\vect{a}, \vect{u}, \vect{u}/\vect{b}\, & \\
  \\vect{a}, \vect{u}, \vect{b}\ & 
- = & /<img src="APLimg/uboscore.bmp">\\vect{a}, \vect{u}, \vect{u}\\vect{b}/. & \\
+ = & /\overbar{\vect{u}}\\vect{a}, \vect{u}, \vect{u}\\vect{b}/. & \\
 \end{tabularx} 
 \par Analogous relations hold for the row mask and row mesh and for the column mask and column mesh.
 
@@ -718,7 +718,7 @@ and
  and\\
  \mat{U}/\!/\mat{A} = (\mat{A}_1^2, \mat{A}_2^1, \mat{A}_2^2, \mat{A}_2^3, \mat{A}_3^3, \mat{A}_4^1, \mat{A}_5^1).
 
-\par Compression by the full matrix $\mathsf{\mat{E}}$ (defined by <img src="APLimg/ecapboscore.bmp"> $=$ 0) produces either a \textit{row list} $(\mathsf{\mat{E}}/\mat{A})$ or a \textit{column list} $(\mathsf{\mat{E}}/\!/\mat{A})$ of the matrix $\mat{A}$. Moreover, a numerical matrix $\mat{X}$ can be represented jointly by the logical matrix $\mat{U}$ and the row list $\mat{U}/\mat{X}$ (or the column list $\mat{U}/\!/\mat{X})$, where $\mat{U} = (\mat{X} \neq$ 0). If the matrix $\mat{X}$ is sparse (i.e., the components are predominantly zero), this provides a compact representation which may reduce the computer storage required for $\mat{X}$.
+\par Compression by the full matrix $\mathsf{\mat{E}}$ (defined by $\overbar{\mathsf{\mat{E}}} =$ 0) produces either a \textit{row list} $(\mathsf{\mat{E}}/\mat{A})$ or a \textit{column list} $(\mathsf{\mat{E}}/\!/\mat{A})$ of the matrix $\mat{A}$. Moreover, a numerical matrix $\mat{X}$ can be represented jointly by the logical matrix $\mat{U}$ and the row list $\mat{U}/\mat{X}$ (or the column list $\mat{U}/\!/\mat{X})$, where $\mat{U} = (\mat{X} \neq$ 0). If the matrix $\mat{X}$ is sparse (i.e., the components are predominantly zero), this provides a compact representation which may reduce the computer storage required for $\mat{X}$.
 
 \par The compression operations controlled by matrices also generate a group of corresponding mesh and mask operations as shown in Sec. S.9.
 
@@ -748,7 +748,7 @@ and
 <a name="prefix_row"></a>
 <a name="prefix_col"></a>
 \par The extension of the maximum prefix operation to the rows of a logical matrix $\mat{U}$ is denoted by $α/\mat{U}$ and defined as the compatible logical matrix $\mat{V}$, such that $\mat{V}^i = α/\mat{U}^i$. The corresponding maximum column prefix operation is denoted by $α/\!/\mat{U}$. Right justification of a numerical matrix $\mat{X}$ is achieved by the rotation $\vect{k} ↓ \mat{X}$, where $\vect{k} = +/ω/(\mat{X} =$ 0), and \textit{top justification} is achieved by the rotation $((+/\!/α/\!/(\mat{X} =$ 0) 
-<img src="APLimg/uarr.bmp"> \mat{X} (see Sec. S.6.)
+\Uparrow \mat{X} (see Sec. S.6.)
 
 <a name="forward_set_selector"></a>
 \par A vector whose components are all distinct will be called an \textit{ordered set}. The \textit{forward set selector} on $\vect{b}$ is a logical vector denoted by $σ/\vect{b}$ and defined as follows: the statement $\vect{v} ← σ/\vect{b}$ implies that $\vect{v}_j =$ 1 if and only if $\vect{b}_j$ differs from all preceding components of $\vect{b}$. Hence $\vect{v}/\vect{b}$ is a set which contains all distinct components of $\vect{b}$, and $+/\vect{v}/\textbf{ι}$ is a minimum. For example, if $\vect{c} =$ (C, a, n, a, d, a), then $(σ/\vect{c})/\vect{c} =$ (C, a, n, d) is a list of the distinct letters in $\vect{c}$ in order of occurrence. Clearly $(σ/\vect{b})/\vect{b} = \vect{b}$ if and only if $\vect{b}$ is a set.
@@ -833,7 +833,7 @@ then
 \par In matrix algebra, the notion of partitioning a matrix into submatrices of contiguous rows and columns can be generalized to an arbitrary partitioning specified by a logical vector $\vect{u}$. The following easily verifiable identities are typical of the useful relations which result:
 
 \begin{tabularx}
- & <td align=right>\mat{X} {+ \atop \times} \mat{Y} & & = & & (<img src="APLimg/uboscore.bmp">/\mat{X}) {+ \atop \times} (<img src="APLimg/uboscore.bmp">/\!/\mat{Y}) + (\vect{u}/\mat{X}) {+ \atop \times} (\vect{u}/\!/\mat{Y}), \\
+ & <td align=right>\mat{X} {+ \atop \times} \mat{Y} & & = & & (\overbar{\vect{u}}/\mat{X}) {+ \atop \times} (\overbar{\vect{u}}/\!/\mat{Y}) + (\vect{u}/\mat{X}) {+ \atop \times} (\vect{u}/\!/\mat{Y}), \\
  & <td align=right>\vect{u}/(\mat{X} {+ \atop \times} \mat{Y}) & & = & & \mat{X} {+ \atop \times} (\vect{u}/\mat{Y}), & \\
  & <td align=right>\vect{u}/\!/(\mat{X} {+ \atop \times} \mat{Y}) & & = & & (\vect{u}/\!/\mat{X}) {+ \atop \times} \mat{Y}. & \\
 \end{tabularx}
@@ -846,21 +846,21 @@ then
 \par The generalized matrix product applies directly (as does the ordinary matrix product $\mat{X}$ {+ $\atop \times} \mat{Y})$ to vectors considered as row (that is, 1 $\times n)$ or as column matrices. Thus:
 
 \begin{tabularx}
- & \vect{z} ← \mat{X} <img src="APLimg/circle1circle2.bmp"> \vect{y} & \leftrightarrow & \vect{z}_{\textit{i}} & = & \odot_1/(\mat{X}^{\textit{i}} \odot_2 \vect{y}), & \\
- & \vect{z} ← \vect{y} <img src="APLimg/circle1circle2.bmp"> \mat{X} & \leftrightarrow & \vect{z}_{\textit{j}} & = & \odot_1/(\vect{y} \odot_2 \mat{X}_{\textit{j}}), & \\
- & \vect{z} ← \vect{y} <img src="APLimg/circle1circle2.bmp"> \vect{x} & \leftrightarrow & \vect{z} & = & \odot_1/(\vect{y} \odot_2 \vect{x}). & \\
+ & \vect{z} ← \mat{X} {\odot_1 \atop \odot_2} \vect{y} & \leftrightarrow & \vect{z}_{\textit{i}} & = & \odot_1/(\mat{X}^{\textit{i}} \odot_2 \vect{y}), & \\
+ & \vect{z} ← \vect{y} {\odot_1 \atop \odot_2} \mat{X} & \leftrightarrow & \vect{z}_{\textit{j}} & = & \odot_1/(\vect{y} \odot_2 \mat{X}_{\textit{j}}), & \\
+ & \vect{z} ← \vect{y} {\odot_1 \atop \odot_2} \vect{x} & \leftrightarrow & \vect{z} & = & \odot_1/(\vect{y} \odot_2 \vect{x}). & \\
 \end{tabularx}
 
 \par The question of whether a vector enters a given operation as a row vector or as a column vector is normally settled by the requirement of conformability, and no special indication is required. Thus $\vect{y}$ enters as a column vector in the first of the preceding group of definitions and as a row vector in the last two. The question remains, however, in the case of the two vector operands, which may be considered with the pre-operand either as a row (as in the scalar product $\vect{y}$ {+ $\atop \times} \vect{x})$ or as a column. The latter case produces a matrix $\mat{Z}$ and will be denoted by
 
-\par $\mat{Z} ← \vect{y}$ <img src="APLimg/jotcircle.bmp">_2 $\vect{x}$,
+\par $\mat{Z} ← \vect{y} {\circ \atop \odot_2}_2 \vect{x}$,
 
 \par where $\mat{Z}_j^i = \vect{y}_i$ 
 \odot_2 \vect{x}_{\textit{j}}, \textit{μ}(\mat{Z}) = \textit{ν}(\vect{y}), and \textit{ν}(\mat{Z}) = \textit{ν}(\vect{x}).^{<a href="#note1b">[b]</a>} For example, if each of the vectors indicated is of dimension three, then
 
 \begin{tabularx}
 <td rowspan=3> & \begin{tabularx}
-<td rowspan=3>\textbf{ϵ} <img src="APLimg/jottimes.bmp"> \vect{y} = & 
+<td rowspan=3>\textbf{ϵ} {\circ \atop \times} \vect{y} = & 
 <td rowspan=3><img src="APLimg/matrixl3.bmp"> & 
 ^{}\vect{y}_1 \vect{y}_2 \vect{y}_3 & 
 <td rowspan=3><img src="APLimg/matrixr3.bmp"> & 
@@ -868,7 +868,7 @@ then
 ^{}\vect{y}_1 \vect{y}_2 \vect{y}_3 & \\
 ^{}\vect{y}_1 \vect{y}_2 \vect{y}_3 & \\
 \end{tabularx} & & \begin{tabularx}
-<td rowspan=3>\vect{y} <img src="APLimg/jottimes.bmp"> \textbf{ϵ} = & 
+<td rowspan=3>\vect{y} {\circ \atop \times} \textbf{ϵ} = & 
 <td rowspan=3><img src="APLimg/matrixl3.bmp"> & 
 ^{}\vect{y}_1 \vect{y}_1 \vect{y}_1 & 
 <td rowspan=3><img src="APLimg/matrixr3.bmp"> & 
@@ -878,7 +878,7 @@ then
 \end{tabularx} & \\
 
 <td colspan=3 align=center>\begin{tabularx}
-<td rowspan=3>\mathbf{α}^2(3) <img src="APLimg/jotand.bmp"> \mathbf{α}^2(3) = & 
+<td rowspan=3>\mathbf{α}^2(3) {\circ \atop \wedge} \mathbf{α}^2(3) = & 
 <td rowspan=3><img src="APLimg/matrixl3.bmp"> & 
 ^{}1 1 0_{} & 
 <td rowspan=3><img src="APLimg/matrixr3.bmp"> & 
@@ -915,7 +915,7 @@ then
 <a name="full_matrix"></a>
 <a name="zero_matrix"></a>
 \par Cases of obvious interest are the \textit{full matrix}
-\mathsf{\mat{E}}(\textit{m} \times \textit{n}), defined by <img src="APLimg/ecapboscore.bmp">(\textit{m} \times \textit{n}) = 0,
+\mathsf{\mat{E}}(\textit{m} \times \textit{n}), defined by \overbar{\mathsf{\mat{E}}}(\textit{m} \times \textit{n}) = 0,
 <a name="identity_matrix"></a> and the \textit{identity matrix} 
 \mathsf{\mat{I}}(\textit{m} \times \textit{n}), defined by \mathsf{\mat{I}}_{\textit{j}}^{\textit{i}} = (\textit{i} = \textit{j}).
 <a name="superdiagonal_matrix"></a> More generally, \textit{superdiagonal} matrices 
@@ -954,7 +954,7 @@ then
 
 <a name="base_value"></a>
 \par The \textit{base} $\vect{y}$ \textit{value of} $\vect{x}$ is a scalar denoted by $\vect{y} ⊥ \vect{x}$ and defined as the scalar product $\vect{y} ⊥ \vect{x} = \vect{w}$ {+ $\atop \times} \vect{x}$, where $\vect{w} =$ <img src="APLimg/quadne.bmp">
-<img src="APLimg/timesslash.bmp"> \vect{y} is the weighting vector. For example, if \vect{y} = (7, 24, 60, 60) is the radix vector for the common temporal system of units, and if \vect{x} = (0, 2, 1, 18) represents elapsed time in days, hours, minutes, and seconds, then
+{\times \atop /} \vect{y} is the weighting vector. For example, if \vect{y} = (7, 24, 60, 60) is the radix vector for the common temporal system of units, and if \vect{x} = (0, 2, 1, 18) represents elapsed time in days, hours, minutes, and seconds, then
 
 \par $t = \vect{w}$ 
 {+ \atop \times} \vect{x} = (86400, 3600, 60, 1) {+ \atop \times} (0, 2, 1, 18) = 7278
@@ -964,11 +964,11 @@ then
 \begin{tabularx}
 <td rowspan=4> & 
 <td rowspan=4><img src="APLimg/quadne.bmp">
-<img src="APLimg/timesslash.bmp"> \vect{y} = & 
+{\times \atop /} \vect{y} = & 
 <td rowspan=4><img src="APLimg/matrixl4.bmp"> & 
 ^{}0 1 1 1_{} & 
 <td rowspan=4><img src="APLimg/matrixr4.bmp"> & 
-<td rowspan=4> <img src="APLimg/timesslash.bmp"> & 
+<td rowspan=4> {\times \atop /} & 
 <td rowspan=4><img src="APLimg/matrixl4.bmp"> & 
 <td align=right>^{}7_{} & 
 <td rowspan=4><img src="APLimg/matrixr4.bmp"> & 
@@ -991,15 +991,15 @@ then
 
 \par Writing the definition of $\vect{y} ⊥ \vect{x}$ in the form
 
-\par $\vect{y} ⊥ \vect{x} =$ (<img src="APLimg/quadne.bmp"> <img src="APLimg/timesslash.bmp"> $\vect{y})$ {+ $\atop \times} \vect{x}$
+\par $\vect{y} ⊥ \vect{x} =$ (<img src="APLimg/quadne.bmp"> ${\times \atop$ /} $\vect{y})$ {+ $\atop \times} \vect{x}$
 
 \par exhibits the fact that the operation $⊥$ is of the double operator type. Its use in the generalized matrix product therefore requires no secondary scan operator. This will be indicated by a null placed over the symbol $⊥$. Thus
 
 \par $\mat{Z} ← \mat{X}$
-<img src="APLimg/jotbase.bmp"> \mat{Y} \leftrightarrow \mat{Z}_{\textit{j}}^{\textit{i}} = \mat{X}^{\textit{i}} ⊥ \mat{Y}_{\textit{j}}.
+{\circ \atop ⊥} \mat{Y} \leftrightarrow \mat{Z}_{\textit{j}}^{\textit{i}} = \mat{X}^{\textit{i}} ⊥ \mat{Y}_{\textit{j}}.
 
 \par For example, $(y\textbf{ϵ})$ 
-<img src="APLimg/jotbase.bmp"> \mat{X} represents a set of polynomials in \textit{y} with coefficients \mat{X}_1, \mat{X}_2, ..., \mat{X}_{\textit{ν}}, and \mat{Y} <img src="APLimg/jotbase.bmp"> \vect{x} represents a set of evaluations of the vector \vect{x} in a set of bases \mat{Y}^1, \mat{Y}^2, ..., \mat{Y}^{\textit{μ}}.
+{\circ \atop ⊥} \mat{X} represents a set of polynomials in \textit{y} with coefficients \mat{X}_1, \mat{X}_2, ..., \mat{X}_{\textit{ν}}, and \mat{Y} {\circ \atop ⊥} \vect{x} represents a set of evaluations of the vector \vect{x} in a set of bases \mat{Y}^1, \mat{Y}^2, ..., \mat{Y}^{\textit{μ}}.
 
 <a name="1.15"></a>
 \par \textbf{1.15 Set operations}
@@ -1043,11 +1043,11 @@ then
 \par The \textit{set difference} of $\vect{y}$ and $\vect{x}$ is denoted by $\vect{y} ∆ \vect{x}$ and is defined as follows:
 
 \par $\vect{y} ∆ \vect{x} =$ 
-<img src="APLimg/epsboscore.bmp">_{\vect{y}}^{\vect{x}}/\vect{y}.
+\overbar{\textbf{ϵ}}_{\vect{y}}^{\vect{x}}/\vect{y}.
 
 \par Hence $\vect{y} ∆ \vect{x}$ is obtained from $\vect{y}$ by suppressing those components which belong to $\vect{x}$. For example, 
-<img src="APLimg/epsboscore.bmp">_{\vect{s}}^{\vect{t}} = (1, 0, 0, 0, 1) and \vect{s} ∆ \vect{t} = (s, d). Moreover, 
-<img src="APLimg/epsboscore.bmp">_{\vect{t}}^{\vect{s}} = (0, 0, 0) and \vect{t} ∆ \vect{s} = \textbf{ϵ}(0).
+\overbar{\textbf{ϵ}}_{\vect{s}}^{\vect{t}} = (1, 0, 0, 0, 1) and \vect{s} ∆ \vect{t} = (s, d). Moreover, 
+\overbar{\textbf{ϵ}}_{\vect{t}}^{\vect{s}} = (0, 0, 0) and \vect{t} ∆ \vect{s} = \textbf{ϵ}(0).
 
 <a name="union"></a>
 \par The \textit{union} of $\vect{y}$ and $\vect{x}$ is denoted by $\vect{y} ∪ \vect{x}$ and defined as follows:^{<a href="#note1d">[d]</a>} $\vect{y} ∪ \vect{x} = \vect{y} \oplus (\vect{x} ∆ \vect{y})$. For example, $\vect{s} ∪ \vect{d} =$ (s, a, t, e, d, u, k), $\vect{d} ∪ \vect{s} =$ (d, u, s, k, a, t, e), $\vect{s} ∪ \vect{a} = \vect{s} ∪ \vect{t} = \vect{s}$, and $\vect{n} ∪ \vect{t} =$ (n, o, n, s, e, t, a). In general, $\vect{x} ∪ \vect{y} ≡ \vect{y} ∪ \vect{x}$, and $\vect{x} ≡ (\vect{x} ∩ \vect{y}) ∪ (\vect{x} ∆ \vect{y})$. If $\vect{x}$ and $\vect{y}$ are disjoint, their union is equivalent to their catenation, that is, $\vect{x} ∩ \vect{y} = \textbf{ϵ}(0)$ implies that $\vect{x} ∪ \vect{y} = \vect{x} \oplus \vect{y}$.
@@ -1118,7 +1118,7 @@ a * 1 & \\
 <img src="APLimg/circletimes.bmp"> \mat{X}_{\textit{s}} may then be defined by <img src="APLimg/circletimes.bmp">/\mat{X}, or alternatively by <img src="APLimg/circletimes.bmp">/\!/\mat{Y}, where \mat{Y} is the transpose of \mat{X}. For example, if
 
 \begin{tabularx}<td rowspan=2> \mat{X} = \textbf{ι}^0(2) 
-<img src="APLimg/jotand.bmp"> \textbf{ϵ}(3) = & 
+{\circ \atop \wedge} \textbf{ϵ}(3) = & 
 <td rowspan=2><img src="APLimg/matrixl2.bmp"> & 
 ^{}0 0 0_{} & 
 <td rowspan=2><img src="APLimg/matrixr2.bmp"> & 
@@ -1188,7 +1188,7 @@ a * 1 & \\
 ∘ & if \vect{m}_{\textit{i}} <img src="APLimg/noteps.bmp"> \textbf{ι}^{\textit{j}}(\textit{ν}(\vect{a})), & 
 \end{tabularx}
 
-\par where $j-origin$ indexing is assumed for the vector $\vect{a}$. For example, if $\vect{a}$ is the alphabet and $\vect{m} =$ (5, $∘, ∘$, 4, 27, $∘$, 3), then $\vect{c} = \vect{m} \int_0 \vect{a} =$ (f, $∘, ∘$, e, $∘, ∘$, d), and $(\vect{c} \neq ∘\textbf{ϵ})/\vect{c} =$ (f, e, d). Moreover, $\vect{m} \int_2 \vect{a} =$ (d, $∘, ∘$, c, z, $∘$, b). Elision of $j$ is permitted.
+\par where $j$-origin indexing is assumed for the vector $\vect{a}$. For example, if $\vect{a}$ is the alphabet and $\vect{m} =$ (5, $∘, ∘$, 4, 27, $∘$, 3), then $\vect{c} = \vect{m} \int_0 \vect{a} =$ (f, $∘, ∘$, e, $∘, ∘$, d), and $(\vect{c} \neq ∘\textbf{ϵ})/\vect{c} =$ (f, e, d). Moreover, $\vect{m} \int_2 \vect{a} =$ (d, $∘, ∘$, c, z, $∘$, b). Elision of $j$ is permitted.
 
 \par If $\vect{a} ⊆ \vect{b}$, and $\vect{m} = \vect{b} ι_j \vect{a}$, then clearly $\vect{m} \int_j \vect{b} = \vect{a}$. If $\vect{a}$ <img src="APLimg/notsube.bmp"> $\vect{b}$, then $\vect{m} \int_j \vect{b}$ contains (in addition to certain nulls) those components common to $\vect{b}$ and $\vect{a}$, arranged in the order in which they occur in $\vect{a}$. In other words,
 
@@ -1208,8 +1208,8 @@ a * 1 & \\
 \end{tabularx}
 
 \par Row and column mappings are associative. A row mapping $^1\mat{M}$ and a column mapping $^2\mat{M}$ do not, in general, commute, but do if all rows of $^1\mat{M}$ agree (that is, $^1\mat{M} = \textbf{ϵ}$ 
-<img src="APLimg/jottimes.bmp"> \vect{p}), and if all columns of ^2\mat{M} agree (that is, ^2\mat{M} = \vect{q} 
-<img src="APLimg/jottimes.bmp"> \textbf{ϵ}). The generalized matrix product is defined for the cases \mat{M} <img src="APLimg/jotindex.bmp"> \mat{A}, and \mat{M} <img src="APLimg/jotindex.bmp"> \vect{a}.
+{\circ \atop \times} \vect{p}), and if all columns of ^2\mat{M} agree (that is, ^2\mat{M} = \vect{q} 
+{\circ \atop \times} \textbf{ϵ}). The generalized matrix product is defined for the cases \mat{M} <img src="APLimg/jotindex.bmp"> \mat{A}, and \mat{M} <img src="APLimg/jotindex.bmp"> \vect{a}.
 
 <a name="sub_row"></a>
 <a name="sub_col"></a>
@@ -1223,16 +1223,16 @@ a * 1 & \\
 <a name="1.17.2"></a>
 \par \textbf{Permutations}
 
-\par A vector $\vect{k}$ of dimension $n$ is called a $j-origin$ \textit{permutation vector} if $\vect{k} ≡ \textbf{ι}^j(n)$. A permutation vector used to map any set of the same dimension produces a reordering of the set without either repetition or suppression of elements, that is, $\vect{k} \int_j \vect{a} ≡ \vect{a}$ for any set $\vect{a}$ of dimension $ν(\vect{k})$. For example, if $\vect{a} =$ (f, 4, *, 6, z), and $\vect{k} =$ (4, 2, 5, 1, 3), then $\vect{k} \int_1 \vect{a} =$ (6, 4, z, f, *).
+\par A vector $\vect{k}$ of dimension $n$ is called a $j$-origin \textit{permutation vector} if $\vect{k} ≡ \textbf{ι}^j(n)$. A permutation vector used to map any set of the same dimension produces a reordering of the set without either repetition or suppression of elements, that is, $\vect{k} \int_j \vect{a} ≡ \vect{a}$ for any set $\vect{a}$ of dimension $ν(\vect{k})$. For example, if $\vect{a} =$ (f, 4, *, 6, z), and $\vect{k} =$ (4, 2, 5, 1, 3), then $\vect{k} \int_1 \vect{a} =$ (6, 4, z, f, *).
 
-\par If $\vect{p}$ is an $h-origin$ permutation vector and $\vect{q}$ is any $j-origin$ permutation vector of the same dimension, then $\vect{q} \int_j \vect{p}$ is an $h-origin$ permutation vector.
+\par If $\vect{p}$ is an $h$-origin permutation vector and $\vect{q}$ is any $j$-origin permutation vector of the same dimension, then $\vect{q} \int_j \vect{p}$ is an $h$-origin permutation vector.
 
 <a name="identity_permutation"></a>
 \par Since
 
 \par $\textbf{ι}^j(ν(\vect{a})) \int_j \vect{a} = \vect{a}$,
 
-\par the interval vector $\textbf{ι}^j(n)$ will also be called the \textit{j-origin identity permutation vector}. If $\vect{p}$ and $\vect{q}$ are two $j-origin$ permutation vectors of the same dimension $n$ and if $\vect{q} \int_j \vect{p} = \textbf{ι}^j(n)$, then $\vect{p} \int_j \vect{q} = \textbf{ι}^j(n)$ also and $\vect{p}$ and $\vect{q}$ are said to be \textit{inverse} permutations. If $\vect{p}$ is any $j-origin$ permutation vector, then $\vect{q} = \vect{p} ι_j \textbf{ι}^j$ is inverse to $\vect{p}$.
+\par the interval vector $\textbf{ι}^j(n)$ will also be called the \textit{j-origin identity permutation vector}. If $\vect{p}$ and $\vect{q}$ are two $j$-origin permutation vectors of the same dimension $n$ and if $\vect{q} \int_j \vect{p} = \textbf{ι}^j(n)$, then $\vect{p} \int_j \vect{q} = \textbf{ι}^j(n)$ also and $\vect{p}$ and $\vect{q}$ are said to be \textit{inverse} permutations. If $\vect{p}$ is any $j$-origin permutation vector, then $\vect{q} = \vect{p} ι_j \textbf{ι}^j$ is inverse to $\vect{p}$.
 
 \par The rotation operation $k ↑ \vect{x}$ is a special case of permutation.
 
@@ -1309,15 +1309,15 @@ a * 1 & \\
 <a name="1.17.4"></a>
 \par \textbf{Ordering vector}
 
-\par If $\vect{x}$ is a numeric vector and $\vect{k}$ is a $j-origin$ permutation vector such that the components of $\vect{y} = \vect{k} \int_j \vect{x}$ are in ascending order, then $\vect{k}$ is said to \textit{order} $\vect{x}$. The vector $\vect{k}$ can be determined by an ordering operation defined as follows:
+\par If $\vect{x}$ is a numeric vector and $\vect{k}$ is a $j$-origin permutation vector such that the components of $\vect{y} = \vect{k} \int_j \vect{x}$ are in ascending order, then $\vect{k}$ is said to \textit{order} $\vect{x}$. The vector $\vect{k}$ can be determined by an ordering operation defined as follows:
 
 \par $\vect{k} ← θ_j/\vect{x}$
 
-\par implies that $\vect{k}$ is a $j-origin$ permutation vector, and that if $\vect{y} = \vect{k} \int_j \vect{x}$, then either $\vect{y}_i < \vect{y}_{i+1}$ or $\vect{y}_i = \vect{y}_{i+1}$ and $\vect{k}_i < \vect{k}_{i+1}$. The resulting vector $\vect{k}$ is unique and preserves the original relative order among equal components. For example, if $\vect{x} =$ (7, 3, 5, 3), then $θ_1/\vect{x} =$ (2, 4, 3, 1).
+\par implies that $\vect{k}$ is a $j$-origin permutation vector, and that if $\vect{y} = \vect{k} \int_j \vect{x}$, then either $\vect{y}_i < \vect{y}_{i+1}$ or $\vect{y}_i = \vect{y}_{i+1}$ and $\vect{k}_i < \vect{k}_{i+1}$. The resulting vector $\vect{k}$ is unique and preserves the original relative order among equal components. For example, if $\vect{x} =$ (7, 3, 5, 3), then $θ_1/\vect{x} =$ (2, 4, 3, 1).
 
 \par The ordering operation is extended to arbitrary vectors by treating all nonnumeric quantities as equal and as greater than any numeric quantity. For example, if $\vect{a} =$ (7, $∘, 3,∘$, 5, 3), then $θ_1/\vect{a} =$ (3, 6, 5, 1, 2, 4), and if $\vect{b}$ is any vector with no numerical components, then $θ_j/\vect{b} = \textbf{ι}^j(ν(\vect{b}))$.
 
-\par Ordering of a vector $\vect{a}$ with respect to a vector $\vect{b}$ is achieved by ordering the $\vect{b}-index$ of $\vect{a}$. For example, if $\vect{a} =$ (e, a, s, t, 4, 7, t, h), and $\vect{b}$ is the alphabet, then $\vect{m} = \vect{b} ι_1 \vect{a} =$ (5, 1, 19, 20, $∘, ∘$, 20, 8) and $θ_1/\vect{m} =$ (2, 1, 8, 3, 4, 7, 5, 6).
+\par Ordering of a vector $\vect{a}$ with respect to a vector $\vect{b}$ is achieved by ordering the $\vect{b}$-index of $\vect{a}$. For example, if $\vect{a} =$ (e, a, s, t, 4, 7, t, h), and $\vect{b}$ is the alphabet, then $\vect{m} = \vect{b} ι_1 \vect{a} =$ (5, 1, 19, 20, $∘, ∘$, 20, 8) and $θ_1/\vect{m} =$ (2, 1, 8, 3, 4, 7, 5, 6).
 
 <a name="theta_col"></a>
 \par The ordering operation is extended to matrices by the usual convention. If $\mat{K} = θ_j/\!/\mat{A}$, then each column of the matrix $\mat{B} = \mat{K} \int\int_j \mat{A}$ is in ascending order.
@@ -1328,7 +1328,7 @@ a * 1 & \\
 \par In determining the maximum $m$ over components of a numerical vector $x$, it is often necessary to determine the indices of the maximum components as well. The maximization operator is therefore defined so as to determine a logical vector $\vect{v}$ such that $\vect{v}/\vect{x} = m\textbf{ϵ}$.
 
 \par Maximization over the entire vector $\vect{x}$ is denoted by $\textbf{ϵ}⌈\vect{x}$, and is defined as follows: if $\vect{v} = \textbf{ϵ}⌈\vect{x}$, then there exists a quantity $m$ such that $\vect{v}/\vect{x} = m\textbf{ϵ}$ and such that all components of 
-\overline{\vect{v}}/\vect{x} are strictly less than \textit{m}. The maximization is assumed by a single component of \vect{x} if and only if +/\vect{v} = 1. The actual value of the maximum is given by the first (or any) component of \vect{v}/\vect{x}. Moreover, the \textit{j}-origin indices of the maximum components are the components of the vector \vect{v}/\textbf{ι}^{\textit{j}}.
+\overbar{\vect{v}}/\vect{x} are strictly less than \textit{m}. The maximization is assumed by a single component of \vect{x} if and only if +/\vect{v} = 1. The actual value of the maximum is given by the first (or any) component of \vect{v}/\vect{x}. Moreover, the \textit{j}-origin indices of the maximum components are the components of the vector \vect{v}/\textbf{ι}^{\textit{j}}.
 
 <a name="maximum_selector"></a>
 \par More generally, the maximization operation $\vect{v} ← \vect{u}⌈\vect{x}$ will be defined so as to determine the maximum over the subvector $\vect{u}/\vect{x}$ only, but to express the result $\vect{v}$ with respect to the entire vector $\vect{x}$. More precisely,
@@ -1353,7 +1353,7 @@ a * 1 & \\
  & \mat{V} ← \vect{u} <img src="APLimg/jotmax.bmp"> \mat{X} & \leftrightarrow & \mat{V}_{\textit{j}} & = & \vect{u} ⌈ \mat{X}_{\textit{j}}. & \\
 \end{tabularx}
 
-\par As in the case of the ordering operation, maximization in a vector $\vect{a}$ with respect to order in a set $\vect{b}$ is achieved by maximizing over the $\vect{b}-index$ of $\vect{a}$. Thus if
+\par As in the case of the ordering operation, maximization in a vector $\vect{a}$ with respect to order in a set $\vect{b}$ is achieved by maximizing over the $\vect{b}$-index of $\vect{a}$. Thus if
 
 \begin{tabularx}
 <td rowspan=2> \mat{H} & <td rowspan=2> = & <td rowspan=2><img src="APLimg/matrixl2.bmp"> & ^{}d c h d h s h d c h c h d_{} & <td rowspan=2><img src="APLimg/matrixr2.bmp"> & \\
@@ -1374,10 +1374,10 @@ then
  ^{}12 4 11 10 2 1 3 11 6 0 9 7 0_{} & \\
 \end{tabularx}
 
-\par (4, 13) <img src="APLimg/jotbase.bmp"> $(\mat{B} ι_0 \mat{H}) =$ (25, 4, 37, 23, 28, 40, 29, 24, 6, 26, 9, 33, 13),
+\par (4, 13) ${\circ \atop ⊥} (\mat{B} ι_0 \mat{H}) =$ (25, 4, 37, 23, 28, 40, 29, 24, 6, 26, 9, 33, 13),
 
 and
-\par $(\textbf{ϵ}⌈((4$, 13) <img src="APLimg/jotbase.bmp"> $(\mat{B} ι_0 \mat{H})))/\mat{H} =$ (s, 3)
+\par $(\textbf{ϵ}⌈((4$, 13) ${\circ \atop ⊥} (\mat{B} ι_0 \mat{H})))/\mat{H} =$ (s, 3)
 
 \par is the highest ranking card in the hand.
 
@@ -1414,7 +1414,7 @@ and
 
 \par is understood to respecify only the selected components of $\vect{b}$ and to leave all others unchanged. It is therefore equivalent to the statement
 
-\par $\vect{b} ← \<img src="APLimg/uboscore.bmp">/\vect{b}, \vect{u}, \vect{a}\$.
+\par $\vect{b} ← \\overbar{\vect{u}}/\vect{b}, \vect{u}, \vect{a}\$.
 
 \par Similarly,
 
@@ -1532,7 +1532,7 @@ where the indicated branches depend on the value of the partition \vect{p}_{\tex
 
 \par denotes the recording of the vector components $\vect{x}_j$ on the file $\tree{Φ}_j^i$ together with partition $\vect{p}_j$ for all $j$ such that $\vect{u}_j =$ 1.
 
-\par As for vectors and matrices, $j-origin$ indexing may be used and will apply to the indexing of the file positions and the partition vector $\mathbf{λ}$ as well as to the array indices. However, the prescripts (denoting direction of read and record) are independent of index origin. 0-origin indexing is used in the following example.
+\par As for vectors and matrices, $j$-origin indexing may be used and will apply to the indexing of the file positions and the partition vector $\mathbf{λ}$ as well as to the array indices. However, the prescripts (denoting direction of read and record) are independent of index origin. 0-origin indexing is used in the following example.
 
 \begin{tabularx} & 
 \par \textbf{Example 1.4}. Files $\tree{Φ}_0^0$ and $\tree{Φ}_1^0$ contain the vectors $\vect{x}$ and $\vect{y}$, respectively, each of dimension $n$. In the first phase, the components are to be merged in the order $\vect{x}_0, \vect{y}_0, \vect{x}_1, \vect{y}_1$, ... $\vect{x}_{ν-1}, \vect{y}_{ν-1}$, and the first $n$ components of the resulting vector are to be recorded on file $\tree{Φ}_0^1$, and the last $n$ on file $\tree{Φ}_1^1$. In other words, the vectors $\vect{x}^1 = \mathbf{α}^n/\vect{z}$ and $\vect{y}^1 = \textbf{ω}^n/\vect{z}$ are to be recorded on $\tree{Φ}_0^1$ and $\tree{Φ}_1^1$, respectively, where $\vect{z} = \\vect{x}, \vect{u}, \vect{y}\$, and $\vect{u} =$ (0, 1, 0, 1, ..., 0, 1). In the next phase, the roles of input and output files are reversed, and the same process is performed on $\vect{x}^1$ and $\vect{y}^1$, that is, $\vect{x}^2 = \mathbf{α}^n/(\\vect{x}^1, \vect{u}, \vect{y}^1\)$ and $\vect{y}^2 = \textbf{ω}^n/(\\vect{x}^1, \vect{u}, \vect{y}^1\)$ are recorded on $\tree{Φ}_0^0$ and $\tree{Φ}_1^0$, respectively. The process is to be continued through $m$ phases.
@@ -1544,7 +1544,7 @@ where the indicated branches depend on the value of the partition \vect{p}_{\tex
 \end{tabularx}
 
 \begin{tabularx} & 
-\par \textbf{Program 1.15}. The program for Example 1.4 begins with the rewind of the entire 2 $\times$ 2 array of files. To obviate further rewinding, the second (and each subsequent even-numbered) execution is performed by reading and recording all files in the backward direction. Step 6 performs the essential read and record operation under control of the logical vector $\vect{u}$, whose components $\vect{u}_0, \vect{u}_1, \vect{u}_2$ determine, respectively, the subscript of the file to be read, the subscript of the file to be recorded, and the direction of read and record. The file superscripts (determining which classes serve as input and output in the current repetition) are also determined by $\vect{u}_2$, the input being $\vect{u}_2$ and the output <img src="APLimg/uboscore.bmp">}_2. The loop 6-8 copies $n$ items, alternating the input files through the negation of $\vect{u}_0$ on step 7. When the loop terminates, $\vect{u}_1$ is negated to interchange the outputs, and the loop is repeated unless $\vect{u}_1 = \vect{u}_2$. Equality occurs and causes a branch to step 3 if and only if all $2n$ items of the current phase have already been copied.
+\par \textbf{Program 1.15}. The program for Example 1.4 begins with the rewind of the entire 2 $\times$ 2 array of files. To obviate further rewinding, the second (and each subsequent even-numbered) execution is performed by reading and recording all files in the backward direction. Step 6 performs the essential read and record operation under control of the logical vector $\vect{u}$, whose components $\vect{u}_0, \vect{u}_1, \vect{u}_2$ determine, respectively, the subscript of the file to be read, the subscript of the file to be recorded, and the direction of read and record. The file superscripts (determining which classes serve as input and output in the current repetition) are also determined by $\vect{u}_2$, the input being $\vect{u}_2$ and the output $\overbar{\vect{u}}}_2$. The loop 6-8 copies $n$ items, alternating the input files through the negation of $\vect{u}_0$ on step 7. When the loop terminates, $\vect{u}_1$ is negated to interchange the outputs, and the loop is repeated unless $\vect{u}_1 = \vect{u}_2$. Equality occurs and causes a branch to step 3 if and only if all $2n$ items of the current phase have already been copied.
 
 \par Step 3 decrements $m$ and is followed by the negation of $\vect{u}$ on step 4. The component $\vect{u}_2$ must, of course, be negated to reverse direction, but the need to negate $\vect{u}_0$ and $\vect{u}_1$ is not so evident. It arises because the copying order was prescribed for the forward direction, beginning always with the operation
 
@@ -1770,7 +1770,7 @@ where the indicated branches depend on the value of the partition \vect{p}_{\tex
 
 \par Because of the utility of the degree vector, it will be annexed to the array of node vector and index matrix, as shown in Table 1.19a to form a \textit{full list matrix} of the tree. The degree vector and node vector together will be called a \textit{list matrix}. As remarked, the list matrix can in certain permutations, alone describe the tree.
 
-\par Formally, the full list matrix $\mat{M}$ of a tree \mat{T} is defined as follows: $\overline{\vect{α}}^2/\mat{M}$ is an index matrix of the tree, $\mat{M}_1$ is the associated degree vector, and $\mat{M}_2$ is the associated node vector. Thus for each $k ϵ \textbf{ι}^1(μ(\mat{T})), \mat{M}_1^k = δ(\vect{i}$, \mat{T}), and $\mat{M}_2^k = (\mat{T}^{\vect{i}})_{ν(\vect{i})}$, where $\vect{i}$ is the nonnull portion of $\overline{\vect{α}}^2/\mat{M}^k$, that is, $\vect{i} = ((\overline{\vect{α}}^2/\mat{M}^k) \neq ∘\textbf{ϵ})/(\overline{\vect{α}}^2/\mat{M}^k)$. The corresponding list matrix is $\mathbf{α}^2/\mat{M}$.
+\par Formally, the full list matrix $\mat{M}$ of a tree \mat{T} is defined as follows: $\overbar{\vect{α}}^2/\mat{M}$ is an index matrix of the tree, $\mat{M}_1$ is the associated degree vector, and $\mat{M}_2$ is the associated node vector. Thus for each $k ϵ \textbf{ι}^1(μ(\mat{T})), \mat{M}_1^k = δ(\vect{i}$, \mat{T}), and $\mat{M}_2^k = (\mat{T}^{\vect{i}})_{ν(\vect{i})}$, where $\vect{i}$ is the nonnull portion of $\overbar{\vect{α}}^2/\mat{M}^k$, that is, $\vect{i} = ((\overbar{\vect{α}}^2/\mat{M}^k) \neq ∘\textbf{ϵ})/(\overbar{\vect{α}}^2/\mat{M}^k)$. The corresponding list matrix is $\mathbf{α}^2/\mat{M}$.
 
 \par Since a full list matrix provides a complete description of a tree regardless of the order in which the nodes occur in the list, any column permutation $\mat{M}^{ \vect{p}}$ (that is, any reordering among the rows) is also a full list matrix. Two particular arrangements of the full list matrix are of prime interest because each possesses the following properties: (1) the nodes are grouped in useful ways, and (2) the list matrix (i.e., the degree vector and node vector) alone describes the tree without reference to the associated index matrix. They are called the full \textit{left} list matrix and full \textit{right} list matrix and are denoted by [\mat{T} and ]\mat{T}, respectively. Table 1.19 shows the full left and full right lists of the tree of Fig. 1.16.
 
@@ -1778,7 +1778,7 @@ where the indicated branches depend on the value of the partition \vect{p}_{\tex
 
 \par The right list matrix is right justified and is ordered on the same function, namely $(ν(\vect{a})\textbf{ϵ}) ⊥ (\vect{a} \textbf{ι}_0 \mat{I}^{ j})$. The rows are therefore ordered on their values as integers, i.e., with the decimal point at the right. From the example of Table 1.19b it is clear that the right list groups the nodes by levels, i.e., level $j$ is represented by the infix $(i ↓ \mathbf{α}^k)/\!/(]\mat{T})$, where $k = \mathbf{μ}_j(\mat{T})$, and $i = +/\mathbf{α}^{j-1}/\mathbf{μ}(\mat{T})$. In Table 1.19b, for example, $\mathbf{μ}(\mat{T}) =$ (3, 7, 8, 5, 3), and if $j =$ 3, then $k =$ 8, $i =$ 10, and level $j$ is represented by rows $i +$ 1 $=$ 11 to $i + k =$ 18. The right list is therefore useful in executing processes (such as the $p$th degree selection sort) which require a scan of successive levels of the tree.
 
-\par The left list groups the nodes by subtrees, i.e., any node $\vect{i}$ is followed immediately by the remaining nodes of its subtree $\mat{T}_{\vect{i}}$. Formally, if $\mat{I} = \overline{\vect{α}}^2/[\mat{T}$, and if $\vect{i} = (\mat{I}^k \neq ∘\textbf{ϵ})/\mat{I}^k$, then the tree $\mat{T}_{\vect{i}}$ is represented by the infix $((k -$ 1) $↓ \mathbf{α}^{μ(\mat{T}_{\vect{i}})})/\!/[\mat{T}$. In Fig. 1.19a, for example, if $\vect{k} =$ 16, then $\vect{i} =$ (2, 2, 2), $μ(\mat{T}_{\vect{i}}) =$ 7, and $\mat{T}_{\vect{i}}$ is represented by rows 16 to 22 of [\mat{T}. The left list is therefore useful in processes (such as the construction of a Huffman code and the evaluation of a compound statement) which require a treatment of successive subtrees.
+\par The left list groups the nodes by subtrees, i.e., any node $\vect{i}$ is followed immediately by the remaining nodes of its subtree $\mat{T}_{\vect{i}}$. Formally, if $\mat{I} = \overbar{\vect{α}}^2/[\mat{T}$, and if $\vect{i} = (\mat{I}^k \neq ∘\textbf{ϵ})/\mat{I}^k$, then the tree $\mat{T}_{\vect{i}}$ is represented by the infix $((k -$ 1) $↓ \mathbf{α}^{μ(\mat{T}_{\vect{i}})})/\!/[\mat{T}$. In Fig. 1.19a, for example, if $\vect{k} =$ 16, then $\vect{i} =$ (2, 2, 2), $μ(\mat{T}_{\vect{i}}) =$ 7, and $\mat{T}_{\vect{i}}$ is represented by rows 16 to 22 of [\mat{T}. The left list is therefore useful in processes (such as the construction of a Huffman code and the evaluation of a compound statement) which require a treatment of successive subtrees.
 
 \par The row index of a node in a right (left) list matrix is a graph index of the node and will be called the \textit{right} (\textit{left}) \textit{list index}.
 
@@ -1790,13 +1790,13 @@ where the indicated branches depend on the value of the partition \vect{p}_{\tex
 \par Identical remarks apply to the left list, except that Program 1.20 is replaced by Program 1.21. Moreover, the necessary and sufficient conditions for the well formation of a left list are identical with those for a right list and are derived by virtually identical arguments. The case will be stated for the right list only.
 
 \par If $\mat{R}$ is a well formed right list representing a tree \mat{T}, then the dispersion (i.e., the number of roots) $\mathbf{ν}_1(\mat{T}) = ν(\mat{R}_1) - (+/\mat{R}_1)$ must be strictly positive. Moreover, if $\mat{S} =$ 
-\overline{\vect{α}}^{\textit{j}}/\!/\mat{R} is any suffix of \mat{R}, then \mat{S} is a right list of the tree obtained by deleting from \mat{T} the first \textit{j} nodes of the original list. For, such level-by-level deletion always leaves a legitimate tree with the degrees of the remaining nodes unchanged. Consequently, the number of roots determined by every suffix of \mat{R}_1 must also be strictly positive. In other words, all components of the \textit{suffix dispersion vector} \vect{s} defined by
+\overbar{\vect{α}}^{\textit{j}}/\!/\mat{R} is any suffix of \mat{R}, then \mat{S} is a right list of the tree obtained by deleting from \mat{T} the first \textit{j} nodes of the original list. For, such level-by-level deletion always leaves a legitimate tree with the degrees of the remaining nodes unchanged. Consequently, the number of roots determined by every suffix of \mat{R}_1 must also be strictly positive. In other words, all components of the \textit{suffix dispersion vector} \vect{s} defined by
 
-\par $\vect{s}_j = ν(\overline{\vect{α}}^{j-1}/\mat{R}_1), j ϵ \textbf{ι}^1(ν(\mat{R}_1))$
+\par $\vect{s}_j = ν(\overbar{\vect{α}}^{j-1}/\mat{R}_1), j ϵ \textbf{ι}^1(ν(\mat{R}_1))$
 \par must be strictly positive. The condition is also sufficient.
 
-\par Sufficiency is easily established by induction on the column dimension of $\mat{R}$. The condition is clearly sufficient for $ν(\mat{R}_1) =$ 1. Assume it sufficient for dimension $ν(\mat{R}_1) -$ 1. If $\vect{s}$, the suffix dispersion vector of $\mat{R}$, is strictly positive, then $\overline{\vect{α}}^1/\vect{s}$, the suffix dispersion vector of $\overline{\vect{α}}^1/\!/\mat{R}$, is also positive, and by hypothesis 
-\overline{\vect{α}}^1/\!/\mat{R} represents a tree \mat{G} possessing \vect{s}_2 roots. Moreover,
+\par Sufficiency is easily established by induction on the column dimension of $\mat{R}$. The condition is clearly sufficient for $ν(\mat{R}_1) =$ 1. Assume it sufficient for dimension $ν(\mat{R}_1) -$ 1. If $\vect{s}$, the suffix dispersion vector of $\mat{R}$, is strictly positive, then $\overbar{\vect{α}}^1/\vect{s}$, the suffix dispersion vector of $\overbar{\vect{α}}^1/\!/\mat{R}$, is also positive, and by hypothesis 
+\overbar{\vect{α}}^1/\!/\mat{R} represents a tree \mat{G} possessing \vect{s}_2 roots. Moreover,
 
 \par 0 $< \vect{s}_1 = \vect{s}_2 +$ (1 $- \mat{R}_1^1)$
 
@@ -1806,7 +1806,7 @@ where the indicated branches depend on the value of the partition \vect{p}_{\tex
 
 \par The purpose served by the degree vector $\vect{d}$ in the description of a tree is sometimes served instead [e.g., <acronym title="Burks, A.W., D.W. Warren, and J.B. Wright (1954), $“An$ Analysis of a Logical Machine Using Parenthesis-free $Notation”$, Mathematical Tables and Other Aids to Computation, vol. VIII, pp. 53-57.">Burks et al. (1954)</acronym>] by the vector $\vect{g} = \textbf{ϵ} - \vect{d}$. It is somewhat more convenient in the analysis of well formation, since the expression for the suffix dispersion vector then simplifies to
 
-\par $\vect{s}_{j+1} = (+/\overline{\vect{α}}^j/\vect{g})$, or $\vect{s} = (\mathsf{\mat{I}} +$ <img src="APLimg/quadne.bmp">)<img $src="APLimg/minusslash.bmp">/\vect{g}$.
+\par $\vect{s}_{j+1} = (+/\overbar{\vect{α}}^j/\vect{g})$, or $\vect{s} = (\mathsf{\mat{I}} +$ <img src="APLimg/quadne.bmp">)<img $src="APLimg/minusslash.bmp">/\vect{g}$.
 
 <a name="1.23.5"></a>
 \par \textbf{The index matrix as a function of the degree vector}
@@ -1858,7 +1858,7 @@ where the indicated branches depend on the value of the partition \vect{p}_{\tex
 \par The compress operation is best executed on the left list because of the grouping by subtrees. Program 1.23 gives a suitable algorithm which also serves as a formal definition of the compress operation.
 
 <table align=center>
-<td valign=top><img src="APLimg/prog1x23.bmp"> & <td nowrap> & <td valign=top><table border=1 cellspacing=0 cellpadding=4> <td align=center>1-origin indexing & \\ \begin{tabularx} \vect{u} & <td nowrap> & Left node vector of \mat{U}. & \\ <td valign=top>\mat{L} & & Left list of \mat{T}. & \\ <td valign=top>\textit{j} & & Index of first zero of \vect{u} (steps 4-8). Index of root of smallest subtree containing deleted node (step 12). & \\ <td valign=top>\textit{d} & & Change of degree caused by deletion of \textit{j}. & \\ <td valign=top>\textit{r} & & Number of roots indicated by infix (\mathbf{α}^{\textit{j}} \wedge \overline{\vect{α}}^{\textit{k}})/\!/\mat{L}, where \textit{j} is initial value and \textit{k} + 1 is current value of \textit{j}. & \\ \end{tabularx} & \\\end{tabularx} \par \textbf{Legend} & \\
+<td valign=top><img src="APLimg/prog1x23.bmp"> & <td nowrap> & <td valign=top><table border=1 cellspacing=0 cellpadding=4> <td align=center>1-origin indexing & \\ \begin{tabularx} \vect{u} & <td nowrap> & Left node vector of \mat{U}. & \\ <td valign=top>\mat{L} & & Left list of \mat{T}. & \\ <td valign=top>\textit{j} & & Index of first zero of \vect{u} (steps 4-8). Index of root of smallest subtree containing deleted node (step 12). & \\ <td valign=top>\textit{d} & & Change of degree caused by deletion of \textit{j}. & \\ <td valign=top>\textit{r} & & Number of roots indicated by infix (\mathbf{α}^{\textit{j}} \wedge \overbar{\vect{α}}^{\textit{k}})/\!/\mat{L}, where \textit{j} is initial value and \textit{k} + 1 is current value of \textit{j}. & \\ \end{tabularx} & \\\end{tabularx} \par \textbf{Legend} & \\
 <td colspan=3 align=center>\textbf{Program 1.23} Determination of the left list \mat{L} = \mathbf{α}^2/[(\mat{U}/\mat{T}) & \\ 
 \end{tabularx}
 
@@ -1882,8 +1882,8 @@ where the indicated branches depend on the value of the partition \vect{p}_{\tex
 
 <a name="full_tree"></a>
 \par Two related special logical trees are defined: the \textit{path tree}
-^{\vect{u}}\mat{E} such that <img src="APLimg/uboscore.bmp">/^{\vect{ u}}\mat{E} = 0 and \vect{u}/^{\vect{ u}}\mat{E} is the full tree \mat{E} whose nodes are all unity, and the \textit{level tree} 
-_{\vect{u}}\mat{E} such that <img src="APLimg/uboscore.bmp">/\!/_{\vect{u}}\mat{E} = 0, and \vect{u}/\!/_{\vect{u}}\mat{E} = \mat{E}.
+^{\vect{u}}\mat{E} such that \overbar{\vect{u}}/^{\vect{ u}}\mat{E} = 0 and \vect{u}/^{\vect{ u}}\mat{E} is the full tree \mat{E} whose nodes are all unity, and the \textit{level tree} 
+_{\vect{u}}\mat{E} such that \overbar{\vect{u}}/\!/_{\vect{u}}\mat{E} = 0, and \vect{u}/\!/_{\vect{u}}\mat{E} = \mat{E}.
 
 <a name="1.23.7"></a>
 \par \textbf{Extension of other operations to trees}
@@ -1897,19 +1897,19 @@ _{\vect{u}}\mat{E} such that <img src="APLimg/uboscore.bmp">/\!/_{\vect{u}}\mat{
 
 \par \mat{M} $← \vect{b} \textbf{ι}_j$ \mat{T}
 
-\par specifies \mat{M} as a tree (of the same structure as \mat{T}) such that node $\vect{i}$ of \mat{M} is the $j-origin \vect{b}-index$ of node $\vect{i}$ of \mat{T}.
+\par specifies \mat{M} as a tree (of the same structure as \mat{T}) such that node $\vect{i}$ of \mat{M} is the $j-origin \vect{b}$-index of node $\vect{i}$ of \mat{T}.
 
 <a name="tree_map"></a>
 \par The mapping operation is extended to trees so as to permute the rooted subtrees of a tree. Formally
 
 \par \mat{P} $← \vect{m} \int_j$ \mat{T}
 
-\par implies that $\mathbf{μ}_1(\mat{P}) = ν(\vect{m})$, that $\mat{P}_i$ is a single null character if $\vect{m}_i \notin \textbf{ι}^j(\mathbf{μ}_1(\mat{T}))$, and otherwise $\mat{P}_i = \mat{T}_{\vect{m}}$, where $j-origin$ indexing is used for \mat{T}.
+\par implies that $\mathbf{μ}_1(\mat{P}) = ν(\vect{m})$, that $\mat{P}_i$ is a single null character if $\vect{m}_i \notin \textbf{ι}^j(\mathbf{μ}_1(\mat{T}))$, and otherwise $\mat{P}_i = \mat{T}_{\vect{m}}$, where $j$-origin indexing is used for \mat{T}.
 
 \par Permutation of the subtrees rooted in node $\vect{i}$ of \mat{T} can be effected as follows:
 
 \par 
-\overline{\vect{α}}^1/\mat{T}_{\vect{i}} ← \vect{m} \int (\overline{\vect{α}}^1/\mat{T}_{\vect{i}})
+\overbar{\vect{α}}^1/\mat{T}_{\vect{i}} ← \vect{m} \int (\overbar{\vect{α}}^1/\mat{T}_{\vect{i}})
 
 <a name="tree_reduction"></a>
 \par The notation $\odot/\!/\mat{T}$ will denote the application of the binary operator or relation $\odot$ to the nodes of \mat{T} in right list order (i.e., \textit{down} successive levels) and $\odot/\mat{T}$ will denote the same application in left list order (i.e., \textit{across} paths). If the operator is symmetric (i.e., its operands commute), then $\odot/\!/\mat{T} =$ 
@@ -1958,12 +1958,12 @@ _{\vect{u}}\mat{E} such that <img src="APLimg/uboscore.bmp">/\!/_{\vect{u}}\mat{
 <td align=center>\textbf{Figure 1.25}. Homogeneous tree \mat{H} and dispersion and moment vectors & \\
 \end{tabularx}
 
-\par A tree \mat{T} for which $\mathbf{ν}(\mat{T}) = m\textbf{ϵ}$ is called an \textit{m-way tree}, and a tree for which $\mathbf{ν}_1(\mat{T}) =$ 1 and $\overline{\vect{α}}^1/\mathbf{ν}(\mat{T}) = m\textbf{ϵ}$ is called a \textit{singular m-way tree}.
+\par A tree \mat{T} for which $\mathbf{ν}(\mat{T}) = m\textbf{ϵ}$ is called an \textit{m-way tree}, and a tree for which $\mathbf{ν}_1(\mat{T}) =$ 1 and $\overbar{\vect{α}}^1/\mathbf{ν}(\mat{T}) = m\textbf{ϵ}$ is called a \textit{singular m-way tree}.
 
 \par The $j$th component of the moment vector of a homogeneous tree is clearly equal to the product of the first j components of the dispersion vector, that is, $\mathbf{μ}(\mat{T}) =$ (<img src="APLimg/quadsw.bmp"> $+ \mathsf{\mat{I}})$ 
-<img src="APLimg/timesslash.bmp"> \mathbf{ν}(\mat{T})). The dispersion vector is, in turn, uniquely determined by the moment vector. The total number of nodes is given by \textit{μ}(\mat{T}) = +/\mathbf{μ}(\mat{T}), and it can also be shown that \textit{μ}(\mat{T}) = \vect{y} ⊥ \vect{y}, where \vect{y} is the dispersion vector in reverse order.
+{\times \atop /} \mathbf{ν}(\mat{T})). The dispersion vector is, in turn, uniquely determined by the moment vector. The total number of nodes is given by \textit{μ}(\mat{T}) = +/\mathbf{μ}(\mat{T}), and it can also be shown that \textit{μ}(\mat{T}) = \vect{y} ⊥ \vect{y}, where \vect{y} is the dispersion vector in reverse order.
 
-\par Tree compression of a homogeneous tree \mat{H} (that is, \mat{U}/\mat{H}) does not generally produce a homogeneous tree, and, in fact, any tree \mat{P} of arbitrary structure can be represented by a pair of homogeneous trees \mat{U} and \mat{H} such that \mat{P} $=$ \mat{U}/\mat{H}. On the other hand, both path and level compression of homogeneous trees produce homogeneous trees. Moreover, if \mat{P} $= \vect{u}/\mat{H}$, then $\mathbf{ν}(\mat{P}) = \vect{u}/\mathbf{ν}(\mat{H})$, and if \mat{P} $= \vect{u}/\!/\mat{H}$, then $\mathbf{ν}(\mat{P}) = \mathbf{ν}(\mat{H}) -$ (+/<img $src="APLimg/uboscore.bmp">)\mathbf{α}^1$.
+\par Tree compression of a homogeneous tree \mat{H} (that is, \mat{U}/\mat{H}) does not generally produce a homogeneous tree, and, in fact, any tree \mat{P} of arbitrary structure can be represented by a pair of homogeneous trees \mat{U} and \mat{H} such that \mat{P} $=$ \mat{U}/\mat{H}. On the other hand, both path and level compression of homogeneous trees produce homogeneous trees. Moreover, if \mat{P} $= \vect{u}/\mat{H}$, then $\mathbf{ν}(\mat{P}) = \vect{u}/\mathbf{ν}(\mat{H})$, and if \mat{P} $= \vect{u}/\!/\mat{H}$, then $\mathbf{ν}(\mat{P}) = \mathbf{ν}(\mat{H}) - (+/\overbar{\vect{u}})\mathbf{α}^1$.
 
 <a name="full_tree_k"></a>
 \par Since the structure of a homogeneous tree is completely specified by its dispersion vector $\vect{k}$, the structure of the special logical trees can be specified in the forms 
@@ -2132,8 +2132,8 @@ _{\textit{j}}^{\textit{i}}\mat{M}. & \\
 
 \par \textbf{1.4} Established the identities
 \begin{tabularx}
-(a) & & /\vect{a}, \vect{u}, \vect{b}/ = \<img src="APLimg/uboscore.bmp">/\vect{a}, \vect{u}, \vect{u}/\vect{b}\. & \\
-(b) & & \\vect{a}, \vect{u}, \vect{b}\ = /<img src="APLimg/uboscore.bmp">\\vect{a}, \vect{u}, \vect{u}\\vect{b}/. & \\
+(a) & & /\vect{a}, \vect{u}, \vect{b}/ = \\overbar{\vect{u}}/\vect{a}, \vect{u}, \vect{u}/\vect{b}\. & \\
+(b) & & \\vect{a}, \vect{u}, \vect{b}\ = /\overbar{\vect{u}}\\vect{a}, \vect{u}, \vect{u}\\vect{b}/. & \\
 \end{tabularx}
 
 \par \textbf{1.5} The classic $``rings-o-seven''$ puzzle can be posed as follows: an order collection of $n$ rings is to be placed on (removed from) a bar under the following constraints:
@@ -2206,13 +2206,13 @@ The state of the rings can be described by a logical vector \vect{u}, with \vect
 <td valign=top>(f) & & \mat{U} <img src="APLimg/neand.bmp"> \mat{V} =
 <img align=bottom src="APLimg/ex1x10f.bmp">.
 
-<td valign=top>(g) & & (\vect{t} <img src="APLimg/jotand.bmp"> \vect{u}) \wedge (\vect{v} <img src="APLimg/jotand.bmp"> \vect{w}) = (\vect{t} <img src="APLimg/jotand.bmp"> \vect{w}) \wedge (\vect{v} <img src="APLimg/jotand.bmp"> \vect{u}).
+<td valign=top>(g) & & (\vect{t} {\circ \atop \wedge} \vect{u}) \wedge (\vect{v} {\circ \atop \wedge} \vect{w}) = (\vect{t} {\circ \atop \wedge} \vect{w}) \wedge (\vect{v} {\circ \atop \wedge} \vect{u}).
 
 \end{tabularx}
 
 \par \textbf{1.11}
 \begin{tabularx}
-<td valign=top>(a) & & Show that +/\vect{x} = +/(<img src="APLimg/uboscore.bmp">/\vect{x}) +(\vect{u}/\vect{x}). (Include the case \vect{u} = 0.)
+<td valign=top>(a) & & Show that +/\vect{x} = +/(\overbar{\vect{u}}/\vect{x}) +(\vect{u}/\vect{x}). (Include the case \vect{u} = 0.)
 
 <td valign=top>(b) & & What properties are required of an operator
 \odot that it satisfy the relation established for + in part (a)?
@@ -2221,8 +2221,8 @@ The state of the rings can be described by a logical vector \vect{u}, with \vect
 
 \par \textbf{1.12} Show that
 \begin{tabularx}
-<td valign=top>(a) & & \mat{X} {+ \atop \times} \mat{Y} = (<img src="APLimg/uboscore.bmp">/\mat{X})
-{+ \atop \times} (<img src="APLimg/uboscore.bmp">/\!/\mat{Y}) + (\vect{u}/\mat{X})
+<td valign=top>(a) & & \mat{X} {+ \atop \times} \mat{Y} = (\overbar{\vect{u}}/\mat{X})
+{+ \atop \times} (\overbar{\vect{u}}/\!/\mat{Y}) + (\vect{u}/\mat{X})
 {+ \atop \times} (\vect{u}/\!/\mat{Y}).
 
 <td valign=top>(b) & & \vect{u}/(\mat{X} {+ \atop \times} \mat{Y}) = \mat{X} {+ \atop \times} (\vect{u}/\mat{Y}).
@@ -2410,7 +2410,7 @@ The state of the rings can be described by a logical vector \vect{u}, with \vect
 
 \par \textbf{1.32}
 \begin{tabularx}
-<td valign=top>(a)^{} & & If \mat{K} = \textbf{ι}^0(\textit{n}) ↓ (\textbf{ϵ}(\textit{n}) <img src="APLimg/jottimes.bmp"> \textbf{ι}^0(\textit{n})), show that \mat{K} + 
+<td valign=top>(a)^{} & & If \mat{K} = \textbf{ι}^0(\textit{n}) ↓ (\textbf{ϵ}(\textit{n}) {\circ \atop \times} \textbf{ι}^0(\textit{n})), show that \mat{K} + 
 <img src="APLimg/ktilde.bmp"> = \textit{n}(\mathsf{\mat{E} - \mat{I}).
 
 <td valign=top>(b) & & If \vect{y} is any permutation of \vect{x} and \textit{ν}(\vect{x}) = \textit{n}, show that \vect{x} {+ \atop \times} \mat{K}
@@ -2498,7 +2498,7 @@ The state of the rings can be described by a logical vector \vect{u}, with \vect
 <td valign=top>(b)^{} & & A matrix of the form \mat{J} = (\textit{x}\mathsf{\mat{I}} + 
 ^1\mathsf{\mat{I}}) is called a \textit{Jordan box}. Write the expansion of the \textit{n}th power of \mat{J}.
 
-<td valign=top>(c)^{} & & Show that \mat{X} {+ \atop \times} \mat{Y} = \mat{X}_1 <img src="APLimg/jottimes.bmp"> \mat{Y}^1 + \mat{X}_2 <img src="APLimg/jottimes.bmp"> \mat{Y}^2 + ... + \mat{X}_{\textit{ν}(\mat{X})} <img src="APLimg/jottimes.bmp"> \mat{Y}^{ \textit{ν}(\mat{X})}.
+<td valign=top>(c)^{} & & Show that \mat{X} {+ \atop \times} \mat{Y} = \mat{X}_1 {\circ \atop \times} \mat{Y}^1 + \mat{X}_2 {\circ \atop \times} \mat{Y}^2 + ... + \mat{X}_{\textit{ν}(\mat{X})} {\circ \atop \times} \mat{Y}^{ \textit{ν}(\mat{X})}.
 
 <td valign=top>(d) & & Determine an explicit solution to the set of linear equations \mat{A} {+ \atop \times} \vect{x} = \vect{y}, where \vect{u}/\vect{x} = \vect{a} and \vect{v}/\vect{y} = \vect{b} are known and where +/\vect{u} + +/\vect{v} = \textit{ν}(\mat{A}) = \textit{μ}(\mat{A}). State the conditions for the existence of a unique solution.
 
@@ -2540,7 +2540,7 @@ The state of the rings can be described by a logical vector \vect{u}, with \vect
 
 \end{tabularx}
 
-\par \textbf{1.43} Let $= \vect{x}$ be a \textit{space} vector (i.e., of dimension three), and let $\mat{R}(\vect{x})$ be the square matrix $\textbf{ι} ↑ (\textbf{ϵ}$ <img src="APLimg/jotand.bmp"> $\vect{x})$. Show that
+\par \textbf{1.43} Let $= \vect{x}$ be a \textit{space} vector (i.e., of dimension three), and let $\mat{R}(\vect{x})$ be the square matrix $\textbf{ι} ↑ (\textbf{ϵ} {\circ \atop \wedge} \vect{x})$. Show that
 
 \begin{tabularx}
 <td valign=top>(a) & & +/\mat{R}(\vect{x} \times \vect{y}) = (\vect{x} {+ \atop \times} \vect{y}) \times \textbf{ϵ}
@@ -2593,7 +2593,7 @@ The state of the rings can be described by a logical vector \vect{u}, with \vect
 
 \par An \textit{allocation} specifies the correspondences between physical devices and the variables represented thereby. An \textit{encoding} specifies the correspondences between the distinct states of the physical devices and the literals which they represent. If, for example, certain numerical data are to be represented by a set of 50 two-state devices, the two-out-of-five coding system of Exercise 1.6 might be chosen, and it would then remain to specify the allocation. The two-digit quantity ``hours worked'' might be allocated as follows: devices 31-35 represent components 1-5, respectively, of the first digit, and devices 29, 16, 17, 24, and 47 represent components 1, 2, 3, 4, 5, respectively, of the second digit.
 
-\par The encoding of a variable will be specified by an \textit{encoding matrix} $\mat{C}$ and associated \textit{format vector} $\vect{f}$ such that the rows of $\overline{\vect{f}}/\mat{C}$ list the representands and the rows of $\vect{f}/\mat{C}$ list the corresponding representations. The encoding is normally fixed and normally concerns the programmer only in the translation of input or output data. Even this translation is usually handled in a routine manner, and attention will therefore be restricted primarily to the problem of allocation.
+\par The encoding of a variable will be specified by an \textit{encoding matrix} $\mat{C}$ and associated \textit{format vector} $\vect{f}$ such that the rows of $\overbar{\vect{f}}/\mat{C}$ list the representands and the rows of $\vect{f}/\mat{C}$ list the corresponding representations. The encoding is normally fixed and normally concerns the programmer only in the translation of input or output data. Even this translation is usually handled in a routine manner, and attention will therefore be restricted primarily to the problem of allocation.
 
 \par However, the encoding of numeric quantities warrants special comment. It includes the representation of the sign and of the scale, as well as the representation of the significant digits. Small numbers, such as indices, admit not only of the usual positional representation but also of the use of the unit vector $\textbf{ϵ}^j$ to represent the number $j$ (i.e., a $one-out-of-n$ coding system), or of the use of a logical vector of weight $j$ (i.e., a base 1 number system).
 
@@ -2664,7 +2664,7 @@ The state of the rings can be described by a logical vector \vect{u}, with \vect
 ^{}\textit{h} ← \textit{μ}(\mat{C}) + 1_{} & \\
 ^{}\textit{h} ← \textit{h} - 1 _{} & \\
 ^{}\vect{z} : \vect{f}/\mat{C}^{\textit{ h}} _{} & \\
-^{}\vect{z} ← \overline{\vect{f}}/\mat{C}^{\textit{ h}}_{} & \\
+^{}\vect{z} ← \overbar{\vect{f}}/\mat{C}^{\textit{ h}}_{} & \\
 \end{tabularx}
  & \\\end{tabularx} -->
 
@@ -2736,7 +2736,7 @@ Character encoded by \vect{x}_{\textit{k}}. & \\
 \par However, if the representation of $\tree{Γ}(\vect{x})$ is itself linear, then insertions, deletions, and permutations in $\vect{x}$ will occasion changes in all components of $\tree{Γ}(\vect{x})$ whose indices are affected. The need for a linear representation of the grid matrix (and hence for all linear representations) can be obviated by the use of a chained representation defined as follows.
 
 \par Consider a vector $\vect{y}$, each of whose components $\vect{y}_k$ has a solid representation $\mathbf{ρ}(\vect{y}_k)$ whose infixes $(g ↓ \mathbf{α}^g)/\mathbf{ρ}(\vect{y}_k)$ and $\mathbf{α}^g/\mathbf{ρ}(\vect{y}_k)$ are, respectively, the dimension of $\mathbf{ρ}(\vect{y}_k)$ in $\mathbf{π}$ and the leading address of the representation of the (cyclically) succeeding component of $\vect{y}$ (both in a base $\vect{b}$ system), and whose suffix 
-\overline{\vect{α}}^{ 2\textit{g}}/\mathbf{ρ}(\vect{y}_{\textit{k}}) is the representation of the \textit{k}th component of some vector \vect{x}. Then (the representation of) \vect{y} is called a \textit{chained representation of} \vect{x}. In other words, the representation of \vect{y} incorporates its own grid matrix (with the address column \tree{Γ}_1(\vect{y}) rotated upward by one place) as well as the representation of the vector \vect{x}.
+\overbar{\vect{α}}^{ 2\textit{g}}/\mathbf{ρ}(\vect{y}_{\textit{k}}) is the representation of the \textit{k}th component of some vector \vect{x}. Then (the representation of) \vect{y} is called a \textit{chained representation of} \vect{x}. In other words, the representation of \vect{y} incorporates its own grid matrix (with the address column \tree{Γ}_1(\vect{y}) rotated upward by one place) as well as the representation of the vector \vect{x}.
 
 \par For example, if $g =$ 2, $\vect{b} = 10\textbf{ϵ}$, and $\vect{x} =$ (365, 7, 24), then
 
@@ -2761,7 +2761,7 @@ and & \\
 ^{} \textit{h} : \textit{k} _{} & \\
 <td nowrap>^{} \textit{d} ← \vect{b} ⊥ (( \textit{f} + \textit{g}) ↓ \mathbf{α}^{\textit{g}})/\mathbf{π} _{} & \\
 ^{} \vect{z} ← ( \textit{f} ↓ \mathbf{α}^{\textit{d}})/\mathbf{π} _{} & \\
-^{} \mathbf{ρ}(\vect{x}_{\textit{k}}) ← \overline{\vect{α}}^{ 2\textit{g}}/\mathbf{π} _{} & \\
+^{} \mathbf{ρ}(\vect{x}_{\textit{k}}) ← \overbar{\vect{α}}^{ 2\textit{g}}/\mathbf{π} _{} & \\
 \end{tabularx}
  & \\\end{tabularx} -->
 
@@ -2794,13 +2794,13 @@ and & \\
 
 \par The number of components of a chained representation scanned (steps 1-3 of Program 3.4) in selecting the $k$th component of $\vect{x}$ is given by $ν(\vect{x})|_0(k - h)$, where $h$ is the index of the component last selected. The selection operation is therefore most efficient when the components are selected in ascending order on the index. The chaining is effective in the forward direction only, and the component $(h -$ 1) would be obtained only by a complete cyclic forward scan of $ν(\vect{x}) -$ 1 components. The representation is therefore called a \textit{forward chain}. A \textit{backward chain} can be formed by incorporating the vector $↓\tree{Γ}_1(\vect{y})$ instead of $↑\tree{Γ}_1(\vect{y})$, and a double chain results from incorporating both.
 
-\par A vector $\vect{x}$ which is respecified only by either deleting the final component or by adding a new final component (i.e., by operations of the form $\vect{x} ← \overline{\vect{\omega}}^1/\vect{x}$, or $\vect{x} ← \vect{x} \oplus (z))$ behaves as a stack (cf. Exercise 2.6). A backward-chained representation is clearly convenient for such a stack.
+\par A vector $\vect{x}$ which is respecified only by either deleting the final component or by adding a new final component (i.e., by operations of the form $\vect{x} ← \overbar{\vect{\omega}}^1/\vect{x}$, or $\vect{x} ← \vect{x} \oplus (z))$ behaves as a stack (cf. Exercise 2.6). A backward-chained representation is clearly convenient for such a stack.
 
 \par A simple example of the use of a chained stack occurs in representing the available (i.e., unused) segments of the physical vector $\mathbf{π}$. This will be illustrated by a program for the vector compression
 
 \par $\vect{x} ← \vect{v}/\vect{x}$
 
-\par executed on a forward-chained representation of $\vect{x}$. The unused segments representing the components of $\overline{\vect{v}}/\vect{x}$ are returned to a backward-chained stack or \textit{pool} of available components. A linear representation can usually be used for logical control vectors such as $\vect{v}$; in any case the problems involved in their representation are relatively trivial and will be subordinated by expressing each operation directly in terms of the logical vectors and not in terms of the physical components representing them.
+\par executed on a forward-chained representation of $\vect{x}$. The unused segments representing the components of $\overbar{\vect{v}}/\vect{x}$ are returned to a backward-chained stack or \textit{pool} of available components. A linear representation can usually be used for logical control vectors such as $\vect{v}$; in any case the problems involved in their representation are relatively trivial and will be subordinated by expressing each operation directly in terms of the logical vectors and not in terms of the physical components representing them.
 
 <!--
 <table border=1 cellspacing=0 cellpadding=0>
@@ -2875,8 +2875,8 @@ and & \\
 
 \par The use of a partition to demark the end of an infix is particularly convenient when the infix must be processed component by component for other reasons, as in the use of magnetic tape or other serial storage. The partition also appears to be more economical than the grid matrix, which it replaces. This apparent economy is, however, somewhat illusory, since the reservation of a special partition symbol reduces the information content of each nonpartition component by the factor $log_2(ν(\vect{a}) -$ 1) $÷$ log_2 $ν(\vect{a})$, where $\vect{a}$ is the range of the components of $\mathbf{π}$.
 
-\par Partitions can be employed in chained representations. For example, the dimension in $\mathbf{π}$ of each component of a chained representation $\vect{y}$ can be specified implicitly by terminal partitions instead of explicitly by the vector $\tree{Γ}_2(\vect{y})$ of the grid matrix. Thus if the elements of $\tree{Γ}_1(\vect{y})$ are of dimension $g$ in $\mathbf{π}$, then $\textbf{ω}^1/\mathbf{ρ}(\vect{y}_j) = \vect{a}_1$, and $(\overline{\vect{α}}^{$ g} $\wedge$
-\overline{\vect{\omega}}^1)/\mathbf{ρ}(\vect{y}_{\textit{j}}) = \mathbf{ρ}(\vect{x}_{\textit{j}}), where \vect{x} is the vector represented by \vect{y}. Program 3.6 shows the determination of \mathbf{ρ}(\vect{x}_{\textit{k}}) from a chained representation \vect{y} with terminal partitions \vect{a}_1.
+\par Partitions can be employed in chained representations. For example, the dimension in $\mathbf{π}$ of each component of a chained representation $\vect{y}$ can be specified implicitly by terminal partitions instead of explicitly by the vector $\tree{Γ}_2(\vect{y})$ of the grid matrix. Thus if the elements of $\tree{Γ}_1(\vect{y})$ are of dimension $g$ in $\mathbf{π}$, then $\textbf{ω}^1/\mathbf{ρ}(\vect{y}_j) = \vect{a}_1$, and $(\overbar{\vect{α}}^{$ g} $\wedge$
+\overbar{\vect{\omega}}^1)/\mathbf{ρ}(\vect{y}_{\textit{j}}) = \mathbf{ρ}(\vect{x}_{\textit{j}}), where \vect{x} is the vector represented by \vect{y}. Program 3.6 shows the determination of \mathbf{ρ}(\vect{x}_{\textit{k}}) from a chained representation \vect{y} with terminal partitions \vect{a}_1.
 
 <!--
 <table border=1 cellspacing=0 cellpadding=0>\begin{tabularx}
@@ -2888,7 +2888,7 @@ and & \\
 4c^{}_{} & ^{} \textit{j} ← \textit{j} + 1 _{} & \\
 4d^{}_{} & ^{} \textit{d} ← \textit{j} - \textit{f} _{} & \\
 5^{}_{} & ^{} \vect{z} ← ( \textit{f} ↓ \mathbf{α}^{\textit{d}})/\mathbf{π} _{} & \\
-6^{}_{} & ^{} \mathbf{ρ}(\vect{x}_{\textit{k}}) ← \overline{\vect{α}}^{\textit{ g}}/\vect{z} _{} & \\
+6^{}_{} & ^{} \mathbf{ρ}(\vect{x}_{\textit{k}}) ← \overbar{\vect{α}}^{\textit{ g}}/\vect{z} _{} & \\
 \end{tabularx}
  & \\\end{tabularx} -->
 
@@ -3083,9 +3083,9 @@ Similarly, & \textit{k} = \textit{μ} \times (\textit{ν} |_0 \textit{h}) + ⌊\
 \par <img src="APLimg/fig3x8.bmp">
 
 \par \textbf{Figure 3.8} The compound logical statement 
-\overline{x} ∧ (\textit{y} \vee \textit{z})
+\overbar{x} ∧ (\textit{y} \vee \textit{z})
 
-\par For example, in the tree of Fig. 3.8 (which represents the compound logical statement $\overline{x} ∧ (y \vee z))$, a fixed degree is associated with each of the logical operators \textit{and}, $or$, and \textit{not} (namely, 2, 2, and 1), and the degree zero is associated with each of the variables. The statement can therefore be represented unambiguously by the left list vector
+\par For example, in the tree of Fig. 3.8 (which represents the compound logical statement $\overbar{x} ∧ (y \vee z))$, a fixed degree is associated with each of the logical operators \textit{and}, $or$, and \textit{not} (namely, 2, 2, and 1), and the degree zero is associated with each of the variables. The statement can therefore be represented unambiguously by the left list vector
 
 \begin{tabularx}
 <td width=75> & 
@@ -3177,9 +3177,9 @@ Similarly, & \textit{k} = \textit{μ} \times (\textit{ν} |_0 \textit{h}) + ⌊\
 <td nowrap>1^{}_{} & ^{} \mat{T} ← \vect{c} _{} & \\
 2^{}_{} & ^{} \mathbf{μ}_1(\mat{T}) : 2 _{} & \\
 3^{}_{} & ^{} \mat{T} ← (\textit{θ}/\vect{f} )\int\mat{T} _{} & \\
-4^{}_{} & ^{} \mat{T} ← \\(∘) \oplus \mathbf{α}^2/\!/\mat{T}, \overline{\vect{α}}^1, \overline{\vect{α}}^2/\!/\mat{T}\\ _{} & \\
+4^{}_{} & ^{} \mat{T} ← \\(∘) \oplus \mathbf{α}^2/\!/\mat{T}, \overbar{\vect{α}}^1, \overbar{\vect{α}}^2/\!/\mat{T}\\ _{} & \\
 5^{}_{} & <td nowrap>^{} \vect{f} ← (\textit{θ}/\vect{f}) \int \vect{f} _{} & \\
-6^{}_{} & ^{} \vect{f} ← \+/\mathbf{α}^2/\vect{f}, \overline{\vect{α}}^1, \overline{\vect{α}}^2/\vect{f} \ _{} & \\
+6^{}_{} & ^{} \vect{f} ← \+/\mathbf{α}^2/\vect{f}, \overbar{\vect{α}}^1, \overbar{\vect{α}}^2/\vect{f} \ _{} & \\
 \end{tabularx}
  & \\\end{tabularx} -->
 
@@ -3208,9 +3208,9 @@ Similarly, & \textit{k} = \textit{μ} \times (\textit{ν} |_0 \textit{h}) + ⌊\
 9^{}_{} & ^{} \textit{i} : \textit{ν}( \vect{f} ) _{} & \\
 10^{}_{} & ^{} \vect{z} ← (∘) \oplus \vect{x} _{} & \\
 11^{}_{} & ^{} \vect{p} ← (\textit{θ}/\vect{f} ) \int \vect{p} _{} & \\
-12^{}_{} & ^{} \vect{p} ← (1 + ( \vect{p} {+ \atop \times} \mathbf{α}^2)) \oplus \overline{\vect{α}}^2/\vect{p} _{} & \\
+12^{}_{} & ^{} \vect{p} ← (1 + ( \vect{p} {+ \atop \times} \mathbf{α}^2)) \oplus \overbar{\vect{α}}^2/\vect{p} _{} & \\
 13^{}_{} & ^{} \vect{f} ← (\textit{θ}/\vect{f} ) \int \vect{f} _{} & \\
-<td nowrap>14^{}_{} & ^{} \vect{f} ← (+/\mathbf{α}^2/\vect{f} ) \oplus \overline{\vect{α}}^{ 2}/\vect{f} _{} & \\
+<td nowrap>14^{}_{} & ^{} \vect{f} ← (+/\mathbf{α}^2/\vect{f} ) \oplus \overbar{\vect{α}}^{ 2}/\vect{f} _{} & \\
 \end{tabularx}
  & \\\end{tabularx} -->
 
@@ -3272,9 +3272,9 @@ Filial-heir chain list &
 
 \par \textbf{Table 3.13} Chain lists of the tree of Fig. 1.16
 
-\par The full chain list matrix is a formalization of the scheme suggested in the discussion of chained representations (Sec. 3.2). Its convenience in forward path tracing is obvious. Since it does not identify the roots of the tree, an auxiliary vector must be provided for this purpose. However, if the ordering chosen for the nodes is that of a right list, the roots occur first in the list, their number $r = ν(\mat{P}_1) - (+/\mat{P}_1)$ is specified by the degree vector $\mat{P}_1$, and the need for the auxiliary vector vanishes. Moreover, since a right list groups all nodes emanating from a given node, each row of $\overline{\vect{α}}^2/\mat{P}$ is simply a sequence of integers followed by null elements, and the information necessary to path tracing is provided by the column $\mat{P}_3$ alone.
+\par The full chain list matrix is a formalization of the scheme suggested in the discussion of chained representations (Sec. 3.2). Its convenience in forward path tracing is obvious. Since it does not identify the roots of the tree, an auxiliary vector must be provided for this purpose. However, if the ordering chosen for the nodes is that of a right list, the roots occur first in the list, their number $r = ν(\mat{P}_1) - (+/\mat{P}_1)$ is specified by the degree vector $\mat{P}_1$, and the need for the auxiliary vector vanishes. Moreover, since a right list groups all nodes emanating from a given node, each row of $\overbar{\vect{α}}^2/\mat{P}$ is simply a sequence of integers followed by null elements, and the information necessary to path tracing is provided by the column $\mat{P}_3$ alone.
 
-\par The \textit{right chain list matrix} of a tree \mat{T} is therefore defined as $\overline{\vect{α}}^3/\mat{P}$, where $\mat{P}$ is the full right chain list matrix of \mat{T}. It is illustrated by Table 3.13b. Program 3.14 shows its use in path tracing. Although the degree vector $\mat{P}_1$ is redundant (that is, $\mat{P}_1$ and $\mat{P}_3$ can be determined one from the other), it provides a direct check (step 6) on the legitimacy of the index vector $\vect{r}$ which would be difficult to obtain from $\mat{P}_3$ alone.
+\par The \textit{right chain list matrix} of a tree \mat{T} is therefore defined as $\overbar{\vect{α}}^3/\mat{P}$, where $\mat{P}$ is the full right chain list matrix of \mat{T}. It is illustrated by Table 3.13b. Program 3.14 shows its use in path tracing. Although the degree vector $\mat{P}_1$ is redundant (that is, $\mat{P}_1$ and $\mat{P}_3$ can be determined one from the other), it provides a direct check (step 6) on the legitimacy of the index vector $\vect{r}$ which would be difficult to obtain from $\mat{P}_3$ alone.
 
 \par For a search of the type described by Program 3.14, it is necessary to scan down a level until agreement is reached and then across to the next level. For this type of scan, the \textit{filial-heir chain list} is compact and convenient.
 
@@ -3439,7 +3439,7 @@ Filial-heir chain list &
 
 \par \textbf{3.14} Give a complete specification of a scheme allowing joint representation of those components shared by two or more of a family of vectors $\vect{x}^1, \vect{x}^2$, ..., $\vect{x}^n$ as suggested in Sec. 3.2. Write programs to (i) select component $\vect{x}_j^i$, and (ii) delete component $\vect{x}_j^i$.
 
-\par \textbf{3.15} Let $\mathbf{π} ⊆ \vect{a} ∪ \textbf{ι}^0(10)$, and let $\vect{x}^1, \vect{x}^2$, ..., $\vect{x}^n$ be a family of vectors whose components belong to the set $\overline{\vect{α}}^1/[\vect{a} ∪ \textbf{ι}^0(10)]$. Let the average and the maximum dimensions of the vectors $\vect{x}^i$ be $a$ and $m$, respectively. Assume that the chaining index is represented in decimal, with each digit represented by one component of $\mathbf{π}$. Determine (as a function of $m$ and $n)$ the value of $a$ below which a chained representation provides more compact storage than a linear representation with null fill.
+\par \textbf{3.15} Let $\mathbf{π} ⊆ \vect{a} ∪ \textbf{ι}^0(10)$, and let $\vect{x}^1, \vect{x}^2$, ..., $\vect{x}^n$ be a family of vectors whose components belong to the set $\overbar{\vect{α}}^1/[\vect{a} ∪ \textbf{ι}^0(10)]$. Let the average and the maximum dimensions of the vectors $\vect{x}^i$ be $a$ and $m$, respectively. Assume that the chaining index is represented in decimal, with each digit represented by one component of $\mathbf{π}$. Determine (as a function of $m$ and $n)$ the value of $a$ below which a chained representation provides more compact storage than a linear representation with null fill.
 
 \par \textbf{3.16} Write a program which uses the minimization operation $\vect{u} ← v ⌊ x$ to determine the ordering permutation vector $\vect{p} ← θ_1/(\vect{a} ι_1 \vect{b})$.
 
@@ -3584,7 +3584,7 @@ Membership & & \textit{a} ϵ \vect{b} & & \textit{a} = \vect{b}_{\textit{i}} for
 \par \textbf{S.4 Elementary Operations}
 
 \begin{tabularx}
-Negation & & \textit{w} ← <img src="APLimg/uoscore.bmp"> & <td nowrap> & \textit{w} = 1 ←→ \textit{u} = 0 & <td align=right>^{}<a href="#not"><img src="APLimg/link.bmp"></a> & \\
+Negation & & \textit{w} ← \overbar{u} & <td nowrap> & \textit{w} = 1 ←→ \textit{u} = 0 & <td align=right>^{}<a href="#not"><img src="APLimg/link.bmp"></a> & \\
 And & & \textit{w} ← \textit{u} \wedge \textit{v} & & \textit{w} = 1 ←→ \textit{u} = 1 and \textit{v} = 1 & <td align=right>^{}<a href="#and"><img src="APLimg/link.bmp"></a> & \\
 Or & & \textit{w} ← \textit{u} \vee \textit{v} & & \textit{w} = 1 ←→ \textit{u} = 1 or \textit{v} = 1 & <td align=right>^{}<a href="#or"><img src="APLimg/link.bmp"></a> & \\
 Relational statement & & <td valign=top nowrap>\textit{w} ← (\textit{a} \mathcal{R} \textit{b}) & & <td valign=top>\textit{w} = 1 ←→ the relation \textit{a} \mathcal{R} \textit{b} holds & <td valign=top align=right>^{}<a href="#relation"><img src="APLimg/link.bmp"></a> & \\
@@ -3607,7 +3607,7 @@ Quotient & & \textit{z} ← \textit{x} ÷ \textit{y} & & \textit{z} is the quoti
 
 \begin{tabularx}
 Component-by-component\\
-extension of basic operation & & <td valign=top nowrap>\vect{c} ← \vect{a} \odot \vect{b} & <td nowrap> </d> <td colspan=3 valign=top>\vect{c}_{\textit{i}} ← \vect{a}_{\textit{i}} \odot \vect{b}_{\textit{i}} . Examples: \vect{x} \times \vect{y}, (\vect{a} \neq \vect{b}), \vect{h}|_{\textit{j}}\vect{i}, \vect{u} \wedge \overline{\vect{v}}, ⌈\vect{x}⌉. & <td valign=top align=right><a href="#1.5"><img src="APLimg/link.bmp"></a> & \\
+extension of basic operation & & <td valign=top nowrap>\vect{c} ← \vect{a} \odot \vect{b} & <td nowrap> </d> <td colspan=3 valign=top>\vect{c}_{\textit{i}} ← \vect{a}_{\textit{i}} \odot \vect{b}_{\textit{i}} . Examples: \vect{x} \times \vect{y}, (\vect{a} \neq \vect{b}), \vect{h}|_{\textit{j}}\vect{i}, \vect{u} \wedge \overbar{\vect{v}}, ⌈\vect{x}⌉. & <td valign=top align=right><a href="#1.5"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>Scalar multiple & & <td nowrap> \vect{z} ← \textit{x} \times \vect{y}\\
  \vect{z} ← \textit{x}\vect{y}\\
  \vect{c} ← \textit{a} \times \vect{u}\\
@@ -3623,9 +3623,9 @@ extension of basic operation & & <td valign=top nowrap>\vect{c} ← \vect{a} \od
 \vect{p}_{\textit{i}} \times \vect{y}_{\textit{i}} <td valign=top align=right><a href="#base_value"><img src="APLimg/link.bmp"></a> & \\
 
 <td valign=top>Compression & & <td valign=top>\vect{c} ← \vect{u}/\vect{b} & & <td colspan=3>\vect{c} is obtained from \vect{b} by suppressing each \vect{b}_{\textit{i}} for which \vect{u}_{\textit{i}} = 0 & <td valign=top align=right><a href="#1.9"><img src="APLimg/link.bmp"></a> & \\
-<td valign=top>Expansion & & <td valign=top>\vect{c} ← \vect{u}\\vect{b} & & <td colspan=3><img src="APLimg/uboscore.bmp">/\vect{c} = 0, \vect{u}/\vect{c} = \vect{b} & <td valign=top align=right><a href="#expansion"><img src="APLimg/link.bmp"></a> & \\
-<td valign=top>Mask & & <td nowrap valign=top>\vect{c} ← /\vect{a},\vect{u}</b\textbf{,\textit{b}/ & & <td colspan=3><img src="APLimg/uboscore.bmp">/\vect{c} = <img src="APLimg/uboscore.bmp">/\vect{a}, \vect{u}/\vect{c} = \vect{u}/\vect{b} & <td valign=top align=right><a href="#mask"><img src="APLimg/link.bmp"></a> & \\
-<td valign=top>Mesh & & <td nowrap valign=top>\vect{c} ← \\vect{a},\vect{u},\vect{b}\ & & <td colspan=3><img src="APLimg/uboscore.bmp">/\vect{c} = \vect{a}, \vect{u}/\vect{c} = \vect{b} & <td valign=top align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
+<td valign=top>Expansion & & <td valign=top>\vect{c} ← \vect{u}\\vect{b} & & <td colspan=3>\overbar{\vect{u}}/\vect{c} = 0, \vect{u}/\vect{c} = \vect{b} & <td valign=top align=right><a href="#expansion"><img src="APLimg/link.bmp"></a> & \\
+<td valign=top>Mask & & <td nowrap valign=top>\vect{c} ← /\vect{a},\vect{u}</b\textbf{,\textit{b}/ & & <td colspan=3>\overbar{\vect{u}}/\vect{c} = \overbar{\vect{u}}/\vect{a}, \vect{u}/\vect{c} = \vect{u}/\vect{b} & <td valign=top align=right><a href="#mask"><img src="APLimg/link.bmp"></a> & \\
+<td valign=top>Mesh & & <td nowrap valign=top>\vect{c} ← \\vect{a},\vect{u},\vect{b}\ & & <td colspan=3>\overbar{\vect{u}}/\vect{c} = \vect{a}, \vect{u}/\vect{c} = \vect{b} & <td valign=top align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>Catenation & & <td nowrap valign=top>\vect{c} ← \vect{a} \oplus \vect{b} & & <td colspan=3>\vect{c} = (\vect{a}_1, \vect{a}_2,... \vect{a}_{\textit{ν}(\vect{a})}, \vect{b}_1, \vect{b}_2,... \vect{b}_{\textit{ν}(\vect{b})})\\
  = \\vect{a}, \textbf{ω}^{\textit{ν}(\vect{b})}, \vect{b}\ & <td valign=top align=right><a href="#catenation"><img src="APLimg/link.bmp"></a> & \\
 
@@ -3633,7 +3633,7 @@ extension of basic operation & & <td valign=top nowrap>\vect{c} ← \vect{a} \od
  \vect{x} on \vect{y} & & <td valign=top>\vect{w} ← \textbf{ϵ}_{\vect{y}}^{\vect{x}} & & <td valign=top colspan=3>\vect{w}_{\textit{i}} = (\vect{y}_{\textit{i}} ϵ \vect{x}); \textit{ν}(\vect{w}) = \textit{ν}(\vect{y}) & <td align=right><a href="#characteristic_vector"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>\textit{j}th unit vector & & <td valign=top>\vect{w} ← \textbf{ϵ}^{\textit{j}}(\textit{h}) & & <td valign=top>\vect{w}_{\textit{i}} = (\textit{i} = \textit{j}) & <td rowspan=5><img src="APLimg/matrixr8.bmp"> & & <td valign=top align=right><a href="#unit_vector"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>Full vector & & <td valign=top>\vect{w} ← \textbf{ϵ}(\textit{h}) & & <td valign=top>\vect{w}_{\textit{i}} = 1 & & <td valign=top align=right><a href="#full_vector"><img src="APLimg/link.bmp"></a> & \\
-<td valign=top>Zero vector & & <td valign=top>\vect{w} ← <img src="APLimg/epsboscore.bmp">(\textit{h})\\
+<td valign=top>Zero vector & & <td valign=top>\vect{w} ← \overbar{\textbf{ϵ}}(\textit{h})\\
  \vect{w} ← 0 & & <td valign=top>\vect{w}_{\textit{i}} = 0 & \textit{ν}(\vect{w})=\textit{h} & <td valign=top align=right><a href="#zero_vector"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>Prefix of weight \textit{j} & & <td valign=top>\vect{w} ← \mathbf{α}^{\textit{j}}(\textit{h}) & & <td valign=top>First \textit{k} of \vect{w}_{\textit{i}} are unity,\\
  where \textit{k} = min(\textit{ j},\textit{h}). & & <td valign=top align=right><a href="#prefix_vector"><img src="APLimg/link.bmp"></a> & \\
@@ -3677,11 +3677,11 @@ selector & & <td valign=top>\vect{w} ← \textit{τ}/\vect{a} & & <td colspan=3 
 <td nowrap>\mat{C} ← \mat{A} \oplus \mat{B}^{} & & <td colspan=2>\mat{C}^{\textit{i}} = \mat{A}^{\textit{i}} \oplus \mat{B}^{\textit{i}} & & <td align=right><a href="#catenation"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\mat{C} ← \vect{u}/\mat{B}^{} & & <td colspan=2>\mat{C}^{\textit{i}} = \vect{u}/\mat{B}^{\textit{i}} & & <td align=right><a href="#compress_row"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\vect{c} ← \mat{U}/\mat{B}^{} & & <td nowrap colspan=2>\vect{c} = \mat{U}^1/\mat{B}^1 \oplus ... \oplus \mat{U}^{\textit{μ}}/\mat{B}^{\textit{μ}} & & <td align=right><a href="#compress_rowrow"><img src="APLimg/link.bmp"></a> & \\
-<td nowrap>\mat{C} ← \vect{u}\\mat{B}^{} & & <img src="APLimg/uboscore.bmp">/\mat{C} = 0, & \vect{u}/\mat{C} = \mat{B} & & <td align=right><a href="#expand_row"><img src="APLimg/link.bmp"></a> & \\
+<td nowrap>\mat{C} ← \vect{u}\\mat{B}^{} & & \overbar{\vect{u}}/\mat{C} = 0, & \vect{u}/\mat{C} = \mat{B} & & <td align=right><a href="#expand_row"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\mat{C} ← \mat{U}\\vect{b}^{} & & <img src="APLimg/ucapboscore.bmp">/\mat{C} = 0, & \mat{U}/\mat{C} = \vect{b} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
-<td nowrap>\mat{C} ← \\mat{A}, \vect{u}, \mat{B}\ & & <img src="APLimg/uboscore.bmp">/\mat{C} = \mat{A}, & \vect{u}/\mat{C} = \mat{B} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
+<td nowrap>\mat{C} ← \\mat{A}, \vect{u}, \mat{B}\ & & \overbar{\vect{u}}/\mat{C} = \mat{A}, & \vect{u}/\mat{C} = \mat{B} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\mat{C} ← \\vect{a}, \mat{U}, \vect{b}\ & & <img src="APLimg/ucapboscore.bmp">/\mat{C} = \vect{a}, & \mat{U}/\mat{C} = \vect{b} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
-<td nowrap>\mat{C} ← /\mat{A}, \vect{u}, \mat{B}/ & & <img src="APLimg/uboscore.bmp">/\mat{C} = <img src="APLimg/uboscore.bmp">/\mat{A}, & \vect{u}/\mat{C} = \vect{u}/\mat{B} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
+<td nowrap>\mat{C} ← /\mat{A}, \vect{u}, \mat{B}/ & & \overbar{\vect{u}}/\mat{C} = \overbar{\vect{u}}/\mat{A}, & \vect{u}/\mat{C} = \vect{u}/\mat{B} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\mat{C} ← /\mat{A}, \mat{U}, \mat{B}/ & & <img src="APLimg/ucapboscore.bmp">/\mat{C} = <img src="APLimg/ucapboscore.bmp">/\mat{A}, & \mat{U}/\mat{C} = \mat{U}/\mat{B} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\mat{C} ← /\vect{a}, \mat{U}, \vect{b}/ & & <td colspan=2>\mat{C} = /\mathsf{\mat{E}}\\vect{a}, \mat{U}, \mathsf{\mat{E}}\\vect{b}/ & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
 
@@ -3701,7 +3701,7 @@ selector & & <td valign=top>\vect{w} ← \textit{τ}/\vect{a} & & <td colspan=3 
 \vect{z} ← \odot/\!/\mat{X} _{} & & <td colspan=2>\vect{z}_{\textit{j}} = \odot/\mat{X}_{\textit{j}} & & <td align=right><a href="#reduce_col"><img src="APLimg/link.bmp"></a> & \\
 \mat{C} ← <img src="APLimg/circletimes.bmp">/\!/\mat{A} ^{}_{} & & <td nowrap colspan=2>\mat{C} = \mat{A}^{\textit{1}} <img src="APLimg/circletimes.bmp"> \mat{A}^{\textit{2}} <img src="APLimg/circletimes.bmp"> ... <img src="APLimg/circletimes.bmp"> \mat{A}^{\textit{μ}} & & <td align=right><a href="#cp_reduce"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\mat{M} ← \mat{B} ιι_{\textit{h}} \mat{A}_{} & & <td colspan=2>\mat{M}_{\textit{j}} = \mat{B}_{\textit{j}} ι_{\textit{h}} \mat{A}_{\textit{j}} & & <td align=right><a href="#iota_col"><img src="APLimg/link.bmp"></a> & \\
-<td nowrap>\mat{C} ← \vect{k} <img src="APLimg/uarr.bmp"> \mat{A}_{} & & <td colspan=2>\mat{C}_{\textit{j}} = \vect{k}_{\textit{j}} ↑ \mat{A}_{\textit{j}} & & <td align=right><a href="#rotate_col"><img src="APLimg/link.bmp"></a> & \\
+<td nowrap>\mat{C} ← \vect{k} \Uparrow \mat{A}_{} & & <td colspan=2>\mat{C}_{\textit{j}} = \vect{k}_{\textit{j}} ↑ \mat{A}_{\textit{j}} & & <td align=right><a href="#rotate_col"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\mat{C} ← \vect{k} <img src="APLimg/darr.bmp"> \mat{A}_{} & & <td colspan=2>\mat{C}_{\textit{j}} = \vect{k}_{\textit{j}} ↓ \mat{A}_{\textit{j}} & & <td align=right><a href="#rotate_col"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\vect{z} ← \mat{Y} <img src="APLimg/decode2.bmp"> \mat{X}_{} & & <td colspan=2>\vect{z}_{\textit{j}} = \mat{Y}_{\textit{j}} ⊥ \mat{X}_{\textit{j}} & & <td align=right><a href="#1.20"><img src="APLimg/link.bmp"></a> & \\
 
@@ -3712,11 +3712,11 @@ selector & & <td valign=top>\vect{w} ← \textit{τ}/\vect{a} & & <td colspan=3 
 <td nowrap>\mat{C} ← \mat{A} \oplus\oplus \mat{B}_{} & & <td colspan=2>\mat{C}_{\textit{j}} = \mat{A}_{\textit{j}} \oplus \mat{B}_{\textit{j}} & \\
 <td nowrap>\mat{C} ← \vect{u}/\!/\mat{B}_{} & & <td colspan=2>\mat{C}_{\textit{j}} = \vect{u}/\mat{B}_{\textit{j}} & & <td align=right><a href="#compress_col"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\vect{c} ← \mat{U}/\!/\mat{B}_{} & & <td nowrap colspan=2>\vect{c} = \mat{U}_1/\mat{B}_1 \oplus ... \oplus \mat{U}_{\textit{ν}}/\mat{B}_{\textit{ν}} & & <td align=right><a href="#compress_colcol"><img src="APLimg/link.bmp"></a> & \\
-<td nowrap>\mat{C} ← \vect{u}\\\mat{B}^{} & & <img src="APLimg/uboscore.bmp">/\!/\mat{C} = 0, & \vect{u}/\!/\mat{C} = \mat{B} & & <td align=right><a href="#expand_col"><img src="APLimg/link.bmp"></a> & \\
+<td nowrap>\mat{C} ← \vect{u}\\\mat{B}^{} & & \overbar{\vect{u}}/\!/\mat{C} = 0, & \vect{u}/\!/\mat{C} = \mat{B} & & <td align=right><a href="#expand_col"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\mat{C} ← \mat{U}\\\vect{b}^{} & & <img src="APLimg/ucapboscore.bmp">/\!/\mat{C} = 0, & \mat{U}/\!/\mat{C} = \vect{b} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
-<td nowrap>\mat{C} ← \\\mat{A}, \vect{u}, \mat{B}\\ & & <img src="APLimg/uboscore.bmp">/\!/\mat{C} = \mat{A}, & \vect{u}/\!/\mat{C} = \mat{B} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
+<td nowrap>\mat{C} ← \\\mat{A}, \vect{u}, \mat{B}\\ & & \overbar{\vect{u}}/\!/\mat{C} = \mat{A}, & \vect{u}/\!/\mat{C} = \mat{B} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\mat{C} ← \\\vect{a}, \mat{U}, \vect{b}\\ & & <img src="APLimg/ucapboscore.bmp">/\!/\mat{C} = \vect{a}, & \mat{U}/\!/\mat{C} = \vect{b} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
-<td nowrap>\mat{C} ← /\!/\mat{A}, \vect{u}, \mat{B}/\!/ & & <td nowrap><img src="APLimg/uboscore.bmp">/\!/\mat{C} = <img src="APLimg/uboscore.bmp">/\!/\mat{A}, & \vect{u}/\!/\mat{C} = \vect{u}/\!/\mat{B} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
+<td nowrap>\mat{C} ← /\!/\mat{A}, \vect{u}, \mat{B}/\!/ & & <td nowrap>\overbar{\vect{u}}/\!/\mat{C} = \overbar{\vect{u}}/\!/\mat{A}, & \vect{u}/\!/\mat{C} = \vect{u}/\!/\mat{B} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\mat{C} ← /\!/\mat{A}, \mat{U}, \mat{B}/\!/ & & <td nowrap><img src="APLimg/ucapboscore.bmp">/\!/\mat{C} = <img src="APLimg/ucapboscore.bmp">/\!/\mat{A}, & <td nowrap>\mat{U}/\!/\mat{C} = \mat{U}/\!/\mat{B} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\mat{C} ← /\!/\vect{a}, \mat{U}, \vect{b}/\!/ & & <td colspan=2>\mat{C} = /\mathsf{\mat{E}}\\\vect{a}, \mat{U}, \mathsf{\mat{E}}\\\vect{b}/ & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
 
@@ -3735,7 +3735,7 @@ selector & & <td valign=top>\vect{w} ← \textit{τ}/\vect{a} & & <td colspan=3 
 Full matrix & \mat{W} ← \mathsf{\mat{E}}(\textit{p}, \textit{q}) & & <td colspan=3>\mat{W}_{\textit{j}}^{\textit{i}} = 1 & <td rowspan=9><img src="APLimg/bracketsx7a.bmp"> & <td rowspan=9> \textit{μ}(\mat{W}) = \textit{p}\\
  \textit{ν}(\mat{W}) = \textit{q},\\
  for \textit{p} and \textit{q} integers. Elision of \textit{p} and \textit{q} if dimensions determined by compatibility. & <td valign=top align=right>^{}<a href="#full_matrix"><img src="APLimg/link.bmp"></a> & \\
-Zero matrix & \mat{W} ← <img src="APLimg/ecapboscore.bmp">(\textit{p}, \textit{q}) & & <td colspan=3>\mat{W}_{\textit{j}}^{\textit{i}} = 0 & <td valign=top align=right>^{}<a href="#zero_matrix"><img src="APLimg/link.bmp"></a> & \\
+Zero matrix & \mat{W} ← \overbar{\mathsf{\mat{E}}}(\textit{p}, \textit{q}) & & <td colspan=3>\mat{W}_{\textit{j}}^{\textit{i}} = 0 & <td valign=top align=right>^{}<a href="#zero_matrix"><img src="APLimg/link.bmp"></a> & \\
  & \mat{W} ← 0 & \\
 Superdiagonal & <td nowrap>\mat{W} ← ^{\textit{k}}\mathsf{\mat{I}}(\textit{p}, \textit{q}) & & <td colspan=3 nowrap>\mat{W}_{\textit{j}}^{\textit{i}} = (\textit{i} + \textit{k} = \textit{j}) & <td valign=top align=right>^{}<a href="#superdiagonal_matrix"><img src="APLimg/link.bmp"></a> & \\
 Identity & <td nowrap>\mat{W} ← \mathsf{\mat{I}}(\textit{p}, \textit{q}) & & <td colspan=3 nowrap>\mat{W} = ^0\mathsf{\mat{I}}(\textit{p}, \textit{q})_{} & <td valign=top align=right>^{}<a href="#identity_matrix"><img src="APLimg/link.bmp"></a> & \\
@@ -3764,7 +3764,7 @@ Vertical & & \mat{C} ← <img src="APLimg/buarr.bmp"> & & <img align=middle src=
 
 \begin{tabularx}
 <td nowrap>Intersection ^{}_{} & & <td valign=top>\vect{c} ← \vect{b} ∩ \vect{a} ^{}_{} & & <td valign=top>\vect{c} = \textbf{ϵ}_{\vect{b}}^{\vect{a}}/\vect{b} & & <td valign=top align=right>^{}_{}<a href="#intersection"><img src="APLimg/link.bmp"></a> & \\
-Difference ^{}_{} & & \vect{c} ← \vect{b} ∆ \vect{a} ^{}_{} & & \vect{c} = <img src="APLimg/epsboscore.bmp">_{\vect{b}}^{\vect{a}}/\vect{b} & & <td valign=top align=right>^{}_{}<a href="#difference"><img src="APLimg/link.bmp"></a> & \\
+Difference ^{}_{} & & \vect{c} ← \vect{b} ∆ \vect{a} ^{}_{} & & \vect{c} = \overbar{\textbf{ϵ}}_{\vect{b}}^{\vect{a}}/\vect{b} & & <td valign=top align=right>^{}_{}<a href="#difference"><img src="APLimg/link.bmp"></a> & \\
 Union ^{}_{} & & \vect{c} ← \vect{b} ∪ \vect{a} ^{}_{} & & \vect{c} = \vect{b} \oplus (\vect{a} ∆ \vect{b}) & & <td valign=top align=right>^{}_{}<a href="#union"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>Cartesian\\
 product & & <td valign=top nowrap>\mat{C} ← \vect{b}^1 <img src="APLimg/circletimes.bmp"> ... <img src="APLimg/circletimes.bmp"> \vect{b}^{\textit{n}} _{} & & \mat{C}^{ 1 + \vect{d} ⊥ (\vect{k} - \textbf{ϵ})} = (\vect{b}_{\vect{k}_1}^1, \vect{b}_{\vect{k}_2}^2, ..., \vect{b}_{\vect{k}_{\textit{n}}}^{\textit{n}}); \vect{d}_{\textit{j}} = \textit{ν}(\vect{b}^{\textit{j}}); 1 \leq \vect{k}_{\textit{j}} \leq \vect{d}_{\textit{j}} \\
@@ -3775,10 +3775,10 @@ product & & <td valign=top nowrap>\mat{C} ← \vect{b}^1 <img src="APLimg/circle
 \par \textbf{S.10 Generalized Matrix Product}
 
 \begin{tabularx}
-<td valign=top nowrap>\mat{C} ← \mat{A} <img src="APLimg/circle1circle2.bmp"> \mat{B} ^{}_{} & & \mat{C}_{\textit{j}}^{\textit{i}} = \odot_1/(\mat{A}^{\textit{i}} \odot_2 \mat{B}_{\textit{j}}), where \odot_2 produces a vector (i.e., is not the operator ⊥), and \odot_1 is a reduction operator (and hence \mat{C}_{\textit{j}}^{\textit{i}} is a scalar). & & <td valign=top align=right>^{}_{}<a href="#1.11"><img src="APLimg/link.bmp"></a> & \\
-<td valign=top nowrap>\mat{C} ← \mat{A} <img src="APLimg/jotcircle.bmp"> \vect{b} ^{}_{} & & \mat{C}^{\textit{i}} = (\mat{A}^{\textit{i}} \odot \vect{b}), where \odot is any operator which produces a vector of dimension \textit{ν}(\vect{b}). & & <td valign=top align=right>^{}<a href="#gmp_mv"><img src="APLimg/link.bmp"></a> & \\
-<td valign=top nowrap>\mat{C} ← \vect{a} <img src="APLimg/jotcircle.bmp"> \mat{B} ^{}_{} & & \mat{C}_{\textit{j}} = (\vect{a} \odot \mat{B}_{\textit{j}}),^{} where \odot is any operator which produces a vector of dimension \textit{ν}(\vect{a}). & & <td valign=top align=right>^{}<a href="#gmp_vm"><img src="APLimg/link.bmp"></a> & \\
-<td valign=top nowrap>\mat{C} ← \vect{a} <img src="APLimg/jotcircle.bmp"> \vect{b} ^{}_{} & & \mat{C}_{\textit{j}}^{\textit{i}} = (\vect{a}_{\textit{i}} \odot \vect{b}_{\textit{j}}). & & <td valign=top align=right>^{}_{}<a href="#gmp_vv"><img src="APLimg/link.bmp"></a> & \\
+<td valign=top nowrap>\mat{C} ← \mat{A} {\odot_1 \atop \odot_2} \mat{B} ^{}_{} & & \mat{C}_{\textit{j}}^{\textit{i}} = \odot_1/(\mat{A}^{\textit{i}} \odot_2 \mat{B}_{\textit{j}}), where \odot_2 produces a vector (i.e., is not the operator ⊥), and \odot_1 is a reduction operator (and hence \mat{C}_{\textit{j}}^{\textit{i}} is a scalar). & & <td valign=top align=right>^{}_{}<a href="#1.11"><img src="APLimg/link.bmp"></a> & \\
+<td valign=top nowrap>\mat{C} ← \mat{A} {\circ \atop \odot_2} \vect{b} ^{}_{} & & \mat{C}^{\textit{i}} = (\mat{A}^{\textit{i}} \odot \vect{b}), where \odot is any operator which produces a vector of dimension \textit{ν}(\vect{b}). & & <td valign=top align=right>^{}<a href="#gmp_mv"><img src="APLimg/link.bmp"></a> & \\
+<td valign=top nowrap>\mat{C} ← \vect{a} {\circ \atop \odot_2} \mat{B} ^{}_{} & & \mat{C}_{\textit{j}} = (\vect{a} \odot \mat{B}_{\textit{j}}),^{} where \odot is any operator which produces a vector of dimension \textit{ν}(\vect{a}). & & <td valign=top align=right>^{}<a href="#gmp_vm"><img src="APLimg/link.bmp"></a> & \\
+<td valign=top nowrap>\mat{C} ← \vect{a} {\circ \atop \odot_2} \vect{b} ^{}_{} & & \mat{C}_{\textit{j}}^{\textit{i}} = (\vect{a}_{\textit{i}} \odot \vect{b}_{\textit{j}}). & & <td valign=top align=right>^{}_{}<a href="#gmp_vv"><img src="APLimg/link.bmp"></a> & \\
 \end{tabularx}
 
 <a name="s.11"></a>
@@ -3817,7 +3817,7 @@ component} & & <td valign=top nowrap>\mat{C} ← \mat{A} \odot \mat{B}^{} & & <t
 <td valign=top nowrap>\textit{j}-origin \vect{b}-index}_{} & & <td valign=top nowrap>\mat{B} ← \vect{b} \textbf{ι}_{\textit{j}} \mat{A} & & <td valign=top>(\mat{B}^{ \vect{i}})_{\textit{ν}(\vect{i})} = \vect{b} \textbf{ι}_{\textit{j}} ((\mat{A}^{\vect{i}})_{\textit{ν}(\vect{i})}) & <td valign=top align=right>^{}_{}<a href="#tree_iota"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top nowrap>\textit{j}-origin mapping_{} & & <td valign=top nowrap>\mat{C} ← \vect{b} \int_{\textit{j}} \mat{A} & & <td valign=top>Rooted subtree \mat{C}_{\textit{i}} is a single null character node if \vect{b}_{\textit{i}} \notin \mathbf{α}^{\textit{j}}(\mathbf{μ}_1(\mat{A})); otherwise \mat{C}_i = \mat{A}_{\vect{b}_{\textit{i}}}, where \mat{A} is treated in a \textit{j}-origin system. & <td valign=top align=right>^{}_{}<a href="#tree_map"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>Full right list\\
-matrix & & <td valign=top nowrap>\mat{C} ← ]\mat{A} & <td rowspan=2><img align=left src="APLimg/matrixr4.bmp"> & <td valign=top rowspan=2>The rows of the index matrix \overline{\vect{α}}^2/\mat{C} are the right (left) justified index vectors (with null fill to the common dimension \textit{ν}(\mat{A})) arranged in increasing order; \mat{C}_1 and \mat{C}_2 are the corresponding degree and node vectors of \mat{A}. & <td valign=top align=right rowspan=2>^{}_{}<a href="#1.23.3"><img src="APLimg/link.bmp"></a> & \\
+matrix & & <td valign=top nowrap>\mat{C} ← ]\mat{A} & <td rowspan=2><img align=left src="APLimg/matrixr4.bmp"> & <td valign=top rowspan=2>The rows of the index matrix \overbar{\vect{α}}^2/\mat{C} are the right (left) justified index vectors (with null fill to the common dimension \textit{ν}(\mat{A})) arranged in increasing order; \mat{C}_1 and \mat{C}_2 are the corresponding degree and node vectors of \mat{A}. & <td valign=top align=right rowspan=2>^{}_{}<a href="#1.23.3"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>Full left list\\
 matrix & & <td valign=top nowrap>\mat{C} ← [\mat{A} & \\
 <td valign=top>Right list matrix & & <td valign=top nowrap>\mat{C} ← \mathbf{α}^2/]\mat{A} & <td rowspan=2><img align=left src="APLimg/matrixr2.bmp"> & <td valign=top rowspan=2>The degree and node vector columns of the full right (left) list. & <td valign=top align=right rowspan=2><a href="#1.23.3"><img src="APLimg/link.bmp"></a> & \\
@@ -3825,18 +3825,18 @@ matrix & & <td valign=top nowrap>\mat{C} ← [\mat{A} & \\
 <td valign=top>Tree compression & & <td valign=top>\mat{C} ← \mat{U}/\mat{A} & & \mat{C} is obtained from \mat{A} by suppressing node \vect{i} if node \vect{i} of \mat{U} is zero and reconnecting so that for each remaining pair of nodes, the one lies in the subtree rooted at the second if and only if it did so in \mat{A}. & <td valign=top align=right><a href="#1.23.6"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>Path compression & & <td valign=top>\mat{C} ← \vect{u}/\mat{A} & & \mat{C} is obtained from \mat{A} by suppressing all nodes on level \textit{j} if \vect{u}_{\textit{j}} = 0, and reconnecting as in the compression \mat{U}/\mat{A}. & <td valign=top align=right><a href="#path_compression"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>Level compression & & <td valign=top>\mat{C} ← \vect{u}/\!/\mat{A} & & \mat{C} is obtained from \mat{A} by suppressing rooted subtree \mat{A}_{\textit{j}} if \vect{u}_{\textit{j}} = 0. & <td valign=top align=right>^{}<a href="#level_compression"><img src="APLimg/link.bmp"></a> & \\
-<td valign=top>Level mesh & & <td valign=top nowrap>\mat{C} ← \\\mat{A}, \vect{u}, \mat{B}\\ & & <img src="APLimg/uboscore.bmp">/\!/\mat{C} = \mat{A}; \vect{u}/\!/\mat{C} = \mat{B}. & \\
-<td valign=top>Level mask & & <td valign=top nowrap>\mat{C} ← /\!/\mat{A}, \vect{u}, \mat{B}/\!/ & & <img src="APLimg/uboscore.bmp">/\!/\mat{C} = <img src="APLimg/uboscore.bmp">/\!/\mat{A}; \vect{u}/\!/\mat{C} = \vect{u}/\!/\mat{B}. & \\
+<td valign=top>Level mesh & & <td valign=top nowrap>\mat{C} ← \\\mat{A}, \vect{u}, \mat{B}\\ & & \overbar{\vect{u}}/\!/\mat{C} = \mat{A}; \vect{u}/\!/\mat{C} = \mat{B}. & \\
+<td valign=top>Level mask & & <td valign=top nowrap>\mat{C} ← /\!/\mat{A}, \vect{u}, \mat{B}/\!/ & & \overbar{\vect{u}}/\!/\mat{C} = \overbar{\vect{u}}/\!/\mat{A}; \vect{u}/\!/\mat{C} = \vect{u}/\!/\mat{B}. & \\
 <td valign=top>Path catenation & & <td valign=top nowrap>\mat{C} ← \mat{A} \oplus \mat{B} & & \mat{C} is obtained by connecting roots of \mat{B} to leaves of \mat{A}, allotting successive groups of at most ⌈\mathbf{μ}_1(\mat{B}) ÷ \textit{λ}(\mat{A})⌉ roots of \mat{B} to each successive leaf of \mat{A}. & <td valign=top align=right><a href="#1.23"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>Full tree & & <td valign=top nowrap>\mat{W} ← \mat{E} & & Each node of \mat{W} is unity and the structure of \mat{W} is determined by compatibility. & <td valign=top align=right><a href="#full_tree"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top> & & <td valign=top nowrap>\mat{W} ← \mat{E}(\vect{k}) & & Each node of \mat{W} is unity; \mat{W} is homogeneous (i.e., all nodes on any level have a common degree) and \mathbf{ν}(\mat{W}) = \vect{k}. & <td valign=top align=right><a href="#full_tree_k"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>Zero tree & & <td valign=top nowrap>\mat{W} ← <img src="APLimg/0tree.bmp">\\
  \mat{W} ← 0 & <img src="APLimg/bracketsx12.bmp"> & Each node of \mat{W} is zero and the structure of \mat{W} is determined by compatibility. & <td valign=top align=right><a href="#full_tree"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top> & & <td valign=top nowrap>\mat{W} ← <img src="APLimg/0tree.bmp">(\vect{k})} & & Each node of \mat{W} is zero; \mat{W} is homogeneous and \mathbf{ν}(\mat{W}) = \vect{k}. & <td valign=top align=right><a href="#full_tree_k"><img src="APLimg/link.bmp"></a> & \\
-<td valign=top>Path tree^{} & & <td valign=top nowrap>\mat{W} ← ^{\vect{u}}\mat{E} & & <img src="APLimg/uboscore.bmp">/\mat{W} = 0; \vect{u}/\mat{W} = \mat{E}; structure of \mat{W} determined by compatibility. & <td valign=top align=right><a href="#full_tree"><img src="APLimg/link.bmp"></a> & \\
-<td valign=top> & & <td valign=top nowrap>\mat{W} ← ^{\vect{u}}\mat{E}(\vect{k}) & & <img src="APLimg/uboscore.bmp">/\mat{W} = 0; \vect{u}/\mat{W} = \mat{E}; \mat{W} is homogeneous and \mathbf{ν}(\mat{W}) = \vect{k}. & <td valign=top align=right><a href="#full_tree_k"><img src="APLimg/link.bmp"></a> & \\
-<td valign=top>Level tree_{} & & <td valign=top nowrap>\mat{W} ← _{\vect{u}}\mat{E} & & <img src="APLimg/uboscore.bmp">/\!/\mat{W} = 0; \vect{u}/\!/\mat{W} = \mat{E}; structure of \mat{W} determined by compatibility. & <td valign=top align=right><a href="#full_tree"><img src="APLimg/link.bmp"></a> & \\
-<td valign=top> & & <td valign=top nowrap>\mat{W} ← _{\vect{u}}\mat{E}(\vect{k}) & & <img src="APLimg/uboscore.bmp">/\!/\mat{W} = 0; \vect{u}/\!/\mat{W} = \mat{E}; \mat{W} is homogeneous and \mathbf{ν}(\mat{W}) = \vect{k}. & <td valign=top align=right><a href="#full_tree_k"><img src="APLimg/link.bmp"></a> & \\
+<td valign=top>Path tree^{} & & <td valign=top nowrap>\mat{W} ← ^{\vect{u}}\mat{E} & & \overbar{\vect{u}}/\mat{W} = 0; \vect{u}/\mat{W} = \mat{E}; structure of \mat{W} determined by compatibility. & <td valign=top align=right><a href="#full_tree"><img src="APLimg/link.bmp"></a> & \\
+<td valign=top> & & <td valign=top nowrap>\mat{W} ← ^{\vect{u}}\mat{E}(\vect{k}) & & \overbar{\vect{u}}/\mat{W} = 0; \vect{u}/\mat{W} = \mat{E}; \mat{W} is homogeneous and \mathbf{ν}(\mat{W}) = \vect{k}. & <td valign=top align=right><a href="#full_tree_k"><img src="APLimg/link.bmp"></a> & \\
+<td valign=top>Level tree_{} & & <td valign=top nowrap>\mat{W} ← _{\vect{u}}\mat{E} & & \overbar{\vect{u}}/\!/\mat{W} = 0; \vect{u}/\!/\mat{W} = \mat{E}; structure of \mat{W} determined by compatibility. & <td valign=top align=right><a href="#full_tree"><img src="APLimg/link.bmp"></a> & \\
+<td valign=top> & & <td valign=top nowrap>\mat{W} ← _{\vect{u}}\mat{E}(\vect{k}) & & \overbar{\vect{u}}/\!/\mat{W} = 0; \vect{u}/\!/\mat{W} = \mat{E}; \mat{W} is homogeneous and \mathbf{ν}(\mat{W}) = \vect{k}. & <td valign=top align=right><a href="#full_tree_k"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>Maximization & & <td valign=top nowrap>\mat{W} ← \mat{U} ⌈ \mat{A} & <td rowspan=2><img src="APLimg/matrixr2.bmp"> & <td rowspan=2>\mat{W} = \mat{U} \wedge (\mat{A} = \textit{m}\mat{E}), where \textit{m} is the maximum (minimum) over all nodes of \mat{U}/\mat{A}. & <td valign=top align=right><a href="#tree_max"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>Minimization & & <td valign=top nowrap>\mat{W} ← \mat{U} ⌊ \mat{A} & \\
 <td valign=top>Maximum path prefix & & <td valign=top nowrap>\mat{W} ← α/\mat{U}} & & \mat{W} is obtained from \mat{U} by zeroing all nodes of every subtree rooted in a zero node. & <td valign=top align=right><a href="#fig1.24"><img src="APLimg/link.bmp"></a> & \\

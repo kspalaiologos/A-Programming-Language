@@ -7,7 +7,7 @@
 
 \par An \textit{allocation} specifies the correspondences between physical devices and the variables represented thereby. An \textit{encoding} specifies the correspondences between the distinct states of the physical devices and the literals which they represent. If, for example, certain numerical data are to be represented by a set of 50 two-state devices, the two-out-of-five coding system of Exercise 1.6 might be chosen, and it would then remain to specify the allocation. The two-digit quantity ``hours worked'' might be allocated as follows: devices 31-35 represent components 1-5, respectively, of the first digit, and devices 29, 16, 17, 24, and 47 represent components 1, 2, 3, 4, 5, respectively, of the second digit.
 
-\par The encoding of a variable will be specified by an \textit{encoding matrix} $\mat{C}$ and associated \textit{format vector} $\vect{f}$ such that the rows of $\overline{\vect{f}}/\mat{C}$ list the representands and the rows of $\vect{f}/\mat{C}$ list the corresponding representations. The encoding is normally fixed and normally concerns the programmer only in the translation of input or output data. Even this translation is usually handled in a routine manner, and attention will therefore be restricted primarily to the problem of allocation.
+\par The encoding of a variable will be specified by an \textit{encoding matrix} $\mat{C}$ and associated \textit{format vector} $\vect{f}$ such that the rows of $\overbar{\vect{f}}/\mat{C}$ list the representands and the rows of $\vect{f}/\mat{C}$ list the corresponding representations. The encoding is normally fixed and normally concerns the programmer only in the translation of input or output data. Even this translation is usually handled in a routine manner, and attention will therefore be restricted primarily to the problem of allocation.
 
 \par However, the encoding of numeric quantities warrants special comment. It includes the representation of the sign and of the scale, as well as the representation of the significant digits. Small numbers, such as indices, admit not only of the usual positional representation but also of the use of the unit vector $\textbf{ϵ}^j$ to represent the number $j$ (i.e., a one-out-of-$n$ coding system), or of the use of a logical vector of weight $j$ (i.e., a base 1 number system).
 
@@ -93,7 +93,7 @@ $$
 
 \par However, if the representation of $\tree{Γ}(\vect{x})$ is itself linear, then insertions, deletions, and permutations in $\vect{x}$ will occasion changes in all components of $\tree{Γ}(\vect{x})$ whose indices are affected. The need for a linear representation of the grid matrix (and hence for all linear representations) can be obviated by the use of a \textit{chained representation} defined as follows.
 
-\par Consider a vector $\vect{y}$, each of whose components $\vect{y}_k$ has a solid representation $\mathbf{ρ}(\vect{y}_k)$ whose infixes $(g ↓ \mathbf{α}^g)/\mathbf{ρ}(\vect{y}_k)$ and $\mathbf{α}^g/\mathbf{ρ}(\vect{y}_k)$ are, respectively, the dimension of $\mathbf{ρ}(\vect{y}_k)$ in $\mathbf{π}$ and the leading address of the representation of the (cyclically) succeeding component of $\vect{y}$ (both in a base $\vect{b}$ system), and whose suffix $\overline{\mathbf{α}}^{2g}/\mathbf{ρ}(\vect{y}_k)$ is the representation of the $k$th component of some vector $\vect{x}$. Then (the representation of) $\vect{y}$ is called a \textit{chained representation of} $\vect{x}$. In other words, the representation of $\vect{y}$ incorporates its own grid matrix (with the address column $\tree{Γ}_1(\vect{y})$ rotated upward by one place) as well as the representation of the vector $\vect{x}$.
+\par Consider a vector $\vect{y}$, each of whose components $\vect{y}_k$ has a solid representation $\mathbf{ρ}(\vect{y}_k)$ whose infixes $(g ↓ \mathbf{α}^g)/\mathbf{ρ}(\vect{y}_k)$ and $\mathbf{α}^g/\mathbf{ρ}(\vect{y}_k)$ are, respectively, the dimension of $\mathbf{ρ}(\vect{y}_k)$ in $\mathbf{π}$ and the leading address of the representation of the (cyclically) succeeding component of $\vect{y}$ (both in a base $\vect{b}$ system), and whose suffix $\overbar{\mathbf{α}}^{2g}/\mathbf{ρ}(\vect{y}_k)$ is the representation of the $k$th component of some vector $\vect{x}$. Then (the representation of) $\vect{y}$ is called a \textit{chained representation of} $\vect{x}$. In other words, the representation of $\vect{y}$ incorporates its own grid matrix (with the address column $\tree{Γ}_1(\vect{y})$ rotated upward by one place) as well as the representation of the vector $\vect{x}$.
 
 \par For example, if $g = 2$, $\vect{b} = 10\textbf{ϵ}$, and $\vect{x} = (365, 7, 24)$, then
 
@@ -122,7 +122,7 @@ $$
 
 \par The number of components of a chained representation scanned (steps 1-3 of Program 3.4) in selecting the $k$th component of $\vect{x}$ is given by $ν(\vect{x})|_0(k$ - $h)$, where $h$ is the index of the component last selected. The selection operation is therefore most efficient when the components are selected in ascending order on the index. The chaining is effective in the forward direction only, and the component $(h - 1)$ would be obtained only by a complete cyclic forward scan of $ν(\vect{x}) - 1$ components. The representation is therefore called a \textit{forward chain}. A \textit{backward chain} can be formed by incorporating the vector $↓\tree{Γ}_1(\vect{y})$ instead of $↑\tree{Γ}_1(\vect{y})$, and a double chain results from incorporating both.
 
-\par A vector $\vect{x}$ which is respecified only by either deleting the final component or by adding a new final component (i.e., by operations of the form $\vect{x} ← \overline{\vect{\omega}}^1/\vect{x}$, or $\vect{x} ← \vect{x} \oplus (z)$) behaves as a stack (cf. Exercise 2.6). A backward-chained representation is clearly convenient for such a stack.
+\par A vector $\vect{x}$ which is respecified only by either deleting the final component or by adding a new final component (i.e., by operations of the form $\vect{x} ← \overbar{\vect{\omega}}^1/\vect{x}$, or $\vect{x} ← \vect{x} \oplus (z)$) behaves as a stack (cf. Exercise 2.6). A backward-chained representation is clearly convenient for such a stack.
 
 \par A simple example of the use of a chained stack occurs in representing the available (i.e., unused) segments of the physical vector $\mathbf{π}$. This will be illustrated by a program for the vector compression
 
@@ -130,7 +130,7 @@ $$
   \vect{x} ← \vect{v}/\vect{x}
 $$
 
-\noindent executed on a forward-chained representation of $\vect{x}$. The unused segments representing the components of $\overline{\vect{v}}/\vect{x}$ are returned to a backward-chained stack or \textit{pool} of available components. A linear representation can usually be used for logical control vectors such as $\vect{v}$; in any case the problems involved in their representation are relatively trivial and will be subordinated by expressing each operation directly in terms of the logical vectors and not in terms of the physical components representing them.
+\noindent executed on a forward-chained representation of $\vect{x}$. The unused segments representing the components of $\overbar{\vect{v}}/\vect{x}$ are returned to a backward-chained stack or \textit{pool} of available components. A linear representation can usually be used for logical control vectors such as $\vect{v}$; in any case the problems involved in their representation are relatively trivial and will be subordinated by expressing each operation directly in terms of the logical vectors and not in terms of the physical components representing them.
 
 \par (TODO: PROGRAM 3.5 (see html))
 
@@ -156,7 +156,7 @@ $$
 
 \par The use of a partition to demark the end of an infix is particularly convenient when the infix must be processed component by component for other reasons, as in the use of magnetic tape or other serial storage. The partition also appears to be more economical than the grid matrix, which it replaces. This apparent economy is, however, somewhat illusory, since the reservation of a special partition symbol reduces the information content of each nonpartition component by the factor $\log_2(ν(\vect{a}) - 1) ÷ \log_2 ν(\vect{a})$, where $\vect{a}$ is the range of the components of $\mathbf{π}$.
 
-\par Partitions can be employed in chained representations. For example, the dimension in $\mathbf{π}$ of each component of a chained representation $\vect{y}$ can be specified implicitly by terminal partitions instead of explicitly by the vector $\tree{Γ}_2(\vect{y})$ of the grid matrix. Thus if the elements of $\tree{Γ}_1(\vect{y})$ are of dimension $g$ in $\mathbf{π}$, then $\mathbf{ω}^1/\mathbf{ρ}(\vect{y}_j) = \vect{a}_1$, and ($\overline{\mathbf{α}}^{ g} \wedge \overline{\vect{\omega}}^1)/\mathbf{ρ}(\vect{y}_j) = \mathbf{ρ}(\vect{x}_j)$, where $\vect{x}$ is the vector represented by $\vect{y}$. Program 3.6 shows the determination of $\mathbf{ρ}(\vect{x}_k)$ from a chained representation $\vect{y}$ with terminal partitions $\vect{a}_1$.
+\par Partitions can be employed in chained representations. For example, the dimension in $\mathbf{π}$ of each component of a chained representation $\vect{y}$ can be specified implicitly by terminal partitions instead of explicitly by the vector $\tree{Γ}_2(\vect{y})$ of the grid matrix. Thus if the elements of $\tree{Γ}_1(\vect{y})$ are of dimension $g$ in $\mathbf{π}$, then $\mathbf{ω}^1/\mathbf{ρ}(\vect{y}_j) = \vect{a}_1$, and ($\overbar{\mathbf{α}}^{ g} \wedge \overbar{\vect{\omega}}^1)/\mathbf{ρ}(\vect{y}_j) = \mathbf{ρ}(\vect{x}_j)$, where $\vect{x}$ is the vector represented by $\vect{y}$. Program 3.6 shows the determination of $\mathbf{ρ}(\vect{x}_k)$ from a chained representation $\vect{y}$ with terminal partitions $\vect{a}_1$.
 
 \par (TODO: PROGRAM 3.6 (see html))
 
@@ -295,9 +295,9 @@ $$
 \par (TODO: FIGURE 3.8)
 
 \par \textbf{Figure 3.8} The compound logical statement
-$\overline{x} ∧ (y \vee z)$
+$\overbar{x} ∧ (y \vee z)$
 
-\par For example, in the tree of Fig. 3.8 (which represents the compound logical statement $\overline{x} ∧ (y \vee z)$), a fixed degree is associated with each of the logical operators
+\par For example, in the tree of Fig. 3.8 (which represents the compound logical statement $\overbar{x} ∧ (y \vee z)$), a fixed degree is associated with each of the logical operators
 \textit{and}, \textit{or}, and \textit{not} (namely, 2, 2, and 1), and the degree zero is associated with each of the variables. The statement can therefore be represented unambiguously by the left list vector
 
 $$
@@ -374,9 +374,9 @@ $$
 
 \par \textbf{Table 3.13} Chain lists of the tree of Fig. 1.16
 
-\par The full chain list matrix is a formalization of the scheme suggested in the discussion of chained representations (Sec. 3.2). Its convenience in forward path tracing is obvious. Since it does not identify the roots of the tree, an auxiliary vector must be provided for this purpose. However, if the ordering chosen for the nodes is that of a right list, the roots occur first in the list, their number $r = ν(\mat{P}_1) - (+/\mat{P}_1)$ is specified by the degree vector $\mat{P}_1$, and the need for the auxiliary vector vanishes. Moreover, since a right list groups all nodes emanating from a given node, each row of $\overline{\mathbf{α}}^2/\mat{P}$ is simply a sequence of integers followed by null elements, and the information necessary to path tracing is provided by the column $\mat{P}_3$ alone.
+\par The full chain list matrix is a formalization of the scheme suggested in the discussion of chained representations (Sec. 3.2). Its convenience in forward path tracing is obvious. Since it does not identify the roots of the tree, an auxiliary vector must be provided for this purpose. However, if the ordering chosen for the nodes is that of a right list, the roots occur first in the list, their number $r = ν(\mat{P}_1) - (+/\mat{P}_1)$ is specified by the degree vector $\mat{P}_1$, and the need for the auxiliary vector vanishes. Moreover, since a right list groups all nodes emanating from a given node, each row of $\overbar{\mathbf{α}}^2/\mat{P}$ is simply a sequence of integers followed by null elements, and the information necessary to path tracing is provided by the column $\mat{P}_3$ alone.
 
-\par The \textit{right chain list matrix} of a tree $\tree{T}$ is therefore defined as $\overline{\mathbf{α}}^3/\mat{P}$, where $\mat{P}$ is the full right chain list matrix of $\tree{T}$. It is illustrated by Table 3.13b. Program 3.14 shows its use in path tracing. Although the degree vector $\mat{P}_1$ is redundant (that is, $\mat{P}_1$ and $\mat{P}_3$ can be determined one from the other), it provides a direct check (step 6) on the legitimacy of the index vector $\vect{r}$ which would be difficult to obtain from $\mat{P}_3$ alone.
+\par The \textit{right chain list matrix} of a tree $\tree{T}$ is therefore defined as $\overbar{\mathbf{α}}^3/\mat{P}$, where $\mat{P}$ is the full right chain list matrix of $\tree{T}$. It is illustrated by Table 3.13b. Program 3.14 shows its use in path tracing. Although the degree vector $\mat{P}_1$ is redundant (that is, $\mat{P}_1$ and $\mat{P}_3$ can be determined one from the other), it provides a direct check (step 6) on the legitimacy of the index vector $\vect{r}$ which would be difficult to obtain from $\mat{P}_3$ alone.
 
 \par For a search of the type described by Program 3.14, it is necessary to scan down a level until agreement is reached and then across to the next level. For this type of scan, the \textit{filial-heir chain list} is compact and convenient.
 
@@ -514,7 +514,7 @@ $$
 
 
 
-\par \textbf{3.15} Let $\mathbf{π} ⊆ \vect{a} ∪ \mathbf{ι}^0(10)$, and let $\vect{x}^1$, $\vect{x}^2$, ..., $\vect{x}^n$ be a family of vectors whose components belong to the set $\overline{\mathbf{α}}^1/[\vect{a} ∪ \mathbf{ι}^0(10)]$. Let the average and the maximum dimensions of the vectors $\vect{x}^i$ be $a$ and $m$, respectively. Assume that the chaining index is represented in decimal, with each digit represented by one component of $\mathbf{π}$. Determine (as a function of $m$ and $n$) the value of $a$ below which a chained representation provides more compact storage than a linear representation with null fill.
+\par \textbf{3.15} Let $\mathbf{π} ⊆ \vect{a} ∪ \mathbf{ι}^0(10)$, and let $\vect{x}^1$, $\vect{x}^2$, ..., $\vect{x}^n$ be a family of vectors whose components belong to the set $\overbar{\mathbf{α}}^1/[\vect{a} ∪ \mathbf{ι}^0(10)]$. Let the average and the maximum dimensions of the vectors $\vect{x}^i$ be $a$ and $m$, respectively. Assume that the chaining index is represented in decimal, with each digit represented by one component of $\mathbf{π}$. Determine (as a function of $m$ and $n$) the value of $a$ below which a chained representation provides more compact storage than a linear representation with null fill.
 
 
 
