@@ -19,9 +19,11 @@ h +↩ (' '-lf) × ((»∨«)⊸<lf=h) ∧ «lc
 # List &chars that appear
 #•Show ∨⌾(⌽˘) (⍷≍˘/⁼∘⊐) (7⌊≠)⊸↑¨ h ⊔˜ (1-˜>×⊐∘⊣)○(⌈`⊢×1+↕∘≠)˝ "&;"=⌜h
 
-greek ← "alpha"‿"beta"‿"gamma"‿"Gamma"‿"delta"‿"epsilon"‿"theta"‿"lambda"‿"mu"‿"nu"‿"phi"‿"Phi"‿"sigma"‿"tau"‿"pi"
+greek ← ⟨"αalpha","βbeta","γgamma","ΓGamma","δdelta","ϵepsilon","θtheta"
+         "λlambda","μmu","νnu","φphi","ΦPhi","σsigma","τtau","πpi"⟩
+apl ← "⍳∊⍴⍵⍺" ⋈○⋈¨ "ιϵρωα"
 
-chars ← ("&"∾∾⟜";")⌾⊑¨ (⋈⟜("\"⊸∾)¨greek) ∾ ⟨
+chars ← ("&"∾∾⟜";")⌾⊑¨ (⋈⟜("\"⊸∾)¨1↓¨greek) ∾ ⟨
   "nbsp"  ‿" "
   "larr"  ‿"←"
   "rarr"  ‿"→"
@@ -59,13 +61,14 @@ chars ← ("&"∾∾⟜";")⌾⊑¨ (⋈⟜("\"⊸∾)¨greek) ∾ ⟨
   "equiv" ‿"\equiv"
 ⟩
 
-repl ← chars ∾ ⟨
+repl ← chars ∾ apl ∾ ⟨
   "&times"‿"\times"
   "&mu"   ‿"\mu"
   " sin " ‿" \sin "
   "<br>"  ‿("\\"∾lf)
+  "<p align=center>"‿"\par "
   "<p>"   ‿"\par ",    "</p>"    ‿""
-  "<b><i>"‿"\mathbf{", "</i></b>"‿"}"
+  "<b><i>"‿"\vect{",   "</i></b>"‿"}"
   "<i>"   ‿"\textit{", "</i>"    ‿"}"
   "<b>"   ‿"\textbf{", "</b>"    ‿"}"
   "<sub>" ‿"_{",       "</sub>"  ‿"}"
@@ -81,20 +84,33 @@ repl ← chars ∾ ⟨
   "<font face=Arial>"‿"\mathsf{"
   "<font size=+1>"‿"\large{", "<font size=-1>"‿"\small{"
   "</font>"‿"}"
-  "<img src=""APLimg/alphaboscore.bmp"">"               ‿"\overline{\vect{\alpha}}"
-  "<img src=""APLimg/omegaboscore.bmp"">"               ‿"\overline{\vect{\omega}}"
-  "<img src=""APLimg/xoscore.bmp"">"                    ‿"\overline{x}"
-  "<img src=""APLimg/vboscore.bmp"">"                   ‿"\overline{\vect{v}}"
-  "<img src=""APLimg/fboscore.bmp"">"                   ‿"\overline{\vect{f}}"
+  "<img src=""APLimg/alphaboscore.bmp"">"               ‿"\overbar{\vect{\alpha}}"
+  "<img src=""APLimg/omegaboscore.bmp"">"               ‿"\overbar{\vect{\omega}}"
+  "<img src=""APLimg/uoscore.bmp"">"                    ‿"\overbar{u}"
+  "<img src=""APLimg/xoscore.bmp"">"                    ‿"\overbar{x}"
+  "<img src=""APLimg/fboscore.bmp"">"                   ‿"\overbar{\vect{f}}"
+  "<img src=""APLimg/uboscore.bmp"">"                   ‿"\overbar{\vect{u}}"
+  "<img src=""APLimg/vboscore.bmp"">"                   ‿"\overbar{\vect{v}}"
+  "<img src=""APLimg/epsboscore.bmp"">"                 ‿"\overbar{\textbf{ϵ}}"
+  "<img src=""APLimg/ecapboscore.bmp"">"                ‿"\overbar{\mathsf{\mat{E}}}"
+  "<img src=""APLimg/uarr.bmp"">"                       ‿"\Uparrow"
   "<img src=""APLimg/circleplus.bmp"">"                 ‿"\oplus"
   "<img src=""APLimg/circledot.bmp"">"                  ‿"\odot"
   "<img src=""APLimg/plustimes.bmp"">"                  ‿"{+ \atop \times}"
+  "<img src=""APLimg/timesslash.bmp"">"                 ‿"{\times \atop /}"
   "<img src=""APLimg/orand.bmp"">"                      ‿"{\vee \atop \wedge}"
+  "<img src=""APLimg/circle1circle2.bmp"">"             ‿"{\odot_1 \atop \odot_2}"
   "<img align=middle src=""APLimg/circle1circle2.bmp"">"‿"{\odot_1 \atop \odot_2}"
+  "<img src=""APLimg/jotcircle.bmp"">"                  ‿"{\circ \atop \odot_2}"
+  "<img src=""APLimg/jottimes.bmp"">"                   ‿"{\circ \atop \times}"
+  "<img src=""APLimg/jotand.bmp"">"                     ‿"{\circ \atop \wedge}"
+  "<img src=""APLimg/jotbase.bmp"">"                    ‿"{\circ \atop ⊥}"
 ⟩
+repl ∾˜↩ ⟨ "<sup><i>&nbsp;"‿"^{\textit{", "<sub><i>&nbsp;"‿"_{\textit{" ⟩
 
-h ↩ (<˘⍉>repl) ReplaceAll h
+h ↩ " }"‿"}" ⋈¨⊸ReplaceAll (<˘⍉>repl) ReplaceAll h
 h (»⊸∨' '⊸≠)⊸/↩
+h (1 (("\"∾↓)¨⋈↑¨) greek)⊸ReplaceAll↩
 
 # Split into lines
 l ← (⊢-˜+`×¬)∘=⟜lf⊸⊔ h
@@ -104,15 +120,22 @@ l /˜↩ »⊸∨ 0<≠¨l
 Math ← {
   p ← 𝕩∊".,;:"
   s ← 𝕩=' '
-  m ← 0⌾⊑(𝕩='\')∨((@+128)≤𝕩)∨(𝕩∊∾"0aA"+⟜↕¨10‿26‿26)<(»∧«)' '=𝕩
-  m >↩ i ← ∨´Find⟜𝕩¨ "\textbf{"⋈ti←"\textit{"
+  m ← 0⌾⊑(𝕩='\')∨((@+128)≤𝕩)∨(𝕩∊"}"∾∾"0aA"+⟜↕¨10‿26‿26)<(»∧«)' '=𝕩
+  i‿b ← ∨`Find⟜𝕩¨ "\textbf{"⋈˜ti←"\textit{"
+  m >↩ b
   m ∨↩ i ↩ i ∧ (1+≠ti)⥊⟜0⊸««⊸∨'}'=𝕩
   PF← +`∘⊣⊏1(¬∾/∾˜)(∨/⊣)  # Fill partitions 𝕨 based on 𝕩
   e ← ((p∧1⊸«)⊸∨s) (>⟜(»∧«)<⊢) s PF m
   f ← ¬ (≠`(0¨ti)⊸»⊸∨i) ∨ (≠𝕩)↑/⁼('}'≠⊏⟜𝕩)⊸+(1+≠ti)+/i∧↩e
   (∾⟜(/f) ⍋⊸⊏ '$'¨∾(f/𝕩)˙) /0(∾≠∾˜)e
 }⍟(0<≠)
-#"content/ch3a.tex" •file.Lines Math⍟("$"⊸(⊑¬∘∊)∧"\par"≡4⊸↑)¨ •file.Lines "content/ch3.tex"
-l Math⍟("$"⊸(⊑¬∘∊)∧"\par"≡4⊸↑)¨↩
+l Math⍟("$"⊸(⊑¬∘∊)∧("<a "≡3⊸↑)∨"\par"≡4⊸↑)¨↩
 
-"APL1.tex" •file.Lines l
+Combs ← <˘∘⍉{∾"\"‿𝕨‿"{"‿𝕩‿"}"}⌜
+post ← ("$"⊸(∾˜⋈∾)¨ "th"‿"-origin"‿"-index"‿"-residue"‿"-reduction") ∾ ⟨
+  "\mathsf{\textbf{E}}"‿"\mat{E}"
+  "//"‿"/\!/"
+⟩ ∾ (∾"mat"‿"mathbf"‿"tree" "textbf"⊸⋈⊸Combs¨⟨'A'+↕26,"αλμνπρ","ΦΓ"⟩)∾("vect"‿"mat"Combs'A'+↕26)
+SimpSub ← (¬·»⍟2⊸∨∊⟜"^_"»⊸∧'{'⊸=∧·«⍟2'}'⊸=)⊸/
+
+"APL1.tex" •file.Chars SimpSub (<˘⍉>post) ReplaceAll ∾∾⟜lf¨ l

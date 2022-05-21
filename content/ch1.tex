@@ -3,7 +3,7 @@
 
 \section{Introduction}
 
-\par Applied mathematics is concerned with the design and analysis of algorithms or programs. The systematic treatment of complex algorithms requires a suitable programming language for their description, and such a programming language should be concise, precise, consistent over a wide area of application, mnemonic, and economical of symbols; it should exhibit clearly the constraints on the sequence in which operations are performed; and it should permit the description of a process to be independent of the particular representation chosen for the data.
+\par Applied mathematics is concerned with the design and analysis of algorithms or \textit{programs}. The systematic treatment of complex algorithms requires a suitable \textit{programming language} for their description, and such a programming language should be concise, precise, consistent over a wide area of application, mnemonic, and economical of symbols; it should exhibit clearly the constraints on the sequence in which operations are performed; and it should permit the description of a process to be independent of the particular representation chosen for the data.
 
 \par Existing languages prove unsuitable for a variety of reasons. Computer coding specifies sequence constraints adequately and is also comprehensive, since the logical functions provided by the branch instructions can, in principle, be employed to synthesize any finite algorithm. However, the set of basic operations provided is not, in general, directly suited to the execution of commonly needed processes, and the numeric symbols used for variables have little mnemonic value. Moreover, the description provided by computer coding depends directly on the particular representation chosen for the data, and it therefore cannot serve as a description of the algorithm per se.
 
@@ -13,7 +13,7 @@
 
 \section{Programs}
 
-\par A \textit{program statement} is the specification of some quantity or quantities in terms of some finite operation upon specified operands. Specification is symbolized by an arrow directed toward the specified quantity. thus "y is specified by sin x" is a statement denoted by
+\par A \textit{program statement} is the specification of some quantity or quantities in terms of some finite operation upon specified operands. Specification is symbolized by an arrow directed toward the specified quantity. thus ``$y$ is specified by $\sin x$'' is a statement denoted by
 
 $$
       y\ ←\ \sin \ x.
@@ -23,7 +23,7 @@ $$
 
 \par (TODO: FIGURES 1.1 AND 1.2)
 
-\par Thus Program 1.1 is a program of two statements defining the result $v$ as the (approximate) area of a circle of radius $x$, whereas Program 1.2 is an infinite program in which the quantity $z$ is specified as $(2y)^n$ on the $n$-th execution of the two statement loop. Statements will be numbered on the left for reference.
+\par Thus Program 1.1 is a program of two statements defining the result $v$ as the (approximate) area of a circle of radius $x$, whereas Program 1.2 is an infinite program in which the quantity $z$ is specified as $(2y)^n$ on the $n$th execution of the two statement loop. Statements will be numbered on the left for reference.
 
 \par A number of similar programs may be subsumed under a single more general program as follows. At certain \textit{branch points} in the program a finite number of alternative statements are specified as possible successors. One of these successors is chosen according to criteria determined in the statement or statements preceding the branch point. These criteria are usually stated as a \textit{comparison} or test of a specified relation between a specified pair of quantities. A branch is denoted by a set of arrows leading to each of the alternative successors, with each arrow labeled by the comparison condition under which the corresponding successor is chosen. The quantities compared are separated by a colon in the statement at the branch point, and a labeled branch is followed if and only if the relation indicated by the label holds when substituted for the colon. The conditions on the branches of a properly defined program must be disjoint and exhaustive.
 
@@ -56,11 +56,11 @@ $$
   \end{split}
 \end{equation*}
 
-\noindent where the dimensions of an $m \times n$ matrix $X$ (of $m$ rows and $n$ columns) is denoted by $\mu(X) \times v(X)$.
+\noindent where the dimensions of an $m \times n$ matrix $\mat{X}$ (of $m$ rows and $n$ columns) is denoted by $μ(\mat{X}) \times ν(\mat{X})$.
 
-\par \textbf{Program 1.5.} Steps 1-3 initialize the indices, and the loop 5-7 continues to add successive products to the partial sum until k reaches zero. When this occurs, the process continues through step 8 to decrement $j$ and to repeat the entire summation for the new value of $j$, providing that it is not zero. If $j$ is zero, the branch to step 10 decrements $i$ and the entire process over $j$ and $k$ is repeated from $j = v(\textbf{B})$, providing that $i$ is not zero. If $i$ is zero, the process is complete, as indicated by the exit arrow.
+\par \textbf{Program 1.5}. Steps 1-3 initialize the indices, and the loop 5-7 continues to add successive products to the partial sum until $k$ reaches zero. When this occurs, the process continues through step 8 to decrement $j$ and to repeat the entire summation for the new value of $j$, providing that it is not zero. If $j$ is zero, the branch to step 10 decrements $i$ and the entire process over $j$ and $k$ is repeated from $j = ν(\mat{B})$, providing that $i$ is not zero. If $i$ is zero, the process is complete, as indicated by the exit arrow.
 
-\par In all examples used in this chapter, emphasis will be placed on clarity of description of the process, and considerations of efficient execution by a computer or class of computers will be subordinated. These considerations can often be introduced later by relatively routine modifications of the program. For example, since the execution of a computer operation involving an indexed variable is normally more costly than the corresponding operation upon a nonindexed variable, the substitution of a variable s for the variable $C^i_j $ specified by statement 5 of Program 1.5 would accelerate the execution of the loop. The variable s would be initialized to zero before each entry to the loop and would be used to specify $C^i_j$ at each termination.
+\par In all examples used in this chapter, emphasis will be placed on clarity of description of the process, and considerations of efficient execution by a computer or class of computers will be subordinated. These considerations can often be introduced later by relatively routine modifications of the program. For example, since the execution of a computer operation involving an indexed variable is normally more costly than the corresponding operation upon a nonindexed variable, the substitution of a variable $s$ for the variable $\mat{C}^i_j$ specified by statement 5 of Program 1.5 would accelerate the execution of the loop. The variable $s$ would be initialized to zero before each entry to the loop and would be used to specify $\mat{C}^i_j$ at each termination.
 
 \par The practice of first setting an index to its maximum value and then decrementing it (e.g., the index $k$ in Program 1.5) permits the termination comparison to be made with zero. Since zero often occurs in comparisons, it is convenient to omit it. Thus, if a variable stands alone at a branch point, comparison with zero is implied. Moreover, since a comparison on an index frequently occurs immediately after it is modified, a branch at the point of modification will denote branching upon comparison of the indicated index with zero, the comparison occurring \textit{after} modification. Designing programs to execute decisions immediately after modification of the controlling variable results in efficient execution as well as notational elegance, since the variable must be present in a central register for both operations.
 
@@ -75,14 +75,14 @@ $$
 \par The following alternative form of a branch statement will therefore be used as well:
 
 $$
-x\ :\ y,\ r\ →\ s.
+x\ :\ y,\ \vect{r}\ →\ \vect{s}.
 $$
 
-\par This denotes a branch to statement number $s_i$ of the program if the relation $xr_i y$ holds. The parameters $r$ and $s$ may themselves be defined and redefined in other parts of the program. The null element $\circ$ will be used to denote the relation which complements the remaining relations $r_i$; in particular, $(\circ)\ →\ (s)$, or simply $→\ s$, will denote an unconditional branch to statement $s$. Program 1.7 shows the use of these conventions in a reformulation of Program 1.6. More generally, two or more otherwise independent programs may interact through a statement in one program specifying a branch in a second. The statement number occurring in the branch must then be augmented by the name of the program in which the branch is effected. Thus the statement $(\circ)\ →$ Program 2.24 executed in Program 1 causes a branch to step 24 to occur in Program 2.
+\par This denotes a branch to statement number $\vect{s}_i$ of the program if the relation $x\vect{r}_i y$ holds. The parameters $\vect{r}$ and $\vect{s}$ may themselves be defined and redefined in other parts of the program. The \textit{null element} $∘$ will be used to denote the relation which complements the remaining relations $\vect{r}_i$; in particular, $(∘)\ →\ (s)$, or simply $→\ s$, will denote an unconditional branch to statement $s$. Program 1.7 shows the use of these conventions in a reformulation of Program 1.6. More generally, two or more otherwise independent programs may interact through a statement in one program specifying a branch in a second. The statement number occurring in the branch must then be augmented by the name of the program in which the branch is effected. Thus the statement $(∘)\ →$ Program 2.24 executed in Program 1 causes a branch to step 24 to occur in Program 2.
 
 \par (TODO: FIGURE 1.7)
 
-\par One statement in a program can be modified by another statement which changes certain of its parameters, usually indices. More general changes in statements can be effected by considering the program itself as a vector $p$ whose components are the individual, serially numbered statements. All the operations to be defined on general vectors can then be applied to the statements themselves. For example, the $j$-th statement can be respecified by the $i$-th through the occurrence of the statement $p_j\ ←\ p_i$.
+\par One statement in a program can be modified by another statement which changes certain of its parameters, usually indices. More general changes in statements can be effected by considering the program itself as a vector $\vect{p}$ whose components are the individual, serially numbered statements. All the operations to be defined on general vectors can then be applied to the statements themselves. For example, the $j$th statement can be respecified by the $i$th through the occurrence of the statement $\vect{p}_j\ ←\ \vect{p}_i$.
 
 \par The interchange of two quantities $y$ and $x$ (that is, $x$ specifies $y$ and the \textit{original} value of $y$ specifies $x$) will be denoted by the statement $y\ \leftrightarrow\ x$.
 
@@ -92,6 +92,160 @@ $$
 
 \par The Summary of Notation at the end of the book summarizes the notation developed in this chapter. Although intended primarily for reference, it supplements the text in several ways. It frequently provides a more concise alternative definition of an operation discussed in the text, and it also contains important but easily grasped extensions not treated explicitly in the text. By grouping the operations into related classes it displays their family relationships.
 
-\par A concise programming language must incorporate families of operations whose members are related in a systematic manner. Each family will be denoted by a specific operation symbol, and the particular member of the family will be designated by an associated \textit{controlling parameter} (scalar, vector, matrix, or tree) which immediately precedes the main operation symbol. The operand is placed immediately after the main operation symbol. For example, the operation $k\ ↑\ x$ (left rotation of $x$ by $k$ places) may be viewed as the $k$-th member of the set of rotation operators denoted by the symbol $↑$.
+\par A concise programming language must incorporate families of operations whose members are related in a systematic manner. Each family will be denoted by a specific operation symbol, and the particular member of the family will be designated by an associated \textit{controlling parameter} (scalar, vector, matrix, or tree) which immediately precedes the main operation symbol. The operand is placed immediately after the main operation symbol. For example, the operation $k\ ↑\ \vect{x}$ (left rotation of $\vect{x}$ by $k$ places) may be viewed as the $k$th member of the set of rotation operators denoted by the symbol $↑$.
 
-\par Operations involving a single operand and no controlling parameter (such as $\lfloor x \rfloor$, or $\lceil x \rceil$) will be denoted by a pair of operation symbols which enclose the operand. Operations involving two operands and a controlling parameter (such as the mask operation $/a,\ u,\ b/$) will be denoted by a pair of operation symbols enclosing the entire set of variables, and the controlling parameter will appear between the two operands. In these cases the operation symbols themselves serve as grouping symbols.
+\par Operations involving a single operand and no controlling parameter (such as $\lfloor x \rfloor$, or $\lceil x \rceil$) will be denoted by a pair of operation symbols which enclose the operand. Operations involving two operands and a controlling parameter (such as the mask operation $/\vect{a},\ \vect{u},\ \vect{b}/$) will be denoted by a pair of operation symbols enclosing the entire set of variables, and the controlling parameter will appear between the two operands. In these cases the operation symbols themselves serve as grouping symbols.
+
+\par In interpreting a compound operation such as $k ↑ (j ↓ \vect{x})$ it is important to recognize that the operation symbol and its associated controlling parameter together represent an indivisible operation and must not be separated. It would, for example, be incorrect to assume that $j ↑ (k ↓ \vect{x})$ were equivalent to $k ↑ (j ↓ \vect{x})$, although it can be shown that the complete operations $j ↓$ and $k ↑$ do commute, that is $k ↑ (j ↓ \vect{x}) = j ↓ (k ↑ \vect{x})$.
+
+\par The need for parentheses will be reduced by assuming that compound statements are, except for intervening parentheses, executed from right to left. Thus $k ↑ j ↓ \vect{x}$ is equivalent to $k ↑ (j ↓ \vect{x})$, not to $(k ↑ j) ↓ \vect{x}$.
+
+\par Structured operands such as vectors and matrices, together with a systematic component-by-component generalization of elementary operations, provide an important subordination of detail in the description of algorithms. The use of structured operands will be facilitated by \textit{selection operations} for extracting a specified portion of an operand, \textit{reduction operations} for extending an operation (such as logical or arithmetic multiplication) over all components, and \textit{permutation operations} for reordering components. Operations defined on vectors are extended to matrices: the extended operation is called a \textit{row} operation if the underlying vector operation is applied to each row of the matrix and a \textit{column} operation if it is applied to each column. A column operation is denoted by doubling the symbol employed for the corresponding row (and vector) operation.
+
+\par A distinct typeface will be used for each class of operand as detailed in Table 1.8. Special quantities (such as the prefix vectors $\mathbf{α}^i$ defined in Sec. 1.7</a>) will be denoted by Greek letters in the appropriate typeface. For mnemonic reasons, an operation closely related to such a special quantity will be denoted by the same Greek letter. For example, $α/\vect{u}$ denotes the maximum prefix (Sec. 1.10) of the logical vector $\vect{u}$. Where a Greek letter is indistinguishable from a Roman, sanserif characters will be used, e.g. $\mathsf{\mat{E}}$ and $\mathsf{\mat{I}}$ for the capitals of epsilon and iota.
+
+\par (TODO: TABLE 1.8)
+
+\par \textbf{Table 1.8} Typographic conventions for classes of operands
+
+\subsection*{Literals and variables}
+
+\par The power of any mathematical notation rests largely on the use of symbols to represent general quantities which, in given instances, are further specified by other quantities. Thus Program 1.4 represents a general process which determines $x = n^\frac{2}{3}$ for any suitable value of $n$. In a specific case, say $n = 27$, the quantity $x$ is specified as the number 9.
+
+\par Each operand occurring in a meaningful process must be specified ultimately in terms of commonly accepted concepts. The symbols representing such accepted concepts will be called \textit{literals}. Examples of literals are the integers, the characters of the various alphabets, punctuation marks, and miscellaneous symbols such as \$ and \%. The literals occurring in Program 1.4 are 0, 1, 2.
+
+\par It is important to distinguish clearly between general symbols and literals. In ordinary algebra this presents little difficulty, since the only literals occurring are the integers and the decimal point, and each general symbol employed includes an alphabetic character. In describing more general processes, however, alphabetic literals (such as proper names) also appear. Moreover, in a computer program, numeric symbols (register addresses) are used to represent the variables.
+
+\par In general, then, alphabetic literals, alphabetic variables, numeric literals, and numeric variables may all appear in a complex process and must be clearly differentiated. The symbols used for literals will be Roman letters (enclosed in quotes when appearing in text) and standard numerals. The symbols used for variables will be italic letters, italic numerals, and boldface letters as detailed in Table 1.8. Miscellaneous signs and symbols when used as literals will be enclosed in quotes in both programs and text.
+
+\par It is sometimes desirable (e.g., for mnemonic reasons) to denote a variable by a string of alphabetic or other symbols rather than by a single symbol. The monolithic interpretation of such a string will be indicated by the \textit{tie} used in musical notation, thus:
+(TODO ties) $inv$, $\mathbf{inv}$, $\mathbf{INV}$ may denote the variable ``inventory'', a vector of inventory values, and a matrix of inventory values, respectively.
+
+\par In the set of alphabetic characters, the \textit{space} plays a special role. For other sets a similar role is usually played by some one element, and this element is given the special name of \textit{null element}. In the set of numeric digits, the \textit{zero} plays a dual role as both null element and numeric quantity. The null element will be denoted by the degree symbol $∘$.
+
+\par In any determinate process, each operand must be specified ultimately in terms of literals. In Program 1.4, for example, the quantity $k$ is specified in terms of known arithmetic operations (multiplication and division) involving the literals 1 and 2. The quantity $n$, on the other hand, is not determined within the process and must presumably be specified within some larger process which includes Program 1.4. Such a quantity is called an \textit{argument} of the process.
+
+\subsection*{Domain and range}
+
+\par The class of arguments and the class of results of a given operator are called its \textit{domain} and \textit{range}, respectively. Thus the domain and range of the magnitude operation ($|x|$) are the real numbers and the nonnegative real numbers, respectively.
+
+\par A variable is classified according to the range of values it may assume: it is \textit{logical}, \textit{integral}, or \textit{numerical}, according as the range is the set of logical variables (that is, 0 and 1), the set of integers, or the set of real numbers. Each of the foregoing classes is clearly a subclass of each class following it, and any operation defined on a class clearly applies to any of its subclasses. A variable which is nonnumeric will be called \textit{arbitrary}. In the Summary of Notation, the range and domain of each of the operators defined is specified in terms of the foregoing classes according to the conventions shown in Sec. S.1.
+
+\section{Elementary operations}
+
+\par The elementary operations employed include the ordinary arithmetic operations, the elementary operations of the logical calculus, and the residue and related operations arising in elementary number theory. In defining operations in the text, the symbol $\leftrightarrow$ will be used to denote equivalence of the pair of statements between which it occurs.
+
+\subsection*{Arithmetic operations}
+
+The ordinary arithmetic operations will be denoted by the ordinary symbols $+$, $-$, $\times$, and $÷$ and defined as usual except that the domain and range of multiplication will be extended slightly as follows. If one of the factors is a logical variable (0 or 1), the second may be arbitrary and the product then assumes the value of the second factor or zero according as the value of the first factor (the logical variable) is 1 or 0. Thus if the arbitrary factor is the literal ``q'', then
+
+\begin{align*}
+           & 0 \times \text{q} = \text{q} \times 0 = 0 \\
+\text{and} & 1 \times \text{q} = \text{q} \times 1 = \text{q}.
+\end{align*}
+
+\par According to the usual custom in ordinary algebra, the multiplication symbol may be elided.
+
+\subsection*{Logical operations}
+
+\par The elementary logical operations \textit{and}, \textit{or}, and \textit{not} will be denoted by $\wedge$, $\vee$ and an overbar and are defined in the usual way as follows:
+
+\begin{align*}
+ w ← u \wedge v  & \leftrightarrow & w = 1 \text{if and only if} & u = 1 \text{and} v = 1, \\
+ w ← u \vee v    & \leftrightarrow & w = 1 \text{if and only if} & u = 1 \text{or} v = 1, \\
+ w ← \overbar{u} & \leftrightarrow & w = 1 \text{if and only if} & u = 0. &
+\end{align*}
+
+\par If $x$ and $y$ are numerical quantities, then the expression $x < y$ implies that the quantity $x$ stands in the relation ``less than'' to the quantity $y$. More generally, if $α$ and $β$ are arbitrary entities and $\mathcal{R}$ is any relation defined on them, the \textit{relational statement} $(α \mathcal{R} β)$ is a logical variable which is true (equal to 1) if and only if $α$ stands in the relation $\mathcal{R}$ to $β$. For example, if $x$ is any real number, then the function
+
+$$
+  (x > 0) - (x < 0)
+$$
+
+\par (commonly called the \textit{sign function} or $\text{sgn}\ x$) assumes the values 1, 0, or $-1$ according as $x$ is strictly positive, 0, or strictly negative. Moreover, the magnitude function $|x|$ may be defined as $|x| = x \times \text{sgn}\ x = x \times ((x > 0) - (x < 0))$.
+
+\par The relational statement is a useful generalization of the Kronecker delta, that is $δ_j^i = (i = j)$. Moreover, it provides a convenient expression for a number of familiar logical operations. The \textit{exclusive or}, for example, may be denoted by $(u \neq v)$, and its negation (i.e., the equivalence function) may be denoted by $(u = v)$.
+
+\subsection*{Residues and congruence}
+
+\par For each set of integers $n$, $j$, and $b$, with $b > 0$, there exists a unique pair of integers $q$ and $r$ such that
+
+$$
+  n = bq + r,\quad j \leq r < j + b.
+$$
+
+\par The quantity $r$ is called the \textit{$j$-residue of n modulo b} and is denoted by $b |_j n$. For example, $3 |_0 9 = 0$, $3 |_1 9 = 3$, and $3 |_0 10 = 1$. Moreover, if $n \geq 0$, then $b |_0 n$ is the remainder obtained in dividing $n$ by $b$ and $q$ is the integral part of the quotient. A number $n$ is said to be of \textit{even parity} if its 0-residue modulo 2 is zero and of \textit{odd parity} if $2 |_0 n = 1$.
+
+\par If two numbers $n$ and $m$ have the same $j$-residue modulo $b$, they differ by an integral multiple of $b$ and therefore have the same $k$-residue module $b$ for any $k$. If $b |_j n = b |_j m$, then $m$ and $n$ are said to be \textit{congruent mod $b$}. Congruency is transitive and reflexive and is denoted by
+
+$$
+  m \equiv n (\mod b).
+$$
+
+\par In classical treatments, such as <acronym title="Wright, H.N. (1939), First Course in Theory of Numbers, Wiley, New York.">Wright (1939)</acronym>, only the 0-residue is considered. The use of 1-origin indexing (cf. Sec. 1.5) accounts for the interest of the 1-residue.
+
+\par A number represented in a positional notation (e.g., in a base ten or a base two number system) must, in practice, employ only a finite number of digits. It is therefore often desirable to approximate a number $x$ by an integer. For this purpose two functions are defined:
+
+\begin{enumerate}
+  \item the \textit{floor of x} (or integral part of $x$), denoted by $⌊x⌋$ and defined as the largest integer not exceeding $x$,
+  \item the \textit{ceiling of x}, denoted by $⌈x⌉$ and defined as the smallest integer not exceeded by $x$.
+\end{enumerate}
+
+\noindent Thus
+
+\begin{align*}
+  ⌈3.14⌉ = 4, & ⌊3.14⌋ = 3, & ⌊-3.14⌋ = -4, \\
+  ⌈3.00⌉ = 3, & ⌊3.00⌋ = 3, & ⌊-3.00⌋ = -3.
+\end{align*}
+
+\par Clearly $⌈x⌉ = -⌊-x⌋$ and $⌊x⌋ \leq x \leq ⌈x⌉$. Moreover, $n = b⌊n ÷ b⌋ + b |_0 n$ for all integers $n$. Hence the integral quotient $⌊n ÷ b⌋$ is equivalent to the quantity $q$ occurring in the definition of the $j$-residue for the case $j = 0$.
+
+\section{Structured operands}
+
+\subsection*{Elementary operations}
+
+\par Any operation defined on a single operand can be generalized to apply to each member of an array of related operands. Similarly, any binary operation (defined on two operands) can be generalized to apply to pairs of corresponding elements of two arrays. Since algorithms commonly incorporate processes which are repeated on each member of an array of operands, such generalization permits effective subordination of detail in their description. For example, the accounting process defined on the data of an individual bank account treats a number of distinct operands within the account, such as account number, name, and balance. Moreover, the over-all process is defined on a large number of similar accounts, all represented in a common format. Such structured arrays of variables will be called \textit{structured operands}, and extensive use will be made of three types, called \textit{vector}, \textit{matrix}, and \textit{tree}. As indicated in Sec. S.1 of the Summary of Notation, a structured operand is further classified as \textit{logical}, \textit{integral}, \textit{numerical}, or \textit{arbitrary}, according to the type of elements in contains.
+
+\par A \textit{vector} $\vect{x}$ is the ordered array of elements $(\vect{x}_1, \vect{x}_2, \vect{x}_3, ..., \vect{x}_{ν(\vect{x})})$. The variable $\vect{x}_i$ is called the $i$th \textit{component} of the vector $\vect{x}$, and the number of components, denoted by $ν(\vect{x})$ (or simply by $ν$ when the determining vector is clear from context), is called the \textit{dimension} of $\vect{x}$. Vectors and their components will be represented in lower case boldface italics. A numerical vector $\vect{x}$ may be multiplied by a numerical quantity $k$ to produce the \textit{scalar multiple} $k \times \vect{x}$ (or $k\vect{x}$) defined as the vector $\vect{z}$ such that $\vect{z}_i = k \times \vect{x}_i$.
+
+\par All elementary operations defined on individual variables are extended consistently to vectors as component-by-component operations. For example,
+
+\begin{align*}
+  \vect{z} = \vect{x} + \vect{y}      & \leftrightarrow & \vect{z}_{i} = \vect{x}_{i} + \vect{y}_{i}, \\
+  \vect{z} = \vect{x} \times \vect{y} & \leftrightarrow & \vect{z}_{i} = \vect{x}_{i} \times \vect{y}_{i}, \\
+  \vect{z} = \vect{x} ÷ \vect{y}      & \leftrightarrow & \vect{z}_{i} = \vect{x}_{i} ÷ \vect{y}_{i}, \\
+  \vect{z} = ⌈\vect{x}⌉               & \leftrightarrow & \vect{z}_{i} = ⌈\vect{x}_{i}⌉, \\
+  \vect{w} = \vect{u} \wedge \vect{v} & \leftrightarrow & \vect{w}_{i} = \vect{u}_{i} \wedge \vect{v}_{i}, \\
+  \vect{w} = (\vect{x} < \vect{y})    & \leftrightarrow & \vect{w}_{i} = (\vect{x}_{i} < \vect{y}_{i}). \\
+\end{align*}
+
+\par Thus if $\vect{x} = (1, 0, 1, 1)$ and $\vect{y} = (0, 1, 1, 0)$ then $\vect{x} + \vect{y} = (1, 1, 2, 1)$, $\vect{x} \wedge \vect{y} = (0, 0, 1, 0)$, and $(\vect{x} < \vect{y}) = (0, 1, 0, 0)$.
+
+\subsection*{Matrices}
+
+\par A matrix $\mat{M}$ is the ordered two-dimensional array of variables
+
+$$
+  \begin{pmatrix}
+    \mat{M}_1^1, & \mat{M}_2^1, & ..., & \mat{M}_{ν(\mat{M})}^1 \\
+    \mat{M}_1^2, & \mat{M}_2^2, & ..., & \mat{M}_{ν(\mat{M})}^2 \\
+    . & . & . & . \\
+    \mat{M}_1^{μ(\mat{M})}, & \mat{M}_2^{μ(\mat{M})}, & ..., & \mat{M}_{ν(\mat{M})}^{μ(\mat{M})}
+  \end{pmatrix}
+$$
+
+\par The vector $(\mat{M}_1^i, \mat{M}_2^i, ..., \mat{M}_ν^i)$ is called the $i$th \textit{row vector} of $\mat{M}$ and is denoted by $\mat{M}^i$. Its dimension $ν(\mat{M})$ is called the \textit{row dimension} of the matrix. The vector $(\mat{M}_j^1, \mat{M}_j^2, ..., \mat{M}_j^μ)$ is called the $j$th \textit{column vector} of $\mat{M}$ and is denoted by $\mat{M}_j$. Its dimension $μ(\mat{M})$ is called the \textit{column dimension} of the matrix.
+
+\par The variable $\mat{M}_j^i$ is called the $(i,j)$th \textit{component} or \textit{element} of the matrix. A matrix and its elements will be represented by upper case boldface italics. Operations defined on each element of a matrix are generalized component by component to the entire matrix. Thus, if $\odot$ is any binary operator,
+
+$$
+  \mat{P} = \mat{M}
+    \odot \mat{N} \leftrightarrow \mat{M}_j^i
+    \odot \mat{N}_j^i.
+$$
+
+\subsection*{Index systems}
+
+\par The subscript appended to a vector to designate a single component is called an \textit{index}, and the indices are normally chosen as a set of successive integers beginning at 1, that is, $\vect{x} = (\vect{x}_1, \vect{x}_2, ... \vect{x}_ν)$. It is, however, convenient to admit more general \textit{$j$-origin indexing} in which the set of successive integers employed as indices in any structured operand begin with a specified integer $j$.
+
+\par The two systems of greatest interest are the common 1-origin system, which will be employed almost exclusively in this chapter, and the 0-origin system. The latter system is particularly convenient whenever the index itself must be represented in a positional number system and will therefore be employed exclusively in the treatment of computer organization in Chapter 2.
