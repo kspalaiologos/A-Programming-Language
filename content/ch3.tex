@@ -9,23 +9,23 @@
 
 \par The encoding of a variable will be specified by an \textit{encoding matrix} $\mat{C}$ and associated \textit{format vector} $\vect{f}$ such that the rows of $\overline{\vect{f}}/\mat{C}$ list the representands and the rows of $\vect{f}/\mat{C}$ list the corresponding representations. The encoding is normally fixed and normally concerns the programmer only in the translation of input or output data. Even this translation is usually handled in a routine manner, and attention will therefore be restricted primarily to the problem of allocation.
 
-\par However, the encoding of numeric quantities warrants special comment. It includes the representation of the sign and of the scale, as well as the representation of the significant digits. Small numbers, such as indices, admit not only of the usual positional representation but also of the use of the unit vector $\symbfup{\epsilon}^j$ to represent the number $j$ (i.e., a one-out-of-$n$ coding system), or of the use of a logical vector of weight $j$ (i.e., a base 1 number system).
+\par However, the encoding of numeric quantities warrants special comment. It includes the representation of the sign and of the scale, as well as the representation of the significant digits. Small numbers, such as indices, admit not only of the usual positional representation but also of the use of the unit vector $\textbf{ϵ}^j$ to represent the number $j$ (i.e., a one-out-of-$n$ coding system), or of the use of a logical vector of weight $j$ (i.e., a base 1 number system).
 
-\par Allocation will be described in terms of the \textit{physical vector} $\vect{\pi}$, which denotes the physical storage elements of the computer. Each component of $\vect{\pi}$ corresponds to one of the $\nu(\vect{\pi})$ similar physical devices available, its range of values is the set of physical states achievable by each device, and its index is the address of the device. Each component of $\vect{\pi}$ may correspond to a computer register, an individual character position in a register, or an individual binary digit within a character, depending on the degree of resolution appropriate to the allocation problem considered. The 0-origin indexing normally used for computer addresses will be used for the physical vector, but 1-origin indexing will, throughout this chapter, normally be employed for all other structured operands.
+\par Allocation will be described in terms of the \textit{physical vector} $\mathbf{π}$, which denotes the physical storage elements of the computer. Each component of $\mathbf{π}$ corresponds to one of the $ν(\mathbf{π})$ similar physical devices available, its range of values is the set of physical states achievable by each device, and its index is the address of the device. Each component of $\mathbf{π}$ may correspond to a computer register, an individual character position in a register, or an individual binary digit within a character, depending on the degree of resolution appropriate to the allocation problem considered. The 0-origin indexing normally used for computer addresses will be used for the physical vector, but 1-origin indexing will, throughout this chapter, normally be employed for all other structured operands.
 
-\par An index of the physical vector will be called an \textit{address} and will itself be represented in the (perhaps mixed) radix appropriate to the given computer. The Univac, for example, employs base ten addressing for the registers, and (because of the use of 12-character words) a radix of twelve for finer resolution. The address of the fourth character of register 675 might therefore be written as 675.3. In computers which have two or more independent addressing systems (e.g., the independent addressing systems for main memory and for auxiliary storage in the IBM 705), superscripts may be used to identify the several physical vectors $\vect{\pi}^j$.
+\par An index of the physical vector will be called an \textit{address} and will itself be represented in the (perhaps mixed) radix appropriate to the given computer. The Univac, for example, employs base ten addressing for the registers, and (because of the use of 12-character words) a radix of twelve for finer resolution. The address of the fourth character of register 675 might therefore be written as 675.3. In computers which have two or more independent addressing systems (e.g., the independent addressing systems for main memory and for auxiliary storage in the IBM 705), superscripts may be used to identify the several physical vectors $\mathbf{π}^j$.
 
-\par In general, the \textit{representation} of a quantity $x$ is a vector (to be denoted by $\vect{⍴}(x)$) whose components are chosen from the physical vector $\vect{\pi}$. Thus $\vect{⍴}(x) = \vect{k}\int\vect{\pi}$, where $\vect{k}$ is a mapping vector associated with $x$. The dimension of the representation (that is, $\nu(\vect{⍴}(x))$) is called the \textit{dimension of} $x$ \textit{in} $\vect{\pi}$. If, for example, $\vect{⍴}(x) = (\vect{\pi}_{10}, \vect{\pi}_{9}, \vect{\pi}_{17}, \vect{\pi}_{18})$, then $\vect{k} = (10, 9, 17, 18)$, and the dimension of $x$ in $\vect{\pi}$ is four. If $\vect{⍴}(x)$ is an infix of $\vect{\pi}$, then the representation of $x$ is said to be \textit{solid}. A solid representation can be characterized by two parameters, its dimension $d$ and its \textit{leading address} $f$, that is, the index in $\vect{\pi}$ of its first component. Then $\vect{⍴}(x) = (f ↓ \vect{⍺}^d)/\vect{\pi}$.
+\par In general, the \textit{representation} of a quantity $x$ is a vector (to be denoted by $\mathbf{ρ}(x)$) whose components are chosen from the physical vector $\mathbf{π}$. Thus $\mathbf{ρ}(x) = \vect{k}\int\mathbf{π}$, where $\vect{k}$ is a mapping vector associated with $x$. The dimension of the representation (that is, $ν(\mathbf{ρ}(x))$) is called the \textit{dimension of} $x$ \textit{in} $\mathbf{π}$. If, for example, $\mathbf{ρ}(x) = (\mathbf{π}_{10}, \mathbf{π}_{9}, \mathbf{π}_{17}, \mathbf{π}_{18})$, then $\vect{k} = (10, 9, 17, 18)$, and the dimension of $x$ in $\mathbf{π}$ is four. If $\mathbf{ρ}(x)$ is an infix of $\mathbf{π}$, then the representation of $x$ is said to be \textit{solid}. A solid representation can be characterized by two parameters, its dimension $d$ and its \textit{leading address} $f$, that is, the index in $\mathbf{π}$ of its first component. Then $\mathbf{ρ}(x) = (f ↓ \mathbf{α}^d)/\mathbf{π}$.
 
 
 \section{Representation of structured operands}
 
 \subsection*{The grid matrix}
 
-\par If each component of a vector $\vect{x}$ has a solid representation, then the representation of the entire vector is said to be solid and may be characterized by the \textit{grid matrix} $\tree{\Gamma}(\vect{x})$, of dimension $\nu(\vect{x}) \times 2$, defined as follows: $\tree{\Gamma}_1^i(\vect{x})$ is the leading address of $\vect{⍴}(\vect{x}_i)$, and $\tree{\Gamma}_2^i(\vect{x})$ is the dimension of $\vect{x}_i$ in $\vect{\pi}$. If, for example, the vector $\vect{x}$ is represented as shown in Fig. 3.1\textit{a}, then
+\par If each component of a vector $\vect{x}$ has a solid representation, then the representation of the entire vector is said to be solid and may be characterized by the \textit{grid matrix} $\tree{Γ}(\vect{x})$, of dimension $ν(\vect{x}) \times 2$, defined as follows: $\tree{Γ}_1^i(\vect{x})$ is the leading address of $\mathbf{ρ}(\vect{x}_i)$, and $\tree{Γ}_2^i(\vect{x})$ is the dimension of $\vect{x}_i$ in $\mathbf{π}$. If, for example, the vector $\vect{x}$ is represented as shown in Fig. 3.1\textit{a}, then
 
 $$
-  \tree{\Gamma}(\vect{x}) = \begin{pmatrix}
+  \tree{Γ}(\vect{x}) = \begin{pmatrix}
     17 & 2 \\
     19 & 4 \\
     27 & 5 \\
@@ -38,17 +38,17 @@ $$
 
 \par Any structured operand can first be reduced to an equivalent vector, and the grid matrix therefore suffices for describing the representation of any construct, providing only that the representation of each of its elements is solid. Thus a matrix $\mat{X}$ may be represented by either the row-by-row list $\vect{r} = \mat{E}/\mat{X}$ or the column-by-column list $\vect{c} = \mat{E}/\!/\mat{X}$, and a tree $\tree{T}$ may be represented by the left list matrix $[\tree{T}$ or the right list matrix $]\tree{T}$, either of which may be represented, in turn, by a vector.
 
-\par If a process involves only a small number of variables, it is practical to make their allocation implicit in the algorithm, i.e., to incorporate in the algorithm the selection operations on the vector $\vect{\pi}$ necessary to extract the appropriate variables. This is the procedure usually employed, for example, in simple computer programs. In processes involving numerous variables, implicit allocation may become too cumbersome and confusing, and more systematic procedures are needed.
+\par If a process involves only a small number of variables, it is practical to make their allocation implicit in the algorithm, i.e., to incorporate in the algorithm the selection operations on the vector $\mathbf{π}$ necessary to extract the appropriate variables. This is the procedure usually employed, for example, in simple computer programs. In processes involving numerous variables, implicit allocation may become too cumbersome and confusing, and more systematic procedures are needed.
 
 \subsection*{Linear representations}
 
-\par The representation of a structured operand is said to be \textit{linear} if each component is represented by an infix of the form $(l ↓ \vect{⍺}^d)/\vect{\pi}$, where $l$ is a linear function of the indices of the component. For example, the representation of the matrix $\mat{X}$ indicated by Fig. 3.2 is linear, with $d = 2$ and $l = -11 + 5i + 8j$.
+\par The representation of a structured operand is said to be \textit{linear} if each component is represented by an infix of the form $(l ↓ \mathbf{α}^d)/\mathbf{π}$, where $l$ is a linear function of the indices of the component. For example, the representation of the matrix $\mat{X}$ indicated by Fig. 3.2 is linear, with $d = 2$ and $l = -11 + 5i + 8j$.
 
-\par A linear representation is solid and can clearly be characterized by a small number of parameters---the dimension $d$ of each component and the coefficients in the linear expression $l$. The representation of a vector $\vect{x}$ is linear if and only if $\tree{\Gamma}_2(\vect{x}) = d\symbfup{\epsilon}$ and the difference $\delta = \tree{\Gamma}_1^i(\vect{x}) - \tree{\Gamma}_1^{i-1}(\vect{x})$ is constant for $i = 2, 3, ..., \nu(\vect{x})$.
+\par A linear representation is solid and can clearly be characterized by a small number of parameters---the dimension $d$ of each component and the coefficients in the linear expression $l$. The representation of a vector $\vect{x}$ is linear if and only if $\tree{Γ}_2(\vect{x}) = d\textbf{ϵ}$ and the difference $δ = \tree{Γ}_1^i(\vect{x}) - \tree{Γ}_1^{i-1}(\vect{x})$ is constant for $i = 2, 3, ..., ν(\vect{x})$.
 
-\par If $l = p + qi + rj$ is the function defining a linear representation of a matrix $\vect{x}$ and if $a$ is the leading address of a given element, then the leading address of the succeeding element in the row (or column) is simply $a + r$ (or $a + q$). Frequently, the succession must be cyclic, and the resulting sum must be reduced modulo $\nu(\vect{x}) \times r$ (or $\mu(\vect{x}) \times q$). The inherent convenience of linear representations is further enhanced by index registers, which provide efficient incrementation and comparison of addresses.
+\par If $l = p + qi + rj$ is the function defining a linear representation of a matrix $\vect{x}$ and if $a$ is the leading address of a given element, then the leading address of the succeeding element in the row (or column) is simply $a + r$ (or $a + q$). Frequently, the succession must be cyclic, and the resulting sum must be reduced modulo $ν(\vect{x}) \times r$ (or $μ(\vect{x}) \times q$). The inherent convenience of linear representations is further enhanced by index registers, which provide efficient incrementation and comparison of addresses.
 
-\par Linear representation of a structured operand requires that all components be of the same dimension in $\vect{\pi}$. This common dimension may, however, be achieved by appending null elements to the shorter components. The convenience of the linear representation must then be weighed against the waste occasioned by the null elements. Moreover, if several vectors or matrices are to be represented and if each is of unspecified total dimension in $\vect{\pi}$, it may be impossible to allot to each an infix sufficiently large to permit linear representation. Consequently, a linear representation is not always practicable.
+\par Linear representation of a structured operand requires that all components be of the same dimension in $\mathbf{π}$. This common dimension may, however, be achieved by appending null elements to the shorter components. The convenience of the linear representation must then be weighed against the waste occasioned by the null elements. Moreover, if several vectors or matrices are to be represented and if each is of unspecified total dimension in $\mathbf{π}$, it may be impossible to allot to each an infix sufficiently large to permit linear representation. Consequently, a linear representation is not always practicable.
 
 \subsection*{Nonlinear representations}
 
@@ -56,32 +56,32 @@ $$
 
 \par If the grid matrix is used in a program as an explicit specification of the allocation, then the grid matrix must itself be represented by the physical vector. There remains, therefore, the problem of choosing a suitable allocation for the grid matrix itself; a linear allocation is illustrated by Fig. 3.1\textit{b}.
 
-\par If the grid matrix $\tree{\Gamma}(\vect{x})$ itself employs a linear representation, its use offers advantages over the direct use of a linear representation of $\vect{x}$ only if the total dimension of $\tree{\Gamma}$ in $\vect{\pi}$ is much less than the total dimension of $\vect{x}$ in $\vect{\pi}$ when linear representations are employed for both. This is frequently the case, since each element of a grid matrix belongs to the index set of $\vect{\pi}$ (that is, to $\vect{⍳}^0(\nu(\vect{\pi}))$), and the dimension of each element in $\vect{\pi}$ is therefore both uniform and relatively small. Program 3.3 shows the use of the grid matrix $\tree{\Gamma}(\vect{x})$ and the encoding matrix $\mat{C}$ in determining the $k$th component of the vector $\vect{x}$.
+\par If the grid matrix $\tree{Γ}(\vect{x})$ itself employs a linear representation, its use offers advantages over the direct use of a linear representation of $\vect{x}$ only if the total dimension of $\tree{Γ}$ in $\mathbf{π}$ is much less than the total dimension of $\vect{x}$ in $\mathbf{π}$ when linear representations are employed for both. This is frequently the case, since each element of a grid matrix belongs to the index set of $\mathbf{π}$ (that is, to $\mathbf{ι}^0(ν(\mathbf{π}))$), and the dimension of each element in $\mathbf{π}$ is therefore both uniform and relatively small. Program 3.3 shows the use of the grid matrix $\tree{Γ}(\vect{x})$ and the encoding matrix $\mat{C}$ in determining the $k$th component of the vector $\vect{x}$.
 
 \par (TODO: PROGRAM 3.3 (see html))
 
-\par \textbf{Program 3.3} Determination of $\vect{z} = \vect{⍴}(\vect{x}_k)$ and $z = \vect{x}_k$ from a linear representation of the grid matrix $\tree{\Gamma}(\vect{x})$
+\par \textbf{Program 3.3} Determination of $\vect{z} = \mathbf{ρ}(\vect{x}_k)$ and $z = \vect{x}_k$ from a linear representation of the grid matrix $\tree{Γ}(\vect{x})$
 
-\par \textbf{Program 3.3}. A linear representation is assumed for $\tree{\Gamma}(\vect{x})$, with element $\tree{\Gamma}_j^i(\vect{x})$ represented by the infix $((p + qi + rj) ↓ \mathbf{⍺}^g)/\vect{\pi}$. Moreover, each element of $\tree{\Gamma}(\vect{x})$ is assumed to be represented in a base $\vect{b}$ number system. Step 1 determines the leading address of the representation of $\tree{\Gamma}_1^k(\vect{x})$. Step 2 specifies $f$ as the base $\vect{b}$ value of this representation, i.e., as the leading address of $\vect{⍴}(\vect{x}_k)$. Steps 3 and 4 specify $d$ as the dimension of $\vect{x}_k$ in $\vect{\pi}$, and step 5 therefore specifies $\vect{z}$ as the representation of $\vect{x}_k$.
+\par \textbf{Program 3.3}. A linear representation is assumed for $\tree{Γ}(\vect{x})$, with element $\tree{Γ}_j^i(\vect{x})$ represented by the infix $((p + qi + rj) ↓ \mathbf{α}^g)/\mathbf{π}$. Moreover, each element of $\tree{Γ}(\vect{x})$ is assumed to be represented in a base $\vect{b}$ number system. Step 1 determines the leading address of the representation of $\tree{Γ}_1^k(\vect{x})$. Step 2 specifies $f$ as the base $\vect{b}$ value of this representation, i.e., as the leading address of $\mathbf{ρ}(\vect{x}_k)$. Steps 3 and 4 specify $d$ as the dimension of $\vect{x}_k$ in $\mathbf{π}$, and step 5 therefore specifies $\vect{z}$ as the representation of $\vect{x}_k$.
 
 \par (END PROGRAM 3.3 DESCRIPTION)
 
-\par Steps 7--9 perform the decoding of $\vect{z} = \vect{⍴}(\vect{x}_k)$ to obtain $\vect{z}$ as the actual value of $\vect{x}_k$. Since this process is normally performed by human or mechanical means (e.g., a printer) outside the purview of the programmer, it is here expressed directly in terms of the encoding matrix $\mat{C}$ rather than in terms of its representation. The left-pointing exit on step 7 is followed only if $\vect{z}$ does not occur as an entry in the encoding matrix.
+\par Steps 7--9 perform the decoding of $\vect{z} = \mathbf{ρ}(\vect{x}_k)$ to obtain $\vect{z}$ as the actual value of $\vect{x}_k$. Since this process is normally performed by human or mechanical means (e.g., a printer) outside the purview of the programmer, it is here expressed directly in terms of the encoding matrix $\mat{C}$ rather than in terms of its representation. The left-pointing exit on step 7 is followed only if $\vect{z}$ does not occur as an entry in the encoding matrix.
 
-\par The form chosen for the grid matrix is one of several possible. The two columns could, for example, represent the leading and final addresses of the corresponding representations or the dimensions and final addresses. The present choice of leading address $f$ and dimension $d$ is, however, the most convenient for use in conjunction with the notation adopted for infixes; the logical vector ($f ↓ \mathbf{⍺}^d$) selects the appropriate infix.
+\par The form chosen for the grid matrix is one of several possible. The two columns could, for example, represent the leading and final addresses of the corresponding representations or the dimensions and final addresses. The present choice of leading address $f$ and dimension $d$ is, however, the most convenient for use in conjunction with the notation adopted for infixes; the logical vector ($f ↓ \mathbf{α}^d$) selects the appropriate infix.
 
 \subsection*{Chained representations}%^{<a href="#note3a">[a]</a>}
 
-\par If a linear representation is used for a vector, then the deletion of a component (as in a compress operation) necessitates the moving (i.e., respecification) of the representations of each of the subsequent components. Similarly, mesh operations (insertion) and permutations necessitate extensive respecification. The use of a grid matrix $\tree{\Gamma}(\vect{x})$ obviates such respecification in $\vect{x}$, since appropriate changes can instead be made in $\tree{\Gamma}(\vect{x})$, where they may be much simpler to effect. If, for example, $\vect{x}$ is the vector represented as in Fig. 3.1\textit{a}, and $z$ is a quantity of dimension six in $\vect{\pi}$, then the mesh operation
+\par If a linear representation is used for a vector, then the deletion of a component (as in a compress operation) necessitates the moving (i.e., respecification) of the representations of each of the subsequent components. Similarly, mesh operations (insertion) and permutations necessitate extensive respecification. The use of a grid matrix $\tree{Γ}(\vect{x})$ obviates such respecification in $\vect{x}$, since appropriate changes can instead be made in $\tree{Γ}(\vect{x})$, where they may be much simpler to effect. If, for example, $\vect{x}$ is the vector represented as in Fig. 3.1\textit{a}, and $z$ is a quantity of dimension six in $\mathbf{π}$, then the mesh operation
 
 $$
-  \vect{x} ← \backslash\vect{x}, \symbfup{\epsilon}^3, z\backslash
+  \vect{x} ← \backslash\vect{x}, \textbf{ϵ}^3, z\backslash
 $$
 
-\noindent may be effected by specifying the physical infix $(70 ↓ \mathbf{⍺}^6)/\vect{\pi}$ by $\vect{⍴}(z)$ and by respecifying $\tree{\Gamma}(\vect{x})$ as follows:
+\noindent may be effected by specifying the physical infix $(70 ↓ \mathbf{α}^6)/\mathbf{π}$ by $\mathbf{ρ}(z)$ and by respecifying $\tree{Γ}(\vect{x})$ as follows:
 
 $$
-  \tree{\Gamma}(\vect{x}) = \begin{pmatrix}
+  \tree{Γ}(\vect{x}) = \begin{pmatrix}
     17 & 2 \\
     19 & 4 \\
     70 & 6 \\
@@ -91,40 +91,40 @@ $$
   \end{pmatrix}.
 $$
 
-\par However, if the representation of $\tree{\Gamma}(\vect{x})$ is itself linear, then insertions, deletions, and permutations in $\vect{x}$ will occasion changes in all components of $\tree{\Gamma}(\vect{x})$ whose indices are affected. The need for a linear representation of the grid matrix (and hence for all linear representations) can be obviated by the use of a \textit{chained representation} defined as follows.
+\par However, if the representation of $\tree{Γ}(\vect{x})$ is itself linear, then insertions, deletions, and permutations in $\vect{x}$ will occasion changes in all components of $\tree{Γ}(\vect{x})$ whose indices are affected. The need for a linear representation of the grid matrix (and hence for all linear representations) can be obviated by the use of a \textit{chained representation} defined as follows.
 
-\par Consider a vector $\vect{y}$, each of whose components $\vect{y}_k$ has a solid representation $\vect{⍴}(\vect{y}_k)$ whose infixes $(g ↓ \mathbf{⍺}^g)/\vect{⍴}(\vect{y}_k)$ and $\mathbf{⍺}^g/\vect{⍴}(\vect{y}_k)$ are, respectively, the dimension of $\vect{⍴}(\vect{y}_k)$ in $\vect{\pi}$ and the leading address of the representation of the (cyclically) succeeding component of $\vect{y}$ (both in a base $\vect{b}$ system), and whose suffix $\overline{\vect{\alpha}}^{2g}/\vect{⍴}(\vect{y}_k)$ is the representation of the $k$th component of some vector $\vect{x}$. Then (the representation of) $\vect{y}$ is called a \textit{chained representation of} $\vect{x}$. In other words, the representation of $\vect{y}$ incorporates its own grid matrix (with the address column $\tree{\Gamma}_1(\vect{y})$ rotated upward by one place) as well as the representation of the vector $\vect{x}$.
+\par Consider a vector $\vect{y}$, each of whose components $\vect{y}_k$ has a solid representation $\mathbf{ρ}(\vect{y}_k)$ whose infixes $(g ↓ \mathbf{α}^g)/\mathbf{ρ}(\vect{y}_k)$ and $\mathbf{α}^g/\mathbf{ρ}(\vect{y}_k)$ are, respectively, the dimension of $\mathbf{ρ}(\vect{y}_k)$ in $\mathbf{π}$ and the leading address of the representation of the (cyclically) succeeding component of $\vect{y}$ (both in a base $\vect{b}$ system), and whose suffix $\overline{\mathbf{α}}^{2g}/\mathbf{ρ}(\vect{y}_k)$ is the representation of the $k$th component of some vector $\vect{x}$. Then (the representation of) $\vect{y}$ is called a \textit{chained representation of} $\vect{x}$. In other words, the representation of $\vect{y}$ incorporates its own grid matrix (with the address column $\tree{Γ}_1(\vect{y})$ rotated upward by one place) as well as the representation of the vector $\vect{x}$.
 
-\par For example, if $g = 2$, $\vect{b} = 10\symbfup{\epsilon}$, and $\vect{x} = (365, 7, 24)$, then
+\par For example, if $g = 2$, $\vect{b} = 10\textbf{ϵ}$, and $\vect{x} = (365, 7, 24)$, then
 
 \begin{align*}
-    & \vect{⍴}(\vect{y}_1) = (\vect{\pi}_{17}, \vect{\pi}_{18}, \vect{\pi}_{19}, \vect{\pi}_{20}, \vect{\pi}_{21}, \vect{\pi}_{22}, \vect{\pi}_{23}) = (6, 8, 0, 7, 3, 6, 5), \\
-    & \vect{⍴}(\vect{y}_2) = (\vect{\pi}_{68}, \vect{\pi}_{69}, \vect{\pi}_{70}, \vect{\pi}_{71}, \vect{\pi}_{72}) = (2, 6, 0, 5, 7), \\
+    & \mathbf{ρ}(\vect{y}_1) = (\mathbf{π}_{17}, \mathbf{π}_{18}, \mathbf{π}_{19}, \mathbf{π}_{20}, \mathbf{π}_{21}, \mathbf{π}_{22}, \mathbf{π}_{23}) = (6, 8, 0, 7, 3, 6, 5), \\
+    & \mathbf{ρ}(\vect{y}_2) = (\mathbf{π}_{68}, \mathbf{π}_{69}, \mathbf{π}_{70}, \mathbf{π}_{71}, \mathbf{π}_{72}) = (2, 6, 0, 5, 7), \\
 \text{and} & \\
-    & \vect{⍴}(\vect{y}_3) = (\vect{\pi}_{26}, \vect{\pi}_{27}, \vect{\pi}_{28}, \vect{\pi}_{29}, \vect{\pi}_{30}, \vect{\pi}_{31}) = (1, 7, 0, 6, 2, 4), \\
+    & \mathbf{ρ}(\vect{y}_3) = (\mathbf{π}_{26}, \mathbf{π}_{27}, \mathbf{π}_{28}, \mathbf{π}_{29}, \mathbf{π}_{30}, \mathbf{π}_{31}) = (1, 7, 0, 6, 2, 4), \\
 \end{align*}
 
 \noindent is a suitable chained representation of $\vect{x}$.
 
-\par The parameters required in executing an algorithm on a chained representation $\vect{y}$ are $g$, the common dimension in $\vect{\pi}$ of the elements of the grid matrix $\tree{\Gamma}_1(\vect{y})$; $\vect{b}$, the base of the number system employed in their representation; and $f$ and $h$, the leading address and index, respectively, of the representation of some one component of $\vect{y}$. The parameters $g$ and $\vect{b}$ are usually common to the entire set of chained representations in use. Program 3.4 illustrates the type of algorithm required to determine $\vect{⍴}(\vect{x}_k)$ from a given chained representation of $\vect{x}$.
+\par The parameters required in executing an algorithm on a chained representation $\vect{y}$ are $g$, the common dimension in $\mathbf{π}$ of the elements of the grid matrix $\tree{Γ}_1(\vect{y})$; $\vect{b}$, the base of the number system employed in their representation; and $f$ and $h$, the leading address and index, respectively, of the representation of some one component of $\vect{y}$. The parameters $g$ and $\vect{b}$ are usually common to the entire set of chained representations in use. Program 3.4 illustrates the type of algorithm required to determine $\mathbf{ρ}(\vect{x}_k)$ from a given chained representation of $\vect{x}$.
 
 \par (TODO: PROGRAM 3.4 (see html))
 
-\par \textbf{Program 3.4} Determination of $\vect{⍴}(\vect{x}_k)$ from a chained representation of $\vect{x}$
+\par \textbf{Program 3.4} Determination of $\mathbf{ρ}(\vect{x}_k)$ from a chained representation of $\vect{x}$
 
-\par \textbf{Program 3.4.} The loop (1-3) is executed $\nu(\vect{x})|_0(k - h)$ times, with the result that at step 4 the parameter $f$ is the leading address of $\vect{⍴}(\vect{y}_k)$. Step 4 therefore specifies $d$ as the dimension of $\vect{⍴}(\vect{x}_k)$, that is, as the base $\vect{b}$ value of $\tree{\Gamma}_2^k(\vect{y})$. Step 5 then specifies $\vect{z}$ as $\vect{⍴}(\vect{y}_k)$. Step 6 deletes those components of $\vect{z}$ which represent the elements of the grid matrix, leaving $\vect{⍴}(\vect{x}_k)$.
+\par \textbf{Program 3.4.} The loop (1-3) is executed $ν(\vect{x})|_0(k - h)$ times, with the result that at step 4 the parameter $f$ is the leading address of $\mathbf{ρ}(\vect{y}_k)$. Step 4 therefore specifies $d$ as the dimension of $\mathbf{ρ}(\vect{x}_k)$, that is, as the base $\vect{b}$ value of $\tree{Γ}_2^k(\vect{y})$. Step 5 then specifies $\vect{z}$ as $\mathbf{ρ}(\vect{y}_k)$. Step 6 deletes those components of $\vect{z}$ which represent the elements of the grid matrix, leaving $\mathbf{ρ}(\vect{x}_k)$.
 
-\par The parameters $f$ and $h$ are themselves respecified in the execution of the algorithm so that $h$ becomes $k$ and $f$ becomes, appropriately, the leading address of $\vect{⍴}(\vect{y}_k)$. A subsequent execution then begins from this new initial condition.
+\par The parameters $f$ and $h$ are themselves respecified in the execution of the algorithm so that $h$ becomes $k$ and $f$ becomes, appropriately, the leading address of $\mathbf{ρ}(\vect{y}_k)$. A subsequent execution then begins from this new initial condition.
 
 \par (END PROGRAM 3.4 DESCRIPTION)
 
-\par The chained representation used thus far is cyclic and contains no internal identification of the first or the last components. Such an identification can be incorporated by adding a null component between the last and first components of $\vect{x}$. Alternatively the identification may be achieved without augmenting the dimension but by sacrificing the end-around chaining, i.e., by replacing the last component of $↑\tree{\Gamma}_1(\vect{y})$ by a null element. Moreover, a chained representation may be entered (i.e., the scan may be begun) at anyone of several points, provided only that the index $h$ and corresponding leading address $f$ are known for each of the points.
+\par The chained representation used thus far is cyclic and contains no internal identification of the first or the last components. Such an identification can be incorporated by adding a null component between the last and first components of $\vect{x}$. Alternatively the identification may be achieved without augmenting the dimension but by sacrificing the end-around chaining, i.e., by replacing the last component of $↑\tree{Γ}_1(\vect{y})$ by a null element. Moreover, a chained representation may be entered (i.e., the scan may be begun) at anyone of several points, provided only that the index $h$ and corresponding leading address $f$ are known for each of the points.
 
-\par The number of components of a chained representation scanned (steps 1-3 of Program 3.4) in selecting the $k$th component of $\vect{x}$ is given by $\nu(\vect{x})|_0(k$ - $h)$, where $h$ is the index of the component last selected. The selection operation is therefore most efficient when the components are selected in ascending order on the index. The chaining is effective in the forward direction only, and the component $(h - 1)$ would be obtained only by a complete cyclic forward scan of $\nu(\vect{x}) - 1$ components. The representation is therefore called a \textit{forward chain}. A \textit{backward chain} can be formed by incorporating the vector $↓\tree{\Gamma}_1(\vect{y})$ instead of $↑\tree{\Gamma}_1(\vect{y})$, and a double chain results from incorporating both.
+\par The number of components of a chained representation scanned (steps 1-3 of Program 3.4) in selecting the $k$th component of $\vect{x}$ is given by $ν(\vect{x})|_0(k$ - $h)$, where $h$ is the index of the component last selected. The selection operation is therefore most efficient when the components are selected in ascending order on the index. The chaining is effective in the forward direction only, and the component $(h - 1)$ would be obtained only by a complete cyclic forward scan of $ν(\vect{x}) - 1$ components. The representation is therefore called a \textit{forward chain}. A \textit{backward chain} can be formed by incorporating the vector $↓\tree{Γ}_1(\vect{y})$ instead of $↑\tree{Γ}_1(\vect{y})$, and a double chain results from incorporating both.
 
 \par A vector $\vect{x}$ which is respecified only by either deleting the final component or by adding a new final component (i.e., by operations of the form $\vect{x} ← \overline{\vect{\omega}}^1/\vect{x}$, or $\vect{x} ← \vect{x} \oplus (z)$) behaves as a stack (cf. Exercise 2.6). A backward-chained representation is clearly convenient for such a stack.
 
-\par A simple example of the use of a chained stack occurs in representing the available (i.e., unused) segments of the physical vector $\vect{\pi}$. This will be illustrated by a program for the vector compression
+\par A simple example of the use of a chained stack occurs in representing the available (i.e., unused) segments of the physical vector $\mathbf{π}$. This will be illustrated by a program for the vector compression
 
 $$
   \vect{x} ← \vect{v}/\vect{x}
@@ -136,13 +136,13 @@ $$
 
 \par \textbf{Program 3.5} Program for $\vect{x} ← \vect{v}/\vect{x}$ on a forward chained representation of $\vect{x}$ and a backward chained stack of available segments
 
-\par \textbf{Program 3.5}. In the major loop (6-23), $k$ determines the index of the current component $\vect{v}_k$, and $i$ and $j$ determine the leading addresses of $\vect{⍴}(\vect{x}_k)$ and $\vect{⍴}(\vect{x}_{k+1})$, respectively. These three parameters are cycled through successive values by steps 7, 8, and 12 and are initialized by steps 2,5, and 12. If $\vect{v}_k = 0$, the infix $\vect{⍴}(\vect{x}_k)$ is returned to the pool by steps 21, 22, 23, and 6 so as to construct a backward chain.
+\par \textbf{Program 3.5}. In the major loop (6-23), $k$ determines the index of the current component $\vect{v}_k$, and $i$ and $j$ determine the leading addresses of $\mathbf{ρ}(\vect{x}_k)$ and $\mathbf{ρ}(\vect{x}_{k+1})$, respectively. These three parameters are cycled through successive values by steps 7, 8, and 12 and are initialized by steps 2,5, and 12. If $\vect{v}_k = 0$, the infix $\mathbf{ρ}(\vect{x}_k)$ is returned to the pool by steps 21, 22, 23, and 6 so as to construct a backward chain.
 
-\par The parameter $x$ specifies the leading address of $\vect{⍴}(\vect{x}_1)$ unless $\nu(\vect{x}) = 0$, in which case $x$ is null. Step 1 terminates the process if $\nu(\vect{x}) = 0$, and otherwise step 4 respecifies $x$ as the null element. If $\vect{v} = 0$, this null value of $x$ remains; if not, the first nonzero component of $\vect{v}$ causes a branch to step 14. Since $x = ∘$, step 15 is executed to respecify $x$ as the leading address of $\vect{⍴}((\vect{v}/\vect{x})_1)$. Step 16 then specifies $h$, the leading address of the last completed component of $\vect{v}/\vect{x}$. Step 15 is never again executed.
+\par The parameter $x$ specifies the leading address of $\mathbf{ρ}(\vect{x}_1)$ unless $ν(\vect{x}) = 0$, in which case $x$ is null. Step 1 terminates the process if $ν(\vect{x}) = 0$, and otherwise step 4 respecifies $x$ as the null element. If $\vect{v} = 0$, this null value of $x$ remains; if not, the first nonzero component of $\vect{v}$ causes a branch to step 14. Since $x = ∘$, step 15 is executed to respecify $x$ as the leading address of $\mathbf{ρ}((\vect{v}/\vect{x})_1)$. Step 16 then specifies $h$, the leading address of the last completed component of $\vect{v}/\vect{x}$. Step 15 is never again executed.
 
 \par Components of $\vect{v}/\vect{x}$ other than the first must each be chained (in a forward chain) to the preceding one. Hence the leading address $i$ of a newly added component must be inserted in the last preceding component (whose leading address is $h$). This is normally done by steps 18, 19, and 6; step 20 respecifies $h$. If, however, the component $\vect{x}_{k-1}$ were also included, it would appear as the last completed component of $\vect{v}/\vect{x}$ and would already be chained to the new component $\vect{x}_k$. This situation is recognized by step 17 and occasions a branch to step 16. Step 16 then respecifies $h$ and repeats the loop without executing steps 18, 19, and 6.
 
-\par The process terminates when the cycle through the chained representation of $\vect{x}$ is completed, that is, when $i$ returns to the original value of $x$, preserved as $t$ by step 3. Step 10 is then executed, terminating the process directly if $\nu(\vect{v}/\vect{x}) = 0$. Otherwise, step 11 is executed to close the chain of $\vect{v}/\vect{x}$, that is, to insert $x$, the leading address of $\vect{⍴}((\vect{v}/\vect{x})_1)$, in the representation of the last component of $\vect{v}/\vect{x}$.
+\par The process terminates when the cycle through the chained representation of $\vect{x}$ is completed, that is, when $i$ returns to the original value of $x$, preserved as $t$ by step 3. Step 10 is then executed, terminating the process directly if $ν(\vect{v}/\vect{x}) = 0$. Otherwise, step 11 is executed to close the chain of $\vect{v}/\vect{x}$, that is, to insert $x$, the leading address of $\mathbf{ρ}((\vect{v}/\vect{x})_1)$, in the representation of the last component of $\vect{v}/\vect{x}$.
 
 \par (END PROGRAM 3.5 DESCRIPTION)
 
@@ -150,17 +150,17 @@ $$
 
 \subsection*{Partitions}
 
-\par If the set $\vect{a}$ is the range of the components of the physical vector $\vect{\pi}$, and if some element, say $\vect{a}_1$ is reserved as a \textit{partition symbol} and is excluded from use in the normal representation of quantities, it can be inserted to demark the end (or beginning) of an infix of $\vect{\pi}$. If the vector $\vect{y}$ is represented by a single infix of $\vect{\pi}$ such that the beginning of component $\vect{y}_{j+1}$ follows immediately after the terminal partition of $\vect{y}_j$, then the structure of $\vect{y}$ is completely represented by the partitions, and $\vect{y}$ is called a \textit{partitioned representation}. A partitioned representation can be used for more complex operands, such as matrices, if a set of two or more distinct partition symbols are provided, one for each level of structure. The distinct partition symbols can, of course, be represented by multiple occurrences of a single symbol $\vect{a}_1$ rather than by distinct members of $\vect{a}$.
+\par If the set $\vect{a}$ is the range of the components of the physical vector $\mathbf{π}$, and if some element, say $\vect{a}_1$ is reserved as a \textit{partition symbol} and is excluded from use in the normal representation of quantities, it can be inserted to demark the end (or beginning) of an infix of $\mathbf{π}$. If the vector $\vect{y}$ is represented by a single infix of $\mathbf{π}$ such that the beginning of component $\vect{y}_{j+1}$ follows immediately after the terminal partition of $\vect{y}_j$, then the structure of $\vect{y}$ is completely represented by the partitions, and $\vect{y}$ is called a \textit{partitioned representation}. A partitioned representation can be used for more complex operands, such as matrices, if a set of two or more distinct partition symbols are provided, one for each level of structure. The distinct partition symbols can, of course, be represented by multiple occurrences of a single symbol $\vect{a}_1$ rather than by distinct members of $\vect{a}$.
 
 \par A partitioned representation is similar to a double-chained representation without end-around chaining in the following particular: beginning from component $\vect{y}_i$, the component $\vect{y}_j$ can be reached only by scanning all intervening components between $i$ and $j$ in increasing or decreasing order according as $i < j$ or $i > j$. The file notation introduced in Sec. 1.22 clearly provides the operations appropriate to a partitioned representation of a vector, with conventions which suppress all inessential references to the partitions themselves.
 
-\par The use of a partition to demark the end of an infix is particularly convenient when the infix must be processed component by component for other reasons, as in the use of magnetic tape or other serial storage. The partition also appears to be more economical than the grid matrix, which it replaces. This apparent economy is, however, somewhat illusory, since the reservation of a special partition symbol reduces the information content of each nonpartition component by the factor $\log_2(\nu(\vect{a}) - 1) ÷ \log_2 \nu(\vect{a})$, where $\vect{a}$ is the range of the components of $\vect{\pi}$.
+\par The use of a partition to demark the end of an infix is particularly convenient when the infix must be processed component by component for other reasons, as in the use of magnetic tape or other serial storage. The partition also appears to be more economical than the grid matrix, which it replaces. This apparent economy is, however, somewhat illusory, since the reservation of a special partition symbol reduces the information content of each nonpartition component by the factor $\log_2(ν(\vect{a}) - 1) ÷ \log_2 ν(\vect{a})$, where $\vect{a}$ is the range of the components of $\mathbf{π}$.
 
-\par Partitions can be employed in chained representations. For example, the dimension in $\vect{\pi}$ of each component of a chained representation $\vect{y}$ can be specified implicitly by terminal partitions instead of explicitly by the vector $\tree{\Gamma}_2(\vect{y})$ of the grid matrix. Thus if the elements of $\tree{\Gamma}_1(\vect{y})$ are of dimension $g$ in $\vect{\pi}$, then $\vect{⍵}^1/\vect{⍴}(\vect{y}_j) = \vect{a}_1$, and ($\overline{\vect{\alpha}}^{ g} \wedge \overline{\vect{\omega}}^1)/\vect{⍴}(\vect{y}_j) = \vect{⍴}(\vect{x}_j)$, where $\vect{x}$ is the vector represented by $\vect{y}$. Program 3.6 shows the determination of $\vect{⍴}(\vect{x}_k)$ from a chained representation $\vect{y}$ with terminal partitions $\vect{a}_1$.
+\par Partitions can be employed in chained representations. For example, the dimension in $\mathbf{π}$ of each component of a chained representation $\vect{y}$ can be specified implicitly by terminal partitions instead of explicitly by the vector $\tree{Γ}_2(\vect{y})$ of the grid matrix. Thus if the elements of $\tree{Γ}_1(\vect{y})$ are of dimension $g$ in $\mathbf{π}$, then $\mathbf{ω}^1/\mathbf{ρ}(\vect{y}_j) = \vect{a}_1$, and ($\overline{\mathbf{α}}^{ g} \wedge \overline{\vect{\omega}}^1)/\mathbf{ρ}(\vect{y}_j) = \mathbf{ρ}(\vect{x}_j)$, where $\vect{x}$ is the vector represented by $\vect{y}$. Program 3.6 shows the determination of $\mathbf{ρ}(\vect{x}_k)$ from a chained representation $\vect{y}$ with terminal partitions $\vect{a}_1$.
 
 \par (TODO: PROGRAM 3.6 (see html))
 
-\par \textbf{Program 3.6} Determination of $\vect{⍴}(\vect{x}_k)$ from a chained representation of $\vect{x}$ with terminal partitions $\vect{a}_1$
+\par \textbf{Program 3.6} Determination of $\mathbf{ρ}(\vect{x}_k)$ from a chained representation of $\vect{x}$ with terminal partitions $\vect{a}_1$
 
 \par \textbf{Program 3.6}. The program is similar to Program 3.4 and the step numbering indicates the correspondences. The dimension $d$ is so determined (steps 4a-d) as to exclude the terminal partition itself from the quantity $\vect{z}$ specified by step 5. Since only the first column of the grid matrix is incorporated in the partitioned representation, step 6 excises a prefix of dimension $g$ rather than $2g$ as in Program 3.4.
 
@@ -168,60 +168,60 @@ $$
 
 \subsection*{Pools}
 
-\par Components of the physical vector $\vect{\pi}$ in use for the representation of one quantity must not be allocated to the representation of some other quantity. The \textit{construction} of a chained representation therefore poses one problem not encountered in its \textit{use}, namely, the specification and observation of restrictions on the availability of components of $\vect{\pi}$. The restrictions can conveniently be specified as a \textit{pool}, consisting of the available components of $\vect{\pi}$. Each allocation made must then be reflected in a corresponding change in the pool. Moreover, as each piece of data is deleted, the components allocated to it are returned to the pool.
+\par Components of the physical vector $\mathbf{π}$ in use for the representation of one quantity must not be allocated to the representation of some other quantity. The \textit{construction} of a chained representation therefore poses one problem not encountered in its \textit{use}, namely, the specification and observation of restrictions on the availability of components of $\mathbf{π}$. The restrictions can conveniently be specified as a \textit{pool}, consisting of the available components of $\mathbf{π}$. Each allocation made must then be reflected in a corresponding change in the pool. Moreover, as each piece of data is deleted, the components allocated to it are returned to the pool.
 
-\par If, as in Program 3.5, a pool is treated as a stack, then the component next taken from the pool is the component last added to it. The queue of components in the pool thus obeys a so-called \textit{last in first out}, or LIFO discipline. The dimension in $\vect{\pi}$ of the last component of a pool will not, in general, agree with the dimension required for the next quantity it is called on to represent. If it exceeds the requirements, the extra segment may be left in the pool, and the pool therefore tends to accrue more and more components of smaller and smaller dimension. Hence it may be wise, or even essential, to revise the pool occasionally so as to coalesce the segments into the smallest possible number of infixes. This process can even be extended to allow substitutions in other vectors in order to return to the pool short segments which may unite existing segments of the pool. This, however, will require a systematic scan of the chained vectors.
+\par If, as in Program 3.5, a pool is treated as a stack, then the component next taken from the pool is the component last added to it. The queue of components in the pool thus obeys a so-called \textit{last in first out}, or LIFO discipline. The dimension in $\mathbf{π}$ of the last component of a pool will not, in general, agree with the dimension required for the next quantity it is called on to represent. If it exceeds the requirements, the extra segment may be left in the pool, and the pool therefore tends to accrue more and more components of smaller and smaller dimension. Hence it may be wise, or even essential, to revise the pool occasionally so as to coalesce the segments into the smallest possible number of infixes. This process can even be extended to allow substitutions in other vectors in order to return to the pool short segments which may unite existing segments of the pool. This, however, will require a systematic scan of the chained vectors.
 
 \par If the dimension of the last component (or perhaps of all components) of the pool falls short of the requirements for representing a new quantity, segments of the pool can be chained together. This requires the use of a special partition symbol or other indication to distinguish two types of links, one which marks the end of a given representation and one which does not. More generally, it may be convenient to use multilevel partition symbols to distinguish several levels of links, as was suggested for the representation of a matrix.
 
 \par Queue disciplines other than LIFO may be used. Three other types of primary interest in allocation queues are the FIFO (first in first out), the \textit{dimension-ordered}, and the \textit{address-ordered} disciplines. FIFO uses a forward chain and may be preferred over LIFO because it uses the entire original pool before using any returned (and usually shorter) segments.
 
-\par The components of a dimension-ordered pool are maintained in ascending (or descending) order on their dimensions in $\vect{\pi}$. This arrangement is convenient in selecting a pool element according to the dimension required. The components of an address-ordered pool are arranged in ascending order on their leading addresses. This arrangement facilitates the fusion of components which together form an infix of $\vect{\pi}$.
+\par The components of a dimension-ordered pool are maintained in ascending (or descending) order on their dimensions in $\mathbf{π}$. This arrangement is convenient in selecting a pool element according to the dimension required. The components of an address-ordered pool are arranged in ascending order on their leading addresses. This arrangement facilitates the fusion of components which together form an infix of $\mathbf{π}$.
 
-\par If each of the available components of $\vect{\pi}$ is set to a special value which is used for no other purpose, then the available components can be determined by a scan of $\vect{\pi}$. Such a pool has no structure imposed by chaining and will be called a \textit{marked pool}.
+\par If each of the available components of $\mathbf{π}$ is set to a special value which is used for no other purpose, then the available components can be determined by a scan of $\mathbf{π}$. Such a pool has no structure imposed by chaining and will be called a \textit{marked pool}.
 
-\par A marked pool requires little maintenance, since components returned to it are simply marked, but selection from it requires a scan of $\vect{\pi}$ and is therefore relatively slow. The use of marked and chained pools may also be combined---all returned components go to a marked pool which is left undisturbed until the chained pool is exhausted, at which time the entire marked pool is organized into a chained pool.
+\par A marked pool requires little maintenance, since components returned to it are simply marked, but selection from it requires a scan of $\mathbf{π}$ and is therefore relatively slow. The use of marked and chained pools may also be combined---all returned components go to a marked pool which is left undisturbed until the chained pool is exhausted, at which time the entire marked pool is organized into a chained pool.
 
 \subsection*{Summary}
 
-\par Since any structured operand can first be reduced to an equivalent vector, the problems of representation can be discussed in terms of vectors alone. The characteristics of the linear, chained, and partitioned representations of a vector may be summarized as follows. A linear representation permits the address of any component to be computed directly as a linear function of its indices and hence requires no scanning of the vector. However, the strict limitations which it imposes on allocation may engender: (1) conflicts with allocations for other operands, (2) waste of storage due to the imposition of a common dimension in $\vect{\pi}$ for all components, or (3) uneconomical execution due to the extensive reallocations occasioned by the insertion or deletion of other than terminal components.
+\par Since any structured operand can first be reduced to an equivalent vector, the problems of representation can be discussed in terms of vectors alone. The characteristics of the linear, chained, and partitioned representations of a vector may be summarized as follows. A linear representation permits the address of any component to be computed directly as a linear function of its indices and hence requires no scanning of the vector. However, the strict limitations which it imposes on allocation may engender: (1) conflicts with allocations for other operands, (2) waste of storage due to the imposition of a common dimension in $\mathbf{π}$ for all components, or (3) uneconomical execution due to the extensive reallocations occasioned by the insertion or deletion of other than terminal components.
 
 \par The concept of the grid matrix is helpful even when the corresponding allocation is implicit in the program. The explicit use of a grid matrix which is itself in a linear representation removes the restrictions on the allocation of the vector itself while retaining the advantage of direct address computation. The address computation differs from the linear case only in the addition of a single reference to the grid matrix and hence requires no scanning. The difficulties enumerated for the direct linear representation are not eliminated but merely shifted to the linearly represented grid matrix itself, where they may, however, prove much less serious.
 
 \par A chained representation allows virtually arbitrary allocation, relatively simple operations for the insertion and deletion of components, the direct representation of more complex structures such as trees, and economical joint representations of vectors which have one or more components in common. However, a chained representation requires extra storage for the grid matrix which it incorporates and occasions additional operations for scanning when the components are selected in other than serial order. The required scanning can be reduced by the retention of auxiliary information which allows the chained representation to be entered at several points.
 
-\par A partitioned representation requires the allocation of a single infix of $\vect{\pi}$, and selection requires a fine scan, i.e., a component-by-component scan of $\vect{\pi}$ to detect partition symbols. Partitioning removes the need to incorporate the grid matrix explicitly and does not impose a common dimension in $\vect{\pi}$ for all components.
+\par A partitioned representation requires the allocation of a single infix of $\mathbf{π}$, and selection requires a fine scan, i.e., a component-by-component scan of $\mathbf{π}$ to detect partition symbols. Partitioning removes the need to incorporate the grid matrix explicitly and does not impose a common dimension in $\mathbf{π}$ for all components.
 
-\par Mixed systems employing combinations of linear, chained, and partitioned representations are frequently advantageous. Block chaining, for example, involves the chaining of blocks, each consisting of an infix of $\vect{\pi}$ and each serving as a linear representation of some infix of the represented vector. Alternatively, each chained block may be a partitioned representation of some infix.
+\par Mixed systems employing combinations of linear, chained, and partitioned representations are frequently advantageous. Block chaining, for example, involves the chaining of blocks, each consisting of an infix of $\mathbf{π}$ and each serving as a linear representation of some infix of the represented vector. Alternatively, each chained block may be a partitioned representation of some infix.
 
 \section{Representation of matrices}
 
-\par Structured operands other than vectors may be represented by first reducing them to equivalent vectors which can, by employing the techniques of the preceding section, be represented, in turn, in the physical vector $\vect{\pi}$. In the case of a matrix $\mat{A}$, two alternative reductions are of interest, the row list $\vect{r} = \mat{E}/\mat{A} = \mat{A}^1 \oplus \mat{A}^2 \oplus ... \oplus \mat{A}^{\mu}$ and the column list $\vect{c} = \mat{E}//\mat{A}$. If $\vect{r}_h$, $\mat{A}_j^i$, and $\vect{c}_k$ are corresponding elements of the three alternative representations, then in a 0-origin system:
+\par Structured operands other than vectors may be represented by first reducing them to equivalent vectors which can, by employing the techniques of the preceding section, be represented, in turn, in the physical vector $\mathbf{π}$. In the case of a matrix $\mat{A}$, two alternative reductions are of interest, the row list $\vect{r} = \mat{E}/\mat{A} = \mat{A}^1 \oplus \mat{A}^2 \oplus ... \oplus \mat{A}^{μ}$ and the column list $\vect{c} = \mat{E}/\!/\mat{A}$. If $\vect{r}_h$, $\mat{A}_j^i$, and $\vect{c}_k$ are corresponding elements of the three alternative representations, then in a 0-origin system:
 
 \begin{align*}
   h &= vi + j \\
-  k &= i + \mu j.
+  k &= i + μ j.
 \end{align*}
 
 Consequently,
 
 \begin{align*}
-             & i &= ⌊h ÷ \nu\rfloor = \mu |_0 k, \\
-  \text{and} & j &= \nu |_0 h = ⌊k ÷ \mu\rfloor.
+             & i &= ⌊h ÷ ν\rfloor = μ |_0 k, \\
+  \text{and} & j &= ν |_0 h = ⌊k ÷ μ\rfloor.
 \end{align*}
 
 \par The dependence of $h$ on $k$ can be obtained directly by substituting the foregoing expressions in the identity
 
 \begin{align*}
-                    & h &= \nu \times ⌊h ÷ \nu\rfloor + \nu |_0 h \\
-  \text{to yield}   & h &= \nu \times (\mu |_0 k) + ⌊k ÷ \mu\rfloor. \\
-  \text{Similarly,} & k &= \mu \times (\nu |_0 h) + ⌊h ÷ \nu\rfloor.
+                    & h &= ν \times ⌊h ÷ ν\rfloor + ν |_0 h \\
+  \text{to yield}   & h &= ν \times (μ |_0 k) + ⌊k ÷ μ\rfloor. \\
+  \text{Similarly,} & k &= μ \times (ν |_0 h) + ⌊h ÷ ν\rfloor.
 \end{align*}
 
 \par The permutation $\vect{h}$ which carries the row list $\vect{r}$ into the column list $\vect{c}$ (that is, $\vect{c} = \vect{h}\int_0\vect{r}$) can be obtained directly from the foregoing expression for $\vect{h}$ as follows:
 
 $$
-  \vect{h} = \nu \times (\mu\symbfup{\epsilon} |_0 \vect{⍳}^0) + ⌊\vect{⍳}^0 ÷ \mu\symbfup{\epsilon}\rfloor.
+  \vect{h} = ν \times (μ\textbf{ϵ} |_0 \mathbf{ι}^0) + ⌊\mathbf{ι}^0 ÷ μ\textbf{ϵ}\rfloor.
 $$
 
 \par The expression for the $k$th component of $\vect{h}$ is identical with the expression for $\vect{h}$ above. Hence, if $\vect{c} = \vect{h}\int_0\vect{r}$, then $\vect{c}_k = \vect{r}_{\vect{h}_k} = \vect{r}_h$ as required.
@@ -260,7 +260,7 @@ $$
   \end{pmatrix}
 $$
 
-\par The matrix $\mat{L}$ will be called a \textit{row-chained} representation of $\mat{A}$ and may be used, together with the vector $\vect{f}$, for the efficient scanning of any row $\mat{A}^i$ as illustrated by Program 3.7. The vector $\mat{L}_3$ can be modified so as to give the address in $\vect{\pi}$ directly rather than the row index in $\mat{L}$ of the next element in the row, and Program 3.7 can then be easily re-expressed in terms of the physical vector $\vect{\pi}$.
+\par The matrix $\mat{L}$ will be called a \textit{row-chained} representation of $\mat{A}$ and may be used, together with the vector $\vect{f}$, for the efficient scanning of any row $\mat{A}^i$ as illustrated by Program 3.7. The vector $\mat{L}_3$ can be modified so as to give the address in $\mathbf{π}$ directly rather than the row index in $\mat{L}$ of the next element in the row, and Program 3.7 can then be easily re-expressed in terms of the physical vector $\mathbf{π}$.
 
 \par (TODO: PROGRAM 3.7 (see html))
 
@@ -270,7 +270,7 @@ $$
 
 \par (END PROGRAM 3.7 DESCRIPTION)
 
-\par If $\mat{L}_1$ is chosen as a row list, the vector $\mat{L}_3$ reduces to the form $\mat{L}_3^k = k + 1$ or $\mat{L}_3^k = ∘$. Its function can then be served instead by incrementation of the index $k$ and by the use of the logical vector $\vect{u} = (\mat{L}_3^{k} = ∘\symbfup{\epsilon})$ for determining the end of each row.
+\par If $\mat{L}_1$ is chosen as a row list, the vector $\mat{L}_3$ reduces to the form $\mat{L}_3^k = k + 1$ or $\mat{L}_3^k = ∘$. Its function can then be served instead by incrementation of the index $k$ and by the use of the logical vector $\vect{u} = (\mat{L}_3^{k} = ∘\textbf{ϵ})$ for determining the end of each row.
 
 \par The construction of a column-chained representation is analogous to that of a row-chained representation, and the two representations can be combined in a single matrix $\mat{L}$ which gives both row and column chaining employing but a single representation (that is, $\mat{L}_1)$ of the nonzero elements of $\mat{A}$.
 
@@ -281,8 +281,8 @@ $$
 \begin{enumerate}
   \item by a full right list matrix $]\tree{T}$ or by any column permutation thereof (Sec. 1.23),
   \item by a full left list matrix $[\tree{T}$ or by any column permutation thereof,
-  \item by a right list matrix $\mathbf{⍺}^2/]\tree{T}$,
-  \item by a left list matrix $\mathbf{⍺}^2/[\tree{T}$,
+  \item by a right list matrix $\mathbf{α}^2/]\tree{T}$,
+  \item by a left list matrix $\mathbf{α}^2/[\tree{T}$,
   \item by various chain list matrices.
 \end{enumerate}
 
@@ -290,7 +290,7 @@ $$
 
 \subsection*{Simplified list matrices}
 
-\par In certain important special cases, the various list representations of trees may be simplified. If the degree of each node is a known function $\delta$ of the value of the node, then for any list matrix $\mat{M}$, $\mat{M}_1^i = \delta(\mat{M}_2^i)$, and the degree vector $\mat{M}_1$ may be eliminated without loss. The node vector alone then represents the tree and may be referred to as a \textit{right} or \textit{left list vector} as the case may be.
+\par In certain important special cases, the various list representations of trees may be simplified. If the degree of each node is a known function $δ$ of the value of the node, then for any list matrix $\mat{M}$, $\mat{M}_1^i = δ(\mat{M}_2^i)$, and the degree vector $\mat{M}_1$ may be eliminated without loss. The node vector alone then represents the tree and may be referred to as a \textit{right} or \textit{left list vector} as the case may be.
 
 \par (TODO: FIGURE 3.8)
 
@@ -320,7 +320,7 @@ $$
 
 \par \textbf{Program 3.9} Partitioning of the left list of an $n$-tuply rooted tree
 
-\par \textbf{Example 3.1. Partitioning of an $n$-tuply rooted tree.} Program 3.9 shows a scheme for partitioning a left list $\mat{Z}$ of a tree $\tree{T}$ into component subtrees, i.e., for determining the vector $\vect{p}$ such that $\vect{p}_j$ is the moment of the singular subtree $\tree{T}_j$. Thus $\nu(\vect{p}) = \vect{\mu}_1(\tree{T})$, $\vect{p}_j = \mu(\tree{T}_j)$, and the infix $((\vect{p} {+ \atop \times} \vect{a}^{j-1}) ↓ \vect{a}^{\mathbf{ p}_j})/\!/\mat{Z}$ is the left list of $\tree{T}_j$.
+\par \textbf{Example 3.1. Partitioning of an $n$-tuply rooted tree.} Program 3.9 shows a scheme for partitioning a left list $\mat{Z}$ of a tree $\tree{T}$ into component subtrees, i.e., for determining the vector $\vect{p}$ such that $\vect{p}_j$ is the moment of the singular subtree $\tree{T}_j$. Thus $ν(\vect{p}) = \mathbf{μ}_1(\tree{T})$, $\vect{p}_j = μ(\tree{T}_j)$, and the infix $((\vect{p} {+ \atop \times} \vect{a}^{j-1}) ↓ \vect{a}^{\mathbf{ p}_j})/\!/\mat{Z}$ is the left list of $\tree{T}_j$.
 
 \par The loop 6-10 scans successive components of the degree vector $\mat{Z}_1$ (in ascending order) and computes $\vect{r}$, the indicated number of roots. The value of $\vect{r}$ increases by, at most, one per iteration, and when $\vect{r}$ becomes unity, the end of a singly rooted tree has been reached. Its moment $m$ is then appended (step 11) as a new final component of the partition vector $\vect{p}$, the parameters $m$ and $r$ are reset, and the scan of the next rooted tree is begun. Normal termination occurs at step 3; termination at step 6 indicates ill formation of $\mat{Z}$.
 
@@ -330,10 +330,10 @@ $$
 
 \par \textbf{Figure 3.10} Construction of a Huffman prefix code
 
-\par \textbf{Example 3.2. Huffman minimum redundancy prefix code.} If $\vect{b}$ is any set such that $\nu(\vect{b})$ > 1, then any other finite set $\vect{a}$ can be encoded in $\vect{b}$, that is, represented by $\vect{b}$. (The sets $\vect{a}$ and $\vect{b}$ may be called the ``alphabet'' and ``basic alphabet'', respectively.) If $\nu(\vect{a}) ≤ \nu(\vect{b})$, the encoding may be described by a mapping vector $\vect{k}$ such that $\vect{⍴}(\vect{a}_i) = \vect{b}_{\vect{k}_i}$. If $\nu(\vect{a}) > \nu(\vect{b})$, then each $\vect{a}_i$ must be represented by a vector $\vect{x}^i ⊆ \vect{b}$. For example, if $\vect{a} = \vect{⍳}^0(10)$ and $\vect{b} = \vect{⍳}^0(2)$, then the decimal digits $\vect{a}$ may be encoded in the so-called 8421 system:
+\par \textbf{Example 3.2. Huffman minimum redundancy prefix code.} If $\vect{b}$ is any set such that $ν(\vect{b})$ > 1, then any other finite set $\vect{a}$ can be encoded in $\vect{b}$, that is, represented by $\vect{b}$. (The sets $\vect{a}$ and $\vect{b}$ may be called the ``alphabet'' and ``basic alphabet'', respectively.) If $ν(\vect{a}) ≤ ν(\vect{b})$, the encoding may be described by a mapping vector $\vect{k}$ such that $\mathbf{ρ}(\vect{a}_i) = \vect{b}_{\vect{k}_i}$. If $ν(\vect{a}) > ν(\vect{b})$, then each $\vect{a}_i$ must be represented by a vector $\vect{x}^i ⊆ \vect{b}$. For example, if $\vect{a} = \mathbf{ι}^0(10)$ and $\vect{b} = \mathbf{ι}^0(2)$, then the decimal digits $\vect{a}$ may be encoded in the so-called 8421 system:
 
 $$
-  (2 \symbfup{\epsilon}(4)) ⊥ \vect{x}^i = \vect{a}_i
+  (2 \textbf{ϵ}(4)) ⊥ \vect{x}^i = \vect{a}_i
 $$
 
 \par In so-called fixed length coding the vectors $\vect{x}^i$ have a common dimension $d$, and the decoding of a message $m$ (consisting of the catenation of vectors $\vect{x}^i)$ involves the selection of successive infixes of dimension $d$. If the probability distribution of the characters $\vect{a}_1$ occurring in messages is not uniform, more compact encoding may be achieved by using variable length codes and assigning the shorter codes to the more frequent characters. Decoding of a message in variable length coding can be performed only if the boundaries between the successive $\vect{x}^i$ are indicated in some way.
@@ -358,25 +358,25 @@ $$
 
 \par \textbf{Program 3.12} Construction of the left list $\vect{z}$ of the binary Huffman code for characters $\vect{c}$ with frequency $\vect{f}$
 
-\par \textbf{Program 3.12}. The tree $\tree{T}$ of Program 3.11 is represented by the left list node vector $\vect{z}$, in conjunction with the implicit degree vector $\vect{d} = 2 \times (\vect{z} = ∘\symbfup{\epsilon})$. The algorithm differs from Program 3.11 primarily in the reordering of the subtrees (steps 6-9). Step 7 appends to $\vect{x}$ the left list of the ith subtree (of the reordered tree) selected by the partition vector $\vect{p}$ according to the conventions of Program 3.9. Step 1a prefixes $\vect{x}$ by the new null root, and steps 11-12 redefine $\vect{p}$ appropriately.
+\par \textbf{Program 3.12}. The tree $\tree{T}$ of Program 3.11 is represented by the left list node vector $\vect{z}$, in conjunction with the implicit degree vector $\vect{d} = 2 \times (\vect{z} = ∘\textbf{ϵ})$. The algorithm differs from Program 3.11 primarily in the reordering of the subtrees (steps 6-9). Step 7 appends to $\vect{x}$ the left list of the ith subtree (of the reordered tree) selected by the partition vector $\vect{p}$ according to the conventions of Program 3.9. Step 1a prefixes $\vect{x}$ by the new null root, and steps 11-12 redefine $\vect{p}$ appropriately.
 
 \par Program 1.21 can be applied to the left list produced by Program 3.12 to determine the associated index matrix (in a 0-origin system), and hence the actual codes assigned.
 
-\par It is not essential that the characters be assigned to leaves in precisely the order specified by Programs 3.11 and 3.12, and it is sufficient that the dimension of the leaf index increase monotonically with decreasing frequency of the character. It is therefore unnecessary to carry the characters themselves through the process; it suffices to determine the structure of the tree, sort the corresponding index matrix to right list order (which is ordered on dimension of the index vectors), and assign the characters (in decreasing order by frequency) to successive leaves. Since the structure of such a tree (whose nodes have a common irrelevant value and whose nonleaves all have a common branching ratio equal to the number of roots) is sufficiently determined by the moment vector $\vect{\mu}(\tree{T})$, the process of Program 3.12 can be simplified.
+\par It is not essential that the characters be assigned to leaves in precisely the order specified by Programs 3.11 and 3.12, and it is sufficient that the dimension of the leaf index increase monotonically with decreasing frequency of the character. It is therefore unnecessary to carry the characters themselves through the process; it suffices to determine the structure of the tree, sort the corresponding index matrix to right list order (which is ordered on dimension of the index vectors), and assign the characters (in decreasing order by frequency) to successive leaves. Since the structure of such a tree (whose nodes have a common irrelevant value and whose nonleaves all have a common branching ratio equal to the number of roots) is sufficiently determined by the moment vector $\mathbf{μ}(\tree{T})$, the process of Program 3.12 can be simplified.
 
 \par (END PROGRAM 3.12 DESCRIPTION)
 
 \subsection*{Chain list matrices}
 
-\par The full chain list matrix of a tree $\tree{T}$ is a matrix $\mat{P}$ of dimension $\mu(\tree{T}) \times (\delta(\tree{T}) + 2)$ defined as follows: $\mat{P}_2$ is some node vector of $\tree{T}$, $\mat{P}_1$ is the associated degree vector, $\mat{P}_{j+2}^i$ is null if $j$ exceeds the associated degree $\mat{P}_1^i$ and is otherwise the row index in $\mat{P}$ of the $j$th node emanating from node $\mat{P}_2^i$. Table 3.13 shows a full chain list matrix for the tree of Fig. 1.16. A full chain list matrix is called a full \textit{right} (\textit{left}) chain list matrix if the nodes occur in right (left) list order.
+\par The full chain list matrix of a tree $\tree{T}$ is a matrix $\mat{P}$ of dimension $μ(\tree{T}) \times (δ(\tree{T}) + 2)$ defined as follows: $\mat{P}_2$ is some node vector of $\tree{T}$, $\mat{P}_1$ is the associated degree vector, $\mat{P}_{j+2}^i$ is null if $j$ exceeds the associated degree $\mat{P}_1^i$ and is otherwise the row index in $\mat{P}$ of the $j$th node emanating from node $\mat{P}_2^i$. Table 3.13 shows a full chain list matrix for the tree of Fig. 1.16. A full chain list matrix is called a full \textit{right} (\textit{left}) chain list matrix if the nodes occur in right (left) list order.
 
 \par (TODO: TABLE 3.13 (see html))
 
 \par \textbf{Table 3.13} Chain lists of the tree of Fig. 1.16
 
-\par The full chain list matrix is a formalization of the scheme suggested in the discussion of chained representations (Sec. 3.2). Its convenience in forward path tracing is obvious. Since it does not identify the roots of the tree, an auxiliary vector must be provided for this purpose. However, if the ordering chosen for the nodes is that of a right list, the roots occur first in the list, their number $r = \nu(\mat{P}_1) - (+/\mat{P}_1)$ is specified by the degree vector $\mat{P}_1$, and the need for the auxiliary vector vanishes. Moreover, since a right list groups all nodes emanating from a given node, each row of $\overline{\vect{\alpha}}^2/\mat{P}$ is simply a sequence of integers followed by null elements, and the information necessary to path tracing is provided by the column $\mat{P}_3$ alone.
+\par The full chain list matrix is a formalization of the scheme suggested in the discussion of chained representations (Sec. 3.2). Its convenience in forward path tracing is obvious. Since it does not identify the roots of the tree, an auxiliary vector must be provided for this purpose. However, if the ordering chosen for the nodes is that of a right list, the roots occur first in the list, their number $r = ν(\mat{P}_1) - (+/\mat{P}_1)$ is specified by the degree vector $\mat{P}_1$, and the need for the auxiliary vector vanishes. Moreover, since a right list groups all nodes emanating from a given node, each row of $\overline{\mathbf{α}}^2/\mat{P}$ is simply a sequence of integers followed by null elements, and the information necessary to path tracing is provided by the column $\mat{P}_3$ alone.
 
-\par The \textit{right chain list matrix} of a tree $\tree{T}$ is therefore defined as $\overline{\vect{\alpha}}^3/\mat{P}$, where $\mat{P}$ is the full right chain list matrix of $\tree{T}$. It is illustrated by Table 3.13b. Program 3.14 shows its use in path tracing. Although the degree vector $\mat{P}_1$ is redundant (that is, $\mat{P}_1$ and $\mat{P}_3$ can be determined one from the other), it provides a direct check (step 6) on the legitimacy of the index vector $\vect{r}$ which would be difficult to obtain from $\mat{P}_3$ alone.
+\par The \textit{right chain list matrix} of a tree $\tree{T}$ is therefore defined as $\overline{\mathbf{α}}^3/\mat{P}$, where $\mat{P}$ is the full right chain list matrix of $\tree{T}$. It is illustrated by Table 3.13b. Program 3.14 shows its use in path tracing. Although the degree vector $\mat{P}_1$ is redundant (that is, $\mat{P}_1$ and $\mat{P}_3$ can be determined one from the other), it provides a direct check (step 6) on the legitimacy of the index vector $\vect{r}$ which would be difficult to obtain from $\mat{P}_3$ alone.
 
 \par For a search of the type described by Program 3.14, it is necessary to scan down a level until agreement is reached and then across to the next level. For this type of scan, the \textit{filial-heir chain list} is compact and convenient.
 
@@ -384,7 +384,7 @@ $$
 
 \par \textbf{Program 3.14} Determination of the path $\vect{p} = \tree{T}^{\vect{r}}$ from the right chain list matrix $\mat{P}$
 
-\par The set of $(j + 1)$th level nodes of the subtree $\tree{T}_{\vect{i}}$ are collectively called the \textit{jth filial vector} of node $\vect{i}$, and the first member of the first filial vector of node $\vect{i}$ is called the \textit{heir} of node $\vect{i}$. (For brevity, the first filial vector of a node will also be called its filial vector.) If each node is chained only to its successor in the filial vector containing it and to its heir, the resulting representation is called a \textit{filial-heir chain list}. Formally, the filial-heir representation of a tree $\tree{T}$ is a matrix $\mat{F}$ of dimension $\mu(\tree{T}) \times 4$ such that $\mat{F}_2$ is a node vector of $\tree{T}$, $\mat{F}_1$ is the associated degree vector, $\mat{F}_3$ is a \textit{filial chain} such that $\mat{F}_3^i = j$ if node $\mat{F}_2^j$ is the successor of node $\mat{F}_2^i$ in the smallest filial set containing it and $\mat{F}_3^i = ∘$ if node $\mat{F}_2^i$ has no such successor, and $\mat{F}_4$ is an \textit{heir chain} such that $\mat{F}_4^i = h$ if node $\mat{F}_2^h$ is the heir of node $\mat{F}_2^i$ and $\mat{F}_4^i = ∘$ if $\mat{F}_2^i$ is a leaf. The filial-heir chain list is illustrated in Table 3.13\textit{c}.
+\par The set of $(j + 1)$th level nodes of the subtree $\tree{T}_{\vect{i}}$ are collectively called the \textit{jth filial vector} of node $\vect{i}$, and the first member of the first filial vector of node $\vect{i}$ is called the \textit{heir} of node $\vect{i}$. (For brevity, the first filial vector of a node will also be called its filial vector.) If each node is chained only to its successor in the filial vector containing it and to its heir, the resulting representation is called a \textit{filial-heir chain list}. Formally, the filial-heir representation of a tree $\tree{T}$ is a matrix $\mat{F}$ of dimension $μ(\tree{T}) \times 4$ such that $\mat{F}_2$ is a node vector of $\tree{T}$, $\mat{F}_1$ is the associated degree vector, $\mat{F}_3$ is a \textit{filial chain} such that $\mat{F}_3^i = j$ if node $\mat{F}_2^j$ is the successor of node $\mat{F}_2^i$ in the smallest filial set containing it and $\mat{F}_3^i = ∘$ if node $\mat{F}_2^i$ has no such successor, and $\mat{F}_4$ is an \textit{heir chain} such that $\mat{F}_4^i = h$ if node $\mat{F}_2^h$ is the heir of node $\mat{F}_2^i$ and $\mat{F}_4^i = ∘$ if $\mat{F}_2^i$ is a leaf. The filial-heir chain list is illustrated in Table 3.13\textit{c}.
 
 \section*{References}
 
@@ -409,30 +409,30 @@ $$
   \vect{c} &= (0, A, B, C, ... , Z, \mathbf{.}, \mathbf{,}, \#, *, +).
 \end{align*}
 
-\par The expression $\vect{\pi} ⊆ \vect{x}$ will be used to specify the set $\vect{x}$ as the range of the components of $\vect{\pi}$.
+\par The expression $\mathbf{π} ⊆ \vect{x}$ will be used to specify the set $\vect{x}$ as the range of the components of $\mathbf{π}$.
 
 
 
-\par \textbf{3.1} For each of the following cases, specify a suitable encoding matrix and format vector and show the explicit value of the infix of $\vect{\pi}$ which (in a solid representation) represents the given example vector $\vect{x}$:
+\par \textbf{3.1} For each of the following cases, specify a suitable encoding matrix and format vector and show the explicit value of the infix of $\mathbf{π}$ which (in a solid representation) represents the given example vector $\vect{x}$:
 
 \begin{enumerate}[label=(\alph*)]
-  \item the decimal digits $\vect{d} = \vect{⍳}^0(10)$ in a ranked fixed-length code for $\vect{\pi} ⊆ \vect{⍳}^0(2)$.\\ Example: $\vect{x} = (6, 8, 9)$.
-  \item the set $\vect{a}$ in a ranked fixed-length code for $\vect{\pi} ⊆ \vect{⍳}^0(2)$.\\ Example: $\vect{x} = (c, a, t)$. \\
-  \item the set $\vect{a} ∪ \vect{c} ∪ \vect{⍳}^0(10)$ in a fixed-length code for $\vect{\pi} ⊆ \vect{⍳}^0(10)$.\\ Example: $\vect{x} = (M, a, y, ∘, 3, \textbf{,}, 1,9,6,0, \textbf{.})$.
-  \item the set $\vect{a} ∪ \vect{c}$ in a two-case code (with single-character shift) for $\vect{\pi} ⊆ \vect{a}$. (See <acronym title="Brooks, F.P., Jr., and K.E. Iverson, (1962), (in press) Automatic Data Processing, Wiley, New York.">Brooks and Iverson, 1962.</acronym>)\\ Example: $x = (T, r, o, y, \textbf{,}, N, \textbf{.}, Y, \textbf{.})$.
-  \item the set $\vect{a}$ in a Huffman prefix code for $\vect{\pi} ⊆ \vect{⍳}^0(2)$. Assume the frequency distribution given in
+  \item the decimal digits $\vect{d} = \mathbf{ι}^0(10)$ in a ranked fixed-length code for $\mathbf{π} ⊆ \mathbf{ι}^0(2)$.\\ Example: $\vect{x} = (6, 8, 9)$.
+  \item the set $\vect{a}$ in a ranked fixed-length code for $\mathbf{π} ⊆ \mathbf{ι}^0(2)$.\\ Example: $\vect{x} = (c, a, t)$. \\
+  \item the set $\vect{a} ∪ \vect{c} ∪ \mathbf{ι}^0(10)$ in a fixed-length code for $\mathbf{π} ⊆ \mathbf{ι}^0(10)$.\\ Example: $\vect{x} = (M, a, y, ∘, 3, \textbf{,}, 1,9,6,0, \textbf{.})$.
+  \item the set $\vect{a} ∪ \vect{c}$ in a two-case code (with single-character shift) for $\mathbf{π} ⊆ \vect{a}$. (See <acronym title="Brooks, F.P., Jr., and K.E. Iverson, (1962), (in press) Automatic Data Processing, Wiley, New York.">Brooks and Iverson, 1962.</acronym>)\\ Example: $x = (T, r, o, y, \textbf{,}, N, \textbf{.}, Y, \textbf{.})$.
+  \item the set $\vect{a}$ in a Huffman prefix code for $\mathbf{π} ⊆ \mathbf{ι}^0(2)$. Assume the frequency distribution given in
 <acronym title="Dewey, Godfrey, (1923), Relative Frequency of English Speech Sounds, Cambridge University Press, p. 185.">Dewey (1923)</acronym>.\\ Example: $\vect{x} = (t, r, e, e)$.
 \end{enumerate}
 
 
-\par \textbf{3.2} For each of the cases of Exercise 3.1 write a program which decodes the infix $(i ↓ \mathbf{⍺}^j)/\vect{\pi}$, that is, which produces the vector $\vect{z}$ represented by the infix. The auxiliary physical vector $\vect{\pi}^1 ⊆ \vect{s}$ may be employed to represent the first column of the encoding matrix, where $\vect{s}$ is the set encoded. Perform a partial trace of each program for the example value used in Exercise 3.1.
+\par \textbf{3.2} For each of the cases of Exercise 3.1 write a program which decodes the infix $(i ↓ \mathbf{α}^j)/\mathbf{π}$, that is, which produces the vector $\vect{z}$ represented by the infix. The auxiliary physical vector $\mathbf{π}^1 ⊆ \vect{s}$ may be employed to represent the first column of the encoding matrix, where $\vect{s}$ is the set encoded. Perform a partial trace of each program for the example value used in Exercise 3.1.
 
 
 
-\par \textbf{3.3} The ordered set of months $\vect{m} = (\text{JANUARY}, \text{FEBRUARY}, ... , \text{DECEMBER})$ is to be represented by the physical vector $\vect{\pi} ⊆ \vect{c} ∪ \vect{⍳}^0(10)$. For each of the following types of representation, specify a particular representation and show the values of the relevant components of $\vect{\pi}$:
+\par \textbf{3.3} The ordered set of months $\vect{m} = (\text{JANUARY}, \text{FEBRUARY}, ... , \text{DECEMBER})$ is to be represented by the physical vector $\mathbf{π} ⊆ \vect{c} ∪ \mathbf{ι}^0(10)$. For each of the following types of representation, specify a particular representation and show the values of the relevant components of $\mathbf{π}$:
 
 \begin{enumerate}[label=(\alph*)]
-  \item a linear representation (employing null elements for filling to a common dimension in $\vect{\pi}$).
+  \item a linear representation (employing null elements for filling to a common dimension in $\mathbf{π}$).
   \item a solid representation for each element of $\vect{m}$ and an appropriate grid matrix itself represented linearly.
   \item a chained representation.
   \item a double chained representation.
@@ -444,12 +444,12 @@ $$
 \begin{enumerate}[label=(\alph*)]
   \item For each of the cases of Exercise 3.3, write a program which selects month $\vect{m}_k$.
   \item Trace each program for the case $k = 2$.
-  \item For case (d) of Exercise 3.3, write a program which selects $\vect{m}_k$ by forward chaining if $k ≤ \nu(\vect{m})÷2$, and by backward chaining if $k > \nu(\vect{m})÷2$.
+  \item For case (d) of Exercise 3.3, write a program which selects $\vect{m}_k$ by forward chaining if $k ≤ ν(\vect{m})÷2$, and by backward chaining if $k > ν(\vect{m})÷2$.
 \end{enumerate}
 
 
 
-\par \textbf{3.5} For each of the cases of Exercise 3.3, write a program which ``prints out'' the set of months in a minimum number of $n$-character lines, inserting a single null between successive months except where (i) further nulls must be added to prevent the continuation of a single word from one line to the next, or (ii) no null is needed between two successive words, the first of which is coterminous with the line. In other words, produce a matrix $\mat{Z}$ of row dimension $n$ and of minimum column dimension such that $(\mat{Z} \neq ∘\mat{E})/\mat{Z} = \vect{⍴}(\vect{m}_1)$ \oplus $\vect{⍴}(\vect{m}_2)$ \oplus ... \oplus $\vect{⍴}(\vect{m}_{12})$, and such that each row $\mat{Z}^i$ may be partitioned into one or more vectors of the form $\vect{⍴}(\vect{m}_k)$ \oplus $∘\symbfup{\epsilon}$, all but the last of which must be of dimension $\nu[\vect{⍴}(\vect{m}_k)] + 1$.
+\par \textbf{3.5} For each of the cases of Exercise 3.3, write a program which ``prints out'' the set of months in a minimum number of $n$-character lines, inserting a single null between successive months except where (i) further nulls must be added to prevent the continuation of a single word from one line to the next, or (ii) no null is needed between two successive words, the first of which is coterminous with the line. In other words, produce a matrix $\mat{Z}$ of row dimension $n$ and of minimum column dimension such that $(\mat{Z} \neq ∘\mat{E})/\mat{Z} = \mathbf{ρ}(\vect{m}_1)$ \oplus $\mathbf{ρ}(\vect{m}_2)$ \oplus ... \oplus $\mathbf{ρ}(\vect{m}_{12})$, and such that each row $\mat{Z}^i$ may be partitioned into one or more vectors of the form $\mathbf{ρ}(\vect{m}_k)$ \oplus $∘\textbf{ϵ}$, all but the last of which must be of dimension $ν[\mathbf{ρ}(\vect{m}_k)] + 1$.
 
 
 
@@ -475,16 +475,16 @@ $$
 
 
 
-\par \textbf{3.9} Frequently a vector $\vect{x}$ kept in a partitioned representation (for efficient use of storage) must be ``unpacked'' to a linear or other more accessible form for efficient processing. The converse operation of ``packing'' is also required. Let the partitioned representation be a file $\tree{\Phi}$ employing an intercomponent partition $\vect{\lambda}_1$, and a terminal partition $\vect{\lambda}_2$, and write both packing and unpacking programs for each of the following cases. Assume that the maximum dimension in $\vect{\pi}$ of any component is $n$.
+\par \textbf{3.9} Frequently a vector $\vect{x}$ kept in a partitioned representation (for efficient use of storage) must be ``unpacked'' to a linear or other more accessible form for efficient processing. The converse operation of ``packing'' is also required. Let the partitioned representation be a file $\tree{Φ}$ employing an intercomponent partition $\mathbf{λ}_1$, and a terminal partition $\mathbf{λ}_2$, and write both packing and unpacking programs for each of the following cases. Assume that the maximum dimension in $\mathbf{π}$ of any component is $n$.
 
 \begin{enumerate}[label=(\alph*)]
   \item A solid linear representation employing null fill.
-  \item An allocation prescribed by a grid matrix $\mat{G}$ with $\mat{G}_2 = n\symbfup{\epsilon}$.
+  \item An allocation prescribed by a grid matrix $\mat{G}$ with $\mat{G}_2 = n\textbf{ϵ}$.
 \end{enumerate}
 
 
 
-\par \textbf{3.10} Let $\vect{\pi} ⊆ \vect{⍳}^0(2)$, let the set a be encoded in a five-bit code such that $(2\symbfup{\epsilon}) ⊥ \vect{⍴}(\vect{a}_i) = i$, and let each component of the vector $\vect{x}$ be an (uncapitalized) English word. Using 0-origin indexing throughout, specify a suitable partitioned representation in $\vect{\pi}$ for the vector $\vect{x}$, and repeat Exercises 3.9(a) and 3.9(b), using it in lieu of the files.
+\par \textbf{3.10} Let $\mathbf{π} ⊆ \mathbf{ι}^0(2)$, let the set a be encoded in a five-bit code such that $(2\textbf{ϵ}) ⊥ \mathbf{ρ}(\vect{a}_i) = i$, and let each component of the vector $\vect{x}$ be an (uncapitalized) English word. Using 0-origin indexing throughout, specify a suitable partitioned representation in $\mathbf{π}$ for the vector $\vect{x}$, and repeat Exercises 3.9(a) and 3.9(b), using it in lieu of the files.
 
 
 
@@ -506,7 +506,7 @@ $$
 
 
 
-\par \textbf{3.13} Give a complete specification of a scheme for representing a tree $\tree{T}$ by a full chain list matrix which is not in right list order. Write a program (expressed in terms of the physical vector $\vect{\pi}$) which determines the path vector $\tree{T}^{\vect{i}}$ for a given index vector $\vect{i}$.
+\par \textbf{3.13} Give a complete specification of a scheme for representing a tree $\tree{T}$ by a full chain list matrix which is not in right list order. Write a program (expressed in terms of the physical vector $\mathbf{π}$) which determines the path vector $\tree{T}^{\vect{i}}$ for a given index vector $\vect{i}$.
 
 
 
@@ -514,11 +514,11 @@ $$
 
 
 
-\par \textbf{3.15} Let $\vect{\pi} ⊆ \vect{a} ∪ \vect{⍳}^0(10)$, and let $\vect{x}^1$, $\vect{x}^2$, ..., $\vect{x}^n$ be a family of vectors whose components belong to the set $\overline{\vect{\alpha}}^1/[\vect{a} ∪ \vect{⍳}^0(10)]$. Let the average and the maximum dimensions of the vectors $\vect{x}^i$ be $a$ and $m$, respectively. Assume that the chaining index is represented in decimal, with each digit represented by one component of $\vect{\pi}$. Determine (as a function of $m$ and $n$) the value of $a$ below which a chained representation provides more compact storage than a linear representation with null fill.
+\par \textbf{3.15} Let $\mathbf{π} ⊆ \vect{a} ∪ \mathbf{ι}^0(10)$, and let $\vect{x}^1$, $\vect{x}^2$, ..., $\vect{x}^n$ be a family of vectors whose components belong to the set $\overline{\mathbf{α}}^1/[\vect{a} ∪ \mathbf{ι}^0(10)]$. Let the average and the maximum dimensions of the vectors $\vect{x}^i$ be $a$ and $m$, respectively. Assume that the chaining index is represented in decimal, with each digit represented by one component of $\mathbf{π}$. Determine (as a function of $m$ and $n$) the value of $a$ below which a chained representation provides more compact storage than a linear representation with null fill.
 
 
 
-\par \textbf{3.16} Write a program which uses the minimization operation $\vect{u} ← \vect{v} ⌊ \vect{x}$ to determine the ordering permutation vector $\vect{p} ← \theta_1/(\vect{a} ⍳_1 \vect{b})$.
+\par \textbf{3.16} Write a program which uses the minimization operation $\vect{u} ← \vect{v} ⌊ \vect{x}$ to determine the ordering permutation vector $\vect{p} ← θ_1/(\vect{a} ι_1 \vect{b})$.
 
 
 
@@ -540,7 +540,7 @@ $$
 
 
 
-\par \textbf{3.20} Write a program which determines the right list $\mat{R} = \mathbf{⍺}^2/]\tree{T}$ as a function of the left list $\mat{L} = \mathbf{⍺}^2/[\tree{T}$. Incorporate tests of well formation.
+\par \textbf{3.20} Write a program which determines the right list $\mat{R} = \mathbf{α}^2/]\tree{T}$ as a function of the left list $\mat{L} = \mathbf{α}^2/[\tree{T}$. Incorporate tests of well formation.
 
 
 
@@ -548,7 +548,7 @@ $$
 
 \begin{enumerate}[label=(\alph*)]
   \item Show that ($[\mat{C}{\vee \atop \wedge}]^p)_j^i = 1$ if and only if there is a path of length p from node i to node j in the graph $(\vect{n}, \mat{C})$.
-  \item Show that $[\mat{C}{\vee \atop \wedge}]^p = 0$ for some $p < \nu(\mat{C})$ if and only if $(\vect{n}, \mat{C})$ contains no circuits.
+  \item Show that $[\mat{C}{\vee \atop \wedge}]^p = 0$ for some $p < ν(\mat{C})$ if and only if $(\vect{n}, \mat{C})$ contains no circuits.
   \item If $(\vect{n}, \mat{C})$ contains no circuits, the connection matrix $\mat{C}$ is said to be ``consistent''. The result of part (a) can be used to check consistency. Program the alternative method of
 <acronym title="Marimont, R.B., (1959), “A New Method of Checking the Consistency of Precedence Matrices”, J. ACM, vol. 6, pp. 164-171.">Marimont (1959)</acronym>.
   \item If $\mat{H} = \mat{C} \vee \mat{I}$, then $([\mat{H}{\vee \atop \wedge}]^p)_j^i = 1$ if and only if $i = j$ or there exists a path from node $i$ to node $j$ of length $n ≤ p + 1$. Show that for any connection matrix $\mat{C}$, $[\mat{H}{\vee \atop \wedge}]^p$ converges to a limit.
