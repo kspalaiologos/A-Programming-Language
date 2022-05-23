@@ -102,7 +102,7 @@ $$
 
 \par Structured operands such as vectors and matrices, together with a systematic component-by-component generalization of elementary operations, provide an important subordination of detail in the description of algorithms. The use of structured operands will be facilitated by \textit{selection operations} for extracting a specified portion of an operand, \textit{reduction operations} for extending an operation (such as logical or arithmetic multiplication) over all components, and \textit{permutation operations} for reordering components. Operations defined on vectors are extended to matrices: the extended operation is called a \textit{row} operation if the underlying vector operation is applied to each row of the matrix and a \textit{column} operation if it is applied to each column. A column operation is denoted by doubling the symbol employed for the corresponding row (and vector) operation.
 
-\par A distinct typeface will be used for each class of operand as detailed in Table 1.8. Special quantities (such as the prefix vectors $\mathbf{α}^i$ defined in Sec. 1.7</a>) will be denoted by Greek letters in the appropriate typeface. For mnemonic reasons, an operation closely related to such a special quantity will be denoted by the same Greek letter. For example, $α/\vect{u}$ denotes the maximum prefix (Sec. 1.10) of the logical vector $\vect{u}$. Where a Greek letter is indistinguishable from a Roman, sanserif characters will be used, e.g. $\mathsf{\mat{E}}$ and $\mathsf{\mat{I}}$ for the capitals of epsilon and iota.
+\par A distinct typeface will be used for each class of operand as detailed in Table 1.8. Special quantities (such as the prefix vectors $\mathbf{α}^i$ defined in Sec. 1.7) will be denoted by Greek letters in the appropriate typeface. For mnemonic reasons, an operation closely related to such a special quantity will be denoted by the same Greek letter. For example, $α/\vect{u}$ denotes the maximum prefix (Sec. 1.10) of the logical vector $\vect{u}$. Where a Greek letter is indistinguishable from a Roman, sanserif characters will be used, e.g. $\mathsf{\mat{E}}$ and $\mathsf{\mat{I}}$ for the capitals of epsilon and iota.
 
 \par (TODO: TABLE 1.8)
 
@@ -150,11 +150,11 @@ The ordinary arithmetic operations will be denoted by the ordinary symbols $+$, 
 
 \par The elementary logical operations \textit{and}, \textit{or}, and \textit{not} will be denoted by $\wedge$, $\vee$ and an overbar and are defined in the usual way as follows:
 
-\begin{align*}
- w ← u \wedge v  & \leftrightarrow & w = 1 \text{if and only if} & u = 1 \text{and} v = 1, \\
- w ← u \vee v    & \leftrightarrow & w = 1 \text{if and only if} & u = 1 \text{or} v = 1, \\
- w ← \overbar{u} & \leftrightarrow & w = 1 \text{if and only if} & u = 0. &
-\end{align*}
+\begin{alignat*}{2}
+ w ← u \wedge v  & \leftrightarrow w = 1 \quad\text{if and only if}\quad & u = 1 \quad\text{and}\quad v = 1, \\
+ w ← u \vee v    & \leftrightarrow w = 1 \quad\text{if and only if}\quad & u = 1 \quad\text{or} \quad v = 1, \\
+ w ← \overbar{u} & \leftrightarrow w = 1 \quad\text{if and only if}\quad & u = 0.
+\end{alignat*}
 
 \par If $x$ and $y$ are numerical quantities, then the expression $x < y$ implies that the quantity $x$ stands in the relation ``less than'' to the quantity $y$. More generally, if $α$ and $β$ are arbitrary entities and $\mathcal{R}$ is any relation defined on them, the \textit{relational statement} $(α \mathcal{R} β)$ is a logical variable which is true (equal to 1) if and only if $α$ stands in the relation $\mathcal{R}$ to $β$. For example, if $x$ is any real number, then the function
 
@@ -193,10 +193,10 @@ $$
 
 \noindent Thus
 
-\begin{align*}
+\begin{alignat*}{2}
   ⌈3.14⌉ = 4, & ⌊3.14⌋ = 3, & ⌊-3.14⌋ = -4, \\
   ⌈3.00⌉ = 3, & ⌊3.00⌋ = 3, & ⌊-3.00⌋ = -3.
-\end{align*}
+\end{alignat*}
 
 \par Clearly $⌈x⌉ = -⌊-x⌋$ and $⌊x⌋ \leq x \leq ⌈x⌉$. Moreover, $n = b⌊n ÷ b⌋ + b |_0 n$ for all integers $n$. Hence the integral quotient $⌊n ÷ b⌋$ is equivalent to the quantity $q$ occurring in the definition of the $j$-residue for the case $j = 0$.
 
@@ -211,12 +211,12 @@ $$
 \par All elementary operations defined on individual variables are extended consistently to vectors as component-by-component operations. For example,
 
 \begin{align*}
-  \vect{z} = \vect{x} + \vect{y}      & \leftrightarrow & \vect{z}_{i} = \vect{x}_{i} + \vect{y}_{i}, \\
-  \vect{z} = \vect{x} \times \vect{y} & \leftrightarrow & \vect{z}_{i} = \vect{x}_{i} \times \vect{y}_{i}, \\
-  \vect{z} = \vect{x} ÷ \vect{y}      & \leftrightarrow & \vect{z}_{i} = \vect{x}_{i} ÷ \vect{y}_{i}, \\
-  \vect{z} = ⌈\vect{x}⌉               & \leftrightarrow & \vect{z}_{i} = ⌈\vect{x}_{i}⌉, \\
-  \vect{w} = \vect{u} \wedge \vect{v} & \leftrightarrow & \vect{w}_{i} = \vect{u}_{i} \wedge \vect{v}_{i}, \\
-  \vect{w} = (\vect{x} < \vect{y})    & \leftrightarrow & \vect{w}_{i} = (\vect{x}_{i} < \vect{y}_{i}). \\
+  \vect{z} = \vect{x} + \vect{y}      & \leftrightarrow \vect{z}_i = \vect{x}_i + \vect{y}_i, \\
+  \vect{z} = \vect{x} \times \vect{y} & \leftrightarrow \vect{z}_i = \vect{x}_i \times \vect{y}_i, \\
+  \vect{z} = \vect{x} ÷ \vect{y}      & \leftrightarrow \vect{z}_i = \vect{x}_i ÷ \vect{y}_i, \\
+  \vect{z} = ⌈\vect{x}⌉               & \leftrightarrow \vect{z}_i = ⌈\vect{x}_i⌉, \\
+  \vect{w} = \vect{u} \wedge \vect{v} & \leftrightarrow \vect{w}_i = \vect{u}_i \wedge \vect{v}_i, \\
+  \vect{w} = (\vect{x} < \vect{y})    & \leftrightarrow \vect{w}_i = (\vect{x}_i < \vect{y}_i).
 \end{align*}
 
 \par Thus if $\vect{x} = (1, 0, 1, 1)$ and $\vect{y} = (0, 1, 1, 0)$ then $\vect{x} + \vect{y} = (1, 1, 2, 1)$, $\vect{x} \wedge \vect{y} = (0, 0, 1, 0)$, and $(\vect{x} < \vect{y}) = (0, 1, 0, 0)$.
@@ -249,3 +249,279 @@ $$
 \par The subscript appended to a vector to designate a single component is called an \textit{index}, and the indices are normally chosen as a set of successive integers beginning at 1, that is, $\vect{x} = (\vect{x}_1, \vect{x}_2, ... \vect{x}_ν)$. It is, however, convenient to admit more general \textit{$j$-origin indexing} in which the set of successive integers employed as indices in any structured operand begin with a specified integer $j$.
 
 \par The two systems of greatest interest are the common 1-origin system, which will be employed almost exclusively in this chapter, and the 0-origin system. The latter system is particularly convenient whenever the index itself must be represented in a positional number system and will therefore be employed exclusively in the treatment of computer organization in Chapter 2.
+
+\section{Rotation}
+
+\par The \textit{left rotation} of a vector $\vect{x}$ is denoted by $k ↑ \vect{x}$ and specifies the vector obtained by cyclical left shift of the components of $\vect{x}$ by $k$ places. Thus if $\vect{a} = (1, 2, 3, 4, 5, 6)$, and $\vect{b} = (\text{c}, \text{a}, \text{n}, \text{d}, \text{y})$, then $2 ↑ \vect{a} = (3, 4, 5, 6, 1, 2)$ and $3 ↑ \vect{b} = 8 ↑ \vect{b} = (\text{d}, \text{y}, \text{c}, \text{a}, \text{n})$. Formally,%^{<a href="#note1a">[a]</a>}
+
+$$
+  \vect{z} = k ↑ \vect{x} \leftrightarrow \vect{z}_i = \vect{x}_j,\quad
+    \text{where}\; j = ν|_1(i + k).
+$$
+
+\noindent \textit{Right rotation} is denoted by $k ↓ \vect{x}$ and is defined analogously. Thus
+
+$$
+  \vect{z} = k ↓ \vect{x} \leftrightarrow \vect{z}_i = \vect{x}_j,\quad
+    \text{where}\; j = ν|_1(i - k).
+$$
+
+\noindent If $k = 1$, it may be elided. Thus $↑ \vect{b} = (\text{a}, \text{n}, \text{d}, \text{y}, \text{c})$.
+
+\par Left rotation is extended to matrices in two ways as follows:
+
+\begin{alignat*}{2}
+ \mat{A} ← \vect{j} ↑ \mat{B} & \leftrightarrow & \mat{A}^i = \vect{j}_i ↑ \mat{B}^i \\
+ \mat{C} ← \vect{k} \Uparrow \mat{B} & \leftrightarrow & \mat{C}_i = \vect{k}_j ↑ \mat{B}_j
+\end{alignat*}
+
+\par The first operation is an extension of the basic vector rotation to each row of the matrix and is therefore called \textit{row rotation}. The second operation is the corresponding column operation and is therefore denoted by the doubled operation symbol $\Uparrow$. For example, if
+
+$$
+  \vect{k} = (0, 1, 2),
+$$
+
+\noindent and
+
+$$
+  \mat{B} = \begin{pmatrix} a & b & c \\ d & e & f \\ g & h & i \end{pmatrix}
+$$
+
+\noindent then
+
+$$
+  \vect{k} ↑ \mat{B} = \begin{pmatrix} a & b & c \\ e & f & d \\ i & g & h \end{pmatrix}
+  \quad \text{and} \quad
+  \vect{k} \Uparrow \mat{B} = \begin{pmatrix} a & e & i \\ d & h & c \\ g & b & f \end{pmatrix}
+$$
+
+\par Right rotation is extended analogously.
+
+\section{Special vectors}
+
+\par Certain special vectors warrant special symbols. In each of the following definitions, the parameter $n$ will be used to specify the dimension. The \textit{interval vector} $\textbf{ι}^j(n)$ is defined as the vector of integers beginning with $j$. Thus $\textbf{ι}^0(4)=(0, 1, 2, 3)$, $\textbf{ι}^1(4)=(1, 2, 3, 4)$, and $\textbf{ι}^{-7}(5)= (-7, -6, -5, -4, -3)$. Four types of logical vectors are defined as follows. The $j$th \textit{unit vector} $\textbf{ϵ}^j(n)$ has a one in the $j$th position, that is, $(\textbf{ϵ}^j(n))_k = (k = j)$. The \textit{full vector} $\textbf{ϵ}(n)$ consists of all ones. The vector consisting of all zeros is denoted both by $0$ and by $\overbar{\textbf{ϵ}}(n)$. The \textit{prefix vector of weight j} is denoted by $\mathbf{α}^j(n)$ and possesses ones in the first $k$ positions, where $k$ is the lesser of $j$ and $n$. The \textit{suffix vector} $\textbf{ω}^j(n)$ is defined analogously. Thus $\textbf{ϵ}^2(3) = (0, 1, 0)$, $\textbf{ϵ}(4) = (1, 1, 1, 1)$, $\mathbf{α}^3(5) = (1, 1, 1, 0, 0)$, $\textbf{ω}^3(5) = (0, 0, 1, 1, 1)$, and $\mathbf{α}^7(5) = \mathbf{α}^5(5) = (1, 1, 1, 1, 1)$. Moreover, $\textbf{ω}^j(n) = j ↑ \mathbf{α}^j(n)$, and $\mathbf{α}^j(n) = j ↓ \textbf{ω}^j(n)$.
+
+\par A logical vector of the form $\mathbf{α}^h(n) \wedge \textbf{ω}^j(n)$ is called an \textit{infix vector}. An infix vector can also be specified in the form $j ↓ \mathbf{α}^k(n)$, which displays its weight and location more directly.
+
+\par An operation such as $\vect{x} \wedge \vect{y}$ is defined only for \textit{compatible} vectors $\vect{x}$ and $\vect{y}$, that is, for vectors of like dimension. Since this compatibility requirement can be assumed to specify implicitly the dimension of one of the operands, elision of the parameter $n$ may be permitted in the notation for the special vectors. Thus, if $y = (3, 4, 5, 6, 7)$, the expression $\textbf{ϵ} \times \vect{y}$ and $\textbf{ϵ}^j \times \vect{y}$ imply that the dimensions of $\textbf{ϵ}$ and $\textbf{ϵ}^j$ are both 5. Moreover, elision of $j$ will be permitted for the interval vector $\textbf{ι}^j(n)$ (or $\textbf{ι}^j$), and for the residue operator $|_j$ when $j$ is the index origin in use.
+
+\par It is, of course, necessary to specify the index origin in use at any given time. For example, the unit vector $\textbf{ϵ}^3(5)$ is $(0, 0, 1, 0, 0)$ in a 1-origin system and $(0, 0, 0, 1, 0)$ in a 0-origin system, even though the definition (that is, $(\textbf{ϵ}^j(n))_k = (k = j)$) remains unchanged. The prefix and suffix vectors are, of course, independent of the index origin. Unless otherwise specified, 1-origin indexing will be assumed.
+
+\par The vector $\textbf{ϵ}(0)$ is a vector of dimension zero and will be called the \textit{null vector}. It should not be confused with the special null element $∘$.
+
+\section{Reduction}
+
+\par An operation (such as summation) which is applied to all components of a vector to produce a result of a simpler structure is called a \textit{reduction}. The $\odot$-reduction of a vector $\vect{x}$ is denoted by $\odot/\vect{x}$ and defined as
+
+% Unbalanced parens, but seems intentional
+$$
+  \vect{z} ←
+    \odot/\vect{x} \leftrightarrow \vect{z} =
+      (\cdots ((\vect{x}_1 \odot \vect{x}_2) \odot \vect{x}_3) \odot \cdots)
+    \odot \vect{x}_{\textit{ν}}),
+$$
+
+\noindent where $\odot$ is any binary operator with a suitable domain. Thus $+/\vect{x}$ is the sum, $\times/\vect{x}$ is the product, and $\vee/\vect{x}$ is the logical sum of the components of a vector $\vect{x}$. For example, $\times/\textbf{ι}^1(5) = 1 \times 2 \times 3 \times 4 \times 5$, $\times/\textbf{ι}^1(n) = n!$, and $+/\textbf{ι}^1(n) = n(n + 1)/2$.
+
+\par As a further example, De Morgan's law may be expressed as $\wedge/\vect{u} = \overline{\vee/\overbar{\vect{u}}}$, where $\vect{u}$ is a logical vector of dimension two. Moreover, a simple inductive argument (Exercise 1.10) shows that the foregoing expression is the valid generalization of De Morgan's law for a logical vector $\vect{u}$ of arbitrary dimension.
+
+\par A relation $\mathcal{R}$ incorporated into a relational statement $(x\mathcal{R}y)$ becomes, in effect, an operator on the variables $x$ and $y$. Consequently, the reduction $\mathcal{R}/\vect{x}$ can be defined in a manner analogous to that of $(\odot/\vect{x})$, that is,
+
+$$
+  \mathcal{R}/\vect{x} = (\cdots ((\vect{x}_1 \mathcal{R} \vect{x}_2) \mathcal{R} \vect{x}_3) \mathcal{R} \cdots) \mathcal{R} \vect{x}_{\textit{ν}}).
+$$
+
+\noindent The parentheses now imply relational statements as well as grouping. The relational reductions of practical interest are $\neq/\vect{u}$, and $=/\vect{u}$, the \textit{exclusive-or} and the \textit{equivalence} reduction, respectively.
+
+\par The inductive argument of Exercise 1.10 shows that $\neq/\vect{u} = 2 |_0 (+/\vect{u})$. For example, if $\vect{u} = (1,0,1,1,0)$, then
+
+\begin{align*}
+  \neq/\vect{u} & = ((((1 \neq 0) \neq 1) \neq 1) \neq 0) \\
+                & = (((1 \neq 1) \neq 1) \neq 0) \\
+                & = ((0 \neq 1) \neq 0) \\
+                & = (1 \neq 0) = 1,
+\end{align*}
+
+\noindent and $2 |_0 (+/\vect{u}) = 2 |_0 3 = 1$. Similarly, $=/\vect{u} = \overline{2 |_0 (+/\overbar{\vect{u}})}$, and as a consequence,
+
+$$
+  \neq/\vect{u} = \overline{=/\overbar{\vect{u}}},
+$$
+
+\noindent a useful companion to De Morgan's law.
+
+\par To complete the system it is essential to define the value of $\odot/\textbf{ϵ}(0)$, the reduction of the null vector of dimension zero, as the identity element of the operator or relation $\odot$. Thus $+/\textbf{ϵ}(0) = \vee/\textbf{ϵ}(0) = 0$, and $\times/\textbf{ϵ}(0) = \wedge/\textbf{ϵ}(0) = 1$.
+
+\par A reduction operation is extended to matrices in two ways. A \textit{row reduction} of a matrix $\mat{X}$ by an operator $\odot$ is denoted by
+
+$$
+  \vect{y} ← \odot/\mat{X}
+$$
+
+\noindent and specifies a vector $\vect{y}$ of dimension $μ(\mat{X})$ such that $\vect{y}_i = \odot/\mat{X}^i$. A \textit{column reduction} of $\mat{X}$ is denoted by $\vect{z} ← \odot/\!/\mat{X}$ and specifies a vector $\vect{z}$ of dimension $\textit{ν}(\mat{X})$ such that $\vect{z}_j = \odot/\!/\mat{X}_j$.
+
+\par For example, if
+
+$$
+  \mat{U} = \begin{pmatrix} 1&0&1&0 \\ 0&0&1&1 \\ 1&1&1&0 \end{pmatrix}
+$$
+
+\noindent then $+/\mat{U} = (2, 2, 3)$, $+/\!/\mat{U} = (2, 1, 3, 1)$, $\wedge/\!/\mat{U} = (0, 0, 1, 0)$, $\neq/\mat{U} = (0, 0, 1)$, $=/\!/\mat{U} = (0, 1, 1, 1)$, and $+/(=/\!/\mat{U}) = 3$.
+
+\section{Selection}
+
+\subsection*{Compression}
+
+\par The effective use of structured operands depends not only on generalized operations but also on the ability to specify and select certain elements or groups of elements. The selection of single elements can be indicated by indices, as in the expressions $\vect{v}_i$, $\mat{M}^i$, $\mat{M}_j$, and $\mat{M}_i^j$. Since selection is a binary operation (i.e., to select or not to select), more general selection is conveniently specified by a logical vector, each unit component indicating selection of the corresponding component of the operand.
+
+\par The selection operation defined on an arbitrary vector $\vect{a}$ and a compatible (i.e., equal in dimension) logical vector $\vect{u}$ is denoted by $\vect{c} ← \vect{u}/\vect{a}$ and is defined as follows: the vector $\vect{c}$ is obtained from $\vect{a}$ by suppressing from $\vect{a}$ each component $\vect{a}_i$ for which $\vect{u}_i = 0$. The vector $\vect{u}$ is said to \textit{compress} the vector $\vect{a}$. Clearly $ν(\vect{c}) = +/\vect{u}$. For example, if $\vect{u} = (1, 0, 0, 0, 1, 1)$ and $\vect{a} = (\text{M}, \text{o}, \text{n}, \text{d}, \text{a}, \text{y})$, then $\vect{u}/\vect{a} =$ (\text{M}, \text{a}, \text{y}). Moreover, if $n$ is even and $\vect{v} = (2\textbf{ϵ}) |_0 \textbf{ι}^1(n) = (1, 0, 1, 0, 1, ...)$, then $\vect{v}/\textbf{ι}^1(n) = (1, 3, 5, ..., n-1)$ and $+/(\vect{v}/\textbf{ι}^1(n)) = (n/2)^2$.
+
+\par \textit{Row compression} of a matrix, denoted by $\vect{u}/\mat{A}$, compresses each row vector $\mat{A}^i$ to form a matrix of dimension $μ(\mat{A}) \times +/\vect{u}$. \textit{Column compression}, denoted by $\vect{u}/\!/\mat{A}$, compresses each column vector $\mat{A}_j$ to form a matrix of dimension $+/\vect{u} \times ν(\mat{A})$. Compatibility conditions are $ν(\vect{u}) = ν(\mat{A})$ for row compression, and $ν(\vect{u}) = μ(\mat{A})$ for column compression. For example, if $\mat{A}$ is an arbitrary $3 \times 4$ matrix, $\vect{u} = (0, 1, 0, 1)$ and $\vect{v} = (1, 0, 1)$; then
+
+$$
+  \vect{u}/\mat{A} = \begin{pmatrix}
+    \mat{A}_2^1 & \mat{A}_4^1 \\
+    \mat{A}_2^3 & \mat{A}_4^3 \\
+    \mat{A}_2^2 & \mat{A}_4^2
+  \end{pmatrix}, \quad
+  \vect{v}/\!/\mat{A} = \begin{pmatrix}
+    \mat{A}_1^1 & \mat{A}_2^1 & \mat{A}_3^1 & \mat{A}_4^1 \\
+    \mat{A}_1^3 & \mat{A}_2^3 & \mat{A}_3^3 & \mat{A}_4^3
+  \end{pmatrix}
+$$
+
+\noindent and
+
+$$
+  \vect{u}/\vect{v}/\!/\mat{A} = \vect{v}/\!/\vect{u}/\mat{A} =
+    \begin{pmatrix}
+      \mat{A}_2^1 & \mat{A}_4^1 \\
+      \mat{A}_2^3 & \mat{A}_4^3
+    \end{pmatrix}
+$$
+
+\par It is clear that \textit{row} compression \textit{suppresses columns} corresponding to zeros of the logical vector and that \textit{column} compression \textit{suppresses rows}. This illustrates the type of confusion in nomenclature which is avoided by the convention adopted in Sec. 1.3: an operation is called a \textit{row operation} if the underlying operation from which it is generalized is applied to the row vectors of the matrix, and a \textit{column operation} if it is applied to columns.
+
+\par \textbf{Example 1.1}. A bank makes a quarterly review of accounts to produce the following four lists:
+\begin{enumerate}
+  \item the name, account number, and balance for each account with a balance less than two dollars.
+  \item the name, account number, and balance for each account with a negative balance exceeding one hundred dollars.
+  \item the name and account number of each account with a balance exceeding one thousand dollars.
+  \item all unassigned account numbers.
+\end{enumerate}
+
+\noindent The ledger may be described by a matrix
+
+$$
+  \mat{L}
+    = (\mat{L}_1, \mat{L}_2, \mat{L}_3)
+    = \begin{pmatrix} \mat{L}^1 \\.\\.\\.\\ \mat{L}^m \end{pmatrix}
+$$
+
+\noindent with column vectors $\mat{L}_1, \mat{L}_2$, and $\mat{L}_3$, representing names, account numbers, and balances, respectively, and with row vectors $\mat{L}^1$, $\mat{L}^2$, ..., $\mat{L}^m$, representing individual accounts. An unassigned account number is identified by the word ``none'' in the name position. The four output lists will be denoted by the matrices $\mat{P}$, $\mat{Q}$, $\mat{R}$, and $\mat{S}$, respectively. They can be produced by Program 1.9.
+
+% (END EXAMPLE 1.1)
+
+\par (TODO: PROGRAM 1.9)
+
+\par \textbf{Program 1.9} Selection on bank ledger $\mat{L}$ (Example 1.1)
+
+\par \textbf{Program 1.9}. Since $\mat{L}_3$ is the vector of balances, and $2\textbf{ϵ}$ is a compatible vector each of whose components equals two, the relational statement $(\mat{L}_3 < 2\textbf{ϵ})$ defines a logical vector having unit components corresponding to those accounts to be included in the list $\mat{P}$. Consequently, the column compression of step 1 selects the appropriate rows of $\mat{L}$ to define $\mat{P}$. Step 2 is similar, but step 3 incorporates an additional row compression by the compatible prefix vector $\mathbf{α}^2 = (1,1,0)$ to select columns one and two of $\mat{L}$. Step 4 represents the comparison of the name (in column $\mat{L}_1$) with the literal ``none'', the selection of each row which shows agreement, and the suppression of all columns but the second. The expression ``none $\textbf{ϵ}$'' occurring in step 4 illustrates the use of the extended definition of multiplication.
+
+% (END PROGRAM 1.9 DESCRIPTION)
+
+\subsection*{Mesh, mask, and expansion}
+
+\par A logical vector $\vect{u}$ and the two vectors $\vect{a} = \overbar{\vect{u}}/\vect{c}$ and $\vect{b} = \vect{u}/\vect{c}$, obtained by compressing a vector $\vect{c}$, collectively determine the vector $\vect{c}$. The operation which specifies $\vect{c}$ as a function of $\vect{a}$, $\vect{b}$, and $\vect{u}$ is called a \textit{mesh} and is defined as follows: If $\vect{a}$ and $\vect{b}$ are arbitrary vectors and if $\vect{u}$ is a logical vector such that $+/\overbar{\vect{u}} = \textit{ν}(\vect{a})$ and $+/\vect{u} = \textit{ν}(\vect{b})$, then the \textit{mesh of} $\vect{a}$ \textit{and} $\vect{b}$ \textit{on} $\vect{u}$ is denoted by $\backslash\vect{a}, \vect{u}, \vect{b}\backslash$ and is defined as the vector $\vect{c}$ such that $\overbar{\vect{u}}/\vect{c} = \vect{a}$ and $\vect{u}/\vect{c} = \vect{b}$. The mesh operation is equivalent to choosing successive components of $\vect{c}$ from $\vect{a}$ or $\vect{b}$ according as the successive components of $\vect{u}$ are $0$ or $1$. If, for example, $\vect{a} = (\text{s}, \text{e}, \text{k})$, $\vect{b} = (\text{t}, \text{a})$, and $\vect{u} = (0, 1, 0, 1, 0)$, then $\backslash\vect{a}, \vect{u}, \vect{b}\backslash = (\text{s}, \text{t}, \text{e}, \text{a}, \text{k})$. As a further example, Program 1.10a (which describes the merging of the vectors $\vect{a}$ and $\vect{b}$, with the first and every third component thereafter chosen from $\vect{a})$ can be described alternatively as shown in Program 1.10b. Since $\textbf{ι}^1 = (1, 2, 3, 4, 5, 6, ...)$, then $(3\textbf{ϵ}) |_0 \textbf{ι}^1 = (1, 2, 0, 1, 2, 0, ...)$, and consequently the vector $\vect{u}$ specified by step 1 is of the form $\vect{u} = (0, 1, 1, 0, 1, 1, 0, ...)$.
+
+\par (TODO: PROGRAM 1.10)
+
+\par \textbf{Program 1.10} Interfiling program
+
+\par Mesh operations on matrices are defined analogously, row mesh and column mesh being denoted by single and double reverse virgules, respectively.
+
+\par The \textit{catenation} of vectors $\vect{x}, \vect{y}, ..., \vect{z}$ is denoted by $\vect{x} \oplus \vect{y} \oplus \cdots \oplus \vect{z}$ and is defined by the relation
+
+$$
+  \vect{x} \oplus \vect{y} \oplus \cdots \oplus \vect{z}
+    = (\vect{x}_1, \vect{x}_2, ...,
+       \vect{x}_{ν(\vect{x})}, \vect{y}_1, \vect{y}_2, ...,
+       \vect{z}_{ν(\vect{z})}).
+$$
+
+\noindent Catenation is clearly associative and for two vectors $\vect{x}$ and $\vect{y}$ it is a special case of the mesh $\backslash\vect{x}, \vect{u}, \vect{y}\backslash$ in which $\vect{u}$ is a suffix vector.
+
+\par In numerical vectors (for which addition of two vectors is defined), the effect of the general mesh operation can be produced as the sum of two meshes, each involving one zero vector. Specifically,
+
+\begin{alignat*}{2}
+  \backslash\vect{x}, \vect{u}, \vect{y}\backslash
+    & = \backslash\vect{x}, \vect{u}, 0\backslash
+    & + \backslash0, \vect{u}, \vect{y}\backslash
+  \\& = \backslash0, \overbar{\vect{u}}, \vect{x}\backslash
+    & + \backslash0, \vect{u}, \vect{y}\backslash.
+\end{alignat*}
+
+\noindent The operation $\backslash0, \vect{u}, \vect{y}\backslash$ proves very useful in numerical work and will be called \textit{expansion} of the vector $\vect{y}$, denoted by $\vect{u}\backslash\vect{y}$. Compression of $\vect{u}\backslash\vect{y}$ by $\vect{u}$ and by $\overbar{\vect{u}}$ clearly yields $\vect{y}$ and 0, respectively. Moreover, any numerical vector $\vect{x}$ can be \textit{decomposed} by a compatible vector $\vect{u}$ according to the relation
+
+$$
+  \vect{x}
+    = \overbar{\vect{u}}\backslash\overbar{\vect{u}}/\vect{x}
+    + \vect{u}\backslash\vect{u}/\vect{x}.
+$$
+
+\noindent The two terms are vectors of the same dimension which have no nonzero components in common. Thus if $\vect{u} = (1, 0, 1, 0, 1)$, the decomposition of $\vect{x}$ appears as
+
+$$
+  \vect{x} = (0, \vect{x}_2, 0, \vect{x}_4, 0) + (\vect{x}_1, 0, \vect{x}_3, 0, \vect{x}_5).
+$$
+
+\par Row expansion and column expansion of matrices are defined and denoted analogously. The decomposition relations become
+
+\begin{align*}
+  & \mat{X}
+    = \overbar{\vect{u}}\backslash\overbar{\vect{u}}/\mat{X}
+    + \vect{u}\backslash\vect{u}/\mat{X},\\
+\text{and}
+  & \mat{X}
+    = \overbar{\vect{u}}\backslash\backslash\overbar{\vect{u}}/\!/\mat{X}
+    + \vect{u}\backslash\backslash\vect{u}/\!/\mat{X}.
+\end{align*}
+
+\par The \textit{mask} operation is defined formally as follows:
+
+$$
+  \vect{c} ← /\vect{a}, \vect{u}, \vect{b}/
+  \leftrightarrow 
+  \overbar{\vect{u}}/\vect{c} = \overbar{\vect{u}}/\vect{a},
+  \quad\text{and}\quad
+  \vect{u}/\vect{c} = \vect{u}/\vect{b}.
+$$
+
+\noindent The vectors $\vect{c}$, $\vect{a}$, $\vect{u}$, and $\vect{b}$ are clearly of a common dimension and $\vect{c}_i = \vect{a}_i$ or $\vect{b}_i$ according as $\vect{u}_i = 0$ or $\vect{u}_i = 1$. Moreover, the compress, expand, mask, and mesh operations on vectors are related as follows:
+
+\begin{align*}
+  /\vect{a}, \vect{u}, \vect{b}/
+    & = \backslash\overbar{\vect{u}}/\vect{a}, \vect{u}, \vect{u}/\vect{b}\backslash, \\
+  \backslash\vect{a}, \vect{u}, \vect{b}\backslash
+    & = /\overbar{\vect{u}}\backslash\vect{a}, \vect{u}, \vect{u}\backslash\vect{b}/. \\
+\end{align*} 
+
+\noindent Analogous relations hold for the row mask and row mesh and for the column mask and column mesh.
+
+\par Certain selection operations are controlled by logical matrices rather than by logical vectors. The \textit{row compression} $\mat{U}/\mat{A}$ selects elements of $\mat{A}$ corresponding to the nonzero elements of $\mat{U}$. Since the nonzero elements of $\mat{U}$ may occur in an arbitrary pattern, the result must be construed as a vector rather than a matrix. More precisely, $\mat{U}/\mat{A}$ denotes the catenation of the vectors $\mat{U}^i/\mat{A}^i$ obtained by row-by-row compression of $\mat{A}$ by $\mat{U}$. The \textit{column compression} $\mat{U}/\!/\mat{A}$ denotes the catenation of the vectors $\mat{U}_j/\mat{A}_j$. If, for example
+
+$$
+  \mat{U} = \begin{pmatrix}
+    0&1&0&1&1 \\
+    1&1&0&0&0 \\
+    0&1&1&0&0
+  \end{pmatrix}
+$$
+\noindent then
+$$ \mat{U}/\mat{A} = (\mat{A}_2^1, \mat{A}_4^1, \mat{A}_5^1, \mat{A}_1^2, \mat{A}_2^2, \mat{A}_2^3, \mat{A}_3^3), $$
+\noindent and
+$$ \mat{U}/\!/\mat{A} = (\mat{A}_1^2, \mat{A}_2^1, \mat{A}_2^2, \mat{A}_2^3, \mat{A}_3^3, \mat{A}_4^1, \mat{A}_5^1). $$
+
+\par Compression by the full matrix $\mathsf{\mat{E}}$ (defined by $\overbar{\mathsf{\mat{E}}} = 0$) produces either a \textit{row list} ($\mathsf{\mat{E}}/\mat{A}$) or a \textit{column list} ($\mathsf{\mat{E}}/\!/\mat{A}$) of the matrix $\mat{A}$. Moreover, a numerical matrix $\mat{X}$ can be represented jointly by the logical matrix $\mat{U}$ and the row list $\mat{U}/\mat{X}$ (or the column list $\mat{U}/\!/\mat{X}$), where $\mat{U} = (\mat{X} \neq 0)$. If the matrix $\mat{X}$ is sparse (i.e., the components are predominantly zero), this provides a compact representation which may reduce the computer storage required for $\mat{X}$.
+
+\par The compression operations controlled by matrices also generate a group of corresponding mesh and mask operations as shown in Sec. S.9.
