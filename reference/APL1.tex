@@ -626,7 +626,7 @@ and
 \par \textbf{Mesh, mask, and expansion}
 
 \par A logical vector $\vect{u}$ and the two vectors $\vect{a} =$ 
-\overbar{\vect{u}}/\vect{c} and \vect{b} = \vect{u}/\vect{c}, obtained by compressing a vector \vect{c}, collectively determine the vector \vect{c}. The operation which specifies \vect{c} as a function of \vect{a}, \vect{b}, and \vect{u} is called a \textit{mesh} and is defined as follows: If \vect{a} and \vect{b} are arbitrary vectors and if \vect{u} is a logical vector such that +/\overbar{\vect{u}} = \textit{ν}(\vect{a}) and +/\vect{u} = \textit{ν}(\vect{b}), then the \textit{mesh of} \vect{a} \textit{and} \vect{b} \textit{on} \vect{u} is denoted by \\vect{a}, \vect{u}, \vect{b}\ and is defined as the vector \vect{c} such that \overbar{\vect{u}}/\vect{c} = \vect{a} and \vect{u}/\vect{c} = \vect{b}. The mesh operation is equivalent to choosing successive components of \vect{c} from \vect{a} or \vect{b} according as the successive components of \vect{u} are 0 or 1. If, for example, \vect{a} = (s, e, k), \vect{b} = (t, a), and \vect{u} = (0, 1, 0, 1, 0), then \\vect{a}, \vect{u}, \vect{b}\ = (s, t, e, a, k). As a further example, 
+\overbar{\vect{u}}/\vect{c} and \vect{b} = \vect{u}/\vect{c}, obtained by compressing a vector \vect{c}, collectively determine the vector \vect{c}. The operation which specifies \vect{c} as a function of \vect{a}, \vect{b}, and \vect{u} is called a \textit{mesh} and is defined as follows: If \vect{a} and \vect{b} are arbitrary vectors and if \vect{u} is a logical vector such that +/\overbar{\vect{u}} = \textit{ν}(\vect{a}) and +/\vect{u} = \textit{ν}(\vect{b}), then the \textit{mesh of} \vect{a} \textit{and} \vect{b} \textit{on} \vect{u} is denoted by \backslash\vect{a}, \vect{u}, \vect{b}\backslash and is defined as the vector \vect{c} such that \overbar{\vect{u}}/\vect{c} = \vect{a} and \vect{u}/\vect{c} = \vect{b}. The mesh operation is equivalent to choosing successive components of \vect{c} from \vect{a} or \vect{b} according as the successive components of \vect{u} are 0 or 1. If, for example, \vect{a} = (s, e, k), \vect{b} = (t, a), and \vect{u} = (0, 1, 0, 1, 0), then \backslash\vect{a}, \vect{u}, \vect{b}\backslash = (s, t, e, a, k). As a further example, 
 
 \begin{tabularx}
 <td align=center rowspan=2><img src="APLimg/prog1x10a.bmp">\\
@@ -658,20 +658,20 @@ and
 \par $\vect{x} \oplus \vect{y} \oplus$ ...
 \oplus \vect{z} = (\vect{x}_1, \vect{x}_2, ..., \vect{x}_{\textit{ν}(\vect{x})}, \vect{y}_1, \vect{y}_2, ..., \vect{z}_{\textit{ν}(\vect{z})}).
 
-\par Catenation is clearly associative and for two vectors $\vect{x}$ and $\vect{y}$ it is a special case of the mesh $\\vect{x}, \vect{u}, \vect{y}\$ in which $\vect{u}$ is a suffix vector.
+\par Catenation is clearly associative and for two vectors $\vect{x}$ and $\vect{y}$ it is a special case of the mesh $\backslash\vect{x}, \vect{u}, \vect{y}\backslash$ in which $\vect{u}$ is a suffix vector.
 
 \par In numerical vectors (for which addition of two vectors is defined), the effect of the general mesh operation can be produced as the sum of two meshes, each involving one zero vector. Specifically,
 
 \begin{tabularx}
- \\vect{x}, \vect{u}, \vect{y}\ & = & \\vect{x}, \vect{u}, 0\ + \0, \vect{u}, \vect{y}\ & \\
- & = & \0, \overbar{\vect{u}}, \vect{x}\ + \0, \vect{u}, \vect{y}\. & \\
+ \backslash\vect{x}, \vect{u}, \vect{y}\backslash & = & \backslash\vect{x}, \vect{u}, 0\backslash + \backslash0, \vect{u}, \vect{y}\backslash & \\
+ & = & \backslash0, \overbar{\vect{u}}, \vect{x}\backslash + \backslash0, \vect{u}, \vect{y}\backslash. & \\
 \end{tabularx}
 
 <a name="expansion"></a>
-\par The operation $\0, \vect{u}, \vect{y}\$ proves very useful in numerical work and will be called \textit{expansion} of the vector $\vect{y}$, denoted by $\vect{u}\\vect{y}$. Compression of $\vect{u}\\vect{y}$ by $\vect{u}$ and by $\overbar{\vect{u}}$ clearly yields $\vect{y}$ and 0, respectively. Moreover, any numerical vector $\vect{x}$ can be \textit{decomposed} by a compatible vector $\vect{u}$ according to the relation
+\par The operation $\backslash0, \vect{u}, \vect{y}\backslash$ proves very useful in numerical work and will be called \textit{expansion} of the vector $\vect{y}$, denoted by $\vect{u}\backslash\vect{y}$. Compression of $\vect{u}\backslash\vect{y}$ by $\vect{u}$ and by $\overbar{\vect{u}}$ clearly yields $\vect{y}$ and 0, respectively. Moreover, any numerical vector $\vect{x}$ can be \textit{decomposed} by a compatible vector $\vect{u}$ according to the relation
 
 \par $\vect{x}$ =
-\overbar{\vect{u}}\\overbar{\vect{u}}/\vect{x} + \vect{u}\\vect{u}/\vect{x}.
+\overbar{\vect{u}}\backslash\overbar{\vect{u}}/\vect{x} + \vect{u}\backslash\vect{u}/\vect{x}.
 
 \par The two terms are vectors of the same dimension which have no nonzero components in common. Thus if $\vect{u} =$ (1, 0, 1, 0, 1), the decomposition of $\vect{x}$ appears as
 
@@ -682,10 +682,10 @@ and
 \par Row expansion and column expansion of matrices are defined and denoted analogously. The decomposition relations become
 
 \par $\mat{X} =$ 
-\overbar{\vect{u}}\\overbar{\vect{u}}/\mat{X} + \vect{u}\\vect{u}/\mat{X},\\
+\overbar{\vect{u}}\backslash\overbar{\vect{u}}/\mat{X} + \vect{u}\backslash\vect{u}/\mat{X},\\
  and\\
  \mat{X} = 
-\overbar{\vect{u}}\\\overbar{\vect{u}}/\!/\mat{X} + \vect{u}\\\vect{u}/\!/\mat{X}.
+\overbar{\vect{u}}\backslash\backslash\overbar{\vect{u}}/\!/\mat{X} + \vect{u}\backslash\backslash\vect{u}/\!/\mat{X}.
 
 <a name="mask"></a>
 \par The \textit{mask} operation is defined formally as follows:
@@ -697,9 +697,9 @@ and
 \par The vectors $\vect{c}, \vect{a}, \vect{u}$, and $\vect{b}$ are clearly of a common dimension and $\vect{c}_i = \vect{a}_i$ or $\vect{b}_i$ according as $\vect{u}_i =$ 0 or $\vect{u}_i =$ 1. Moreover, the compress, expand, mask, and mesh operations on vectors are related as follows:
 
 \begin{tabularx}
- /\vect{a}, \vect{u}, \vect{b}/ & = & \\overbar{\vect{u}}/\vect{a}, \vect{u}, \vect{u}/\vect{b}\, & \\
- \\vect{a}, \vect{u}, \vect{b}\ & 
- = & /\overbar{\vect{u}}\\vect{a}, \vect{u}, \vect{u}\\vect{b}/. & \\
+ /\vect{a}, \vect{u}, \vect{b}/ & = & \backslash\overbar{\vect{u}}/\vect{a}, \vect{u}, \vect{u}/\vect{b}\backslash, & \\
+ \backslash\vect{a}, \vect{u}, \vect{b}\backslash & 
+ = & /\overbar{\vect{u}}\backslash\vect{a}, \vect{u}, \vect{u}\backslash\vect{b}/. & \\
 \end{tabularx} 
 \par Analogous relations hold for the row mask and row mesh and for the column mask and column mesh.
 
@@ -1333,7 +1333,7 @@ a * 1 & \\
 <a name="maximum_selector"></a>
 \par More generally, the maximization operation $\vect{v} ← \vect{u}⌈\vect{x}$ will be defined so as to determine the maximum over the subvector $\vect{u}/\vect{x}$ only, but to express the result $\vect{v}$ with respect to the entire vector $\vect{x}$. More precisely,
 
-\par $\vect{v} ← \vect{u}⌈\vect{x} \leftrightarrow \vect{v} = \vect{u}\(\textbf{ϵ}⌈(\vect{u}/\vect{x}))$.
+\par $\vect{v} ← \vect{u}⌈\vect{x} \leftrightarrow \vect{v} = \vect{u}\backslash(\textbf{ϵ}⌈(\vect{u}/\vect{x}))$.
 
 \par The operation may be visualized as follows --- a horizontal plane punched at points corresponding to the zeros of $\vect{u}$ is lowered over a plot of the components of $\vect{x}$, and the positions at which the plane first touches them are the positions of the unit components of $\vect{v}$. For example, maximization over the negative components of $\vect{x}$ is denoted by
 
@@ -1414,7 +1414,7 @@ and
 
 \par is understood to respecify only the selected components of $\vect{b}$ and to leave all others unchanged. It is therefore equivalent to the statement
 
-\par $\vect{b} ← \\overbar{\vect{u}}/\vect{b}, \vect{u}, \vect{a}\$.
+\par $\vect{b} ← \backslash\overbar{\vect{u}}/\vect{b}, \vect{u}, \vect{a}\backslash$.
 
 \par Similarly,
 
@@ -1535,7 +1535,7 @@ where the indicated branches depend on the value of the partition \vect{p}_{\tex
 \par As for vectors and matrices, $j$-origin indexing may be used and will apply to the indexing of the file positions and the partition vector $\mathbf{λ}$ as well as to the array indices. However, the prescripts (denoting direction of read and record) are independent of index origin. 0-origin indexing is used in the following example.
 
 \begin{tabularx} & 
-\par \textbf{Example 1.4}. Files $\tree{Φ}_0^0$ and $\tree{Φ}_1^0$ contain the vectors $\vect{x}$ and $\vect{y}$, respectively, each of dimension $n$. In the first phase, the components are to be merged in the order $\vect{x}_0, \vect{y}_0, \vect{x}_1, \vect{y}_1$, ... $\vect{x}_{ν-1}, \vect{y}_{ν-1}$, and the first $n$ components of the resulting vector are to be recorded on file $\tree{Φ}_0^1$, and the last $n$ on file $\tree{Φ}_1^1$. In other words, the vectors $\vect{x}^1 = \mathbf{α}^n/\vect{z}$ and $\vect{y}^1 = \textbf{ω}^n/\vect{z}$ are to be recorded on $\tree{Φ}_0^1$ and $\tree{Φ}_1^1$, respectively, where $\vect{z} = \\vect{x}, \vect{u}, \vect{y}\$, and $\vect{u} =$ (0, 1, 0, 1, ..., 0, 1). In the next phase, the roles of input and output files are reversed, and the same process is performed on $\vect{x}^1$ and $\vect{y}^1$, that is, $\vect{x}^2 = \mathbf{α}^n/(\\vect{x}^1, \vect{u}, \vect{y}^1\)$ and $\vect{y}^2 = \textbf{ω}^n/(\\vect{x}^1, \vect{u}, \vect{y}^1\)$ are recorded on $\tree{Φ}_0^0$ and $\tree{Φ}_1^0$, respectively. The process is to be continued through $m$ phases.
+\par \textbf{Example 1.4}. Files $\tree{Φ}_0^0$ and $\tree{Φ}_1^0$ contain the vectors $\vect{x}$ and $\vect{y}$, respectively, each of dimension $n$. In the first phase, the components are to be merged in the order $\vect{x}_0, \vect{y}_0, \vect{x}_1, \vect{y}_1$, ... $\vect{x}_{ν-1}, \vect{y}_{ν-1}$, and the first $n$ components of the resulting vector are to be recorded on file $\tree{Φ}_0^1$, and the last $n$ on file $\tree{Φ}_1^1$. In other words, the vectors $\vect{x}^1 = \mathbf{α}^n/\vect{z}$ and $\vect{y}^1 = \textbf{ω}^n/\vect{z}$ are to be recorded on $\tree{Φ}_0^1$ and $\tree{Φ}_1^1$, respectively, where $\vect{z} = \backslash\vect{x}, \vect{u}, \vect{y}\backslash$, and $\vect{u} =$ (0, 1, 0, 1, ..., 0, 1). In the next phase, the roles of input and output files are reversed, and the same process is performed on $\vect{x}^1$ and $\vect{y}^1$, that is, $\vect{x}^2 = \mathbf{α}^n/(\backslash\vect{x}^1, \vect{u}, \vect{y}^1\backslash)$ and $\vect{y}^2 = \textbf{ω}^n/(\backslash\vect{x}^1, \vect{u}, \vect{y}^1\backslash)$ are recorded on $\tree{Φ}_0^0$ and $\tree{Φ}_1^0$, respectively. The process is to be continued through $m$ phases.
  & & \\\end{tabularx}
 
 <table align=center>
@@ -2014,7 +2014,7 @@ _{\vect{u}}\mathsf{\mat{E}}(\vect{k}).
 
 \par $r(\vect{j}) = m \times r(\vect{i}) +$ 1 $+ \vect{j}_{ν-1}$.
 
-\par The left list index $l(\vect{i})$ is most conveniently expressed as a function of $ν(\vect{i})$ and of the vector $\vect{z}(\vect{i})$ (zero extension of $\vect{i})$, where $\vect{z} = \mathbf{α}^{ν(\vect{i})}(ν(\mat{T}))\ \vect{i}$. Clearly $ν(\vect{z}) = ν(\mat{T})$ and $\vect{z}$ is the index of the ``earliest'' leaf reachable from node $\vect{i}$. In Fig. 1.25, for example, $\vect{z}((1$, 2)) $=$ (1,2,0).
+\par The left list index $l(\vect{i})$ is most conveniently expressed as a function of $ν(\vect{i})$ and of the vector $\vect{z}(\vect{i})$ (zero extension of $\vect{i})$, where $\vect{z} = \mathbf{α}^{ν(\vect{i})}(ν(\mat{T}))\backslash \vect{i}$. Clearly $ν(\vect{z}) = ν(\mat{T})$ and $\vect{z}$ is the index of the ``earliest'' leaf reachable from node $\vect{i}$. In Fig. 1.25, for example, $\vect{z}((1$, 2)) $=$ (1,2,0).
 
 \par The zero extension has the obvious property that every node above the path \mat{T}^{ $\vect{z}(\vect{i})}$ precedes node $\vect{i}$ in the left list, and every node below the path follows it. The number of nodes in the path which precede node $\vect{i}$ is $ν(\vect{i}) -$ 1.
 
@@ -2125,15 +2125,15 @@ _{\textit{j}}^{\textit{i}}\mat{M}. & \\
 \end{tabularx} & & <td valign=top>\begin{tabularx}
 (g) & & \vect{u} ← \mathbf{α}^{\textit{j}}(\textit{k}). & \\
 (h) & & \vect{u} ← \textit{i} ↓ \mathbf{α}^{\textit{j}}(\textit{k}). & \\
-(i) & & \vect{c} ← \\vect{a}, \vect{u}, \vect{b}\. & \\
+(i) & & \vect{c} ← \backslash\vect{a}, \vect{u}, \vect{b}\backslash. & \\
 (j) & & \vect{c} ← /\vect{a}, \vect{u}, \vect{b}/. & \\
-(k) & & \vect{c} ← \vect{u}\\vect{a}. & \\
+(k) & & \vect{c} ← \vect{u}\backslash\vect{a}. & \\
 \end{tabularx} & \\\end{tabularx}
 
 \par \textbf{1.4} Established the identities
 \begin{tabularx}
-(a) & & /\vect{a}, \vect{u}, \vect{b}/ = \\overbar{\vect{u}}/\vect{a}, \vect{u}, \vect{u}/\vect{b}\. & \\
-(b) & & \\vect{a}, \vect{u}, \vect{b}\ = /\overbar{\vect{u}}\\vect{a}, \vect{u}, \vect{u}\\vect{b}/. & \\
+(a) & & /\vect{a}, \vect{u}, \vect{b}/ = \backslash\overbar{\vect{u}}/\vect{a}, \vect{u}, \vect{u}/\vect{b}\backslash. & \\
+(b) & & \backslash\vect{a}, \vect{u}, \vect{b}\backslash = /\overbar{\vect{u}}\backslash\vect{a}, \vect{u}, \vect{u}\backslash\vect{b}/. & \\
 \end{tabularx}
 
 \par \textbf{1.5} The classic $``rings-o-seven''$ puzzle can be posed as follows: an order collection of $n$ rings is to be placed on (removed from) a bar under the following constraints:
@@ -2715,7 +2715,7 @@ Character encoded by \vect{x}_{\textit{k}}. & \\
 \par If a linear representation is used for a vector, then the deletion of a component (as in a compress operation) necessitates the moving (i.e., respecification) of the representations of each of the subsequent components. Similarly, mesh operations (insertion) and permutations necessitate extensive respecification. The use of a grid matrix $\tree{Γ}(\vect{x})$ obviates such respecification in $\vect{x}$, since appropriate changes can instead be made in $\tree{Γ}(\vect{x})$, where they may be much simpler to effect. If, for example, $\vect{x}$ is the vector represented as in Fig. 3.1a, and $z$ is a quantity of dimension six in $\mathbf{π}$, then the mesh operation
 
 \begin{tabularx}<td width=75> & 
-\vect{x} ← \\vect{x}, \textbf{ϵ}^3, \textit{z}\ & 
+\vect{x} ← \backslash\vect{x}, \textbf{ϵ}^3, \textit{z}\backslash & 
 \\\end{tabularx}
 
 \par may be effected by specifying the physical infix (70 $↓ \mathbf{α}^6)/\mathbf{π}$ by $\mathbf{ρ}(z)$ and by respecifying $\tree{Γ}(\vect{x})$ as follows:
@@ -2977,7 +2977,7 @@ Similarly, & \textit{k} = \textit{μ} \times (\textit{ν} |_0 \textit{h}) + ⌊\
 
 \par If the row list (or column list) is itself represented linearly, then the address of any component $\mat{A}_j^i$ is obtained as a linear function of the indices $i$ and $j$. If either a file or a chained representation is to be used for the list vector, then the components are processed most efficiently in serial order, and the use of column list or row list is dictated by the particular processes to be effected.
 
-\par If a large proportion of the elements of a matrix are null elements, it is called a \textit{sparse} matrix. Sparse matrices occur frequently in numerical work (where zero serves as the null element), particularly in the treatment of partial difference equations. A sparse matrix $\mat{A}$ can be represented compactly by the row list $\vect{r} = \mat{U}/\mat{A}$, and the logical matrix $\mat{U}$, where $\mat{U} = (\mat{A} \neq$ 0). The matrix $\mat{A}$ may then be obtained by expansion: $\mat{A} = \mat{U}\\vect{r}$.
+\par If a large proportion of the elements of a matrix are null elements, it is called a \textit{sparse} matrix. Sparse matrices occur frequently in numerical work (where zero serves as the null element), particularly in the treatment of partial difference equations. A sparse matrix $\mat{A}$ can be represented compactly by the row list $\vect{r} = \mat{U}/\mat{A}$, and the logical matrix $\mat{U}$, where $\mat{U} = (\mat{A} \neq$ 0). The matrix $\mat{A}$ may then be obtained by expansion: $\mat{A} = \mat{U}\backslash\vect{r}$.
 
 \par Alternatively, the column list $\vect{c} = (\mat{A} \neq 0)/\!/\mat{A}$ may be used. The transformation between the column list $\vect{c}$ and row list $\vect{r}$ must, in general, be performed as a sequential operation on the elements of $\mat{U}$. Since it is frequently necessary to scan a given matrix in both row and column order (e.g., as either pre- or post-multiplier in a matrix multiplication), neither the row list nor the column list alone is satisfactory. A chaining system can, however, be devised to provide both row and column scanning.
 
@@ -3177,9 +3177,9 @@ Similarly, & \textit{k} = \textit{μ} \times (\textit{ν} |_0 \textit{h}) + ⌊\
 <td nowrap>1^{}_{} & ^{} \mat{T} ← \vect{c} _{} & \\
 2^{}_{} & ^{} \mathbf{μ}_1(\mat{T}) : 2 _{} & \\
 3^{}_{} & ^{} \mat{T} ← (\textit{θ}/\vect{f} )\int\mat{T} _{} & \\
-4^{}_{} & ^{} \mat{T} ← \\(∘) \oplus \mathbf{α}^2/\!/\mat{T}, \overbar{\vect{α}}^1, \overbar{\vect{α}}^2/\!/\mat{T}\\ _{} & \\
+4^{}_{} & ^{} \mat{T} ← \backslash\backslash(∘) \oplus \mathbf{α}^2/\!/\mat{T}, \overbar{\vect{α}}^1, \overbar{\vect{α}}^2/\!/\mat{T}\backslash\backslash _{} & \\
 5^{}_{} & <td nowrap>^{} \vect{f} ← (\textit{θ}/\vect{f}) \int \vect{f} _{} & \\
-6^{}_{} & ^{} \vect{f} ← \+/\mathbf{α}^2/\vect{f}, \overbar{\vect{α}}^1, \overbar{\vect{α}}^2/\vect{f} \ _{} & \\
+6^{}_{} & ^{} \vect{f} ← \backslash+/\mathbf{α}^2/\vect{f}, \overbar{\vect{α}}^1, \overbar{\vect{α}}^2/\vect{f} \backslash _{} & \\
 \end{tabularx}
  & \\\end{tabularx} -->
 
@@ -3398,7 +3398,7 @@ Filial-heir chain list &
 
 \par \textbf{3.6} Assuming a linear representation for each of the logical vectors involved, and a forward-chained representation for each of the remaining operands, write programs for the following operations. Assume in each case that the arguments $\vect{x}$ and $\vect{y}$ need not be retained, and assume the use of a backward-chained pool where necessary.
 \begin{tabularx}
-(a) & \vect{z} ← \\vect{x}, \vect{u}, \vect{y}\ & \\
+(a) & \vect{z} ← \backslash\vect{x}, \vect{u}, \vect{y}\backslash & \\
 (b) & \vect{z} ← /\vect{x}, \vect{u}, \vect{y}/ & \\
 (c) & \vect{z} ← \textit{k} ↑ \vect{x} & \\
 (d) & \vect{z} ← \textit{k} ↓ \vect{x} & \\
@@ -3623,11 +3623,11 @@ extension of basic operation & & <td valign=top nowrap>\vect{c} ← \vect{a} \od
 \vect{p}_{\textit{i}} \times \vect{y}_{\textit{i}} <td valign=top align=right><a href="#base_value"><img src="APLimg/link.bmp"></a> & \\
 
 <td valign=top>Compression & & <td valign=top>\vect{c} ← \vect{u}/\vect{b} & & <td colspan=3>\vect{c} is obtained from \vect{b} by suppressing each \vect{b}_{\textit{i}} for which \vect{u}_{\textit{i}} = 0 & <td valign=top align=right><a href="#1.9"><img src="APLimg/link.bmp"></a> & \\
-<td valign=top>Expansion & & <td valign=top>\vect{c} ← \vect{u}\\vect{b} & & <td colspan=3>\overbar{\vect{u}}/\vect{c} = 0, \vect{u}/\vect{c} = \vect{b} & <td valign=top align=right><a href="#expansion"><img src="APLimg/link.bmp"></a> & \\
+<td valign=top>Expansion & & <td valign=top>\vect{c} ← \vect{u}\backslash\vect{b} & & <td colspan=3>\overbar{\vect{u}}/\vect{c} = 0, \vect{u}/\vect{c} = \vect{b} & <td valign=top align=right><a href="#expansion"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>Mask & & <td nowrap valign=top>\vect{c} ← /\vect{a},\vect{u}</b\textbf{,\textit{b}/ & & <td colspan=3>\overbar{\vect{u}}/\vect{c} = \overbar{\vect{u}}/\vect{a}, \vect{u}/\vect{c} = \vect{u}/\vect{b} & <td valign=top align=right><a href="#mask"><img src="APLimg/link.bmp"></a> & \\
-<td valign=top>Mesh & & <td nowrap valign=top>\vect{c} ← \\vect{a},\vect{u},\vect{b}\ & & <td colspan=3>\overbar{\vect{u}}/\vect{c} = \vect{a}, \vect{u}/\vect{c} = \vect{b} & <td valign=top align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
+<td valign=top>Mesh & & <td nowrap valign=top>\vect{c} ← \backslash\vect{a},\vect{u},\vect{b}\backslash & & <td colspan=3>\overbar{\vect{u}}/\vect{c} = \vect{a}, \vect{u}/\vect{c} = \vect{b} & <td valign=top align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>Catenation & & <td nowrap valign=top>\vect{c} ← \vect{a} \oplus \vect{b} & & <td colspan=3>\vect{c} = (\vect{a}_1, \vect{a}_2,... \vect{a}_{\textit{ν}(\vect{a})}, \vect{b}_1, \vect{b}_2,... \vect{b}_{\textit{ν}(\vect{b})})\\
- = \\vect{a}, \textbf{ω}^{\textit{ν}(\vect{b})}, \vect{b}\ & <td valign=top align=right><a href="#catenation"><img src="APLimg/link.bmp"></a> & \\
+ = \backslash\vect{a}, \textbf{ω}^{\textit{ν}(\vect{b})}, \vect{b}\backslash & <td valign=top align=right><a href="#catenation"><img src="APLimg/link.bmp"></a> & \\
 
 <td valign=top>Characteristic of\\
  \vect{x} on \vect{y} & & <td valign=top>\vect{w} ← \textbf{ϵ}_{\vect{y}}^{\vect{x}} & & <td valign=top colspan=3>\vect{w}_{\textit{i}} = (\vect{y}_{\textit{i}} ϵ \vect{x}); \textit{ν}(\vect{w}) = \textit{ν}(\vect{y}) & <td align=right><a href="#characteristic_vector"><img src="APLimg/link.bmp"></a> & \\
@@ -3677,13 +3677,13 @@ selector & & <td valign=top>\vect{w} ← \textit{τ}/\vect{a} & & <td colspan=3 
 <td nowrap>\mat{C} ← \mat{A} \oplus \mat{B}^{} & & <td colspan=2>\mat{C}^{\textit{i}} = \mat{A}^{\textit{i}} \oplus \mat{B}^{\textit{i}} & & <td align=right><a href="#catenation"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\mat{C} ← \vect{u}/\mat{B}^{} & & <td colspan=2>\mat{C}^{\textit{i}} = \vect{u}/\mat{B}^{\textit{i}} & & <td align=right><a href="#compress_row"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\vect{c} ← \mat{U}/\mat{B}^{} & & <td nowrap colspan=2>\vect{c} = \mat{U}^1/\mat{B}^1 \oplus ... \oplus \mat{U}^{\textit{μ}}/\mat{B}^{\textit{μ}} & & <td align=right><a href="#compress_rowrow"><img src="APLimg/link.bmp"></a> & \\
-<td nowrap>\mat{C} ← \vect{u}\\mat{B}^{} & & \overbar{\vect{u}}/\mat{C} = 0, & \vect{u}/\mat{C} = \mat{B} & & <td align=right><a href="#expand_row"><img src="APLimg/link.bmp"></a> & \\
-<td nowrap>\mat{C} ← \mat{U}\\vect{b}^{} & & <img src="APLimg/ucapboscore.bmp">/\mat{C} = 0, & \mat{U}/\mat{C} = \vect{b} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
-<td nowrap>\mat{C} ← \\mat{A}, \vect{u}, \mat{B}\ & & \overbar{\vect{u}}/\mat{C} = \mat{A}, & \vect{u}/\mat{C} = \mat{B} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
-<td nowrap>\mat{C} ← \\vect{a}, \mat{U}, \vect{b}\ & & <img src="APLimg/ucapboscore.bmp">/\mat{C} = \vect{a}, & \mat{U}/\mat{C} = \vect{b} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
+<td nowrap>\mat{C} ← \vect{u}\backslash\mat{B}^{} & & \overbar{\vect{u}}/\mat{C} = 0, & \vect{u}/\mat{C} = \mat{B} & & <td align=right><a href="#expand_row"><img src="APLimg/link.bmp"></a> & \\
+<td nowrap>\mat{C} ← \mat{U}\backslash\vect{b}^{} & & <img src="APLimg/ucapboscore.bmp">/\mat{C} = 0, & \mat{U}/\mat{C} = \vect{b} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
+<td nowrap>\mat{C} ← \backslash\mat{A}, \vect{u}, \mat{B}\backslash & & \overbar{\vect{u}}/\mat{C} = \mat{A}, & \vect{u}/\mat{C} = \mat{B} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
+<td nowrap>\mat{C} ← \backslash\vect{a}, \mat{U}, \vect{b}\backslash & & <img src="APLimg/ucapboscore.bmp">/\mat{C} = \vect{a}, & \mat{U}/\mat{C} = \vect{b} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\mat{C} ← /\mat{A}, \vect{u}, \mat{B}/ & & \overbar{\vect{u}}/\mat{C} = \overbar{\vect{u}}/\mat{A}, & \vect{u}/\mat{C} = \vect{u}/\mat{B} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\mat{C} ← /\mat{A}, \mat{U}, \mat{B}/ & & <img src="APLimg/ucapboscore.bmp">/\mat{C} = <img src="APLimg/ucapboscore.bmp">/\mat{A}, & \mat{U}/\mat{C} = \mat{U}/\mat{B} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
-<td nowrap>\mat{C} ← /\vect{a}, \mat{U}, \vect{b}/ & & <td colspan=2>\mat{C} = /\mathsf{\mat{E}}\\vect{a}, \mat{U}, \mathsf{\mat{E}}\\vect{b}/ & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
+<td nowrap>\mat{C} ← /\vect{a}, \mat{U}, \vect{b}/ & & <td colspan=2>\mat{C} = /\mathsf{\mat{E}}\backslash\vect{a}, \mat{U}, \mathsf{\mat{E}}\backslash\vect{b}/ & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
 
 \mat{W} ← α/\mat{U}^{} & & <td colspan=2>\mat{W}^{\textit{i}} = α/\mat{U}^{\textit{i}} & & <td align=right><a href="#prefix_row"><img src="APLimg/link.bmp"></a> & \\
 \mat{W} ← ω/\mat{U}^{} & & <td colspan=2>\mat{W}^{\textit{i}} = ω/\mat{U}^{\textit{i}} & & <td align=right><a href="#prefix_row"><img src="APLimg/link.bmp"></a> & \\
@@ -3712,13 +3712,13 @@ selector & & <td valign=top>\vect{w} ← \textit{τ}/\vect{a} & & <td colspan=3 
 <td nowrap>\mat{C} ← \mat{A} \oplus\oplus \mat{B}_{} & & <td colspan=2>\mat{C}_{\textit{j}} = \mat{A}_{\textit{j}} \oplus \mat{B}_{\textit{j}} & \\
 <td nowrap>\mat{C} ← \vect{u}/\!/\mat{B}_{} & & <td colspan=2>\mat{C}_{\textit{j}} = \vect{u}/\mat{B}_{\textit{j}} & & <td align=right><a href="#compress_col"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\vect{c} ← \mat{U}/\!/\mat{B}_{} & & <td nowrap colspan=2>\vect{c} = \mat{U}_1/\mat{B}_1 \oplus ... \oplus \mat{U}_{\textit{ν}}/\mat{B}_{\textit{ν}} & & <td align=right><a href="#compress_colcol"><img src="APLimg/link.bmp"></a> & \\
-<td nowrap>\mat{C} ← \vect{u}\\\mat{B}^{} & & \overbar{\vect{u}}/\!/\mat{C} = 0, & \vect{u}/\!/\mat{C} = \mat{B} & & <td align=right><a href="#expand_col"><img src="APLimg/link.bmp"></a> & \\
-<td nowrap>\mat{C} ← \mat{U}\\\vect{b}^{} & & <img src="APLimg/ucapboscore.bmp">/\!/\mat{C} = 0, & \mat{U}/\!/\mat{C} = \vect{b} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
-<td nowrap>\mat{C} ← \\\mat{A}, \vect{u}, \mat{B}\\ & & \overbar{\vect{u}}/\!/\mat{C} = \mat{A}, & \vect{u}/\!/\mat{C} = \mat{B} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
-<td nowrap>\mat{C} ← \\\vect{a}, \mat{U}, \vect{b}\\ & & <img src="APLimg/ucapboscore.bmp">/\!/\mat{C} = \vect{a}, & \mat{U}/\!/\mat{C} = \vect{b} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
+<td nowrap>\mat{C} ← \vect{u}\backslash\backslash\mat{B}^{} & & \overbar{\vect{u}}/\!/\mat{C} = 0, & \vect{u}/\!/\mat{C} = \mat{B} & & <td align=right><a href="#expand_col"><img src="APLimg/link.bmp"></a> & \\
+<td nowrap>\mat{C} ← \mat{U}\backslash\backslash\vect{b}^{} & & <img src="APLimg/ucapboscore.bmp">/\!/\mat{C} = 0, & \mat{U}/\!/\mat{C} = \vect{b} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
+<td nowrap>\mat{C} ← \backslash\backslash\mat{A}, \vect{u}, \mat{B}\backslash\backslash & & \overbar{\vect{u}}/\!/\mat{C} = \mat{A}, & \vect{u}/\!/\mat{C} = \mat{B} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
+<td nowrap>\mat{C} ← \backslash\backslash\vect{a}, \mat{U}, \vect{b}\backslash\backslash & & <img src="APLimg/ucapboscore.bmp">/\!/\mat{C} = \vect{a}, & \mat{U}/\!/\mat{C} = \vect{b} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\mat{C} ← /\!/\mat{A}, \vect{u}, \mat{B}/\!/ & & <td nowrap>\overbar{\vect{u}}/\!/\mat{C} = \overbar{\vect{u}}/\!/\mat{A}, & \vect{u}/\!/\mat{C} = \vect{u}/\!/\mat{B} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
 <td nowrap>\mat{C} ← /\!/\mat{A}, \mat{U}, \mat{B}/\!/ & & <td nowrap><img src="APLimg/ucapboscore.bmp">/\!/\mat{C} = <img src="APLimg/ucapboscore.bmp">/\!/\mat{A}, & <td nowrap>\mat{U}/\!/\mat{C} = \mat{U}/\!/\mat{B} & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
-<td nowrap>\mat{C} ← /\!/\vect{a}, \mat{U}, \vect{b}/\!/ & & <td colspan=2>\mat{C} = /\mathsf{\mat{E}}\\\vect{a}, \mat{U}, \mathsf{\mat{E}}\\\vect{b}/ & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
+<td nowrap>\mat{C} ← /\!/\vect{a}, \mat{U}, \vect{b}/\!/ & & <td colspan=2>\mat{C} = /\mathsf{\mat{E}}\backslash\backslash\vect{a}, \mat{U}, \mathsf{\mat{E}}\backslash\backslash\vect{b}/ & & <td align=right><a href="#1.9.2"><img src="APLimg/link.bmp"></a> & \\
 
 \mat{W} ← α/\!/\mat{U}_{} & & <td colspan=2>\mat{W}_{\textit{j}} = α/\mat{U}_{\textit{j}} & & <td align=right><a href="#prefix_col"><img src="APLimg/link.bmp"></a> & \\
 \mat{W} ← ω/\!/\mat{U}_{} & & <td colspan=2>\mat{W}_{\textit{j}} = ω/\mat{U}_{\textit{j}} & & <td align=right><a href="#prefix_col"><img src="APLimg/link.bmp"></a> & \\
@@ -3825,7 +3825,7 @@ matrix & & <td valign=top nowrap>\mat{C} ← [\mat{A} & \\
 <td valign=top>Tree compression & & <td valign=top>\mat{C} ← \mat{U}/\mat{A} & & \mat{C} is obtained from \mat{A} by suppressing node \vect{i} if node \vect{i} of \mat{U} is zero and reconnecting so that for each remaining pair of nodes, the one lies in the subtree rooted at the second if and only if it did so in \mat{A}. & <td valign=top align=right><a href="#1.23.6"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>Path compression & & <td valign=top>\mat{C} ← \vect{u}/\mat{A} & & \mat{C} is obtained from \mat{A} by suppressing all nodes on level \textit{j} if \vect{u}_{\textit{j}} = 0, and reconnecting as in the compression \mat{U}/\mat{A}. & <td valign=top align=right><a href="#path_compression"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>Level compression & & <td valign=top>\mat{C} ← \vect{u}/\!/\mat{A} & & \mat{C} is obtained from \mat{A} by suppressing rooted subtree \mat{A}_{\textit{j}} if \vect{u}_{\textit{j}} = 0. & <td valign=top align=right>^{}<a href="#level_compression"><img src="APLimg/link.bmp"></a> & \\
-<td valign=top>Level mesh & & <td valign=top nowrap>\mat{C} ← \\\mat{A}, \vect{u}, \mat{B}\\ & & \overbar{\vect{u}}/\!/\mat{C} = \mat{A}; \vect{u}/\!/\mat{C} = \mat{B}. & \\
+<td valign=top>Level mesh & & <td valign=top nowrap>\mat{C} ← \backslash\backslash\mat{A}, \vect{u}, \mat{B}\backslash\backslash & & \overbar{\vect{u}}/\!/\mat{C} = \mat{A}; \vect{u}/\!/\mat{C} = \mat{B}. & \\
 <td valign=top>Level mask & & <td valign=top nowrap>\mat{C} ← /\!/\mat{A}, \vect{u}, \mat{B}/\!/ & & \overbar{\vect{u}}/\!/\mat{C} = \overbar{\vect{u}}/\!/\mat{A}; \vect{u}/\!/\mat{C} = \vect{u}/\!/\mat{B}. & \\
 <td valign=top>Path catenation & & <td valign=top nowrap>\mat{C} ← \mat{A} \oplus \mat{B} & & \mat{C} is obtained by connecting roots of \mat{B} to leaves of \mat{A}, allotting successive groups of at most ⌈\mathbf{μ}_1(\mat{B}) ÷ \textit{λ}(\mat{A})⌉ roots of \mat{B} to each successive leaf of \mat{A}. & <td valign=top align=right><a href="#1.23"><img src="APLimg/link.bmp"></a> & \\
 <td valign=top>Full tree & & <td valign=top nowrap>\mat{W} ← \mat{E} & & Each node of \mat{W} is unity and the structure of \mat{W} is determined by compatibility. & <td valign=top align=right><a href="#full_tree"><img src="APLimg/link.bmp"></a> & \\

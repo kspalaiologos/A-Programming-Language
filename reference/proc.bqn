@@ -62,6 +62,7 @@ chars ← ("&"∾∾⟜";")⌾⊑¨ (⋈⟜("\"⊸∾)¨1↓¨greek) ∾ ⟨
 ⟩
 
 repl ← chars ∾ apl ∾ ⟨
+  "\"     ‿"\backslash"
   "&times"‿"\times"
   "&mu"   ‿"\mu"
   " sin " ‿" \sin "
