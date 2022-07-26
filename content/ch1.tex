@@ -805,3 +805,163 @@ $$
 $$
 
 \par For example, $(y\textbf{ϵ}) {\circ \atop ⊥} \mat{X}$ represents a set of polynomials in $y$ with coefficients $\mat{X}_1, \mat{X}_2, ..., \mat{X}_ν$, and $\mat{Y} {\circ \atop ⊥} \vect{x}$ represents a set of evaluations of the vector $\vect{x}$ in a set of bases $\mat{Y}^1, \mat{Y}^2, ..., \mat{Y}^μ$.
+
+\section{Set operations}
+
+\par In conventional treatments, such as <acronym title="Jacobson, N. (1951), Lectures in Abstract Algebra, vol. 1, Van Nostrand, New York.">Jacobson (1951)</acronym> or <acronym title="Birkhoff, G., and S. MacLane (1941), A Survey of Modern Algebra, Macmillian, New York.">Birkhoff and MacLane (1941)</acronym>, a \textit{set} is defined as an unordered collection of distinct elements. A calculus of sets is then based on such elementary relations as set membership and on such elementary operations as \textit{set intersection} and \textit{set union}, none of which imply or depend on an ordering among members of a set. In the present context it is more fruitful to develop a calculus of \textit{ordered sets}.
+
+\par A vector whose components are all distinct has been called (Sec. 1.10) an \textit{ordered set} and (since no other types are to be considered) will hereafter be called a \textit{set}. In order to provide a closed system, all of the ``set operations'' will, in fact, be defined on vectors. However, the operations will, in the special case of sets, be analogous to classical set operations. The following vectors, the first four of which are sets, will be used for illustration throughout.
+
+\begin{align*}
+  & \vect{t} = (\text{t}, \text{e}, \text{a}) \\
+  & \vect{a} = (\text{a}, \text{t}, \text{e}) \\
+  & \vect{s} = (\text{s}, \text{a}, \text{t}, \text{e}, \text{d}) \\
+  & \vect{d} = (\text{d}, \text{u}, \text{s}, \text{k}) \\
+  & \vect{n} = (\text{n}, \text{o}, \text{n}, \text{s}, \text{e}, \text{t}) \\
+  & \vect{r} = (\text{r}, \text{e}, \text{d}, \text{u}, \text{n}, \text{d}, \text{a}, \text{n}, \text{t}) \\
+\end{align*}
+
+\par A variable $z$ is a \textit{member} of a vector $\vect{x}$ if $z = \vect{x}_i$ for some $i$. Membership is denoted by $z ϵ \vect{x}$. A vector $\vect{x}$ \textit{includes} a vector $\vect{y}$ (denoted by either $\vect{x} \supseteq \vect{y}$ or $\vect{y} \subseteq \vect{x})$ if each element $\vect{y}_i$ is a member of $\vect{x}$. If both $\vect{x} \supseteq \vect{y}$ and $\vect{x} \subseteq \vect{y}$, then $\vect{x}$ and $\vect{y}$ are said to be \textit{similar}. Similarity of $\vect{x}$ and $\vect{y}$ is denoted by $\vect{x} ≡ \vect{y}$. For example, $\vect{t} \subseteq \vect{s}, \vect{t} \subseteq \vect{r}, \vect{t} \subseteq \vect{a}, \vect{a} \subseteq \vect{t}, \vect{t} ≡ \vect{a}$, and $\vect{t} ≢ \vect{r}$. If $\vect{x} \subseteq \vect{y}$ and $\vect{x} ≢ \vect{y}$, then $\vect{x}$ is \textit{strictly} included in $\vect{y}$. Strict inclusion is denoted by $\vect{x} ⊂ \vect{y}$.
+
+\par The \textit{characteristic vector} of $\vect{x}$ on $\vect{y}$ is a logical vector denoted by $\textbf{ϵ}_{\vect{y}}^{\vect{x}}$, and defined as follows:
+
+$$
+  \vect{u} = \textbf{ϵ}_{\vect{y}}^{\vect{x}}
+    \leftrightarrow ν(\vect{u}) = ν(\vect{y}),
+  \;\text{and}\;
+  \vect{u}_j = (\vect{y}_j ϵ \vect{x}).
+$$
+
+\noindent For example, $\textbf{ϵ}_{\vect{s}}^{\vect{t}} = (\text{0}, \text{1}, \text{1}, \text{1}, \text{0})$, $\textbf{ϵ}_{\vect{t}}^{\vect{s}} = (\text{1}, \text{1}, \text{1})$, $\textbf{ϵ}_{\vect{s}}^{\vect{d}} = (\text{1}, \text{0}, \text{0}, \text{0}, \text{1})$, $\textbf{ϵ}_{\vect{d}}^{\vect{s}} = (\text{1}, \text{0}, \text{1}, \text{0})$, and $\textbf{ϵ}_{\vect{n}}^{\vect{r}} = (\text{1}, \text{0}, \text{1}, \text{0}, \text{1}, \text{1})$.
+
+\par The intersection of $\vect{y}$ with $\vect{x}$ is denoted by $\vect{y} ∩ \vect{x}$, and defined as follows:
+
+$$
+  \vect{y} ∩ \vect{x} = \textbf{ϵ}_{\vect{y}}^{\vect{x}}/\vect{y}.
+$$
+
+% TODO saner set notation
+\noindent For example, $\vect{s} ∩ \vect{d} = \text{(s, d)}$, $\vect{d} ∩ \vect{s} = \text{(d, s)}$, $\vect{s} ∩ \vect{r} = \text{(a, t, e, d)}$, and $\vect{r} ∩ \vect{s} = \text{(e, d, d, a, t)}$. Clearly, $\vect{x} ∩ \vect{y} ≡ \vect{y} ∩ \vect{x}$, although $\vect{x} ∩ \vect{y}$ is not, in general, equal to $\vect{y} ∩ \vect{x}$, since the components may occur in a different order and may be repeated a different number of times. The vector $\vect{x} ∩ \vect{y}$ is said to be \textit{ordered} on $\vect{x}$. Thus $\vect{a}$ is ordered on $\vect{s}$. If $\vect{x}$ and $\vect{y}$ contain no common elements (that is, $(\vect{x} ∩ \vect{y}) = \textbf{ϵ}(0))$, they are said to be \textit{disjoint}.
+
+\par The \textit{set difference} of $\vect{y}$ and $\vect{x}$ is denoted by $\vect{y} ∆ \vect{x}$ and is defined as follows:
+
+$$
+  \vect{y} ∆ \vect{x} = \overbar{\textbf{ϵ}}_{\vect{y}}^{\vect{x}}/\vect{y}.
+$$
+
+\noindent Hence $\vect{y} ∆ \vect{x}$ is obtained from $\vect{y}$ by suppressing those components which belong to $\vect{x}$. For example, $\overbar{\textbf{ϵ}}_{\vect{s}}^{\vect{t}} = \text{(1, 0, 0, 0, 1)}$ and $\vect{s} ∆ \vect{t} = \text{(s, d)}$. Moreover, $\overbar{\textbf{ϵ}}_{\vect{t}}^{\vect{s}} = \text{(0, 0, 0)} and \vect{t} ∆ \vect{s} = \textbf{ϵ}(0)$.
+
+\par The \textit{union} of $\vect{y}$ and $\vect{x}$ is denoted by $\vect{y} ∪ \vect{x}$ and defined as follows:%^{<a href="#note1d">[d]</a>}
+$\vect{y} ∪ \vect{x} = \vect{y} \oplus (\vect{x} ∆ \vect{y})$. For example, $\vect{s} ∪ \vect{d} = \text{(s, a, t, e, d, u, k)}$, $\vect{d} ∪ \vect{s} = \text{(d, u, s, k, a, t, e)}$, $\vect{s} ∪ \vect{a} = \vect{s} ∪ \vect{t} = \vect{s}$, and $\vect{n} ∪ \vect{t} = \text{(n, o, n, s, e, t, a)}$. In general, $\vect{x} ∪ \vect{y} ≡ \vect{y} ∪ \vect{x}$, and $\vect{x} ≡ (\vect{x} ∩ \vect{y}) ∪ (\vect{x} ∆ \vect{y})$. If $\vect{x}$ and $\vect{y}$ are disjoint, their union is equivalent to their catenation, that is, $\vect{x} ∩ \vect{y} = \textbf{ϵ}(0)$ implies that $\vect{x} ∪ \vect{y} = \vect{x} \oplus \vect{y}$.
+
+\par In the foregoing development, the concepts of inclusion and similarity are equivalent to the concepts of inclusion and equality in the conventional treatment of (unordered) sets. The remaining definitions of intersection, difference, and union differ from the usual formulation in that the result of any of these operations on a pair of ordered sets is again an \textit{ordered} set. With respect to \textit{similarity}, these operations satisfy the same identities as do the analogous conventional set operations on unordered sets with respect to equality.
+
+\par The forward selection $σ/\vect{b}$ and the backward selection $τ/\vect{b}$ defined in Sec. 1.10 can both be used to reduce any vector $\vect{b}$ to a similar set, that is,
+
+$$
+  (σ/\vect{b})/\vect{b} ≡ (τ/\vect{b})/\vect{b} ≡ \vect{b}.
+$$
+
+\noindent Moreover, if $\vect{f} = (σ/\vect{x})/\vect{b}, \vect{g} = (σ/\vect{y})/\vect{y}$, and $\vect{h} = (σ/\vect{z})/\vect{z}$, then $\vect{x} = \vect{y} ∩ \vect{z}$ implies that $\vect{f} = \vect{g} ∩ \vect{h}$, and $\vect{x} = \vect{y} ∪ \vect{z}$ implies that $\vect{f} = \vect{g} ∪ \vect{h}$.
+
+\par The unit vector $\textbf{ϵ}^j(n)$ will be recognized as a special case of the characteristic vector $\textbf{ϵ}_{\vect{y}}^{\vect{x}}$ in which $\vect{x}$ consists of the single component $j$, and $\vect{y} = \textbf{ι}^h(n)$, where $h$ is the index origin in use. In fact, the notation $\textbf{ϵ}^j_{i^h}$ can be used to make explicit the index origin $h$ assumed for $\textbf{ϵ}^j$.
+
+\par If $\vect{z}$ is any vector of dimension two such that $\vect{z}_1 ϵ \vect{x}$ and $\vect{z}_2 ϵ \vect{y}$, then $\vect{z}$ is said to belong to the \textit{Cartesian product} of $\vect{x}$ and $\vect{y}$. Thus if $\vect{x} = \text{(a, b, c)}$ and $\vect{y} = \text{(0, 1)}$, the rows of the matrix
+
+$$
+  \mat{A} = \begin{pmatrix}
+    a & 0 \\
+    a & 1 \\
+    b & 0 \\
+    b & 1 \\
+    c & 0 \\
+    c & 1
+  \end{pmatrix}
+$$
+
+\noindent are a complete list of the vectors $\vect{z}$ belonging to the product set of $\vect{x}$ and $\vect{y}$. The matrix $\mat{A}$ will be called the Cartesian product of $\vect{x}$ and $\vect{y}$ and will be denoted $\vect{x} \otimes \vect{y}$.
+
+\par The foregoing definition by example will be formalized in a more general way that admits the Cartesian product of several vectors (that is, $\vect{u} \otimes \vect{v} \otimes ... \otimes \vect{y}$) which need not be sets, and which specifies a unique ordering of the rows of the resulting matrix. Consider a family of vectors $\vect{x}^1, \vect{x}^2, ..., \vect{x}^s$ of dimensions $\vect{d}_1, \vect{d}_2, ..., \vect{d}_s$. Then
+
+$$
+  \mat{A}
+    ← \vect{x}^1 \otimes \vect{x}^2 \otimes ... \otimes \vect{x}^s
+  \leftrightarrow \mat{A}^{1 + \vect{d} ⊥ (\vect{k} - \textbf{ϵ})}
+    = (\vect{x}^1_{\vect{k}_1}, \vect{x}^2_{\vect{k}_2}, ..., \vect{x}^s_{\vect{k}_s}),
+$$
+
+\noindent for all vectors $\vect{k}$ such that $1 \leq \vect{k}_i \leq \vect{d}_i$. Clearly, $ν(\mat{A}) = s$, and $μ(\mat{A}) = \times/\vect{d}$. As illustrated by Table 1.11, the rows of the Cartesian product $\mat{A}$ are not distinct if any one of the vectors $\vect{x}^i$ is not a set.
+
+% TODO figure positioning
+\begin{equation*}
+  \begin{split}
+    \vect{x}^1 & = (a, b, a) \\
+    \vect{x}^2 & = (\#, *)   \\
+    \vect{x}^3 & = (0, 1)    \\
+    \vect{d}   & = (3, 2, 2)
+  \end{split}
+\quad\quad
+  \begin{split}
+    \mat{A} = \begin{pmatrix}
+      a & \# & 0 \\
+      a & \# & 1 \\
+      a &  * & 0 \\
+      a &  * & 1 \\
+      b & \# & 0 \\
+      b & \# & 1 \\
+      b &  * & 0 \\
+      b &  * & 1 \\
+      a & \# & 0 \\
+      a & \# & 1 \\
+      a &  * & 0 \\
+      a &  * & 1 \\
+    \end{pmatrix}
+  \end{split}
+\end{equation*}
+
+\par \textbf{Table 1.11} The Cartesian product $\mat{A} = \vect{x}^1 \otimes \vect{x}^2 \otimes \vect{x}^3$
+
+\par If the vectors $\vect{x}^i$ are all of the the same dimension, they may be considered as the columns of a matrix $\mat{X}$, that is, $\mat{X}_i = \vect{x}^i$. The product $\vect{x}^1 \otimes \vect{x}^2 \otimes ... \otimes \vect{x}^s = \mat{X}_1 \otimes \mat{X}_2 \otimes ... \otimes \mat{X}_s$ may then be defined by $\otimes/\mat{X}$, or alternatively by $\otimes/\!/\mat{Y}$, where $\mat{Y}$ is the transpose of $\mat{X}$. For example, if
+
+$$
+  \mat{X} = \textbf{ι}^0(2) {\circ \atop \wedge} \textbf{ϵ}(3)
+          = \begin{pmatrix} 0 & 0 & 0 \\ 1 & 1 & 1 \end{pmatrix}
+$$
+
+\par then $\otimes/\mat{X}$ is the matrix of arguments of the truth table for three variables.
+
+\section{Ranking}
+
+\par The \textit{rank} or \textit{index} of an element $c ϵ \vect{b}$ is called the $\vect{b}$ \textit{index of c} and is defined as the smallest value of $i$ such that $c = \vect{b}_i$. To establish a closed system, the $\vect{b}$ index of any element $\vect{a} \notin \vect{b}$ will be defined as the null characer $∘$. The $\vect{b}$ index of any element $c$ will be denoted by $\vect{b} ι c$; if necessary, the index origin in use will be indicated by a subscript appended to the operator $ι$. Thus, if $\vect{b} = \text{(a, p, e)}$, $\vect{b} ι_0 p = 1$, and $\vect{b} ι_1 p = 2$.
+
+\par The $\vect{b}$ index of a vector $\vect{c}$ is defined as follows:
+
+$$
+  \vect{k} ← \vect{b} ι \vect{c}
+  \leftrightarrow
+  \vect{k}_i = \vect{b} ι \vect{c}_i.
+$$
+
+\noindent The extension to matrices may be either row by row or (as indicated by a doubled operator symbol $ιι$) column by column, as follows:
+
+\begin{align*}
+  \mat{J} ← \mat{B}  ι \mat{C} & \leftrightarrow \mat{J}^i ← \mat{B}^i ι \mat{C}^i, \\
+  \mat{K} ← \mat{B} ιι \mat{C} & \leftrightarrow \mat{K}_j ← \mat{B}_j ι \mat{C}_j.
+\end{align*}
+
+\par Use of the ranking operator in a matrix product requires no secondary scan and is therefore indicated by a superior null symbol. Moreover, since the result must be limited to a two-dimensional array (matrix), either the pre- or post-operand is required to be a vector. Hence
+
+\begin{align*}
+  \mat{J} ← \mat{B}  {\circ \atop \iota} \vect{c} & \leftrightarrow \mat{J}^i ← \mat{B}^i ι \vect{c}^i, \\
+  \mat{K} ← \vect{b} {\circ \atop \iota} \mat{C}  & \leftrightarrow \mat{K}_j ← \vect{b}_j ι \mat{C}_j.
+\end{align*}
+
+\par The first of these ranks the components of $\vect{c}$ with respect to each of a set of vectors $\mat{B}^1, \mat{B}^2, ..., \mat{B}^μ$, whereas the second ranks each of the vectors $\mat{C}_1, \mat{C}_2, ..., \mat{C}_ν$ with respect to the fixed vector $\vect{b}$.
+
+\par The use of the ranking operation can be illustrated as follows. Consider the vector $\vect{b} = \text{(a, b, c, d, e)}$ and the set of all $3^5$ three-letter sequences (vectors) formed from its components. If the set is ordered lexically, and if $\vect{x}$ is the $j$th member of the set (counting from zero), then
+
+$$
+  j = (ν(\vect{b})\textbf{ϵ}) ⊥ (\vect{b} ι_0 \vect{x}).
+$$
+
+\par For example, if $\vect{x} = \text{(c, a, b)}$, then $(\vect{b} ι_0 \vect{x}) = (2, 0, 1)$, and $j = 51$.

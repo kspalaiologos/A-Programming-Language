@@ -94,9 +94,11 @@ repl ← chars ∾ apl ∾ ⟨
   "<img src=""APLimg/vboscore.bmp"">"                   ‿"\overbar{\vect{v}}"
   "<img src=""APLimg/epsboscore.bmp"">"                 ‿"\overbar{\textbf{ϵ}}"
   "<img src=""APLimg/ecapboscore.bmp"">"                ‿"\overbar{\mathsf{\mat{E}}}"
+  "<img src=""APLimg/noteps.bmp"">"                     ‿"\notin"
   "<img src=""APLimg/uarr.bmp"">"                       ‿"\Uparrow"
   "<img src=""APLimg/circleplus.bmp"">"                 ‿"\oplus"
   "<img src=""APLimg/circledot.bmp"">"                  ‿"\odot"
+  "<img src=""APLimg/circletimes.bmp"">"                ‿"\otimes"
   "<img src=""APLimg/plustimes.bmp"">"                  ‿"{+ \atop \times}"
   "<img src=""APLimg/timesslash.bmp"">"                 ‿"{\times \atop /}"
   "<img src=""APLimg/orand.bmp"">"                      ‿"{\vee \atop \wedge}"
@@ -106,6 +108,7 @@ repl ← chars ∾ apl ∾ ⟨
   "<img src=""APLimg/jottimes.bmp"">"                   ‿"{\circ \atop \times}"
   "<img src=""APLimg/jotand.bmp"">"                     ‿"{\circ \atop \wedge}"
   "<img src=""APLimg/jotbase.bmp"">"                    ‿"{\circ \atop ⊥}"
+  "<img src=""APLimg/jotiota.bmp"">"                    ‿"{\circ \atop ι}"
 ⟩
 repl ∾˜↩ ⟨ "<sup><i>&nbsp;"‿"^{\textit{", "<sub><i>&nbsp;"‿"_{\textit{" ⟩
 
