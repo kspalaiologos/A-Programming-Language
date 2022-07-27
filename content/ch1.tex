@@ -1096,3 +1096,140 @@ $$
 \par Ordering of a vector $\vect{a}$ with respect to a vector $\vect{b}$ is achieved by ordering the $\vect{b}$-index of $\vect{a}$. For example, if $\vect{a} = \text{(e, a, s, t, 4, 7, t, h)}$, and $\vect{b}$ is the alphabet, then $\vect{m} = \vect{b} ι_1 \vect{a} = (5, 1, 19, 20, ∘, ∘, 20, 8)$ and $θ_1/\vect{m} = (2, 1, 8, 3, 4, 7, 5, 6)$.
 
 \par The ordering operation is extended to matrices by the usual convention. If $\mat{K} = θ_j/\!/\mat{A}$, then each column of the matrix $\mat{B} = \mat{K} \int\int_j \mat{A}$ is in ascending order.
+
+\section{Maximization}
+
+\par In determining the maximum $m$ over components of a numerical vector $x$, it is often necessary to determine the indices of the maximum components as well. The maximization operator is therefore defined so as to determine a logical vector $\vect{v}$ such that $\vect{v}/\vect{x} = m\textbf{ϵ}$.
+
+\par Maximization over the entire vector $\vect{x}$ is denoted by $\textbf{ϵ}⌈\vect{x}$, and is defined as follows: if $\vect{v} = \textbf{ϵ}⌈\vect{x}$, then there exists a quantity $m$ such that $\vect{v}/\vect{x} = m\textbf{ϵ}$ and such that all components of $\overbar{\vect{v}}/\vect{x}$ are strictly less than $m$. The maximization is assumed by a single component of $\vect{x}$ if and only if $+/\vect{v} = 1$. The actual value of the maximum is given by the first (or any) component of $\vect{v}/\vect{x}$. Moreover, the $j$-origin indices of the maximum components are the components of the vector $\vect{v}/\textbf{ι}^j$.
+
+\par More generally, the maximization operation $\vect{v} ← \vect{u}⌈\vect{x}$ will be defined so as to determine the maximum over the subvector $\vect{u}/\vect{x}$ only, but to express the result $\vect{v}$ with respect to the entire vector $\vect{x}$. More precisely,
+
+$$
+  \vect{v} ← \vect{u}⌈\vect{x} \leftrightarrow
+  \vect{v} = \vect{u}\backslash(\textbf{ϵ}⌈(\vect{u}/\vect{x})).
+$$
+
+\noindent The operation may be visualized as follows---a horizontal plane punched at points corresponding to the zeros of $\vect{u}$ is lowered over a plot of the components of $\vect{x}$, and the positions at which the plane first touches them are the positions of the unit components of $\vect{v}$. For example, maximization over the negative components of $\vect{x}$ is denoted by
+
+$$
+  \vect{v} ← (\vect{x} < 0)⌈\vect{x}
+$$
+
+\noindent and if $\vect{x} =$ (2, -3, 7, -5, 4, -3, 6), then $(\vect{x} <$ 0) $=$ (0, 1, 0, 1, 0, 1, 0), $\vect{v} =$ (0, 1, 0, 0, 0, 1, 0), $\vect{v}/\vect{x} =$ (-3, -3), $(\vect{v}/\vect{x})_1 =$ -3, and $\vect{v}/\textbf{ι}^1 =$ (2, 6). Minimization is defined analogously and is denoted by $\vect{u}⌊\vect{x}$.
+
+\par The extension of maximization and minimization to arbitrary vectors is the same as for the ordering operation, i.e., all nonnumeric quantities are treated as equal and as exceeding all numeric quantities. The extensions to matrices are denoted and defined as follows:
+
+\begin{align*}
+  \mat{V} ← \mat{U} ⌈ \mat{X}                & \leftrightarrow \mat{V}^i = \mat{U}^i ⌈ \mat{X}^i, \\
+  \mat{V} ← \mat{U} ⌈⌈ \mat{X}               & \leftrightarrow \mat{V}_j = \mat{U}_j ⌈ \mat{X}_j, \\
+  \mat{V} ← \mat{U} {\circ \atop ⌈} \vect{x} & \leftrightarrow \mat{V}^i = \mat{U}^i ⌈ \vect{x},  \\
+  \mat{V} ← \vect{u} {\circ \atop ⌈} \mat{X} & \leftrightarrow \mat{V}_j = \vect{u}  ⌈ \mat{X}_j.
+\end{align*}
+
+\par As in the case of the ordering operation, maximization in a vector $\vect{a}$ with respect to order in a set $\vect{b}$ is achieved by maximizing over the $\vect{b}$-index of $\vect{a}$. Thus if
+
+$$
+  \setcounter{MaxMatrixCols}{13}
+  \mat{H} = \begin{pmatrix}
+    \text{d} & \text{c} & \text{h} & \text{d} & \text{h} & \text{s} & \text{h} & \text{d} & \text{c} & \text{h} & \text{c} & \text{h} & \text{d} \\
+    \text{a} & 6 & \text{k} & \text{q} & 4 & 3 & 5 & \text{k} & 8 & 2 & \text{j} & 9 & 2
+  \end{pmatrix}
+$$
+
+\noindent represents a hand of thirteen playing cards, and if
+
+\begin{align*}
+  \mat{B} &= \begin{pmatrix}
+    \text{c} & \text{d} & \text{h} & \text{s} & ∘ & ∘ & ∘ & ∘ & ∘ & ∘ & ∘ & ∘ & ∘ \\
+    2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & \text{j} & \text{q} & \text{k} & \text{a}
+  \end{pmatrix}, \\
+\text{then}\quad \mat{B} ι_0 \mat{H} &= \begin{pmatrix}
+    1 & 0 & 2 & 1 & 2 & 3 & 2 & 1 & 0 & 2 & 0 & 2 & 1 \\
+    12 & 4 & 11 & 10 & 2 & 1 & 3 & 11 & 6 & 0 & 9 & 7 & 0
+  \end{pmatrix}, \\
+  (4, 13) {\circ \atop ⊥} (\mat{B} ι_0 \mat{H}) &= (25, 4, 37, 23, 28, 40, 29, 24, 6, 26, 9, 33, 13), \\
+\text{and}\quad &
+  (\textbf{ϵ}⌈((4, 13) {\circ \atop ⊥} (\mat{B} ι_0 \mat{H})))/\mat{H} = (s, 3)
+\end{align*}
+
+\par is the highest ranking card in the hand.
+
+\section{Inverse functions}
+
+\par To every biunique%^{<a href="#note1f">[f]</a>}
+function $f$ there corresponds an \textit{inverse} function $g$ such that $g(f(x)) = x$ for each argument $x$ in the domain of the function $f$. It is common practice either to introduce a distinct symbolism for the inverse function, as for the inverse functions of logarithm ($\log_b x$) and exponentiation ($b^3$), or to use a superscript $-1$, as in $\sin^{-1}x$ or $f^{-1}(x)$.
+
+\par The first alternative doubles the number of distinct operator symbols required and obscures the relation between pairs of inverse functions; the second raises other difficulties. The solution adopted here is that of \textit{implicit} specification; i.e. a statement is permitted to specify not only a variable but also any function of that variable. Functions may therefore appear on both sides of the specification arrow in a statement. For example,
+
+$$
+  (2\textbf{ϵ}) ⊥ x ← z
+$$
+
+\noindent specifies the variable $x$ as the vector whose base two value is the number $z$.
+
+\par Certain ambiguities remain in the foregoing statement. First, the dimension of $x$ is not specified. For example, if $z = 12$, $x = (1, 1, 0, 0)$ is an admissible solution, but so are $(0, 1, 1, 0, 0)$ and $(0, 0, 0, 1, 1, 0, 0)$. This could be clarified by compatibility with a specified dimension of $\textbf{ϵ}$. Thus the statement
+
+$$
+  (2\textbf{ϵ}(5)) ⊥ x ← z
+$$
+
+\noindent specifies $x$ unambiguously as $(0, 1, 1, 0, 0)$. More generally, however, any previously specified auxiliary variables will be listed to the right of the main statement, with a semicolon serving as a separation symbol. The current example could therefore be written as
+
+\begin{align*}
+  ν(x) ← 5 \\
+  (2\textbf{ϵ}) ⊥ x ← z; ν(x)
+\end{align*}
+
+\par The second ambiguity concerns the permissible range of the individual components of $x$. For example, the base two value of $x = (5, 2)$ is also twelve. For certain functions it is therefore necessary to adopt some obvious conventions concerning the range of the result. The assumption implicit in the preceding paragraph is that each component of $x$ is limited to the range of the residues modulo the corresponding radix. This convention will be adopted. Hence the pair of statements
+
+\begin{align*}
+  y ← (7, 24, 60, 60) \\
+  y ⊥ x ← 7278; y
+\end{align*}
+
+\noindent determines $x$ unambiguously as the vector $(0, 2, 1, 18)$.
+
+\par it is also convenient, though not essential, to use selection operations on the left of a statement. Thus the statement
+
+$$
+  \vect{u}/\vect{b} ← \vect{a}
+$$
+
+\noindent is understood to respecify only the selected components of $\vect{b}$ and to leave all others unchanged. It is therefore equivalent to the statement
+
+$$
+  \vect{b} ← \backslash\overbar{\vect{u}}/\vect{b}, \vect{u}, \vect{a}\backslash.
+$$
+
+\noindent Similarly,
+
+$$
+  \vect{u}/\vect{b} ← \vect{u}/\vect{a}
+$$
+
+\noindent is equivalent to
+
+$$
+  \vect{b} ← /\vect{b}, \vect{u}, \vect{a}/.
+$$
+
+\section{Levels of structure}
+
+\par Vectors and matrices are arrays which exhibit one level and two levels of structure, respectively. Although in certain fields, such as tensor analysis, it is convenient to define more general arrays whose \textit{rank} specifies the number of levels of structure (i.e., zero for a scalar, one for a vector of scalars, two for a vector of vectors (matrix), three for a vector of matrices, etc.), the notation will here be limited to the two levels provided by the matrix.%^{<a href="#note1g">[g]</a>}
+The present section will, however, indicate methods for removing this limitation.
+
+% TODO doubled \perp
+\par The only essential particularization to two levels occurs in the provision of single and double symbols (e.g. ``$/$'' and ``$/\!/$'', ``$⊥$'' and ``$⊥⊥$'') for row and column operations, respectively, and in the use of superscripts and subscripts for denoting rows and columns, respectively. In applications requiring multiple levels, the former can be generalized by adjoining to the single symbol an index which specifies the coordinate (e.g. ``$/_1$'' and ``$/_2$'', for row and for column compression, and, in general, ``$/_j$''.) The latter can be generalized by using a vector index subscript possessing one component index for each coordinate.
+
+\par The generalized notation can be made compatible with the present notation for vectors and matrices by adopting the name \textit{tensor} and a symbol class (such as capital letters) for the general array of arbitrary rank.
+
+\section{Subroutines}
+
+\par Detail can be subordinated in a more general manner by the use of subroutines. The name of one program appearing as a single statement in a second program implies execution of the named program at that point; the named program is called a \textit{subroutine} of the second program. If, for example, ``Cos'' is the name of a program which specifies $z$ as the cosine of the angle between the vectors $\vect{x}$ and $\vect{y}$, then Program 1.13a uses the program ``Cos'' as a subroutine to determine $r$ as the cosine of the angle between the vectors $\vect{p}$ and $\vect{q}$.
+
+\par (TODO: PROGRAM 1.13)
+
+\par \textbf{Program 1.13} Modes of subroutine reference
+
+\par It is sometimes convenient to include the names of the arguments or results or both in the name of the subroutine as dummy variables. Thus if ``$\text{Cos}(\vect{x}, \vect{y})$'' is the name of a subroutine which determines $z$ as the cosine of the angle between $\vect{x}$ and $\vect{y}$, then Program 1.13b uses $\text{Cos}(x, y)$ as a subroutine to determine $r$ as the cosine of the angle between $\vect{p}$ and $\vect{q}$. Similarly, the program ``$z ← \text{Cos}(x, y)$'' can be used as in Program 1.13c to produce the same result.

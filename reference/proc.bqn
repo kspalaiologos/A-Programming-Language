@@ -107,6 +107,7 @@ repl ← chars ∾ apl ∾ ⟨
   "<img src=""APLimg/jotcircle.bmp"">"                  ‿"{\circ \atop \odot_2}"
   "<img src=""APLimg/jottimes.bmp"">"                   ‿"{\circ \atop \times}"
   "<img src=""APLimg/jotand.bmp"">"                     ‿"{\circ \atop \wedge}"
+  "<img src=""APLimg/jotmax.bmp"">"                     ‿"{\circ \atop ⌈}"
   "<img src=""APLimg/jotbase.bmp"">"                    ‿"{\circ \atop ⊥}"
   "<img src=""APLimg/jotiota.bmp"">"                    ‿"{\circ \atop ι}"
 ⟩
