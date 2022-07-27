@@ -965,3 +965,134 @@ $$
 $$
 
 \par For example, if $\vect{x} = \text{(c, a, b)}$, then $(\vect{b} ι_0 \vect{x}) = (2, 0, 1)$, and $j = 51$.
+
+\section{Mapping and permutation}
+
+\subsection*{Reordering operations}
+
+\par The selection operations employed thus far do not permit convenient reorderings of the components. This is provided by the \textit{mapping} operation defined as follows:%^{<a href="#note1e">[e]</a>}
+
+$$
+  \vect{c} ← \vect{a}_{\vect{k}} \leftrightarrow
+  \vect{c}_i = \vect{a}_{\vect{k}_i}
+$$
+
+\noindent For example, if $\vect{a} = \text{(a, b, ..., z)}$ and $\vect{k} = (6, 5, 4)$, then $\vect{c} = \text{(f, e, d)}$.
+
+\par The foregoing definition is meaningful only if the components of $\vect{k}$ each lie in the range of the indices of $\vect{a}$, and it will be extended by defining $\vect{a}_j$ as the null element $∘$ if $j$ does not belong to the index set of $\vect{a}$. Formally,
+
+\begin{equation*}
+  \vect{c} ← \vect{a}_{\vect{m}} \leftrightarrow \vect{c}_i =
+  \begin{cases}
+    \vect{a}_{\vect{m}_i} & \text{if } \vect{m}_i ϵ \textbf{ι}^1(ν(\vect{a})) \\
+    ∘                & \text{if } \vect{m}_i \notin \textbf{ι}^1(ν(\vect{a})).
+  \end{cases}
+\end{equation*}
+
+\par The ability to specify an arbitrary index origin for the vector $\vect{a}$ being mapped is provided by the following alternative notation for mapping:
+
+\begin{equation*}
+  \vect{c} ← \vect{m} \int_j \vect{a} \leftrightarrow \vect{c}_i =
+  \begin{cases}
+    \vect{a}_{\vect{m}_i} & \text{if } \vect{m}_i ϵ \textbf{ι}^j(ν(\vect{a})) \\
+    ∘                & \text{if } \vect{m}_i \notin \textbf{ι}^j(ν(\vect{a})),
+  \end{cases}
+\end{equation*}
+
+\noindent where $j$-origin indexing is assumed for the vector $\vect{a}$. For example, if $\vect{a}$ is the alphabet and $\vect{m} = (5, ∘, ∘, 4, 27, ∘, 3)$, then $\vect{c} = \vect{m} \int_0 \vect{a} = (f, ∘, ∘, \text{e}, ∘, ∘, \text{d})$, and $(\vect{c} \neq ∘\textbf{ϵ})/\vect{c} = \text{(f, e, d)}$. Moreover, $\vect{m} \int_2 \vect{a} = (\text{d}, ∘, ∘, \text{c}, \text{z}, ∘, \text{b})$. Elision of $j$ is permitted.
+
+\par If $\vect{a} ⊆ \vect{b}$, and $\vect{m} = \vect{b} ι_j \vect{a}$, then clearly $\vect{m} \int_j \vect{b} = \vect{a}$. If $\vect{a} \nsubseteq \vect{b}$, then $\vect{m} \int_j \vect{b}$ contains (in addition to certain nulls) those components common to $\vect{b}$ and $\vect{a}$, arranged in the order in which they occur in $\vect{a}$. In other words,
+
+$$
+  (\vect{m} \neq ∘\textbf{ϵ})/(\vect{m} \int_j \vect{b}) = \vect{a} ∩ \vect{b}.
+$$
+
+\noindent Consequently, if $\vect{p}$, $\vect{q}$, ..., $\vect{t}$ are vectors, each contained in $\vect{b}$, then each can be represented jointly by the vector $\vect{b}$ and a mapping vector. If, for example, $\vect{b}$ is a glossary and $\vect{p}$, $\vect{q}$, etc. are texts, the total storage required for $\vect{b}$ and the mapping vectors might be considerably less than for the entire set of texts.
+
+\par Mapping may be shown to be associative, that is, $\vect{m}^1 \int_i (\vect{m}^2 \int_j \vect{a}) = (\vect{m}^1 \int_i \vect{m}^2) \int_j \vect{a}$. Mapping is not, in general, commutative.
+
+\par Mapping is extended to matrices as follows:
+
+\begin{align*}
+  \mat{A} ← \mat{M}     \int_h \mat{B} & \leftrightarrow \mat{A}^i = \mat{M}^i \int_h \mat{B}^i, \\
+  \mat{C} ← \mat{M} \int\int_h \mat{B} & \leftrightarrow \mat{C}_j = \mat{M}_j \int_h \mat{B}_j.
+\end{align*}
+
+\noindent Row and column mappings are associative. A row mapping $^1\mat{M}$ and a column mapping $^2\mat{M}$ do not, in general, commute, but do if all rows of $^1\mat{M}$ agree (that is, $^1\mat{M} = \textbf{ϵ} {\circ \atop \times} \vect{p}$), and if all columns of $^2\mat{M}$ agree (that is, $^2\mat{M} = \vect{q} {\circ \atop \times} \textbf{ϵ}$). The generalized matrix product is defined for the cases $\mat{M} {\circ \atop \int} \mat{A}$, and $\mat{M} {\circ \atop \int} \vect{a}$.
+
+\par The alternative notation (that is, $\vect{c} = \vect{a}_{\vect{m}}$), which does not incorporate specification of the index origin, is particularly convenient for matrices and is extended as follows:
+
+\begin{align*}
+  \mat{A} ← \mat{B}^{\vect{m}} & \leftrightarrow \mat{A}^i = \mat{B}^{\vect{m}_i}, \\
+  \mat{A} ← \mat{B}_{\vect{m}} & \leftrightarrow \mat{A}_i = \mat{B}_{\vect{m}_i}.
+\end{align*}
+
+\subsection*{Permutations}
+
+\par A vector $\vect{k}$ of dimension $n$ is called a $j$-origin \textit{permutation vector} if $\vect{k} ≡ \textbf{ι}^j(n)$. A permutation vector used to map any set of the same dimension produces a reordering of the set without either repetition or suppression of elements, that is, $\vect{k} \int_j \vect{a} ≡ \vect{a}$ for any set $\vect{a}$ of dimension $ν(\vect{k})$. For example, if $\vect{a} = (\text{f}, 4, *, 6, \text{z})$, and $\vect{k} = (4, 2, 5, 1, 3)$, then $\vect{k} \int_1 \vect{a} = (6, 4, \text{z}, \text{f}, *)$.
+
+\par If $\vect{p}$ is an $h$-origin permutation vector and $\vect{q}$ is any $j$-origin permutation vector of the same dimension, then $\vect{q} \int_j \vect{p}$ is an $h$-origin permutation vector.
+
+\par Since
+
+$$
+  \textbf{ι}^j(ν(\vect{a})) \int_j \vect{a} = \vect{a},
+$$
+
+\par the interval vector $\textbf{ι}^j(n)$ will also be called the \textit{j-origin identity permutation vector}. If $\vect{p}$ and $\vect{q}$ are two $j$-origin permutation vectors of the same dimension $n$ and if $\vect{q} \int_j \vect{p} = \textbf{ι}^j(n)$, then $\vect{p} \int_j \vect{q} = \textbf{ι}^j(n)$ also and $\vect{p}$ and $\vect{q}$ are said to be \textit{inverse} permutations. If $\vect{p}$ is any $j$-origin permutation vector, then $\vect{q} = \vect{p} ι_j \textbf{ι}^j$ is inverse to $\vect{p}$.
+
+\par The rotation operation $k ↑ \vect{x}$ is a special case of permutation.
+
+\subsection*{Function mapping}
+
+\par A function $f$ which defines for each element $\vect{b}_i$ of a set $\vect{b}$ a unique correspondent $\vect{a}_k$ in a set $\vect{a}$ is called a \textit{mapping from} $\vect{b}$ to $\vect{a}$. If $f(\vect{b}_i) = \vect{a}_k$, the element $\vect{b}_i$ is said to \textit{map into} the element $\vect{a}_k$. If the elements $f(\vect{b}_i)$ exhaust the set $\vect{a}$, the function $f$ is set to map $\vect{b}$ onto $\vect{a}$. If $\vect{b}$ maps onto $\vect{a}$ and the elements $f(\vect{b}_i)$ are all distinct, the mapping is said to be one-to-one or \textit{biunique}. In this case, $ν(\vect{a}) = ν(\vect{b})$, and there exists an inverse mapping from $\vect{a}$ to $\vect{b}$ with the same correspondences.
+
+\par A program for performing the mapping $f$ from $\vect{b}$ to $\vect{a}$ must therefore determine for any given element $b ϵ \vect{b}$, the correspondent $a ϵ \vect{a}$, such that $a = f(b)$. Because of the convenience of operating upon integers (e.g., upon register addresses or other numeric symbols) in the automatic execution of programs, the mapping is frequently performed in three successive phases, determining in turn the following quantities:
+
+\begin{enumerate}
+  \item the index $i = \vect{b} ι b$,
+  \item the index $k$ such that $\vect{a}_{k} = f(\vect{b}_{i})$,
+  \item the element $\vect{a}_{k}$.
+\end{enumerate}
+
+\par The three phases are shown in detail in Program 1.12a. The ranking is performed (steps 1-3) by scanning the set $\vect{b}$ in order and comparing each element with the argument $b$. The second phase is a permutation of the integers $1$, $2$, ..., $ν(\vect{b})$, which may be described by a permutation vector $\vect{j}$, such that $\vect{j}_i = k$. The selection of $\vect{j}_i$ (step 4) then defines $k$, which, in turn, determines the selection of $\vect{a}_k$ on step 5.
+
+\par \textbf{Example 1.2}. If
+
+\begin{align*}
+  \vect{b} &= (\text{apple}, \text{booty}, \text{dust}, \text{eye}, \text{night}), \\
+  \vect{a} &= (\text{Apfel}, \text{Auge}, \text{Beute}, \text{Nacht}, \text{Staub})
+\end{align*}
+
+\noindent are, respectively, a set of English words and a set of German correspondents (both in alphabetical order), and if the function required is the mapping of a given English word $b$ into its German equivalent $a$ according to the dictionary correspondences:
+
+\begin{tabular}{llllll}
+  English: & apple & booty & dust & eye & night \\
+  German:  & Apfel & Beute & Staub & Auge & Nacht
+\end{tabular}
+
+\par then $\vect{j} = (1, 3, 5, 2, 4)$. If $b = \text{``night''}$, then $i = 5$, $\vect{j}_i = 4$, and $a = \vect{a}_4 = \text{Nacht}$.
+
+% (END EXAMPLE 1.2)
+
+\par If $\vect{k}$ is a permutation vector inverse to $\vect{j}$, then Program 1.12b describes a mapping inverse to that of Program 1.12a. If $\vect{j} = (1, 3, 5, 2, 4)$, then $\vect{k} = (1, 4, 2, 5, 3)$. The inverse mapping can also be described in terms of $\vect{j}$, as is done in Program 1.12c. The selection of the $i$th component of the permutation vector is then necessarily replaced by a scan of its components. Programs 1.12d and 1.12e show alternative formulations of Program 1.12a.
+
+\par (TODO: PROGRAM 1.12)
+
+\par \textbf{Program 1.12} Mapping defined by a permutation vector $j$
+
+\subsection*{Ordering vector}
+
+\par If $\vect{x}$ is a numeric vector and $\vect{k}$ is a $j$-origin permutation vector such that the components of $\vect{y} = \vect{k} \int_j \vect{x}$ are in ascending order, then $\vect{k}$ is said to \textit{order} $\vect{x}$. The vector $\vect{k}$ can be determined by an ordering operation defined as follows:
+
+$$
+  \vect{k} ← θ_j/\vect{x}
+$$
+
+\noindent implies that $\vect{k}$ is a $j$-origin permutation vector, and that if $\vect{y} = \vect{k} \int_j \vect{x}$, then either $\vect{y}_i < \vect{y}_{i+1}$ or $\vect{y}_i = \vect{y}_{i+1}$ and $\vect{k}_i < \vect{k}_{i+1}$. The resulting vector $\vect{k}$ is unique and preserves the original relative order among equal components. For example, if $\vect{x} = (7, 3, 5, 3)$, then $θ_1/\vect{x} = (2, 4, 3, 1)$.
+
+\par The ordering operation is extended to arbitrary vectors by treating all nonnumeric quantities as equal and as greater than any numeric quantity. For example, if $\vect{a} = (7, ∘, 3,∘, 5, 3)$, then $θ_1/\vect{a} = (3, 6, 5, 1, 2, 4)$, and if $\vect{b}$ is any vector with no numerical components, then $θ_j/\vect{b} = \textbf{ι}^j(ν(\vect{b}))$.
+
+\par Ordering of a vector $\vect{a}$ with respect to a vector $\vect{b}$ is achieved by ordering the $\vect{b}$-index of $\vect{a}$. For example, if $\vect{a} = \text{(e, a, s, t, 4, 7, t, h)}$, and $\vect{b}$ is the alphabet, then $\vect{m} = \vect{b} ι_1 \vect{a} = (5, 1, 19, 20, ∘, ∘, 20, 8)$ and $θ_1/\vect{m} = (2, 1, 8, 3, 4, 7, 5, 6)$.
+
+\par The ordering operation is extended to matrices by the usual convention. If $\mat{K} = θ_j/\!/\mat{A}$, then each column of the matrix $\mat{B} = \mat{K} \int\int_j \mat{A}$ is in ascending order.
