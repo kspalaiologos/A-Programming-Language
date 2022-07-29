@@ -1233,3 +1233,206 @@ The present section will, however, indicate methods for removing this limitation
 \par \textbf{Program 1.13} Modes of subroutine reference
 
 \par It is sometimes convenient to include the names of the arguments or results or both in the name of the subroutine as dummy variables. Thus if ``$\text{Cos}(\vect{x}, \vect{y})$'' is the name of a subroutine which determines $z$ as the cosine of the angle between $\vect{x}$ and $\vect{y}$, then Program 1.13b uses $\text{Cos}(x, y)$ as a subroutine to determine $r$ as the cosine of the angle between $\vect{p}$ and $\vect{q}$. Similarly, the program ``$z ← \text{Cos}(x, y)$'' can be used as in Program 1.13c to produce the same result.
+
+\section{Files}
+
+\par Many devices used for the storage of information impose certain restrictions upon its insertion or withdrawal. The items recorded on a magnetic tape, for example, may be read from the tape much more quickly in the order in which they appear physically on the tape than in some other prescribed order.
+
+\par Certain storage devices are also self-indexing in the sense that the item selected in the next read from the device will be determined by the current state or position of the device. The next item read from a magnetic tape, for example, is determined by the position in which the tape was left by the last preceding read operation.
+
+\par To allow the convenient description of algorithms constrained by the characteristics of storage devices, the following notation will be adopted. A \textit{file} is a representation of a vector $\vect{x}$ arranged as follows:
+
+$$
+  \vect{p}_1, \vect{x}_1, \vect{p}_2, \vect{x}_2, ...,
+  \vect{x}_{ν(\vect{x})},
+  \vect{p}_{ν(\vect{x}) + 1}, ∘,
+  \vect{p}_{ν(\vect{x}) + 2}, ∘, ...,
+  \vect{p}_{ν(\vect{p})}.
+$$
+
+\noindent The null elements denote ``unused'' portion of the file not employed in representing $\vect{x}$. Each \textit{partition} $\vect{p}_j$ determines a \textit{position} (position $j$) in the file. If a file $\tree{Φ}$ is in position $j$, then a \textit{forward read}, denoted by
+
+$$
+  x, p ← {}_0\tree{Φ},
+$$
+
+\noindent specifies $x$ by the component $\vect{x}_j$, the auxiliary variable $p$ by the succeeding partition $\vect{p}_{j+1}$, and stops the file in the position $j + 1$.
+
+\par The position of a file $\tree{Φ}$ will be denoted by $π(\tree{Φ})$. Thus the statement $j ← π(\tree{Φ})$ specifies $j$ as the position of $\tree{Φ}$, whereas $π(\tree{Φ}) ← j$ \textit{positions} the file to $j$. In particular, $π(\tree{Φ}) ← 1$ denotes the \textit{rewinding} of the file and $π(\tree{Φ}) ← ν$ denotes \textit{winding}, i.e. positioning to the extreme end of the file. Any file for which the general positioning operation $π(\tree{Φ}) ← j$ is to be avoided as impossible or inefficient is called a \textit{serial} or \textit{serial-access} file.
+
+\par Each terminal partition (that is, $\vect{p}_1$ and $\vect{p}_{ν(\vect{p})}$) assumes a single fixed value denoted by $λ$. Each nonterminal partition $\vect{p}_j$ may assume one of several values denoted by $\mathbf{λ}_1$, $\mathbf{λ}_2$, ..., $\mathbf{λ}_{ν(\mathbf{λ})}$, the partitions with larger indices normally demarking larger subgroups of components within the file. Thus if $\vect{x}$ were the row list of a matrix, the last component might be followed by the partition $\mathbf{λ}_3$, the last component of each of the preceding rows by $\mathbf{λ}_2$, and the remaining components by $\mathbf{λ}_1$. The auxiliary variable $p$ specified by the partition symbol during the read of a file is normally used to control a subsequent branch.
+
+\par A file may be produced by a sequence of \textit{forward record} statements:
+
+$$
+  {}_0\tree{Φ} ← \vect{x}_i, p \text{ for } i ϵ \textbf{ι}^1(ν(\vect{x})),
+$$
+
+\noindent where $p$ is the partition symbol recorded after the component $\vect{x}_i$. As in reading, each forward record operation increments the position of the file by one. A file which is only recorded during a process is called an \textit{output file} of the process; a file which is only read is called an \textit{input file}.
+
+\par Different files occurring in a process will be distinguished by righthand subscripts and superscripts, the latter being usually employed to denote major classes of files, such as input and output.
+
+\par \textbf{Example 1.3}. A set of $m$ input files $\tree{Φ}_i^1$, $i ϵ \textbf{ι}^1(m)$, each terminated by a partition $λ_2$, is to be copied to a single output file $\tree{Φ}_1^2$ as follows. Successive items (components) are chosen in turn from files $\tree{Φ}_1^1$, $\tree{Φ}_2^1$, ..., $\tree{Φ}_m^1$, $\tree{Φ}_1^1$, $\tree{Φ}_2^1$, ..., always omitting from the sequence any exhausted file. A partition $λ_2$ is to be recorded with the last item recorded on $\tree{Φ}_1^2$, and all files are to be rewound. The process is described by Program 1.14.
+
+% (END EXAMPLE 1.3)
+
+\par (TODO: PROGRAM 1.14)
+
+\par \textbf{Program 1.14}. Step 8 cycles $k$ through the values 1 to $m$, and step 9 allows the read on steps 10 to occur only if $\vect{u}_k = 0$. The logical vector $\vect{u}$ is of dimension $m$ and designates the set of exhausted files. Its $k$th component is set to unity by step 11 when file $k$ is exhausted, as indicated by the occurrence of the partition $\mathbf{λ}_2$. Each read is normally followed by step 13, which records on the output file the item read. However, when the last file becomes exhausted, step 14 is executed instead to record the last item, together with the final partition $\mathbf{λ}_2$.
+
+\par Steps 1-6 initialize the parameters $\vect{u}$ and $k$ and rewind all files. After the last item is recorded by step 14, the file rewinds are repeated before the final termination on step 7.
+
+% (END PROGRAM 1.14 DESCRIPTION)
+
+\par It is sometimes convenient to suppress explicit reference to the partition symbol read from a file by using a statement of the form
+
+% TODO: vertically center arrows and join with |s
+$$
+  \underleftarrow{\mathbf{λ}_1}\left|
+  x ← {}_0\tree{Φ}
+  \right|\underrightarrow{\mathbf{λ}_2}
+$$
+
+\noindent where the indicated branches depend on the value of the partition $\vect{p}_{j+1}$ which terminates the read. Thus the left or the right branch is taken according to whether $\vect{p}_{j+1} = \vect{λ}_1$ or $\vect{p}_{j+1} = \vect{λ}_2$. Certain files (such as the IBM 7090 tape files) permit only such ``immediate'' branching and do not permit the partition symbol to be stored for use in later operations, as was done in Program 1.14.
+
+\par In recording, the lowest level partition $\vect{λ}_1$ may be elided. Thus statement 13 of Program 1.14 may be written as
+
+$$
+  \tree{Φ}_1^2 ← b.
+$$
+
+\par A file may be read or recorded backward as well as forward. A backward read is denoted by
+
+$$
+  x, p ← {}_1\tree{Φ},
+$$
+
+\noindent and if $\tree{Φ}$ is initially in position $j + 1$, then $x = \vect{x}_j$, $p = \vect{p}_j$, and the final position becomes $j$. Backward recording is defined analogously. The zero prescript may be omitted from the symbol ${}_0\tree{Φ}$ for both forward reading and recording.
+
+\par The conventions used for matrices can be applied in an obvious way to an array of files $\tree{Φ}_j^i$. For example, the statement
+
+$$
+  π(\tree{Φ}^i) ← \textbf{ϵ}
+$$
+
+\noindent denotes the rewinding of the \textit{row of files} $\tree{Φ}_j^i$, $j ϵ \textbf{ι}^1(ν(\tree{Φ}))$; the statement
+
+$$
+  π(\tree{Φ}_j) ← \textbf{ϵ}
+$$
+
+\noindent denotes the rewinding of the \textit{column of files} $\tree{Φ}_j^i$, $i ϵ \textbf{ι}^1(μ(\tree{Φ}))$; and the statement
+
+$$
+  \vect{u}/\tree{Φ}^i ← \vect{u}/\vect{x}, \vect{u}/\vect{p}
+$$
+
+\noindent denotes the recording of the vector components $\vect{x}_j$ on the file $\tree{Φ}_j^i$ together with partition $\vect{p}_j$ for all $j$ such that $\vect{u}_j = 1$.
+
+\par As for vectors and matrices, $j$-origin indexing may be used and will apply to the indexing of the file positions and the partition vector $\mathbf{λ}$ as well as to the array indices. However, the prescripts (denoting direction of read and record) are independent of index origin. 0-origin indexing is used in the following example.
+
+\par \textbf{Example 1.4}. Files $\tree{Φ}_0^0$ and $\tree{Φ}_1^0$ contain the vectors $\vect{x}$ and $\vect{y}$, respectively, each of dimension $n$. In the first phase, the components are to be merged in the order $\vect{x}_0$, $\vect{y}_0$, $\vect{x}_1$, $\vect{y}_1$, ... $\vect{x}_{ν-1}$, $\vect{y}_{ν-1}$, and the first $n$ components of the resulting vector are to be recorded on file $\tree{Φ}_0^1$, and the last $n$ on file $\tree{Φ}_1^1$. In other words, the vectors $\vect{x}^1 = \mathbf{α}^n/\vect{z}$ and $\vect{y}^1 = \textbf{ω}^n/\vect{z}$ are to be recorded on $\tree{Φ}_0^1$ and $\tree{Φ}_1^1$, respectively, where $\vect{z} = \backslash\vect{x}, \vect{u}, \vect{y}\backslash$, and $\vect{u} = (0, 1, 0, 1, ..., 0, 1)$. In the next phase, the roles of input and output files are reversed, and the same process is performed on $\vect{x}^1$ and $\vect{y}^1$, that is, $\vect{x}^2 = \mathbf{α}^n/(\backslash\vect{x}^1, \vect{u}, \vect{y}^1\backslash)$ and $\vect{y}^2 = \textbf{ω}^n/(\backslash\vect{x}^1, \vect{u}, \vect{y}^1\backslash)$ are recorded on $\tree{Φ}_0^0$ and $\tree{Φ}_1^0$, respectively. The process is to be continued through $m$ phases.
+
+% (END EXAMPLE 1.4)
+
+\par (TODO: PROGRAM 1.15)
+
+\par \textbf{Program 1.15}. The program for Example 1.4 begins with the rewind of the entire $2 \times 2$ array of files. To obviate further rewinding, the second (and each subsequent even-numbered) execution is performed by reading and recording all files in the backward direction. Step 6 performs the essential read and record operation under control of the logical vector $\vect{u}$, whose components $\vect{u}_0$, $\vect{u}_1$, $\vect{u}_2$ determine, respectively, the subscript of the file to be read, the subscript of the file to be recorded, and the direction of read and record. The file superscripts (determining which classes serve as input and output in the current repetition) are also determined by $\vect{u}_2$, the input being $\vect{u}_2$ and the output $\overbar{\vect{u}}_2$. The loop 6-8 copies $n$ items, alternating the input files through the negation of $\vect{u}_0$ on step 7. When the loop terminates, $\vect{u}_1$ is negated to interchange the outputs, and the loop is repeated unless $\vect{u}_1 = \vect{u}_2$. Equality occurs and causes a branch to step 3 if and only if all $2n$ items of the current phase have already been copied.
+
+\par Step 3 decrements $m$ and is followed by the negation of $\vect{u}$ on step 4. The component $\vect{u}_2$ must, of course, be negated to reverse direction, but the need to negate $\vect{u}_0$ and $\vect{u}_1$ is not so evident. It arises because the copying order was prescribed for the forward direction, beginning always with the operation
+
+$$
+  {}_0\tree{Φ}_0{}^p ← {}_0\tree{Φ}_0{}^{\overbar{p}}
+$$
+
+\noindent An equivalent backward copy must therefore begin with the operation
+
+$$
+  {}_1\tree{Φ}_1{}^p ← {}_1\tree{Φ}_1{}^{\overbar{p}}
+$$
+
+% (END PROGRAM 1.15 DESCRIPTION)
+
+\par Not all computer files have the very general capabilities indicated by the present notation. Some files, for example, can be read and recorded in the forward direction only and, except for rewind, cannot be positioned directly. Positioning to an arbitrary position $k$ must then be performed by a rewind and a succession of $(k - 1)$ reads. In some files, recording can be performed in the forward direction only, and the positions are defined only by the recorded data. Consequently, recording in position $k$ makes unreliable the data in all subsequent positions, and recording must always proceed through all successive positions until terminated.
+
+\section{Ordered trees}
+
+\subsection*{Directed graphs}
+
+\par For many processes it is convenient to use a structured operand with the treelike structure suggested by Fig. 1.16. It is helpful to begin with a more general structure (such as Fig. 1.17) in which a unidirectional association may be specified between any pair of its components.
+
+\par (TODO: FIGURE 1.16)
+
+\par \textbf{Figure 1.16} A general triply root tree with $λ(\mat{T}) = 16$, $\mathbf{ν}(\mat{T}) = (3, 3, 4, 3, 2)$, $ν(\mat{T}) = 5$, $\mathbf{μ}(\mat{T}) = (3, 7, 8, 5, 3)$, and $μ(\mat{T}) = 26$
+
+% (END FIGURE 1.16 DESCRIPTION)
+
+\par A \textit{directed graph} comprises a vector $\vect{n}$ and an arbitrary set of unilateral associations specified between pairs of its components. The vector $\vect{n}$ is called a \textit{node vector} and its components are also called \textit{nodes}. The associations are conveniently specified by a (logical) \textit{connection matrix} $\mat{U}$ of dimensions $ν(\vect{n}) \times μ(\vect{n})$ with the following convention: there is an association, called a \textit{branch}, from node $i$ to node $j$ if and only if $\mat{U}_j^i = 1$.
+
+\par A directed graph admits of a simple graphical interpretation, as illustrated by Fig. 1.17. The nodes might, for example, represent places, and the lines, connecting streets. A two-way street is then represented by a pair of oppositely directed lines, as shown between nodes 3 and 4.
+
+\par (TODO: FIGURE 1.17)
+
+\par \textbf{Figure 1.17} A graphical representation of the graph $(\vect{n}, \mat{U})$.
+
+% (END FIGURE 1.17 DESCRIPTION)
+
+\par If $\vect{k}$ is any mapping vector such that
+
+$$
+  \mat{U}_{\vect{k}_i}^{\vect{k}_{i-1}} = 1
+    \quad \text{for} i = 2, 3, ..., ν(\vect{k}),
+$$
+
+\par then the vector $\vect{p} = \vect{k} \int \vect{n}$ is called \textit{a path vector} of the graph $(\vect{n}, \mat{U})$. The dimension of a path vector is also called its \textit{length}. Nodes $\vect{k}_1$ and $\vect{k}_ν$ are called the \textit{initial} and \textit{final} nodes, respectively; both are also called \textit{terminal} nodes. If $\vect{j}$ is any infix of $\vect{k}$, then $\vect{q} = \vect{j} \int \vect{n}$ is also a path. It is called a subpath of $\vect{p}$ and is said to be \textit{contained} in $\vect{p}$. If $ν(\vect{q}) < ν(\vect{p})$, then $\vect{q}$ is a \textit{proper} subpath of $\vect{p}$. If $\vect{k}_1 = \vect{k}_ν$ and $\vect{p} = \vect{k} \int \vect{n}$ is a path of a length exceeding one, $\vect{p}$ is called a \textit{circuit}. For example, if $\vect{k} = (6, 1, 7, 7, 2, 6, 1, 5)$, then $\vect{p} = (\vect{n}_6, \vect{n}_1, \vect{n}_7, \vect{n}_7, \vect{n}_2, \vect{n}_6, \vect{n}_1, \vect{n}_5)$ is a path vector of the graph of Fig. 1.17, which contains the proper subpaths $(\vect{n}_7, \vect{n}_2, \vect{n}_6)$, $(\vect{n}_1, \vect{n}_7, \vect{n}_7, \vect{n}_2, \vect{n}_6, \vect{n}_1)$, and $(\vect{n}_7, \vect{n}_7)$, the last two of which are circuits. Node $j$ is said to be reachable from node $i$ if there exists a path from node $i$ to node $j$.
+
+\subsection*{Ordered trees}
+
+\par A graph (such as Fig. 1.16) which contains no circuits and which has at most one branch entering each node is called a \textit{tree}. Since each node is entered by at most one branch, a path existing between any two nodes in a tree is unique, and the length of path is also unique. Moreover, if any two paths have the same final node, one is a subpath of the other.
+
+\par Since a tree contains no circuits, the length of path in a finite tree is bounded. There therefore exist \textit{maximal paths} which are proper subpaths of no longer paths. The initial and final nodes of a maximal path are called a \textit{root} and \textit{leaf} of the tree, respectively. A root is said to lie on the \textit{first level} of the tree, and, in general, a node which lies at the end of a path of length $j$ from a root, lies in the $j$th \textit{level} of the tree.
+
+\par A tree which contains $n$ roots is said to be \textit{n-tuply rooted}. The sets of nodes reachable from each of the several roots are disjoint, for if any node is reachable by paths from each of two disjoint roots, one is a proper subpath of the other and is therefore not maximal. Similarly, any node of a tree defines a \textit{subtree} of which it is the root, consisting of itself and all nodes reachable from it, with the same associations as the parent tree.
+
+\par If for each level $j$, a simple ordering is assigned to each of the disjoint sets of nodes reachable from each node of the preceding level, and if the roots are also simply ordered, the tree is said to be \textit{ordered}. Attention will henceforth be restricted to ordered trees, which will be denoted by uppercase boldface roman characters. The \textit{height} of a tree $\mat{T}$ is defined as the length of the longest path in $\mat{T}$ and is denoted by $ν(\mat{T})$. The number of nodes on level $j$ is called the \textit{moment of level j} and is denoted by $\mathbf{μ}_j(\mat{T})$. The vector $\mathbf{μ}(\mat{T})$ is called the \textit{moment vector}. The total number of nodes in $\mat{T}$ is called the moment of $\mat{T}$ and is denoted by $μ(\mat{T})$. Clearly, $ν(\mathbf{μ}(\mat{T})) = ν(\mat{T})$, and $+/\mathbf{μ}(\mat{T}) = μ(\mat{T}) = ν(\vect{n})$. The number of roots is equal to $\mathbf{μ}_1(\mat{T})$, and the number of leaves will be denoted by $λ(\mat{T})$.
+
+\par The number of branches leaving a node is called its \textit{branching ratio} or \textit{degree}, and the maximum degree occurring in a tree $\mat{T}$ is denoted by $δ(\mat{T})$. The \textit{dispersion vector} of a tree $\mat{T}$ is denoted by $\mathbf{ν}(\mat{T})$ and is defined as follows: $\mathbf{ν}_1(\mat{T}) = \mathbf{μ}_1(\mat{T})$, and for $j = 2, 3, ..., ν(\mat{T})$, $\mathbf{ν}_j(\mat{T})$ is equal to the maximum over the branching ratios of the nodes on level $j - 1$. For the tree of Fig. 1.16, $\mathbf{ν}(\mat{T}) = (3, 3, 4, 3, 2)$. The number of roots possessed by a tree $\mat{T}$ (that is, $\mathbf{ν}_1(\mat{T})$) is called its \textit{dispersion}. A tree possessing unity dispersion is called \textit{rooted} or \textit{singular}.
+
+\par Each node $\vect{n}_i$ of a graph (and hence of a tree) may be identified by its index $i$. Since a tree admits of more convenient index vectors, the underlying index $i$ will henceforth be referred to as the \textit{graph index}.
+
+\par In an ordered tree, any path of length $k$ from a root can be uniquely specified by an \textit{index vector} $\vect{i}$ of dimension $k$, where $\vect{i}_1$ specifies the particular root, and the remaining components specify the (unique) path as follows: the path node on level $j$ is the $\vect{i}_j$th element of the set of nodes on level $j$ reachable from the path node on level $j - 1$. The node at the end of the path can therefore be designated uniquely by the index vector $\vect{i}$. The degree of node $\vect{i}$ will be denoted by $δ(\vect{i}, \mat{T})$. The index vectors are shown to the left of each node in Fig. 1.16.
+
+\par The path from a root whose terminal node is $\vect{i}$ will be denoted by $\mat{T}^{\vect{i}}$. In Fig. 1.16, for example, $\mat{T}^{\vect{i}} = (\vect{n}_2, \vect{n}_8, \vect{n}_{13}, \vect{n}_{24})$ if $\vect{i} = (2, 2, 2, 3)$. A vector $\vect{i}$ is said to be an index of $\mat{T}$ if it is the index of some node in $\mat{T}$.
+
+\par The subtree of $\mat{T}$ rooted in node $\vect{i}$ will be denoted by $\mat{T}_{\vect{i}}$. Thus in Fig. 1.16, $\mat{P} = \mat{T}_{(2,2,2)}$ is a rooted subtree with $\mathbf{ν}(\mat{P}) = (1, 3, 2)$, and $\mathbf{μ}(\mat{P}) = (1, 3, 3)$. A path in $\mat{T}_{\vect{i}}$ is denoted by $(\mat{T}_{\vect{i}})^{\vect{j}}$. For example, if $\mat{G}$ is an ascending genealogical tree%^{<a href="#note1h">[h]</a>}
+with the sword and distaff sides denoted by the indices 1 and 2, respectively, then any individual $x$ and the nearest ($n - 1$) paternal male ancestors are represented by the path vector $(\mat{G}_{\vect{i}})^{\textbf{ϵ}(n)}$, where $\vect{i}$ is the index of $x$ in $\mat{G}$.
+
+\par \textbf{Example 1.5}. Determine the index $\vect{i}$ such that the path $\mat{T}^{\vect{i}}$ is equal to a given argument $\vect{x}$ and is the ``first'' such path in $\mat{T}$; that is, the function
+
+$$
+  (\mathbf{α}^{ν(\vect{x})}/\mathbf{ν}(\mat{T})) ⊥ \vect{i}
+$$
+
+\noindent is a minimum.
+
+% (END EXAMPLE 1.5)
+
+\par (TODO: PROGRAM 1.18)
+
+\par \textbf{Program 1.18}. The index vector $\vect{i}$ specifies the path currently under test. Its last component is incremented repeatedly by step 7 until the loop 6-8 is terminated. If the path $\mat{T}^{\vect{i}}$ agrees with the corresponding prefix of the argument $\vect{x}$, termination occurs through the branch to step 9, which tests for completion before step 10 augments $\vect{i}$ by a final zero component. Step 5 then respecifies $d$ as the degree of the penultimate node of the set of $d$ paths next to be tested by the loop. Termination by a branch from step 6 to step 2 occurs if all $d$ possible paths are exhausted without finding agreement on step 8. In this event, retraction by one level occurs on step 2, and $d$ is again respecified. If $ν(\vect{i}) = 1$, the paths to be searched comprise the roots of the tree and $d$ must therefore be specified as the number of roots. This is achieved by executing step 3 and skipping step 5. Retraction to a vector $\vect{i}$ of dimension zero occurs only if all roots have been exhausted, and final termination from step 4 indicates that the tree possesses no path equal to the argument $\vect{x}$.
+
+% (END PROGRAM 1.18 DESCRIPTION)
+
+\par If $\vect{d}$ is a vector of dimension $ν(\vect{n})$ such that $\vect{d}_i$ is the degree of node $\vect{n}_i$ of a tree $\mat{T}$, then $\vect{d}$ is called the \textit{degree vector associated with} $\vect{n}$. In Fig. 1.16, for example,
+
+$$
+  \vect{d} = (3, 2, 4, 0, 0, 0, 2, ..., 1, 0, 0).
+$$
+
+\noindent Moreover, if $\vect{n}$ is itself the alphabet (that is, $\vect{n} = (a, b, c, ... , z)$), then the vector $\vect{n}'$ of Table 1.19a is a permutation of $\vect{n}$, and $\vect{d}'$ is the associated degree vector. Table 1.19b shows another such pair, $\vect{n}''$ and $\vect{d}''$.
+
+\par The degree vector provides certain useful information most directly. For example, since each leaf is of degree zero, $λ(\mat{T}) = +/(\vect{d} = 0)$. Moreover, the number of roots is equal to the number of nodes less the total of the degrees, that is, $\mathbf{μ}_1(\mat{T}) = ν(\vect{d}) - +/\vect{d}$, and the maximal degree occurring in $\mat{T}$ is given by $δ(\mat{T}) = ((\textbf{ϵ}⌈\vect{d})/\vect{d})_1$. Finally, the degree vector and the node vector together can, in certain permutations (those of Table 1.19), provide a complete and compact description of the tree.
+
+\par (TODO: TABLE 1.19)
+
+\par \textbf{Table 1.19}. Full list matrices of the tree of Fig. 1.16
