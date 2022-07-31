@@ -1436,3 +1436,117 @@ $$
 \par (TODO: TABLE 1.19)
 
 \par \textbf{Table 1.19}. Full list matrices of the tree of Fig. 1.16
+
+\subsection*{Right and left list matrices}
+
+\par If each one of the $μ(\mat{T})$ index vectors $\vect{i}$ of a tree $\mat{T}$ is listed together with its associated node $(\mat{T}^{\vect{i}})_{ν(\vect{i})}$, the list determines the tree completely. Since the index vectors are, in general, of different dimensions, it is convenient to append null components%^{<a href="#note1i">[i]</a>}
+to extend each to the common maximum dimension $ν(\mat{T})$. They may then be combined in an \textit{index matrix} of dimension $μ(\mat{T}) \times ν(\mat{T})$, which, together with the associated node vector, completely describes the tree. If, for example, the node vector $\vect{n}$ is the alphabet, the tree of Fig. 1.16 is described by the node vector $\vect{n}'$ and index matrix $\mat{I}'$ of Table 1.19a or, alternatively, by $\vect{n}''$ and $\mat{I}''$ of Table 1.19b.
+
+\par Because of the utility of the degree vector, it will be annexed to the array of node vector and index matrix, as shown in Table 1.19a to form a \textit{full list matrix} of the tree. The degree vector and node vector together will be called a \textit{list matrix}. As remarked, the list matrix can in certain permutations, alone describe the tree.
+
+\par Formally, the full list matrix $\mat{M}$ of a tree $\mat{T}$ is defined as follows: $\overbar{\vect{α}}^2/\mat{M}$ is an index matrix of the tree, $\mat{M}_1$ is the associated degree vector, and $\mat{M}_2$ is the associated node vector. Thus for each $k ϵ \textbf{ι}^1(μ(\mat{T}))$, $\mat{M}_1^k = δ(\vect{i}, \mat{T})$, and $\mat{M}_2^k = (\mat{T}^{\vect{i}})_{ν(\vect{i})}$, where $\vect{i}$ is the nonnull portion of $\overbar{\vect{α}}^2/\mat{M}^k$, that is, $\vect{i} = ((\overbar{\vect{α}}^2/\mat{M}^k) \neq ∘\textbf{ϵ})/(\overbar{\vect{α}}^2/\mat{M}^k)$. The corresponding list matrix is $\mathbf{α}^2/\mat{M}$.
+
+\par Since a full list matrix provides a complete description of a tree regardless of the order in which the nodes occur in the list, any column permutation $\mat{M}^{\vect{p}}$ (that is, any reordering among the rows) is also a full list matrix. Two particular arrangements of the full list matrix are of prime interest because each possesses the following properties: (1) the nodes are grouped in useful ways, and (2) the list matrix (i.e., the degree vector and node vector) alone describes the tree without reference to the associated index matrix. They are called the full \textit{left} list matrix and full \textit{right} list matrix and are denoted by $[\mat{T}$ and $]\mat{T}$, respectively. Table 1.19 shows the full left and full right lists of the tree of Fig. 1.16.
+
+\par The left list index matrix $\mat{I}$ is left justified,%^{<a href="#note1j">[j]</a>}
+that is, the null elements are appended at the right of each index. The rows $\mat{I}^{j}$ are arranged in increasing order on their values as decimal (or rather $(δ(\mat{T}) + 1)$-ary) fractions with the radix point at the left and the nulls replaced by zeros. More precisely, the rows are arranged in increasing order on the function $(ν(\vect{a})\textbf{ϵ}) ⊥ (\vect{a} \textbf{ι}_0 \mat{I}^j)$, where $\vect{a} = (∘, 1, 2, ..., δ(\mat{T}))$.%^{<a$ href="#note1k">[k]</a>}
+
+\par The right list matrix is right justified and is ordered on the same function, namely $(ν(\vect{a})\textbf{ϵ}) ⊥ (\vect{a} \textbf{ι}_0 \mat{I}^j)$. The rows are therefore ordered on their values as integers, i.e., with the decimal point at the right. From the example of Table 1.19b it is clear that the right list groups the nodes by levels, i.e., level $j$ is represented by the infix $(i ↓ \mathbf{α}^k)/\!/(]\mat{T})$, where $k = \mathbf{μ}_j(\mat{T})$, and $i = +/\mathbf{α}^{j-1}/\mathbf{μ}(\mat{T})$. In Table 1.19b, for example, $\mathbf{μ}(\mat{T}) = (3, 7, 8, 5, 3)$, and if $j = 3$, then $k = 8$, $i = 10$, and level $j$ is represented by rows $i + 1 = 11$ to $i + k = 18$. The right list is therefore useful in executing processes (such as the $p$th degree selection sort) which require a scan of successive levels of the tree.
+
+\par The left list groups the nodes by subtrees, i.e., any node $\vect{i}$ is followed immediately by the remaining nodes of its subtree $\mat{T}_{\vect{i}}$. Formally, if $\mat{I} = \overbar{\vect{α}}^2/[\mat{T}$, and if $\vect{i} = (\mat{I}^k \neq ∘\textbf{ϵ})/\mat{I}^k$, then the tree $\mat{T}_{\vect{i}}$ is represented by the infix $((k - 1) ↓ \mathbf{α}^{μ(\mat{T}_{\vect{i}})})/\!/[\mat{T}$. In Fig. 1.19a, for example, if $\vect{k} = 16$, then $\vect{i} = (2, 2, 2)$, $μ(\mat{T}_{\vect{i}}) = 7$, and $\mat{T}_{\vect{i}}$ is represented by rows 16 to 22 of $[\mat{T}$. The left list is therefore useful in processes (such as the construction of a Huffman code and the evaluation of a compound statement) which require a treatment of successive subtrees.
+
+\par The row index of a node in a right (left) list matrix is a graph index of the node and will be called the \textit{right} (\textit{left}) \textit{list index}.
+
+\subsection*{Well formation}
+
+\par A two-column matrix which forms the right list of some tree is said to be a \textit{well formed right list}. Since the ordering of the nodes in a right list of a given tree is unique, the right list of a given tree is unique. Conversely, any well formed right list specifies a unique tree according to the algorithm of Program 1.20.
+
+\par Identical remarks apply to the left list, except that Program 1.20 is replaced by Program 1.21. Moreover, the necessary and sufficient conditions for the well formation of a left list are identical with those for a right list and are derived by virtually identical arguments. The case will be stated for the right list only.
+
+\par If $\mat{R}$ is a well formed right list representing a tree $\mat{T}$, then the dispersion (i.e., the number of roots) $\mathbf{ν}_1(\mat{T}) = ν(\mat{R}_1) - (+/\mat{R}_1)$ must be strictly positive. Moreover, if $\mat{S} = \overbar{\vect{α}}^j/\!/\mat{R}$ is any suffix of $\mat{R}$, then $\mat{S}$ is a right list of the tree obtained by deleting from $\mat{T}$ the first $j$ nodes of the original list. For, such level-by-level deletion always leaves a legitimate tree with the degrees of the remaining nodes unchanged. Consequently, the number of roots determined by every suffix of $\mat{R}_1$ must also be strictly positive. In other words, all components of the \textit{suffix dispersion vector} $\vect{s}$ defined by
+
+$$
+  \vect{s}_j = ν(\overbar{\vect{α}}^{j-1}/\mat{R}_1),\quad
+    j ϵ \textbf{ι}^1(ν(\mat{R}_1))
+$$
+
+\noindent must be strictly positive. The condition is also sufficient.
+
+\par Sufficiency is easily established by induction on the column dimension of $\mat{R}$. The condition is clearly sufficient for $ν(\mat{R}_1) = 1$. Assume it sufficient for dimension $ν(\mat{R}_1) - 1$. If $\vect{s}$, the suffix dispersion vector of $\mat{R}$, is strictly positive, then $\overbar{\vect{α}}^1/\vect{s}$, the suffix dispersion vector of $\overbar{\vect{α}}^1/\!/\mat{R}$, is also positive, and by hypothesis $\overbar{\vect{α}}^1/\!/\mat{R}$ represents a tree $\mat{G}$ possessing $\vect{s}_2$ roots. Moreover,
+
+$$
+  0 < \vect{s}_1 = \vect{s}_2 + (1 - \mat{R}_1^1)
+$$
+
+\noindent implies that $\vect{s}_2 \geq \mat{R}_1^1$, and the number of roots possessed by $\mat{G}$ therefore fulfills the number of branches required by the added node $\mat{R}_2^1$. A legitimate tree corresponding to $\mat{R}$ can therefore be formed by joining the last $\mat{R}_1^1$ roots of $\mat{G}$ to the node $\mat{R}_2^1$.
+
+\par Tests for well formation can therefore be incorporated in any algorithm defined on a right or left list matrix $\mat{M}$ by computing the components of the suffix dispersion vector $\vect{s}$. The recursion $\vect{s}_{i-1} = \vect{s}_i + 1 - \mat{M}_1^{i-1}$ is convenient in a backward scan of $\mat{M}$, and the equivalent recursion $\vect{s}_i = \vect{s}_{i-1} - 1 + \mat{M}_1^{i-1}$ serves for a forward scan. The starting condition for a forward scan is $\vect{s}_1 = ν(\mat{M}_1) - (+/\mat{M}_1)$, and for a backward scan is $\vect{s}_ν = 1 - \mat{M}_1^μ$. Since the criteria of well formation are identical for right and left lists, a matrix may be characterized simply as well or ill formed.
+
+\par The purpose served by the degree vector $\vect{d}$ in the description of a tree is sometimes served instead [e.g., <acronym title="Burks, A.W., D.W. Warren, and J.B. Wright (1954), ``An Analysis of a Logical Machine Using Parenthesis-free Notation'', Mathematical Tables and Other Aids to Computation, vol. VIII, pp. 53-57.">Burks et al. (1954)</acronym>] by the vector $\vect{g} = \textbf{ϵ} - \vect{d}$. It is somewhat more convenient in the analysis of well formation, since the expression for the suffix dispersion vector then simplifies to
+
+% TODO square symbol
+$$
+  \vect{s}_{j+1} = (+/\overbar{\vect{α}}^j/\vect{g}), \text{or}
+  \vect{s} = (\mathsf{\mat{I}} + quadne){- \atop /}/\vect{g}.
+$$
+
+\subsection*{The index matrix as a function of the degree vector}
+
+\par The complete determination of the tree corresponding to a given list matrix $\mat{M}$ is best described as the determination of the associated index matrix $\mat{I}$. For both left and right lists this can be achieved by a single forward scan of the rows of $\mat{M}$ and of $\mat{I}$.
+
+\par For a right list $\mat{R}$ it is first necessary to determine $r$, the number of roots. The first $r$ components of $\mat{R}$ are then the roots of the tree in order, the next $\mat{R}_1^1$ components of $\mat{R}$ are the second-level nodes reachable from the first root, and so forth. Programs 1.20 and 1.21 describe the processes for a right list and a left list, respectively.
+
+\par (TODO: PROGRAM 1.20)
+
+\par \textbf{Program 1.20}. In each execution of the main loop 13-16, the $i$th row of the right list $\mat{R}$ is examined to determine the index vector of each node on the succeeding level which is directly reachable from it. The number of such nodes is controlled by the parameter $d$, initialized to the degree of the $i$th node by step 12. The (right list) index of the nodes reachable from node $i$ is determined by $j$, which is incremented on step 14 as the index vector of each node is determined. The index vectors of the successive nodes reachable from node $i$ have the final components $1, 2, 3, ...$, and each must be prefixed by the index vector of node $i$. This assignment is effected by the vector $\vect{v}$, which is initialized by the index vector of node $i$ rotated left by one (step 11), and which is incremented by step 15 before each assignment occurring on step 16. At the outset, $\vect{v}$ is set to zero and $d$ is set to the number of roots as determined by step 4.
+
+\par Since $j$ is, at step 10, equal to the current number of roots $r$ augmented by the cumulative degrees of the first $i - 1$ nodes, then $r = j - i + 1$ and the exit on step 10 therefore occurs always and only in the event of ill formation. Alternatively, the test can be viewed as an assurance that each row of the matrix $\mat{I}$ is specified before it is itself used in specification.
+
+\par When step 5 is first reached, the index matrix $\mat{I}$ is complete but is expressed in 1-origin indexing with zeros representing the null elements. Steps 5-7 translate the matrix to the origin $φ$ and mask in the necessary null elements.
+
+% (END PROGRAM 1.20 DESCRIPTION)
+
+\par (TODO: PROGRAM 1.21)
+
+\par \textbf{Program 1.21}. The index vectors $\mat{I}^j$ are determined in order under control of the parameter. The loop 5-18 traces a continuous path through the tree, determining the index of each successive node of the path by rotating the index of the preceding node (step 17) and adding one to the last component (step 13), and maintaining in the connection vector $\vect{c}$ a record $\vect{c}_{i+1}$ of the index $j$ of the successor of node $i$ in the path traced. The path is interrupted by the occurrence of a leaf (that is, $\mat{L}_1^j = 0$ on step 18), and the degree vector $\mat{L}_1$ is then scanned by the loop (19-20) to determine the index $i$ of the last preceding node whose branches remain incompleted. Steps 22-23 then respecify $\vect{v}$ as the index vector of the node following node $i$ in the path last traced, and step 21 decrements the component $\mat{L}_1^i$ of the degree vector. The branch from step 19 to step 22 occurs at the completion of each rooted subtree. The test for well formation (step 12) is the same as that applied to the right list in Program 1.20, except that the notation for the relevant parameters differs. The concluding operations (6-9) include left justification on step 7.
+
+% (END PROGRAM 1.21 DESCRIPTION)
+
+\subsection*{Tree, path, and level compression}
+
+\par The \textit{tree compression}
+
+$$
+  \mat{P} ← \mat{U}/\mat{T}
+$$
+
+\noindent specifies a tree $\mat{P}$ obtained from $\mat{T}$ by suppressing those nodes corresponding to zeros of the logical tree $\mat{U}$, and reconnecting so that for every pair of nodes $x, y$ of $\mat{P}, x$ belongs to the subtree of $\mat{P}$ rooted in $y$ if and only if $x$ belongs to the subtree of $\mat{T}$ rooted in $y$. If, for example, $\mat{T}$ is the tree of Fig. 1.16 with $\vect{n}$ as the alphabet, and $\mat{U}$ is the tree of Fig. 1.22a, then $\mat{P}$ is the tree of Fig. 1.22b. The new indices are shown to the left of each node of $\mat{P}$. The set of nodes 221, 222, ..., 226, are all on the same level of $\mat{P}$ although they have been shown with branches of different lengths to permit easy identification with the nodes of the original tree $\mat{T}$.
+
+\par (TODO: FIGURE 1.22)
+
+\par The compress operation is best executed on the left list because of the grouping by subtrees. Program 1.23 gives a suitable algorithm which also serves as a formal definition of the compress operation.
+
+\par (TODO: PROGRAM 1.23)
+
+\par \textbf{Program 1.23}. The vector $\vect{u}$ is specified as the node vector of the left list of the controlling logical tree $\mat{U}$ and controls the subsequent process. Step 4 determines $j$ as the index of the first zero component of $\vect{u}$. Steps 6 and 7 then delete the corresponding nodes of $\vect{u}$ and of the left list of $\mat{T}$, but only after step 5 has determined $d$ as the change in degree which this deletion will occasion to the root of the smallest subtree containing the deleted node. Steps 9-11 perform a backward scan of the degree vector to determine $j$ as the index of the root of the subtree, and step 12 effects the requisite change in its degree. The exit on step 9 occurs only if the node deleted is a root of the original tree, in which event no change is produced in the degree of any other node.
+
+% (END PROGRAM 1.23 DESCRIPTION)
+
+\par Two further compress operations controlled by logical vectors are defined as follows. \textit{Path compression} is denoted by
+
+$$
+  \mat{P} ← \vect{u}/\mat{T}.
+$$
+
+\noindent $\mat{P}$ is obtained from $\mat{T}$ by suppressing every node on level $j$ if $\vect{u}_j = 0$, and reconnecting as in tree compression. \textit{Level compression} is denoted by
+
+$$
+  \mat{P} ← \vect{u}/\!/\mat{T},
+$$
+
+\noindent and $\mat{P}$ is obtained from $\mat{T}$ by deleting each rooted subtree $\mat{T}_i$ for which $\vect{u}_i =$ 0.
+
+\par Path compression by a unit vector $\textbf{ϵ}^j$ produces a tree of height one. Such a tree is, in effect, a vector and will be treated as one.
+
+\par Two related special logical trees are defined: the \textit{path tree} ${}^{\vect{u}}\mat{E}$ such that $\overbar{\vect{u}}/{}^{\vect{ u}}\mat{E} = 0$ and $\vect{u}/{}^{\vect{u}}\mat{E}$ is the full tree $\mat{E}$ whose nodes are all unity, and the \textit{level tree} 
+${}_{\vect{u}}\mat{E}$ such that $\overbar{\vect{u}}/\!/{}_{\vect{u}}\mat{E} = 0$, and $\vect{u}/\!/{}_{\vect{u}}\mat{E} = \mat{E}$.
