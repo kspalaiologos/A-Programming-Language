@@ -102,6 +102,7 @@ repl ← chars ∾ apl ∾ ⟨
   "<img src=""APLimg/plustimes.bmp"">"                  ‿"{+ \atop \times}"
   "<img src=""APLimg/timesslash.bmp"">"                 ‿"{\times \atop /}"
   "<img src=""APLimg/orand.bmp"">"                      ‿"{\vee \atop \wedge}"
+  "<img src=""APLimg/neand.bmp"">"                      ‿"{\neq \atop \wedge}"
   "<img src=""APLimg/circle1circle2.bmp"">"             ‿"{\odot_1 \atop \odot_2}"
   "<img align=middle src=""APLimg/circle1circle2.bmp"">"‿"{\odot_1 \atop \odot_2}"
   "<img src=""APLimg/jotcircle.bmp"">"                  ‿"{\circ \atop \odot_2}"
@@ -109,7 +110,7 @@ repl ← chars ∾ apl ∾ ⟨
   "<img src=""APLimg/jotand.bmp"">"                     ‿"{\circ \atop \wedge}"
   "<img src=""APLimg/jotmax.bmp"">"                     ‿"{\circ \atop ⌈}"
   "<img src=""APLimg/jotbase.bmp"">"                    ‿"{\circ \atop ⊥}"
-  "<img src=""APLimg/jotiota.bmp"">"                    ‿"{\circ \atop ι}"
+  "<img src=""APLimg/jotiota.bmp"">"                    ‿"{\circ \atop \iota}"
 ⟩
 repl ∾˜↩ ⟨ "<sup><i>&nbsp;"‿"^{\textit{", "<sub><i>&nbsp;"‿"_{\textit{" ⟩
 
@@ -127,8 +128,8 @@ Math ← {
   s ← 𝕩=' '
   m ← 0⌾⊑(𝕩='\')∨((@+128)≤𝕩)∨(𝕩∊"}"∾∾"0aA"+⟜↕¨10‿26‿26)<(»∧«)' '=𝕩
   i‿b ← ∨`Find⟜𝕩¨ "\textbf{"⋈˜ti←"\textit{"
-  m >↩ b
-  m ∨↩ i ↩ i ∧ (1+≠ti)⥊⟜0⊸««⊸∨'}'=𝕩
+  m >↩ b > c ← (1+≠ti)⥊⟜0⊸«'}'=𝕩
+  m ∨↩ i ↩ i ∧ «⊸∨c
   PF← +`∘⊣⊏1(¬∾/∾˜)(∨/⊣)  # Fill partitions 𝕨 based on 𝕩
   e ← ((p∧1⊸«)⊸∨s) (>⟜(»∧«)<⊢) s PF m
   f ← ¬ (≠`(0¨ti)⊸»⊸∨i) ∨ (≠𝕩)↑/⁼('}'≠⊏⟜𝕩)⊸+(1+≠ti)+/i∧↩e
