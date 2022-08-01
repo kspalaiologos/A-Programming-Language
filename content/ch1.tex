@@ -1550,3 +1550,143 @@ $$
 
 \par Two related special logical trees are defined: the \textit{path tree} ${}^{\vect{u}}\mat{E}$ such that $\overbar{\vect{u}}/{}^{\vect{ u}}\mat{E} = 0$ and $\vect{u}/{}^{\vect{u}}\mat{E}$ is the full tree $\mat{E}$ whose nodes are all unity, and the \textit{level tree} 
 ${}_{\vect{u}}\mat{E}$ such that $\overbar{\vect{u}}/\!/{}_{\vect{u}}\mat{E} = 0$, and $\vect{u}/\!/{}_{\vect{u}}\mat{E} = \mat{E}$.
+
+\subsection*{Extension of other operations to trees}
+
+\par Two trees are \textit{compatible} if they have the same structure. Elementary binary operations are extended node by node to compatible trees. For example,
+
+$$
+  \mat{Z} ← \mat{X} \times \mat{Y}
+$$
+
+\noindent implies that node $\vect{i}$ of $\mat{Z}$ is the product of node $\vect{i}$ of $\mat{X}$ and node $\vect{i}$ of $\mat{Y}$ for all $\vect{i}$. Similarly,
+
+$$
+  \mat{M} ← \vect{b} \textbf{ι}_j \mat{T}
+$$
+
+\noindent specifies $\mat{M}$ as a tree (of the same structure as $\mat{T}$) such that node $\vect{i}$ of $\mat{M}$ is the $j$-origin $\vect{b}$-index of node $\vect{i}$ of $\mat{T}$.
+
+\par The mapping operation is extended to trees so as to permute the rooted subtrees of a tree. Formally
+
+$$
+  \mat{P} ← \vect{m} \int_j \mat{T}
+$$
+
+\noindent implies that $\mathbf{μ}_1(\mat{P}) = ν(\vect{m})$, that $\mat{P}_i$ is a single null character if $\vect{m}_i \notin \textbf{ι}^j(\mathbf{μ}_1(\mat{T}))$, and otherwise $\mat{P}_i = \mat{T}_{\vect{m}}$, where $j$-origin indexing is used for $\mat{T}$.
+
+\par Permutation of the subtrees rooted in node $\vect{i}$ of $\mat{T}$ can be effected as follows:
+
+$$
+  \overbar{\vect{α}}^1/\mat{T}_{\vect{i}} ←
+    \vect{m} \int (\overbar{\vect{α}}^1/\mat{T}_{\vect{i}})
+$$
+
+\par The notation $\odot/\!/\mat{T}$ will denote the application of the binary operator or relation $\odot$ to the nodes of $\mat{T}$ in right list order (i.e., \textit{down} successive levels) and $\odot/\mat{T}$ will denote the same application in left list order (i.e., \textit{across} paths). If the operator is symmetric (i.e., its operands commute), then $\odot/\!/\mat{T} = \odot/\mat{T}$.
+
+\par Maximization $(\mat{U}⌈\mat{T})$ and minimization $(\mat{U}⌊\mat{T})$ are extended to trees in the obvious way.
+
+\par (TODO: FIGURE 1.24)
+
+\par The operations $α/\vect{u}, ω/\vect{u}, σ/\vect{u}$, and $τ/\vect{u}$ are each extended in two ways: across paths and down levels. Examples of each appear in Fig. 1.24. Operations extending down levels are denoted by double virgules and represent an application of the corresponding vector operation to each level of the tree considered as a vector. For example, the statement
+
+$$
+  \mat{V} ← σ/\!/\mat{A}
+$$
+
+\noindent implies that each level of $\mat{V}$ is the forward set selection of the corresponding level of $\mat{A}$, that is, $\textbf{ϵ}^j/\mat{V} = σ/\textbf{ϵ}^j/\mat{A}$. Operations extending across paths are denoted by single virgules and are defined in terms of subtrees. Thus
+
+$$
+  \mat{V} ← α/\mat{U}
+$$
+
+\noindent implies that $\mat{V}$ is obtained from the logical tree $\mat{U}$ by setting to zero all nodes of any subtree rooted in a zero node, and
+
+$$
+  \mat{V} ← ω/\mat{U}
+$$
+
+\noindent implies that $\mat{V}$ is obtained from $\mat{U}$ by setting to zero every node whose subtree contains a zero node. The definitions of $σ/\mat{U}$ and $τ/\mat{U}$ are analogous.
+
+\subsection*{Homogeneous trees}
+
+\par If, for all $j$, every node on level $j$ of a tree $\mat{T}$ is either of degree zero or of degree $\mathbf{ν}_{j+1}(\mat{T})$, then the tree $\mat{T}$ is said to be \textit{uniform}. If all leaves of a uniform tree $\mat{T}$ lie in the same level (necessarily the top), then the tree is said to be \textit{homogeneous}. The structure of a homogeneous tree is completely characterized by its dispersion vector $\mathbf{ν}(\mat{T})$. All maximal paths in a homogeneous tree are clearly of the same length, namely $ν(\mat{T}) = ν(\mathbf{ν}(\mat{T}))$. Figure 1.25 shows a homogeneous tree and its associated dispersion vector.
+
+\par (TODO: FIGURE 1.25)
+
+\par A tree $\mat{T}$ for which $\mathbf{ν}(\mat{T}) = m\textbf{ϵ}$ is called an \textit{m-way tree}, and a tree for which $\mathbf{ν}_1(\mat{T}) = 1$ and $\overbar{\vect{α}}^1/\mathbf{ν}(\mat{T}) = m\textbf{ϵ}$ is called a \textit{singular m-way tree}.
+
+% TODO quadsw
+\par The $j$th component of the moment vector of a homogeneous tree is clearly equal to the product of the first $j$ components of the dispersion vector, that is, $\mathbf{μ}(\mat{T}) = (quadsw + \mathsf{\mat{I}}) {\times \atop /} \mathbf{ν}(\mat{T})$. The dispersion vector is, in turn, uniquely determined by the moment vector. The total number of nodes is given by $μ(\mat{T}) = +/\mathbf{μ}(\mat{T})$, and it can also be shown that $μ(\mat{T}) = \vect{y} ⊥ \vect{y}$, where $\vect{y}$ is the dispersion vector in reverse order.
+
+\par Tree compression of a homogeneous tree $\mat{H}$ (that is, $\mat{U}/\mat{H}$) does not generally produce a homogeneous tree, and, in fact, any tree $\mat{P}$ of arbitrary structure can be represented by a pair of homogeneous trees $\mat{U}$ and $\mat{H}$ such that $\mat{P} = \mat{U}/\mat{H}$. On the other hand, both path and level compression of homogeneous trees produce homogeneous trees. Moreover, if $\mat{P} = \vect{u}/\mat{H}$, then $\mathbf{ν}(\mat{P}) = \vect{u}/\mathbf{ν}(\mat{H})$, and if $\mat{P} = \vect{u}/\!/\mat{H}$, then $\mathbf{ν}(\mat{P}) = \mathbf{ν}(\mat{H}) - (+/\overbar{\vect{u}})\mathbf{α}^1$.
+
+\par Since the structure of a homogeneous tree is completely specified by its dispersion vector $\vect{k}$, the structure of the special logical trees can be specified in the forms $\mathsf{\mat{E}}(\vect{k})$, ${}^{\vect{u}}\mathsf{\mat{E}}(\vect{k})$, and ${}_{\vect{u}}\mathsf{\mat{E}}(\vect{k})$.
+
+\par In a homogeneous tree, the right list or left list index of a node can be determined as an explicit function of its index vector. Conversely, the index vector $\vect{i}$ can be determined directly from the corresponding left list index, to be denoted by $l(\vect{i})$, or from the right list index $r(\vect{i})$. In developing the relations between indices it will be convenient to use 0-origin indexing throughout.
+
+\par The right list index is given by
+
+\begin{align*}
+             & r(\vect{i}) = f(\vect{i}) + g(\vect{i}), \\
+\text{where} & f(\vect{i}) = +/\mathbf{α}^{ν(\vect{i})-1}/\mathbf{μ}(\mat{T})
+\end{align*}
+
+\noindent is the number of nodes in the first $ν(\vect{i}) - 1$ levels, and
+
+$$
+  g(\vect{i}) = (\mathbf{α}^{ν(\vect{i})}/\mathbf{ν}(\mat{T})) ⊥ \vect{i}
+$$
+
+\noindent is the rank of node $\vect{i}$ in the $ν(\vect{i})$th level. For example, if $\vect{i} = (1, 0, 1)$ in the tree of Fig. 1.25, then $\mathbf{μ}(\mat{H}) = (2, 6, 12)$, $f(\vect{i}) = +/(2, 6) = 8$, and $g(\vect{i}) = (2, 3, 2) ⊥ (1, 0, 1) = 7$.
+
+\par Since $f(\vect{i})$ depends only on $ν(\vect{i})$, the index $\vect{i}$ may be determined from $r$ by first determining $ν(\vect{i})$ as the largest value for which $f(\vect{i}) \leq r$, and then determining $\vect{i}$ such that
+
+$$
+  (\mathbf{α}^{ν(\vect{i})}/\mathbf{ν}(\mat{T})) ⊥ \vect{i}
+    = r - f(\vect{i}).
+$$
+
+\par In tracing a path through a tree, the $k$th node of the set reachable from node $\vect{i}$ is the node $\vect{j} = \vect{i} \oplus (k)$. It is therefore useful to express $r(\vect{j})$ as a function of $r(\vect{i})$. Clearly
+
+\begin{align*}
+ f(\vect{j}) &= f(\vect{i}) + (\mathbf{μ}(\mat{T}))_{ν(\vect{i})-1}, \\
+ g(\vect{j}) &= g(\vect{i}) \times (\mathbf{ν}(\mat{T}))_{ν(\vect{i})}
+              + \vect{j}_{ν-1}.
+\end{align*}
+
+\noindent In the special case of a singular homogeneous $m$-way tree,
+
+\begin{align*}
+  f(\vect{i}) &= 1 + m + m^2 + \cdots + m^{ν(\vect{i})-2}
+               = (m\textbf{ϵ}) ⊥ \textbf{ϵ}(ν(\vect{i}) - 1) \\
+              &= \frac{m^{ν(\vect{i})-1} - 1}{m - 1}
+\end{align*}
+
+\noindent Hence $f(\vect{j}) = 1 + m \times f(\vect{i})$, and $g(\vect{j}) = m \times g(\vect{i}) + \vect{j}_{ν-1}$. Recursion can therefore be performed simply upon the single function $r(\vect{i})$ as follows:
+
+$$
+  r(\vect{j}) = m \times r(\vect{i}) + 1 + \vect{j}_{ν-1}.
+$$
+
+\par The left list index $l(\vect{i})$ is most conveniently expressed as a function of $ν(\vect{i})$ and of the vector $\vect{z}(\vect{i})$ (zero extension of $\vect{i}$), where $\vect{z} = \mathbf{α}^{ν(\vect{i})}(ν(\mat{T}))\backslash \vect{i}$. Clearly $ν(\vect{z}) = ν(\mat{T})$ and $\vect{z}$ is the index of the ``earliest'' leaf reachable from node $\vect{i}$. In Fig. 1.25, for example, $\vect{z}((1, 2)) = (1,2,0)$.
+
+\par The zero extension has the obvious property that every node above the path $\mat{T}^{\vect{z}(\vect{i})}$ precedes node $\vect{i}$ in the left list, and every node below the path follows it. The number of nodes in the path which precede node $\vect{i}$ is $ν(\vect{i}) - 1$.
+
+\par The number of leaves above the path $\mat{T}^{\vect{z}(\vect{i})}$ is $\mathbf{ν}(\mat{T}) ⊥ \vect{z}(\vect{i})$, and more generally, the number of $(j - 1)$th level nodes above it is given by $(\mathbf{α}^j/\mathbf{ν}(\mat{T})) ⊥ (\mathbf{α}^j/\vect{z}(\vect{i}))$. Consequently,
+
+$$
+  l(\vect{i}) = ν(\vect{i}) - 1
+    + \sum_{j=1}^{\mathbf{ν}(\mat{T})}
+        (\mathbf{α}^j/\mathbf{ν}(\mat{T}))
+      ⊥ (\mathbf{α}^j/\vect{z}(\vect{i})).
+$$
+
+\noindent For example, if $\vect{i} = (1,0)$ in Fig. 1.25, then $\vect{z}(\vect{i}) = (1, 0, 0)$ and $l(\vect{i}) = ν(\vect{i}) - 1 + (2) ⊥ (1) + (2, 3) ⊥ (1, 0) + (2, 3, 2) ⊥ (1, 0, 0) = 11$. The foregoing result may be written alternatively as
+
+$$
+  l(\vect{i}) = ν(\vect{i}) - 1
+              + \vect{w} {+ \atop \times} \vect{z}(\vect{i}),
+$$
+
+\noindent where $\vect{w}_ν = 1$, and $\vect{w}_{i-1} = 1 + (\vect{w}_i \times \mathbf{ν}_i(\mat{T}))$. In the foregoing example, $\vect{w} = (10, 3, 1)$, and $\vect{w} {+ \atop \times} \vect{z}(\vect{i}) = 10$. This form is most convenient for determining $\vect{i}$ as a function of $l$, for since $\vect{w} {+ \atop \times} \vect{z} = l + 1 - ν(\vect{i})$, then $\vect{z}_{ 0}(\vect{i}) = ⌊l ÷ \vect{w}_0⌋, \vect{z}_{ 1}(\vect{i}) = ⌊((\vect{w}_0 | l) - 1) ÷ \vect{w}_1⌋$, etc. for all positive values of the quotient, and all components thereafter are zero. The dimension $ν(\vect{i})$ is then determined from the relation $ν(\vect{i}) = l + 1 - \vect{w} {+ \atop \times} \vect{z}(\vect{i})$.
